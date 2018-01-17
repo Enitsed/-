@@ -16,7 +16,7 @@
 		<!-- <property name="configLocation" value="classpath:config/configuration.xml"/> -->
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:part03_search/empMapper.xml</value>
+				<!-- <value>classpath:kr.com.finalproject/mainMapper.xml</value> -->
 			</list>
 		</property>
 	</bean>
@@ -27,4 +27,51 @@
 	<!-- <bean id="dao" class=""> <property name="sqlSession" ref="sqlSession" 
 		/> </bean> -->
 
+
+	<!-- [4]TransactionManager 빈 선언 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager"> 
+		<tx:attributes> <tx:method name="*Process" rollback-for="java.lang.Exception" 
+		/> </tx:attributes> </tx:advice> -->
+	<!-- [6] 트랜잭션으로 처리할 메소드에 transactionManager 설정 -->
+	<!-- <aop:config> <aop:pointcut expression="execution(* service.BoardServiceImp.*Process(..))" 
+		id="aa" /> <aop:advisor advice-ref="txAdvice" pointcut-ref="aa" /> </aop:config> -->
+	<!-- <bean id="dao" class=""> <property name="sqlSession" ref="sqlSession" 
+		/> </bean> <bean id="service" class=""> <property name="dao" ref="dao" /> 
+		</bean> <bean id="path" class="java.lang.String"> <constructor-arg value="c:/temp/" 
+		/> </bean> <bean class=""> <property name="service" ref="service" /> <property 
+		name="path" ref="path" /> </bean> -->
+	<!-- [10] View -->
+	<bean id="jsonView"
+		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1" />
+	</bean>
+
+	<!-- 첨부파일을 임시 기억저장소에 저장한다. -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- <property name="uploadTempDir" ref="uploadDirResource" /> -->
+		<property name="maxUploadSize" value="1000000000" />
+	</bean>
+
+	<!-- controller -->
+	<bean name="controller" class="controller.HelloController"></bean>
+
+	<!-- ViewResolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="2" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1" />
+	</bean>
 </beans>
