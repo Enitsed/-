@@ -7,6 +7,7 @@
 <title>Main Page</title>
 <link rel="stylesheet" type="text/css"
 	href="resources/css/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="custom.css">
 </head>
 <body>
 
