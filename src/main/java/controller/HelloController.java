@@ -14,18 +14,8 @@ public class HelloController {
 		return "main";
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping("/signup")
 	public String signUp() {
 		return "signUpForm";
 	}
-=======
-	
->>>>>>> sxdf
-
-@RequestMapping("/signup")
-public String signUp() {
-	return "signUpForm";
-}
-
 }
