@@ -44,7 +44,7 @@
 			</div>
 			<div class="ui item">
 				<div class="ui">
-					<button class="ui green basic button">회원 가입</button>
+					<a href="signup"><button class="ui green basic button">회원 가입</button></a>
 					<button class="ui orange basic button">로그인</button>
 				</div>
 			</div>

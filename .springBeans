@@ -8,7 +8,7 @@
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
 		<config>src/main/webapp/WEB-INF/dispatcher.xml</config>
-		<config>src/main/java/kr/com/finalproject/mainMapper.xml</config>
+		<config>src/main/java/config/mainMapper.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
