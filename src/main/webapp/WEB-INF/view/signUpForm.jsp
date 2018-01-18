@@ -4,7 +4,7 @@
 	<div class="ui container">
 		<h1>회원가입</h1>
 
-		<div class="ui form segment">
+		<form class="ui form segment">
 			<div class="field">
 				<label for="id">아이디</label>
 				<input id="id" placeholder="아이디" type="text">
@@ -43,5 +43,5 @@
 			</div>
 			
 			<button class="ui blue button" type="submit" id="btn">Submit</button>
-		</div>
+		</form>
 	</div>
