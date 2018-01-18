@@ -4,10 +4,11 @@
 	<div class="ui container">
 		<h1>회원가입</h1>
 
-		<form class="ui form segment" action="join" method="post">
+		<form class="ui form segment" id="signUpForm" action="join" method="post">
 			<div class="field">
 				<label for="id">아이디</label>
 				<input id="id" name="mem_id" placeholder="아이디" type="text">
+				<div class="ui basic teal small button items" id="checkId">아이디 중복 검사</div>
 			</div>
 
 			<div class="two fields">
@@ -57,7 +58,7 @@
 				</div>
 			</div>
 			<div class="ui primary submit button">회원가입</div>
+			<div class="ui reset red button">초기화</div>
 			<div class="ui error message"></div>
 		</form>
 	</div>
-

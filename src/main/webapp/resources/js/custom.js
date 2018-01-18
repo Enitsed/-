@@ -4,10 +4,51 @@
 $(document).ready(function () {
 	"use strict";
 
+	// 로그인 창 띄우기
+	$('#loginBtn').on('click', function () {
+		$('.ui.modal')
+			.modal('show');
+
+	});
+
+	// 메뉴 드랍 다운
 	$('.ui.dropdown')
 		.dropdown();
 
-	$('.ui.form')
+
+	// 로그인 유효성 검사
+	$('.ui.form#loginForm')
+		.form({
+			on: 'blur',
+			fields: {
+				id: {
+					identifier: 'id',
+					rules: [
+						{
+							type: 'empty',
+							prompt: '아이디를 입력해주세요.'
+						}
+					]
+				},
+				password: {
+					identifier: 'password',
+					rules: [
+						{
+							type: 'empty',
+							prompt: '비밀번호를 입력하세요.'
+						},
+						{
+							type: 'minLength[6]',
+							prompt: '비밀번호 : 최소 {ruleValue} 글자 이상 입력 하세요.'
+						}
+					]
+				}
+			}
+		});
+
+
+	// 회원가입 유효성 검사
+	$('.ui.form#signUpForm')
 		.form({
 			on: 'blur',
 			fields: {
