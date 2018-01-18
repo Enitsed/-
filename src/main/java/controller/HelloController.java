@@ -10,4 +10,9 @@ public class HelloController {
 	public String mainPage() {
 		return "main";
 	}
+	
+	@RequestMapping("/signup")
+	public String signUp() {
+		return "signUpForm";
+	}
 }
