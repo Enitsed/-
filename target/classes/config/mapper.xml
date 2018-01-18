@@ -3,37 +3,20 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="per">
+<mapper namespace="mem">
 
-	<select id="all" resultType="dto.PersonDTO">
-		select * from person 
-		order by num desc
+	<select id="find" resultType="dto.MemDTO" parameterType="String">
+		select id from mem
+		where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</select>
-	
-	<select id="one" resultType="dto.PersonDTO" 
-	        parameterType="int">
-		select * from person where num=#{num}
-	</select>
-	
-	<select id="search" resultType="dto.PersonDTO"
-	      parameterType="dto.PersonDTO">
-	  select * from person 
-	  where num=#{num} and name=#{name}
-	</select>
-	
-	<insert id="ins" parameterType="dto.PersonDTO">
-	  insert into person 
-	  values(per_num_seq.nextval,#{id},
-	  #{pass},#{name})
+
+	<insert id="insert" parameterType="dto.MemDTO">
+		insert into person
+		values(mem_num_seq.nextval,#{mem_id},
+		#{mem_pw},#{mem_sex},#{mem_name},#{mem_address})
 	</insert>
+
 	
-	<update id="upt" parameterType="dto.PersonDTO">
-	 update person set  name=#{name} where num=#{num}
-	</update>
-	
-	<delete id="del" parameterType="int">
-	 delete from person where num=#{num}
-	</delete>
 </mapper>
 
 
