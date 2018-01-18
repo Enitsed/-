@@ -27,9 +27,12 @@
 						<th scope="col">작성일</th>
 						<th scope="col">조회수</th>
 					</tr>
-					</table>
-					<div class="content">
-					<table>
+					<tbody>
+						<tr>
+							<td></td>
+						</tr>
+					</tbody>
+
 						
 					</table>
 					</div>

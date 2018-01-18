@@ -31,9 +31,9 @@ public class HelloController {
 		return "signUpForm";
 	}
 	
-	@RequestMapping("/freeboard")
+	@RequestMapping("/free")
 	public String board() {
-		return "boardbody";
+		return "freeboard";
 	}
 	
 	@RequestMapping(value="/join",method=RequestMethod.POST)
