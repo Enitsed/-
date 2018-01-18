@@ -7,13 +7,13 @@
 		<form class="ui form segment">
 			<div class="field">
 				<label for="id">아이디</label>
-				<input id="id" name="id" placeholder="아이디" type="text">
+				<input id="id" name="mem_id" placeholder="아이디" type="text">
 			</div>
 
 			<div class="two fields">
 				<div class="field">
 					<label for="password">비밀번호</label>
-					<input id="password" name="password" type="password">
+					<input id="password" name="mame_pw" type="password">
 				</div>
 
 				<div class="field">
@@ -24,22 +24,22 @@
 
 			<div class="field">
 				<label for="name">이름</label>
-				<input id="name" placeholder="이름" name="name" type="text" />
+				<input id="name" placeholder="이름" name="mem_name" type="text" />
 			</div>
 
 			<div class="field">
 				<label for="gender">성별</label>
-				<input id="gender" placeholder="성별" name="password" type="radio">
+				<input id="gender" placeholder="성별" name="mem_sex" type="radio">
 			</div>
 
 			<div class="field">
 				<label for="email">이메일</label>
-				<input id="email" placeholder="이메일" name="email" type="text">
+				<input id="email" placeholder="이메일" name="mem_email" type="text">
 			</div>
 
 			<div class="field">
 				<label for="address">주소</label>
-				<input id="address" placeholder="주소" name="address" type="text">
+				<input id="address" placeholder="주소" name="mem_address" type="text">
 			</div>
 
 			<div class="inline field">
