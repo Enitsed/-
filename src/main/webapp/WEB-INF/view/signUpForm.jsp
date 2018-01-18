@@ -40,11 +40,7 @@
 				<label for="gender">성별</label>
 				<input id="gender" placeholder="성별" type="text">
 			</div>
-<<<<<<< HEAD
 
-			<button class="ui blue button" type="submit" id="btn">Submit</button>
-=======
-			
 			<div class="field">
 				<label for="email">이메일</label>
 				<input id="email" placeholder="이메일" type="text">
@@ -55,8 +51,7 @@
 				<input id="address" placeholder="주소" type="text">
 			</div>
 			
-			<button class="ui blue button">Submit</button>
->>>>>>> ea2da66e3c1c576818de73bd878a5c9b941a9005
+			<button class="ui blue button" type="submit" id="btn">Submit</button>
 		</div>
 	</div>
 
