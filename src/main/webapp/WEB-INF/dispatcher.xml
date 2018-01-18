@@ -72,7 +72,9 @@
 
 
 	<!-- controller -->
-	<bean name="controller" class="controller.HelloController"></bean>
+	<bean name="controller" class="controller.HelloController">
+		<property name="service" ref="svc"/>
+	</bean>
 
 
 	<!-- tiles -->

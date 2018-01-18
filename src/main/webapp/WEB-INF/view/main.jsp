@@ -38,5 +38,6 @@
 	<script src="resources/js/jquery.vide.min.js"></script>
 	<script src="resources/js/semantic.min.js"></script>
 	<script src="resources/js/custom.js"></script>
+
 </body>
 </html>
