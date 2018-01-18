@@ -60,6 +60,8 @@
 		<url-pattern>*.ttf</url-pattern>
 		<url-pattern>*.woff</url-pattern>
 		<url-pattern>*.woff2</url-pattern>
+		<url-pattern>*.mp4</url-pattern>
+		
 	</servlet-mapping>
 
 </web-app>

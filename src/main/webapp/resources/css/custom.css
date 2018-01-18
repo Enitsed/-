@@ -1,5 +1,8 @@
-@charset "UTF-8";
+.video_clip {
+	height: 400px;
+	margin: 10px;
+}
 
-.contents{
-    margin: 20px;
+.divider {
+	clear: both;
 }
