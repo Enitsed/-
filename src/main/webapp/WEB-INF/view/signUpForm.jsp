@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>회원가입</title>
 
-	<link href="resources/css/semantic.min.css" rel="stylesheet" type="text/css" />
-
-</head>
-
-<body>
 	<div class="ui container">
 		<h1>회원가입</h1>
 
@@ -39,7 +29,7 @@
 
 			<div class="field">
 				<label for="gender">성별</label>
-				<input id="gender" placeholder="성별" type="text">
+				<input id="gender" placeholder="성별" type="text" />
 			</div>
 
 			<div class="field">
@@ -55,10 +45,3 @@
 			<button class="ui blue button" type="submit" id="btn">Submit</button>
 		</div>
 	</div>
-
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	<script src="resources/js/semantic.min.js"></script>
-	<script src="resources/js/custom.js"></script>
-
-</body>
-</html>
