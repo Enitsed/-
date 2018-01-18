@@ -16,38 +16,41 @@
 		<h1>Register Now</h1>
 
 		<div class="ui form segment">
-			<div class="two fields">
-				<div class="field">
-					<label for="first_name">이름</label>
-					<input id="first_name" placeholder="이름" type="text" />
-				</div>
-
-				<div class="field">
-					<label for="last_name">성</label>
-					<input id="last_name" placeholder="성" type="text">
-				</div>
-			</div>
-
-			<div class="field">
-				<label for="Email">이메일</label>
-				<input id="Email" placeholder="이메일" type="text">
-			</div>
-
 			<div class="field">
 				<label for="id">아이디</label>
 				<input id="id" placeholder="아이디" type="text">
 			</div>
 
 			<div class="field">
-				<label for="Password">비밀번호</label>
-				<input id="Password" type="password">
+				<label for="password">비밀번호</label>
+				<input id="password" type="password">
 			</div>
 
 			<div class="field">
-				<label for="PasswordConfirm">비밀번호 확인</label>
-				<input id="PasswordConfirm" type="password">
+				<label for="passwordConfirm">비밀번호 확인</label>
+				<input id="passwordConfirm" type="password">
+			</div>
+			
+			<div class="field">
+				<label for="name">이름</label>
+				<input id="name" placeholder="이름" type="text" />
 			</div>
 
+			<div class="field">
+				<label for="gender">성별</label>
+				<input id="gender" placeholder="성별" type="text">
+			</div>
+			
+			<div class="field">
+				<label for="email">이메일</label>
+				<input id="email" placeholder="이메일" type="text">
+			</div>
+			
+			<div class="field">
+				<label for="address">주소</label>
+				<input id="address" placeholder="주소" type="text">
+			</div>
+			
 			<button class="ui blue button">Submit</button>
 		</div>
 	</div>
