@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 
 <!-- 메뉴 -->
 	<div class="ui attached stackable menu">
@@ -26,11 +29,31 @@
 				  	</button>
 				</div>
 			</div>
+			<c:if test="${empty sessionScope.kid}">
 			<div class="ui item">
 				<div class="ui">
 					<a href="signup"><button class="ui green basic button">회원 가입</button></a>
-					<button class="ui orange basic button">로그인</button>
+					<a href="login"><button class="ui orange basic button">로그인</button></a>
 				</div>
 			</div>
+			</c:if>
+			
+			<c:if test="${not empty sessionScope.kid}">
+				<a>${sessionScope.kid}님 환영합니다.</a> &nbsp;&nbsp;&nbsp;
+				<button class="ui orange basic button" onclick="ktout()">로그아웃</button>
+			</c:if>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	function ktout() {
+		Kakao.init('331f6e91bdb4a956167313811ffb0d23');
+		Kakao.Auth.logout(function() {
+			setTimeout(function() {
+				location.href = "logout";
+				persistAccessToken : false;
+				alert('로그아웃 되엇습니다');
+			}, 1000);//로그아웃 처리되는 타임을 임시적으로 1000설정
+		});
+	}
+	</script>

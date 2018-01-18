@@ -6,6 +6,9 @@ import dto.MemDTO;
 
 
 public class MemDaoImp implements MemDAO{
+	public MemDaoImp() {
+		// TODO Auto-generated constructor stub
+	}
 
 	SqlSessionTemplate sqlSession;
 	
@@ -20,6 +23,7 @@ public class MemDaoImp implements MemDAO{
 	
 	@Override
 	public String find(MemDTO dto) {
+		
 		return sqlSession.selectOne("mem.find",dto);
 	}
 

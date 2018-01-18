@@ -5,8 +5,8 @@
 
 <mapper namespace="mem">
 
-	<select id="find" resultType="dto.MemDTO" parameterType="String">
-		select id from mem
+	<select id="find" parameterType="dto.MemDTO" resultType="String">
+		select mem_name from mem
 		where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</select>
 

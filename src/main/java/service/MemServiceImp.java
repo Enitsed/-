@@ -4,6 +4,9 @@ import dao.MemDAO;
 import dto.MemDTO;
 
 public class MemServiceImp implements MemService{
+	public MemServiceImp() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	MemDAO dao;
 	public void setDao(MemDAO dao) {
