@@ -31,6 +31,11 @@ public class HelloController {
 		return "signUpForm";
 	}
 	
+	@RequestMapping("/freeboard")
+	public String board() {
+		return "boardbody";
+	}
+	
 	@RequestMapping(value="/join",method=RequestMethod.POST)
 	public ModelAndView join(MemDTO dto) {
 		ModelAndView mav = new ModelAndView();
