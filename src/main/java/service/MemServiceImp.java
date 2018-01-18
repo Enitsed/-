@@ -6,6 +6,11 @@ import dto.MemDTO;
 public class MemServiceImp implements MemService{
 	
 	MemDAO dao;
+	
+	public MemServiceImp() {
+		
+	}
+	
 	public void setDao(MemDAO dao) {
 		this.dao = dao;
 	}

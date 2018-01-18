@@ -9,6 +9,10 @@ public class MemDaoImp implements MemDAO{
 
 	SqlSessionTemplate sqlSession;
 	
+	public MemDaoImp() {
+		
+	}
+	
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
 	}

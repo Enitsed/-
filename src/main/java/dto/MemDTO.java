@@ -6,6 +6,18 @@ public class MemDTO {
 	private String mem_pw;
 	private String mem_sex;
 	private String mem_name;
+	private String mem_email;
+	
+	public MemDTO() {
+		
+	}
+	
+	public String getMem_email() {
+		return mem_email;
+	}
+	public void setMem_email(String mem_email) {
+		this.mem_email = mem_email;
+	}
 	private String mem_address;
 	public int getMem_num() {
 		return mem_num;
