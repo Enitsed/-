@@ -48,7 +48,7 @@
 				<input id="PasswordConfirm" type="password">
 			</div>
 
-			<button class="ui blue button">Submit</button>
+			<button class="ui blue button" type="submit" id="btn">Submit</button>
 		</div>
 	</div>
 

@@ -6,6 +6,7 @@ create table mem(
 	mem_pw varchar2(20),		   --회원비밀번호
 	mem_sex varchar2(10),		   --회원성별
 	mem_name varchar2(100),		   --회원이름
+	mem_email varchar2(20),		   --회원이메일
 	mem_address varchar2(300)	   --회원주소
 );
 
@@ -16,6 +17,7 @@ increment by 1
 nocache
 nocycle;
 
+--alter table mem add(mem_email varchar2(20));
 --select * from mem
 --drop table mem
 --drop sequence mem_seq
