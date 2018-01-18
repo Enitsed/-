@@ -4,7 +4,7 @@
 <!-- 메뉴 -->
 	<div class="ui attached stackable menu">
 		<div class="ui container">
-			<a class="item">
+			<a class="item" href="main">
 				<i class="home icon"></i> Home
 			</a>
 			<a class="item">

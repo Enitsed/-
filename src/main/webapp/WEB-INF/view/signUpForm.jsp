@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
 	<div class="ui container">
 		<h1>Register Now</h1>
 
