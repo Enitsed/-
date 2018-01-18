@@ -10,6 +10,9 @@
 			<a class="item">
 				<i class="grid layout icon"></i> 영화정보
 			</a>
+			<a class="item" href="free">
+				<i class="grid layout icon"></i> 게시판
+			</a>
 			<div class="ui simple dropdown item">
 				더 보기
 				<i class="dropdown icon"></i>

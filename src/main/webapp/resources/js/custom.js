@@ -1,57 +1,92 @@
 /*jslint browser: true*/
 /*global $, document*/
 
-$(document).ready(function() {
+$(document).ready(function () {
 	"use strict";
 
-	$('.ui.container .ui.embed').embed();
-	
-	$('#btn').on('click', function(){
-		validate();
-	});
+	$('.ui.dropdown')
+		.dropdown();
+
+	$('.ui.form')
+		.form({
+			on: 'blur',
+			fields: {
+				id: {
+					identifier: 'id',
+					rules: [
+						{
+							type: 'empty',
+							prompt: '아이디를 입력해주세요.'
+						}
+					]
+				},
+				password: {
+					identifier: 'password',
+					rules: [
+						{
+							type: 'empty',
+							prompt: '비밀번호를 입력하세요.'
+						},
+						{
+							type: 'minLength[6]',
+							prompt: '비밀번호 : 최소 {ruleValue} 글자 이상 입력 하세요.'
+						}
+					]
+				},
+				passwordConfirm: {
+					identifier: 'passwordConfirm',
+					rules: [
+						{
+							type: 'empty',
+							prompt: '비밀번호 확인란에도 입력하세요.'
+						},
+						{
+							type: 'minLength[6]',
+							prompt: '비밀번호 확인 : 최소 {ruleValue} 글자 이상 입력 하세요.'
+						},
+						{
+							type: 'match[password]',
+							prompt: '{ruleValue} 와 동일해야합니다. '
+						}
+					]
+				},
+				name: {
+					identifier: 'name',
+					rules: [
+						{
+							type: 'empty',
+							prompt: '이름을 입력해주세요.'
+						}
+					]
+				},
+				gender: {
+					identifier: 'gender',
+					rules: [
+						{
+							type: 'empty',
+							prompt: '성별을 선택해 주세요.'
+						}
+					]
+				},
+				email: {
+					identifier: 'email',
+					rules: [
+						{
+							type: 'email',
+							prompt: '이메일 형식으로 입력해주세요.'
+						}
+					]
+				},
+				terms: {
+					identifier: 'terms',
+					rules: [
+						{
+							type: 'checked',
+							prompt: '회원가입 약관에 동의해야 합니다.'
+						}
+					]
+				}
+			}
+		});
+
 });
-
-// 유효성검사
-function validate() {
-	var pass = $('#Password').val();
-	var passchk = $('#PasswordConfirm').val();
-	var id = $('#id').val();
-	var email = $('#email').val();
-	var name = $('#name').val();
-	var gender = $('#gender').val();
-
-	if (id == "") {
-		alert("아이디를 입력해 주세요.");
-		return false;
-	}
-
-	if (pass == "") {
-		alert("비밀번호를 입력해 주세요.");
-		return false;
-	}
-
-	if (passchk == "") {
-		alert("비밀번호확인을 입력해 주세요.");
-		return false;
-	}
-	
-	if (name == "") {
-		alert("이름을 입력해 주세요.");
-		return false;
-	}
-
-	if (email == "") {
-		alert("이메일을 입력해 주세요.");
-		return false;
-	}
-	
-	if (address == "") {
-		alert("주소를 입력해 주세요.");
-		return false;
-	}
-
-	if (pass != passchk) {
-		alert("비밀번호를 확인해주세요.");
-		return false;
-	}
-}
