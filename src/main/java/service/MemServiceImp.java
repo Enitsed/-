@@ -9,6 +9,7 @@ public class MemServiceImp implements MemService{
 	
 	public MemServiceImp() {
 		
+		
 	}
 	
 	public void setDao(MemDAO dao) {

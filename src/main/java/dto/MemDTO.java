@@ -10,6 +10,7 @@ public class MemDTO {
 	
 	public MemDTO() {
 		
+		
 	}
 	
 	public String getMem_email() {
