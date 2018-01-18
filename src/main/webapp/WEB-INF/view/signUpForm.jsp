@@ -1,17 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>회원가입</title>
-
-	<link href="resources/css/semantic.min.css" rel="stylesheet" type="text/css" />
-
-</head>
-
-<body>
-
+    
 	<div class="ui container">
 		<h1>Register Now</h1>
 
@@ -55,9 +44,3 @@
 		</div>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	<script src="resources/js/semantic.min.js"></script>
-	<script src="resources/js/custom.js"></script>
-
-</body>
-</html>
