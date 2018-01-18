@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 	<div class="ui container">
-		<h1>Register Now</h1>
+		<h1>회원가입</h1>
 
 		<div class="ui form segment">
 			<div class="field">
@@ -10,14 +10,16 @@
 				<input id="id" placeholder="아이디" type="text">
 			</div>
 
-			<div class="field">
-				<label for="password">비밀번호</label>
-				<input id="password" type="password">
-			</div>
-
-			<div class="field">
-				<label for="passwordConfirm">비밀번호 확인</label>
-				<input id="passwordConfirm" type="password">
+			<div class="two fields">
+				<div class="field">
+					<label for="password">비밀번호</label>
+					<input id="password" type="password">
+				</div>
+	
+				<div class="field">
+					<label for="passwordConfirm">비밀번호 확인</label>
+					<input id="passwordConfirm" type="password">
+				</div>
 			</div>
 			
 			<div class="field">
