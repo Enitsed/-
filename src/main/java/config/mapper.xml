@@ -11,9 +11,9 @@
 	</select>
 
 	<insert id="insert" parameterType="dto.MemDTO">
-		insert into person
+		insert into mem
 		values(mem_num_seq.nextval,#{mem_id},
-		#{mem_pw},#{mem_sex},#{mem_name},#{mem_address})
+		#{mem_pw},#{mem_sex},#{mem_name},#{mem_email},#{mem_address})
 	</insert>
 
 	
