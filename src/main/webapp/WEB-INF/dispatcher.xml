@@ -74,6 +74,7 @@
 	<!-- controller -->
 	<bean name="controller" class="controller.HelloController"></bean>
 
+
 	<!-- tiles -->
 	<bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">
