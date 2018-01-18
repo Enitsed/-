@@ -4,7 +4,7 @@
 	<div class="ui container">
 		<h1>회원가입</h1>
 
-		<form class="ui form segment">
+		<form class="ui form segment" action="join" method="post">
 			<div class="field">
 				<label for="id">아이디</label>
 				<input id="id" name="mem_id" placeholder="아이디" type="text">
@@ -13,7 +13,7 @@
 			<div class="two fields">
 				<div class="field">
 					<label for="password">비밀번호</label>
-					<input id="password" name="mame_pw" type="password">
+					<input id="password" name="mem_pw" type="password">
 				</div>
 
 				<div class="field">
@@ -28,8 +28,16 @@
 			</div>
 
 			<div class="field">
-				<label for="gender">성별</label>
-				<input id="gender" placeholder="성별" name="mem_sex" type="radio">
+				<label>성별</label>
+				<div class="ui fluid selection dropdown">
+					<input id="gender" type="hidden" name="mem_sex">
+					<div class="default text">성별</div>
+					<i class="dropdown icon"></i>
+					<div class="menu">
+						<div class="item" data-value="남자">남자</div>
+						<div class="item" data-value="여자">여자</div>
+					</div>
+				</div>
 			</div>
 
 			<div class="field">
@@ -45,10 +53,11 @@
 			<div class="inline field">
 				<div class="ui checkbox">
 					<input type="checkbox" name="terms">
-					<label>I agree to the terms and conditions</label>
+					<label>저는 이 사이트의 회원 가입 약관에 동의합니다.</label>
 				</div>
 			</div>
-			<div class="ui primary submit button">Submit</div>
+			<div class="ui primary submit button">회원가입</div>
 			<div class="ui error message"></div>
 		</form>
 	</div>
+
