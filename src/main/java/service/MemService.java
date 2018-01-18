@@ -4,6 +4,6 @@ import dto.MemDTO;
 
 public interface MemService {
 
-	public boolean find(MemDTO dto);
-	public void register(MemDTO dto);
+	public boolean findProcess(MemDTO dto);
+	public void registerProcess(MemDTO dto);
 }
