@@ -16,7 +16,9 @@ function validate() {
 	var pass = $('#Password').val();
 	var passchk = $('#PasswordConfirm').val();
 	var id = $('#id').val();
-	var email = $('#Email').val();
+	var email = $('#email').val();
+	var name = $('#name').val();
+	var gender = $('#gender').val();
 
 	if (id == "") {
 		alert("아이디를 입력해 주세요.");
@@ -32,9 +34,19 @@ function validate() {
 		alert("비밀번호확인을 입력해 주세요.");
 		return false;
 	}
+	
+	if (name == "") {
+		alert("이름을 입력해 주세요.");
+		return false;
+	}
 
 	if (email == "") {
 		alert("이메일을 입력해 주세요.");
+		return false;
+	}
+	
+	if (address == "") {
+		alert("주소를 입력해 주세요.");
 		return false;
 	}
 
