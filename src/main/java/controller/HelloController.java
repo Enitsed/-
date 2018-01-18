@@ -2,21 +2,22 @@ package controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.MemDTO;
-import service.MemServiceImp;
+import service.MemService;
 
 // http://localhost:8090/finalproject/main
 @Controller
 public class HelloController {
-	private MemServiceImp service;
+	private MemService service;
 	
 	public HelloController() {
 		
 	}
 	
-	public void setService(MemServiceImp service) {
+	public void setService(MemService service) {
 		this.service = service;
 	}
 	
@@ -30,11 +31,12 @@ public class HelloController {
 		return "signUpForm";
 	}
 	
-	@RequestMapping("/join")
+	@RequestMapping(value="/join",method=RequestMethod.POST)
 	public ModelAndView join(MemDTO dto) {
 		ModelAndView mav = new ModelAndView();
-		service.register(dto);
-		mav.setViewName("main");
+		service.registerProcess(dto);
+		System.out.println("num ="+dto.getMem_num()+ " id= "+dto.getMem_id()+" pw="+dto.getMem_pw()+" name="+dto.getMem_name()+" email="+dto.getMem_email()+" address="+dto.getMem_address()+" sex="+dto.getMem_sex());
+		mav.setViewName("redirect:/main");
 		return mav;
 	}
 }
