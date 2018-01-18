@@ -1,9 +1,11 @@
 package controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import api.MovieApi;
 import dto.MemDTO;
 import service.MemServiceImp;
 
@@ -21,8 +23,12 @@ public class HelloController {
 	}
 	
 	@RequestMapping("/main")
-	public String mainPage() {
-		return "index";
+	public ModelAndView mainPage() {
+		ModelAndView mav = new ModelAndView();
+		MovieApi api = new MovieApi();
+		api.MovieNewsApi(mav);
+		mav.setViewName("index");
+		return mav;
 	}
 	
 	@RequestMapping("/signup")
@@ -33,7 +39,7 @@ public class HelloController {
 	@RequestMapping("/join")
 	public ModelAndView join(MemDTO dto) {
 		ModelAndView mav = new ModelAndView();
-		service.register(dto);
+		service.registerProcess(dto);
 		mav.setViewName("main");
 		return mav;
 	}
