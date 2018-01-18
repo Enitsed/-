@@ -36,7 +36,16 @@ public class HelloController {
 		return "signUpForm";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("/join")
+=======
+	@RequestMapping("/free")
+	public String board() {
+		return "freeboard";
+	}
+	
+	@RequestMapping(value="/join",method=RequestMethod.POST)
+>>>>>>> 323ca1d6316bda744762d1df9e6c97dc0fec575f
 	public ModelAndView join(MemDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		service.registerProcess(dto);
