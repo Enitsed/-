@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title><tiles:getAsString name="title" /></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css"
+	href="resources/css/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/custom.css">
 </head>
 <body>
 	<header>
@@ -30,5 +34,9 @@
 		</p>
 	</footer>
 
+	<script src="resources/js/jquery.min.js"></script>
+	<script src="resources/js/jquery.vide.min.js"></script>
+	<script src="resources/js/semantic.min.js"></script>
+	<script src="resources/js/custom.js"></script>
 </body>
 </html>

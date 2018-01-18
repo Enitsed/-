@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -16,7 +20,8 @@
 		<!-- <property name="configLocation" value="classpath:config/configuration.xml"/> -->
 		<property name="mapperLocations">
 			<list>
-				<!-- <value>classpath:kr.com.finalproject/mainMapper.xml</value> -->
+				<value>classpath:config/mainMapper.xml</value>
+				<value>classpath:config/mapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -34,17 +39,29 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager"> 
-		<tx:attributes> <tx:method name="*Process" rollback-for="java.lang.Exception" 
-		/> </tx:attributes> </tx:advice> -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*Process" rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+		
 	<!-- [6] 트랜잭션으로 처리할 메소드에 transactionManager 설정 -->
-	<!-- <aop:config> <aop:pointcut expression="execution(* service.BoardServiceImp.*Process(..))" 
-		id="aa" /> <aop:advisor advice-ref="txAdvice" pointcut-ref="aa" /> </aop:config> -->
-	<!-- <bean id="dao" class=""> <property name="sqlSession" ref="sqlSession" 
-		/> </bean> <bean id="service" class=""> <property name="dao" ref="dao" /> 
-		</bean> <bean id="path" class="java.lang.String"> <constructor-arg value="c:/temp/" 
-		/> </bean> <bean class=""> <property name="service" ref="service" /> <property 
-		name="path" ref="path" /> </bean> -->
+	<aop:config>
+		<aop:pointcut expression="execution(* service.MemServiceImp.*Process(..))"
+			id="aa" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="aa" />
+	</aop:config>
+		
+	<!-- [7] DAO 빈 선언 -->
+	<bean id="dao" class="dao.MemDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+
+	<!-- [8] Service 빈 선언 -->
+	<bean id="svc" class="service.MemServiceImp">
+		<property name="dao" ref="dao" />
+	</bean>
+	
 	<!-- [10] View -->
 	<bean id="jsonView"
 		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
@@ -53,15 +70,10 @@
 		<property name="order" value="1" />
 	</bean>
 
-	<!-- 첨부파일을 임시 기억저장소에 저장한다. -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- <property name="uploadTempDir" ref="uploadDirResource" /> -->
-		<property name="maxUploadSize" value="1000000000" />
-	</bean>
 
 	<!-- controller -->
 	<bean name="controller" class="controller.HelloController"></bean>
+
 
 	<!-- tiles -->
 	<bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
