@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mem">
+
+	<select id="find" resultType="dto.MemDTO" parameterType="String">
+		select id from mem
+		where mem_id=#{mem_id} and mem_pw=#{mem_pw}
+	</select>
+
+	<insert id="insert" parameterType="dto.MemDTO">
+		insert into person
+		values(mem_num_seq.nextval,#{mem_id},
+		#{mem_pw},#{mem_sex},#{mem_name},#{mem_address})
+	</insert>
+
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
