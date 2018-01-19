@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
@@ -44,14 +43,14 @@
 			<tx:method name="*Process" rollback-for="java.lang.Exception" />
 		</tx:attributes>
 	</tx:advice>
-		
+
 	<!-- [6] 트랜잭션으로 처리할 메소드에 transactionManager 설정 -->
 	<aop:config>
 		<aop:pointcut expression="execution(* service.MemServiceImp.*Process(..))"
 			id="aa" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="aa" />
 	</aop:config>
-		
+
 	<!-- [7] DAO 빈 선언 -->
 	<bean id="dao" class="dao.MemDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
@@ -61,7 +60,7 @@
 	<bean id="svc" class="service.MemServiceImp">
 		<property name="dao" ref="dao" />
 	</bean>
-	
+
 	<!-- [10] View -->
 	<bean id="jsonView"
 		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
@@ -72,9 +71,10 @@
 
 
 	<!-- controller -->
-	<bean name="controller" class="controller.HelloController">
-		<property name="service" ref="svc"/>
+	<bean class="controller.HelloController">
+		<property name="service" ref="svc" />
 	</bean>
+	<bean class="controller.MovieController" />
 
 
 	<!-- tiles -->
