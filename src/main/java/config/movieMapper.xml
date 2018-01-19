@@ -7,4 +7,11 @@
     	<select id="list" resultType="dto.MovieDTO">
     		select * from movie
     	</select>
+    	
+    	
+    	<select id="comment" parameterType="int" resultType="dto.CommentDTO">
+    		select * from comment2 where comment_num=#{movie_num} order by commnet_num desc
+    	</select>
     </mapper>
+    
+    

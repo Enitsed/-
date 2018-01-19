@@ -4,15 +4,6 @@
 $(document).ready(function() {
 	"use strict";
 
-	// 영화 상세보기
-	$('#movie_modal').on('click', function() {
-		$('.ui.modal.movie').modal('show');
-	})
-	
-	// 별점
-	$('.ui.rating')
-	  .rating();
-
 	// 카카오톡 로그인
 	$('#kakaoLoginImage').on('mouseenter', function() {
 		$(this).prop('src', 'resources/images/loginBtnHover.png');
@@ -35,7 +26,7 @@ $(document).ready(function() {
 	});
 
 	// 메인 페이지 카드
-	$('.special.cards .image.main_movie').dimmer({
+	$('.special.cards .image').dimmer({
 		on : 'hover'
 	});
 

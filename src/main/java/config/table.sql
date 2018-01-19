@@ -63,6 +63,27 @@ nocycle;
 --drop table movie
 --drop sequence movie_seq
 
+-----------------영화 코멘트
+create table comment2(
+	comment_num number primary key,
+	movie_num number,
+	replytext varchar2(1000),
+	mem_num number,
+	regdate date,
+	constraint comment2_movie_num_fk foreign key(movie_num) references movie(movie_num),
+	constraint comment2_mem_num_fk foreign key(mem_num) references mem(mem_num)
+);
+create sequence comment_num_seq
+start with 1
+increment by 1
+nocache
+nocycle;
+
+insert into comment2 values(1,1,'테스트',1,'2017-01-19')
+select * from comment2
+drop table comment
+drop sequence comment_num_seq
+----------------comment
 --------------------------------------------------------
 ---평점 테이블----------------------------------------------
 create table rating(
@@ -171,3 +192,23 @@ create table reply(
 --select * from reply
 --drop table reply
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+drop sequence mem_num_seq 
+
+drop table mem
+>>>>>>> sxdf
