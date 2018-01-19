@@ -8,6 +8,7 @@
     		select * from movie
     	</select>
     	
+    	
     	<select id="comment" parameterType="int" resultType="dto.commentDTO">
     		select * from comment2 where comment_num=#{movie_num} order by commnet_num desc
     	</select>
