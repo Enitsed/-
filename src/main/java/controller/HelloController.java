@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import api.MovieApi;
 import dto.MemDTO;
 import service.MemService;
 import service.MovieService;
@@ -35,6 +36,8 @@ public class HelloController {
 	@RequestMapping("/main")
 	public ModelAndView mainPage() {
 		ModelAndView mav = new ModelAndView();
+		MovieApi api = new MovieApi();
+		api.MovieNewsApi(mav);
 		mav.addObject("movie", movieservice.movieInfoProcess());
 		mav.setViewName("index");
 		return mav;
@@ -61,7 +64,7 @@ public class HelloController {
 
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("kid");
+		session.invalidate();
 		return "redirect:/main";
 	}
 
