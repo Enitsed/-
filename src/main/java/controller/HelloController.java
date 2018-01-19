@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import api.MovieApi;
 import dao.MemDAO;
 import dto.MemDTO;
 import service.MemService;
@@ -28,8 +29,12 @@ public class HelloController {
 		this.service = service;
 	}
 	@RequestMapping("/main")
-	public String mainPage() {
-		return "index";
+	public ModelAndView mainPage() {
+		ModelAndView mav = new ModelAndView();
+		MovieApi api = new MovieApi();
+		api.MovieNewsApi(mav);
+		mav.setViewName("index");
+		return mav;
 	}
 	
 	
