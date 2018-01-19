@@ -7,3 +7,7 @@
 	clear: both;
 }
 
+td .tdcontent {
+	height: 40px;
+	overflow-y: scroll;
+}

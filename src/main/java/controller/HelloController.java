@@ -42,6 +42,11 @@ public class HelloController {
 		mav.setViewName("index");
 		return mav;
 	}
+	
+	@RequestMapping("/free")
+	public String board() {
+		return "freeboard";
+	}
 
 	@RequestMapping("/signup")
 	public String signUp() {

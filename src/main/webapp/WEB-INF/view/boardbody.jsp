@@ -18,7 +18,7 @@
 					<th class="center aligned">제목</th>
 					<th class="center aligned">추천 수</th>
 					<th class="center aligned">작성자</th>
-					<th class="center aligned" style="width: 700px">내용</th>
+					<th class="center aligned" style="width: 650px">내용</th>
 					<th class="center aligned">조회 수</th>
 
 				</tr>
@@ -48,4 +48,3 @@
 			</tbody>
 		</table>
 	</div>
-	
