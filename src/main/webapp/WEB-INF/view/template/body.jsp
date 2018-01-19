@@ -1,24 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript">
-
-</script>
-<!-- 빵덩어리 -->
-<div class="ui container list">
-	<div class="ui tiny breadcrumb">
-		<a class="section">Home</a> <i class="right chevron icon divider"></i>
-		<div class="active section">메인 페이지</div>
+	
+	<!-- 빵덩어리 -->
+	<div class="ui container list">
+		<div class="ui tiny breadcrumb">
+			<a class="section">Home</a> <i class="right chevron icon divider"></i>
+			<div class="active section">메인 페이지</div>
+		</div>
 	</div>
-</div>
-<!-- 동영상 -->
-<div class="ui fluid container video_clip" id="banner"
-	data-vide-bg="resources/images/travel"
-	data-vide-options="posterType: jpg, loop: true, muted: false"></div>
-<!-- 바디 -->
-<div class="ui container contents">
+	<!-- 동영상 -->
+	<div class="ui fluid container video_clip" id="banner"
+		data-vide-bg="resources/images/travel"
+		data-vide-options="posterType: jpg, loop: true, muted: false"></div>
 
-	<div class="ui segment">
+	
+	<!-- 바디 -->
+	<div class="ui container contents">
+		<div class="ui segment">
 			<div class="ui link special cards four columns">
 			<c:forEach var="i" items="${movie}" begin="1" end="4">
 				<div class="card column blurring dimmable image">
@@ -90,4 +89,3 @@
 			</c:forEach>
 		</div>
 	</div>
-</div>
