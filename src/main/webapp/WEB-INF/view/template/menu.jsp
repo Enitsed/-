@@ -30,19 +30,18 @@
 					<a href="signup"><button class="ui green basic button">회원
 							가입</button></a>
 					<button class="ui orange basic button" id="loginBtn">로그인</button>
-				
-					<c:if test="${not empty sessionScope.kid}">
-						<a>${sessionScope.kid}님 환영합니다.</a> &nbsp;&nbsp;&nbsp;
-						<button class="ui orange basic button" onclick="ktout()">로그아웃</button>
-					</c:if>
 				</div>
-				
 			</div>
 		</c:if>
-
-	</div>
-</div>
-
+		<c:if test="${not empty sessionScope.kid}">
+			<div class="ui item">
+				<div class="ui">
+						<a>${sessionScope.kid}님 환영합니다.</a> &nbsp;&nbsp;&nbsp;
+						<button class="ui orange basic button" onclick="ktout()">로그아웃</button>
+				</div>
+			</div>
+		</c:if>
+		
 <div class="ui mini modal">
 	<div class="header">로그인 화면</div>
 	<form class="ui form segment" id="loginForm">
@@ -57,13 +56,13 @@
 			<div class="ui black deny tiny button" id="closeBtn">
 			<i class="close icon"></i> 닫기</div>
 		</div>
-		
 		<div class="ui error message"></div>
-		
 	</form>
 	<br />
 		<div class="ui center aligned middle grid">
-			<a id="kakao-login-btn" ></a>
+			<a class="ui images" onclick="ktlogin()">
+				<img alt="카카오톡으로 로그인" src="resources/images/loginBtn.png" id="kakaoLoginImage">
+			</a>
 		</div>
 	<br />
 	

@@ -54,6 +54,7 @@
 		<url-pattern>*.js</url-pattern>
 		<url-pattern>*.gif</url-pattern>
 		<url-pattern>*.jpg</url-pattern>
+		<url-pattern>*.png</url-pattern>
 		<url-pattern>*.xsl</url-pattern>
 		<url-pattern>*.eot</url-pattern>
 		<url-pattern>*.svg</url-pattern>
