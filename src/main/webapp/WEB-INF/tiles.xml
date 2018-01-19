@@ -4,7 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="index" template="/WEB-INF/view/main.jsp">
+	<definition name="index" template="/WEB-INF/view/template/main.jsp">
 		<put-attribute name="title" value="망했조 파이널" />
 		<put-attribute name="header" value="/WEB-INF/view/template/header.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/view/template/menu.jsp" />
@@ -17,9 +17,4 @@
 		<put-attribute name="body" value="/WEB-INF/view/signUpForm.jsp" />
 	</definition>
 	
-	<definition name="loginForm" extends="index">
-		<put-attribute name="title" value="로그인" />
-		<put-attribute name="body" value="/WEB-INF/view/loginForm.jsp" />
-	</definition>
-
 </tiles-definitions>

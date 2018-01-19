@@ -4,10 +4,53 @@
 $(document).ready(function() {
 	"use strict";
 
+	// 카카오톡 로그인
+
+	// <![CDATA[
+	// 사용할 앱의 JavaScript 키를 설정해 주세요.
+	Kakao.init('331f6e91bdb4a956167313811ffb0d23');
+
+	// 카카오 로그인 버튼을 생성합니다.
+	Kakao.Auth.createLoginButton({
+		container : '#kakao-login-btn',
+		size : 'small',
+		success : function(authObj) {
+			Kakao.API.request({
+				url : '/v1/user/me',
+				success : function(res) {
+					alert(res.properties.nickname + '님 로그인 되었습니다.');
+					// location.href="login.do?name="+res.properties.nickname;
+					location.href = "loginsuccess?kid=" + res.kaccount_email
+					persistAccessToken: false;
+				},
+			})
+			// persistAccessToken: false,
+		},
+		fail : function(err) {
+			alert(JSON.stringify(err));
+		}
+	});
+	// ]]>
+
+	function ktout() {
+		Kakao.init('331f6e91bdb4a956167313811ffb0d23');
+		Kakao.Auth.logout(function() {
+			setTimeout(function() {
+				location.href = "logout";
+				persistAccessToken: false;
+				alert('로그아웃 되엇습니다');
+			}, 1000); // 로그아웃 처리되는 타임을 임시적으로 1000설정
+		});
+	}
+
 	// 로그인 창 띄우기
 	$('#loginBtn').on('click', function() {
 		$('.ui.modal').modal('show');
-
+	});
+	
+	// 로그인 창 닫기
+	$('#closeBtn').on('click', function() {
+		$('.ui.modal').modal('hide');
 	});
 
 	// 메인 페이지 카드
