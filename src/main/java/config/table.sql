@@ -10,7 +10,9 @@ create table mem(
 	mem_email varchar2(20),		   --회원이메일
 	mem_address varchar2(300)	   --회원주소
 );
-
+drop table mem
+drop sequence mem_seq
+select * from mem
 --회원 테이블 시퀀스
 create sequence mem_seq
 start with 1
@@ -47,7 +49,9 @@ create table movie(
 	movie_image varchar2(500),			--이미지
 	movie_url varchar2(500)				--url
 );
-
+insert into movie values(1,'신과함께','Along with the GODS','2017-12-20','슬픈영화ㅠㅠ','2017-1-1','없음','없음');
+insert into movie values(2,'코코','COCO','2017-1-1','애니메이션','2017-1-15','없음','없음');
+select * from movie
 --영화테이블 시퀀스
 create sequence movie_seq
 start with 1

@@ -9,27 +9,39 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import dao.MemDAO;
 import dto.MemDTO;
 import service.MemService;
+import service.MovieService;
 
 // http://localhost:8090/finalproject/main
 @Controller
 public class HelloController {
+	
 	public HelloController() {
 		
 	}
 	MemService service;
-	MemDAO dao;
-	public void setDao(MemDAO dao) {
-		this.dao = dao;
+	MovieService movieservice;
+	
+	public void setMovieservice(MovieService movieservice) {
+		this.movieservice = movieservice;
 	}
+	
 	public void setService(MemService service) {
 		this.service = service;
 	}
+	/*
 	@RequestMapping("/main")
 	public String mainPage() {
 		return "index";
+	}*/
+	
+	@RequestMapping("/main")
+	public ModelAndView mainPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("movie",movieservice.movieInfoProcess());
+		mav.setViewName("index");
+		return mav;
 	}
 	
 	
@@ -60,9 +72,7 @@ public class HelloController {
 	
 	@RequestMapping("/check")
 	public String logincheck(MemDTO dto, HttpSession session) {
-		
-		System.out.println(dto.getMem_id());
-		System.out.println(dto.getMem_pw());
+	
 		boolean result = service.findProcess(dto);
 		if(result) {
 			System.out.println(dto.getMem_id());

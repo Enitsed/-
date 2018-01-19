@@ -21,6 +21,7 @@
 			<list>
 				<value>classpath:config/mainMapper.xml</value>
 				<value>classpath:config/mapper.xml</value>
+				<value>classpath:config/movieMapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -43,6 +44,8 @@
 			<tx:method name="*Process" rollback-for="java.lang.Exception" />
 		</tx:attributes>
 	</tx:advice>
+	
+	
 
 	<!-- [6] 트랜잭션으로 처리할 메소드에 transactionManager 설정 -->
 	<aop:config>
@@ -50,15 +53,31 @@
 			id="aa" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="aa" />
 	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* service.MovieServiceImp.*Process(..))"
+			id="bb" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="bb" />
+	</aop:config>
+	
+	
 
 	<!-- [7] DAO 빈 선언 -->
 	<bean id="dao" class="dao.MemDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<bean id="dao2" class="dao.MovieDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
 
 	<!-- [8] Service 빈 선언 -->
 	<bean id="svc" class="service.MemServiceImp">
 		<property name="dao" ref="dao" />
+	</bean>
+	
+	<bean id="svc2" class="service.MovieServiceImp">
+		<property name="dao" ref="dao2" />
 	</bean>
 
 	<!-- [10] View -->
@@ -73,6 +92,7 @@
 	<!-- controller -->
 	<bean class="controller.HelloController">
 		<property name="service" ref="svc" />
+		<property name="movieservice" ref="svc2"/>
 	</bean>
 	<bean class="controller.MovieController" />
 

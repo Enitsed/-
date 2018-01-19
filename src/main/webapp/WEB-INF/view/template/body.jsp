@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript">
 
+</script>
 <!-- 빵덩어리 -->
 <div class="ui container list">
 	<div class="ui tiny breadcrumb">
@@ -18,46 +20,19 @@
 
 	<div class="ui segment">
 			<div class="ui link special cards four columns">
+			<c:forEach var="i" items="${movie}" begin="1" end="4">
 				<div class="card column blurring dimmable image">
-					<img src="resources/images/travel.jpg">
+				<input type="hidden" value="${i.movie_num}"/><!-- 영화 번호 넣을자리 -->
+					<img src="resources/images/travel.jpg"><!-- 영화이미지 넣을자리 -->
 					<div class="ui dimmer">
 						<div class="content">
 							<div class="center">
-								<div class="ui inverted button">Add Friend</div>
+								<div class="ui inverted button">CLICK</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="card column blurring dimmable image">
-					<img src="resources/images/travel.jpg">
-					<div class="ui dimmer">
-						<div class="content">
-							<div class="center">
-								<div class="ui inverted button">Add Friend</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card column blurring dimmable image">
-					<img src="resources/images/travel.jpg">
-					<div class="ui dimmer">
-						<div class="content">
-							<div class="center">
-								<div class="ui inverted button">Add Friend</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card column blurring dimmable image">
-					<img src="resources/images/travel.jpg">
-					<div class="ui dimmer">
-						<div class="content">
-							<div class="center">
-								<div class="ui inverted button">Add Friend</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
 
