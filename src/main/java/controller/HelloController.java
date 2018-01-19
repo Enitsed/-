@@ -43,6 +43,11 @@ public class HelloController {
 		mav.setViewName("index");
 		return mav;
 	}
+	
+	@RequestMapping("/free")
+	public String board() {
+		return "freeboard";
+	}
 
 	@RequestMapping("/signup")
 	public String signUp() {
@@ -65,7 +70,7 @@ public class HelloController {
 
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("kid");
+		session.invalidate();
 		return "redirect:/main";
 	}
 

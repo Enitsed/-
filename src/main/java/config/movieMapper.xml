@@ -7,4 +7,11 @@
     	<select id="list" resultType="dto.MovieDTO" parameterType="int">
     		select * from movie where #{page2} >= movie_num AND movie_num > 0
     	</select>
+    	
+    	
+    	<select id="comment" parameterType="int" resultType="dto.CommentDTO">
+    		select * from comment2 where comment_num=#{movie_num} order by commnet_num desc
+    	</select>
     </mapper>
+    
+    

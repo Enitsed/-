@@ -27,8 +27,8 @@
 		<c:if test="${empty sessionScope.kid}">
 			<div class="ui item">
 				<div class="ui">
-					<a href="signup"><button class="ui green basic button">회원
-							가입</button></a>
+					<a href="signup">
+					<button class="ui green basic button">회원 가입</button></a>
 					<button class="ui orange basic button" id="loginBtn">로그인</button>
 				</div>
 			</div>
@@ -41,6 +41,8 @@
 				</div>
 			</div>
 		</c:if>
+	</div>
+</div>
 		
 <div class="ui mini modal">
 	<div class="header">로그인 화면</div>
