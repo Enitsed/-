@@ -19,18 +19,39 @@
 	<div class="ui container contents">
 		<div class="ui segment">
 			<div class="ui link special cards four columns">
-			<c:forEach var="i" items="${movie}" begin="1" end="4">
-				<div class="card column blurring dimmable image">
-				<input type="hidden" value="${i.movie_num}"/><!-- 영화 번호 넣을자리 -->
-					<img src="resources/images/travel.jpg"><!-- 영화이미지 넣을자리 -->
-					<div class="ui dimmer">
-						<div class="content">
-							<div class="center">
-								<div class="ui inverted button">CLICK</div>
+				<c:forEach var="i" items="${movie}" begin="1" end="4">
+					<div class="card column blurring dimmable image">
+					<input type="hidden" value="${i.movie_num}"/><!-- 영화 번호 넣을자리 -->
+						<img src="resources/images/travel.jpg"><!-- 영화이미지 넣을자리 -->
+						
+						<div class="ui dimmer">
+							<div class="ui content">
+								<div class="ui center">
+									<div class="ui inverted button">CLICK</div>
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<br />
+									<div class="ui divider"></div>
+									<div class="meta">
+										<a class="ui like button green">
+											<i class="like icon"></i> 4 Likes
+										</a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+					
 				</c:forEach>
 			</div>
 		</div>

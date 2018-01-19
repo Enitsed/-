@@ -41,6 +41,8 @@
 				</div>
 			</div>
 		</c:if>
+	</div>
+</div>
 		
 <div class="ui mini modal">
 	<div class="header">로그인 화면</div>
