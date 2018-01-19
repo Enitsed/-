@@ -50,7 +50,7 @@
 				<label>비밀번호</label>
 				<input name="password" type="password" id="password">
 			</div>
-			<div class="ui card center aligned grid">
+			<div class="ui field middle center aligned grid">
 				<div class="ui positive tiny button submit">
 					로그인
 				</div>
@@ -59,8 +59,8 @@
 				</div>
 			</div>
 			<div class="ui error message"></div>
-			<div class="ui center aligned grid message">
-				처음 인가요? <a href="signup">회원 가입</a>하세요!
-			</div>
 		</form>
+		<div class="ui center aligned grid message">
+			처음 인가요? <a href="#">회원 가입</a>하세요!
+		</div>
 	</div>

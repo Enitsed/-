@@ -17,79 +17,47 @@
 <div class="ui container contents">
 
 	<div class="ui segment">
-		<div class="ui link cards four columns">
-			<div class="card wide column">
-				<div class="image">
-					<img src="resources/images/test.jpg">
-				</div>
-				<div class="content">
-					<div class="header">Matt Giampietro</div>
-					<div class="meta">
-						<a>Friends</a>
+			<div class="ui link special cards four columns">
+				<div class="card column blurring dimmable image">
+					<img src="resources/images/travel.jpg">
+					<div class="ui dimmer">
+						<div class="content">
+							<div class="center">
+								<div class="ui inverted button">Add Friend</div>
+							</div>
+						</div>
 					</div>
-					<div class="description">Matthew is an interior designer
-						living in New York.</div>
 				</div>
-				<div class="extra content">
-					<span class="right floated"> Joined in 2013 </span> <span> <i
-						class="user icon"></i> 75 Friends
-					</span>
-				</div>
-			</div>
-			<div class="card column">
-				<div class="image">
-					<img src="resources/images/test.jpg">
-				</div>
-				<div class="content">
-					<div class="header">Molly</div>
-					<div class="meta">
-						<span class="date">Coworker</span>
+				<div class="card column blurring dimmable image">
+					<img src="resources/images/travel.jpg">
+					<div class="ui dimmer">
+						<div class="content">
+							<div class="center">
+								<div class="ui inverted button">Add Friend</div>
+							</div>
+						</div>
 					</div>
-					<div class="description">Molly is a personal assistant living
-						in Paris.</div>
 				</div>
-				<div class="extra content">
-					<span class="right floated"> Joined in 2011 </span> <span> <i
-						class="user icon"></i> 35 Friends
-					</span>
-				</div>
-			</div>
-			<div class="card column">
-				<div class="image">
-					<img src="resources/images/test.jpg">
-				</div>
-				<div class="content">
-					<div class="header">Molly</div>
-					<div class="meta">
-						<span class="date">Coworker</span>
+				<div class="card column blurring dimmable image">
+					<img src="resources/images/travel.jpg">
+					<div class="ui dimmer">
+						<div class="content">
+							<div class="center">
+								<div class="ui inverted button">Add Friend</div>
+							</div>
+						</div>
 					</div>
-					<div class="description">Molly is a personal assistant living
-						in Paris.</div>
 				</div>
-				<div class="extra content">
-					<span class="right floated"> Joined in 2011 </span> <span> <i
-						class="user icon"></i> 35 Friends
-					</span>
-				</div>
-			</div>
-			<div class="card column">
-				<div class="image">
-					<img src="resources/images/test.jpg">
-				</div>
-				<div class="content">
-					<div class="header">Elyse</div>
-					<div class="meta">
-						<a>Coworker</a>
+				<div class="card column blurring dimmable image">
+					<img src="resources/images/travel.jpg">
+					<div class="ui dimmer">
+						<div class="content">
+							<div class="center">
+								<div class="ui inverted button">Add Friend</div>
+							</div>
+						</div>
 					</div>
-					<div class="description">Elyse is a copywriter working in New
-						York.</div>
 				</div>
-				<div class="extra content">
-					<span class="right floated"> Joined in 2014 </span> <span> <i
-						class="user icon"></i> 151 Friends
-					</span>
-				</div>
-
 			</div>
 		</div>
 

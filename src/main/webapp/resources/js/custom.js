@@ -11,6 +11,11 @@ $(document).ready(function () {
 
 	});
 
+	// 메인 페이지 카드
+	$('.special.cards .image').dimmer({
+		on: 'hover'
+	});
+
 	// 메뉴 드랍 다운
 	$('.ui.dropdown')
 		.dropdown();
