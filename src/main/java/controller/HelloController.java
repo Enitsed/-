@@ -1,12 +1,14 @@
 package controller;
 
+import java.util.List;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
+import api.MovieApi;
 import dto.MemDTO;
+import dto.MovieDTO;
 import service.MemService;
 import service.MovieService;
 
@@ -35,7 +37,9 @@ public class HelloController {
 	@RequestMapping("/main")
 	public ModelAndView mainPage() {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("movie", movieservice.movieInfoProcess());
+		MovieApi api = new MovieApi();
+		api.MovieNewsApi(mav);
+		mav.addObject("movie", movieservice.movieInfoProcess(1));
 		mav.setViewName("index");
 		return mav;
 	}
@@ -74,5 +78,14 @@ public class HelloController {
 			session.setAttribute("kid", dto.getMem_id());
 		}
 		return "redirect:/main";
+	}
+	
+	@RequestMapping("/addMovie.do")
+	public @ResponseBody List<MovieDTO> addMovie(int page) {
+		System.out.println("asdasdasdasd");
+		System.out.println(page);
+		List<MovieDTO> list = movieservice.movieInfoProcess(page);
+		System.out.println(list.get(1).getMovie_num());
+		return list;
 	}
 }

@@ -93,12 +93,11 @@ public class MovieApi {
 						break;
 					}
 				}
-				System.out.println(parser.getName());
 				eventType = parser.next();
 			}
 			mav.addObject("list", list);
 		} catch (Exception e) {
-
+			System.out.println("오류");
 		}
 	}
 }

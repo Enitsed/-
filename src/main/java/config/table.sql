@@ -32,6 +32,7 @@ create table grade(
 	constraint grade_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 	--grade테이블의 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
+    		select * from movie where movie_num > 0 AND movie_num <=3
 
 
 --select * from grade

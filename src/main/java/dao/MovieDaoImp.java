@@ -19,8 +19,9 @@ public class MovieDaoImp implements MovieDAO{
 	}
 	
 	@Override
-	public List<MovieDTO> movieInfoProcess() {
-		return sqlSession.selectList("movie.list");
+	public List<MovieDTO> movieInfoProcess(int page) {
+		int page2 = page * 3;
+		return sqlSession.selectList("movie.list" , page2);
 	}
 
 }

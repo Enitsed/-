@@ -6,5 +6,5 @@ import dto.MovieDTO;
 
 
 public interface MovieDAO {
-	public List<MovieDTO> movieInfoProcess();
+	public List<MovieDTO> movieInfoProcess(int page);
 }
