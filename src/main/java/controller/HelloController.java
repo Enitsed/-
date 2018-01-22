@@ -33,6 +33,7 @@ public class HelloController {
 	public void setService(MemService service) {
 		this.service = service;
 	}
+
 	/*
 	 * @RequestMapping("/main") public String mainPage() { return "index"; }
 	 */
@@ -46,22 +47,34 @@ public class HelloController {
 		mav.setViewName("index");
 		return mav;
 	}
-	
+
 	@RequestMapping("/free")
 	public String board() {
 		return "freeboard";
 	}
+	
+	@RequestMapping("/boardWrite")
+	public String boardWrite() {
+		return "board_write";
+	}
+	
+	@RequestMapping("/boardDetail")
+	public String boardDetail() {
+		return "board_detail";
+	}
 
-	@RequestMapping(value="/signup",method=RequestMethod.POST)
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public ModelAndView signUp(MemDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		service.registerProcess(dto);
-		System.out.println("num ="+dto.getMem_num()+ " id= "+dto.getMem_id()+" pw="+dto.getMem_pw()+" name="+dto.getMem_name()+" email="+dto.getMem_email()+" address="+dto.getMem_address()+" sex="+dto.getMem_sex());
+		System.out.println("num =" + dto.getMem_num() + " id= " + dto.getMem_id() + " pw=" + dto.getMem_pw() + " name="
+				+ dto.getMem_name() + " email=" + dto.getMem_email() + " address=" + dto.getMem_address() + " sex="
+				+ dto.getMem_sex());
 		mav.setViewName("redirect:/main");
 		return mav;
 	}
-	
-	@RequestMapping(value="/signup",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public ModelAndView viewSignUp(MemDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("signUpForm");
@@ -107,7 +120,7 @@ public class HelloController {
 		}
 		return "redirect:/main";
 	}
-	
+
 	@RequestMapping("/addMovie.do")
 	public @ResponseBody List<MovieDTO> addMovie(int page) {
 		System.out.println("asdasdasdasd");
