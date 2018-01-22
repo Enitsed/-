@@ -19,6 +19,8 @@ start with 1
 increment by 1
 nocache
 nocycle;
+
+insert into mem values(2,'testID','pw','남','홍길동','test@naver.com','서울특별시')
 insert into mem values(mem_seq.nextval,'a','b','c','d','e','f')
 --alter table mem add(mem_email varchar2(20));
 --select * from mem
@@ -65,25 +67,31 @@ nocycle;
 --drop sequence movie_seq
 
 -----------------영화 코멘트
+
 create table comment2(
 	comment_num number primary key,
 	movie_num number,
 	replytext varchar2(1000),
 	mem_num number,
+	mem_id varchar2(20),
 	regdate date,
 	constraint comment2_movie_num_fk foreign key(movie_num) references movie(movie_num),
 	constraint comment2_mem_num_fk foreign key(mem_num) references mem(mem_num)
 );
-create sequence comment_num_seq
+create sequence comment2_num_seq
 start with 1
 increment by 1
 nocache
 nocycle;
 
-insert into comment2 values(1,1,'테스트',1,'2017-01-19')
+insert into comment2 values(1,1,'테스트',2,'testID','2017-01-19')
+insert into comment2 values(2,2,'테스트2',2,'testID','2017-01-23')
+insert into comment2 values(3,2,'테스트3',2,'testID','2017-01-24')
+insert into comment2 values(4,2,'테스트4',3,'bbbb','2017-01-25')
+
 select * from comment2
-drop table comment
-drop sequence comment_num_seq
+drop table comment2
+drop sequence comment2_num_seq
 ----------------comment
 --------------------------------------------------------
 ---평점 테이블----------------------------------------------

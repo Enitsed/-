@@ -26,8 +26,13 @@ public class MovieDaoImp implements MovieDAO{
 	}
 
 	@Override
-	public List<CommentDTO> commentListMethod(int movie_num) {
+	public List<CommentDTO> commentListProcess(int movie_num) {
 		return sqlSession.selectList("movie.comment",movie_num);
+	}
+
+	@Override
+	public List<MovieDTO> moviedetailProcess(int movie_num) {
+		return sqlSession.selectList("movie.info",movie_num);
 	}
 
 }

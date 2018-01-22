@@ -19,8 +19,12 @@ public class MovieServiceImp implements MovieService{
 		return dao.movieInfoProcess(page);
 	}
 	@Override
-	public List<CommentDTO> commentListMethod(int movie_num) {
-		return dao.commentListMethod(movie_num);
+	public List<CommentDTO> commentListProcess(int movie_num) {
+		return dao.commentListProcess(movie_num);
+	}
+	@Override
+	public List<MovieDTO> moviedetailProcess(int movie_num) {
+		return dao.moviedetailProcess(movie_num);
 	}
 
 }

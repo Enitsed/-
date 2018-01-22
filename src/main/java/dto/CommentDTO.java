@@ -6,6 +6,7 @@ public class CommentDTO {
 	private int comment_num;
 	private int movie_num;
 	private String mem_id;
+	private String replytext;
 	private Date regdate;
 
 	public CommentDTO() {
@@ -42,6 +43,14 @@ public class CommentDTO {
 
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
+	}
+
+	public String getReplytext() {
+		return replytext;
+	}
+
+	public void setReplytext(String replytext) {
+		this.replytext = replytext;
 	}
 	
 	

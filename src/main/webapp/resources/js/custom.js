@@ -6,7 +6,36 @@ $(document).ready(function() {
 
 	// 영화 상세보기
 	$('#movie_modal').on('click', function() {
+		var movie_num=$('.movie_num').val();
+		
+		$.ajax({
+			url: 'info?movie_num='+movie_num,
+			type:'GET',
+			dataType:'json',
+			success : function(data){
+				//alert(JSON.stringify(data.info[0].movie_kor_title));
+				$('.time_sub').remove();
+				var comment = "";
+					for(var i=0; i<data.comment.length; i++){
+					comment +=
+						'<li class=time_sub id="'+data.comment[i].comment_num+'">'+
+						'<p>'+data.comment[i].mem_id+'</p>'+
+						'<p>'+data.comment[i].replytext+'</p>'+
+						'<p>'+data.comment[i].regdate+'</p>'+
+						'<p> <button>delete</button> <button>update</button>'+
+						'</p>'+
+						'</li>'
+						
+					}
+					
+					
+					
+				$(comment).appendTo("#bb");				
+			}
+		})
+		
 		$('.ui.modal.movie').modal('show');
+		
 	})
 	
 	// 별점

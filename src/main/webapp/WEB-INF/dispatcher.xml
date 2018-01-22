@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
 	<mvc:annotation-driven></mvc:annotation-driven>
-
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
@@ -49,8 +47,8 @@
 			<tx:method name="*Process" rollback-for="java.lang.Exception" />
 		</tx:attributes>
 	</tx:advice>
-	
-	
+
+
 
 	<!-- [6] 트랜잭션으로 처리할 메소드에 transactionManager 설정 -->
 	<aop:config>
@@ -58,20 +56,20 @@
 			id="aa" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="aa" />
 	</aop:config>
-	
+
 	<aop:config>
 		<aop:pointcut expression="execution(* service.MovieServiceImp.*Process(..))"
 			id="bb" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="bb" />
 	</aop:config>
-	
-	
+
+
 
 	<!-- [7] DAO 빈 선언 -->
 	<bean id="dao" class="dao.MemDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
-	
+
 	<bean id="dao2" class="dao.MovieDaoImp">
 		<property name="sqlSession" ref="sqlSession" />
 	</bean>
@@ -80,7 +78,7 @@
 	<bean id="svc" class="service.MemServiceImp">
 		<property name="dao" ref="dao" />
 	</bean>
-	
+
 	<bean id="svc2" class="service.MovieServiceImp">
 		<property name="dao" ref="dao2" />
 	</bean>
@@ -97,7 +95,7 @@
 	<!-- controller -->
 	<bean class="controller.HelloController">
 		<property name="service" ref="svc" />
-		<property name="movieservice" ref="svc2"/>
+		<property name="movieservice" ref="svc2" />
 	</bean>
 	<bean class="controller.MovieController" />
 
