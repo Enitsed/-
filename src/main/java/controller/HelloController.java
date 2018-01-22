@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import api.MovieApi;
@@ -49,9 +50,20 @@ public class HelloController {
 		return "freeboard";
 	}
 
-	@RequestMapping("/signup")
-	public String signUp() {
-		return "signUpForm";
+	@RequestMapping(value="/signup",method=RequestMethod.POST)
+	public ModelAndView signUp(MemDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		service.registerProcess(dto);
+		System.out.println("num ="+dto.getMem_num()+ " id= "+dto.getMem_id()+" pw="+dto.getMem_pw()+" name="+dto.getMem_name()+" email="+dto.getMem_email()+" address="+dto.getMem_address()+" sex="+dto.getMem_sex());
+		mav.setViewName("redirect:/main");
+		return mav;
+	}
+	
+	@RequestMapping(value="/signup",method=RequestMethod.GET)
+	public ModelAndView viewSignUp(MemDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("signUpForm");
+		return mav;
 	}
 
 	@RequestMapping("/login")

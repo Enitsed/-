@@ -4,7 +4,7 @@
 	<div class="ui container">
 		<h1>회원가입</h1>
 
-		<form class="ui form segment" id="signUpForm" action="join" method="post">
+		<form class="ui form segment" id="signUpForm" action="signup" method="post">
 			<div class="field">
 				<label for="id">아이디</label>
 				<input id="id" name="mem_id" placeholder="아이디" type="text">
