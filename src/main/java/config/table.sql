@@ -89,6 +89,8 @@ insert into comment2 values(2,2,'테스트2',2,'testID','2017-01-23')
 insert into comment2 values(3,2,'테스트3',2,'testID','2017-01-24')
 insert into comment2 values(4,2,'테스트4',3,'bbbb','2017-01-25')
 
+select * from comment2 where movie_num=2
+
 select * from comment2
 drop table comment2
 drop sequence comment2_num_seq

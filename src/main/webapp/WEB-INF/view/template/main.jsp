@@ -13,29 +13,22 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/css/semantic.min.css">
 <link rel="stylesheet" type="text/css" href="resources/css/custom.css">
+
 </head>
 <body>
-	<header>
-		<tiles:insertAttribute name="header" />
-	</header>
+	<tiles:insertAttribute name="header" />
 
-	<menu>
-		<tiles:insertAttribute name="menu" />
-	</menu>
+	<tiles:insertAttribute name="menu" />
 
-	<section>
-		<tiles:insertAttribute name="body" />
-	</section>
+	<tiles:insertAttribute name="body" />
 
-	<footer>
-		<tiles:insertAttribute name="footer" />
-	</footer>
+	<tiles:insertAttribute name="footer" />
 
 	<script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/jquery.vide.min.js"></script>
 	<script src="resources/js/semantic.min.js"></script>
 	<script src="resources/js/custom.js"></script>
-
+	<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
 </body>
 </html>

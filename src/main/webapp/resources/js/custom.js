@@ -38,6 +38,22 @@ $(document).ready(function() {
 		
 	})
 	
+	//아이디 중복체크
+	$('#checkId').on('click',function(){
+		$.ajax({
+			type:'POST',
+			dataType:'text',
+			url:'chkId',
+			data:'mem_id='+$('#id').val(),
+			success:function(rs){
+				chkId(rs);
+			},
+			error:function(request,status,error){
+	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	           }
+		});
+	});
+	
 	// 별점
 	$('.ui.rating')
 	  .rating();
@@ -55,12 +71,12 @@ $(document).ready(function() {
 
 	// 로그인 창 띄우기
 	$('#loginBtn').on('click', function() {
-		$('.ui.modal').modal('show');
+		$('.ui.modal.login_modal').modal('show');
 	});
 
 	// 로그인 창 닫기
 	$('#closeBtn').on('click', function() {
-		$('.ui.modal').modal('hide');
+		$('.ui.modal.login_modal').modal('hide');
 	});
 
 	// 메인 페이지 카드

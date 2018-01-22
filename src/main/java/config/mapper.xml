@@ -14,6 +14,10 @@
 		insert into mem
 		values(mem_seq.nextval,#{mem_id},#{mem_pw},#{mem_sex},#{mem_name},#{mem_address},#{mem_email})
 	</insert>
+	
+	<select id="chk" parameterType="String" resultType="String">
+		select mem_id from mem where mem_id=#{mem_id}
+	</select>
 
 </mapper>
 
