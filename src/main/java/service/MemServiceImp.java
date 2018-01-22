@@ -24,4 +24,10 @@ public class MemServiceImp implements MemService{
 		dao.register(dto);
 	}
 
+	@Override
+	public boolean chkIdProcess(String mem_id) {
+		String cid = dao.chkId(mem_id);
+		return (cid==null)?false:true;
+	}
+
 }

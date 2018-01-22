@@ -9,6 +9,22 @@ $(document).ready(function() {
 		$('.ui.modal.movie').modal('show');
 	})
 	
+	//아이디 중복체크
+	$('#checkId').on('click',function(){
+		$.ajax({
+			type:'POST',
+			dataType:'text',
+			url:'chkId',
+			data:'mem_id='+$('#id').val(),
+			success:function(rs){
+				chkId(rs);
+			},
+			error:function(request,status,error){
+	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	           }
+		});
+	});
+	
 	// 별점
 	$('.ui.rating')
 	  .rating();

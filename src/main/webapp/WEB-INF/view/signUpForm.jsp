@@ -1,5 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<script type="text/javascript">
+
+function chkId(rs){
+	var a = $('#id_ck').val();
+	if(rs == 1){
+		alert("중복입니다");
+		$('#id_ck').val('1');
+	}else{
+		alert("사용가능합니다");
+		$('#id_ck').val('2');
+	}
+}//end chkId
+
+
+</script>
 
 	<div class="ui container">
 		<h1>회원가입</h1>
@@ -9,6 +25,7 @@
 				<label for="id">아이디</label>
 				<input id="id" name="mem_id" placeholder="아이디" type="text">
 				<div class="ui basic teal small button items" id="checkId">아이디 중복 검사</div>
+				<input type="hidden" id = "id_ck" value = "2"/>
 			</div>
 
 			<div class="two fields">
@@ -62,3 +79,5 @@
 			<div class="ui error message"></div>
 		</form>
 	</div>
+	
+

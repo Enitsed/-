@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,6 +66,15 @@ public class HelloController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("signUpForm");
 		return mav;
+	}
+	
+	@RequestMapping(value="/chkId",method=RequestMethod.POST)
+	public @ResponseBody int chkId(String mem_id, HttpServletRequest request) {
+		boolean rs = service.chkIdProcess(mem_id);
+		if(rs)
+			return 1;
+		else
+			return 2;
 	}
 
 	@RequestMapping("/login")
