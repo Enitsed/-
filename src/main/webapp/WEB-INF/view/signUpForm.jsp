@@ -5,6 +5,12 @@
 
 function chkId(rs){
 	var a = $('#id_ck').val();
+	var cid = $('#id').val();
+	if(cid.length < 1){
+		alert("아이디를 입력하세요.");
+		return false;
+	}
+	
 	if(rs == 1){
 		alert("중복입니다");
 		$('#id_ck').val('1');
