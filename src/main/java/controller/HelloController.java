@@ -51,7 +51,12 @@ public class HelloController {
 		return "freeboard";
 	}
 	
-	@RequestMapping("/board_detail")
+	@RequestMapping("/boardWrite")
+	public String boardWrite() {
+		return "board_write";
+	}
+	
+	@RequestMapping("/boardDetail")
 	public String boardDetail() {
 		return "board_detail";
 	}

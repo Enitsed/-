@@ -32,7 +32,9 @@
 							<h2 class="ui center aligned header">A</h2>
 						</td>
 						<td class="center aligned">
-							Power Output
+							<a href="boardDetail">
+								Power Output
+							</a>
 						</td>
 						<td>
 							<div class="ui star rating" data-rating="3" data-max-rating="5"></div>
@@ -64,10 +66,12 @@
 					</div>
 				</div>
 				<div class="ui right floated vertical animated fade button">
-					<div class="hidden content">글쓰기</div>
-					<div class="visible content">
-						<i class="pencil icon"></i>
-					</div>
+					<a href="boardWrite">
+						<div class="hidden content">글쓰기</div>
+						<div class="visible content">
+							<i class="pencil icon"></i>
+						</div>
+					</a>
 				</div>
 				<div class="ui right floated sizes animated fade button">
 					<div class="visible content">List 보기가 커야함</div>
