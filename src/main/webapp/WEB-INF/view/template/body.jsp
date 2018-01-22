@@ -51,10 +51,14 @@ function moreList(){
 
 	
 	<!-- 바디 -->
+	
 	<div class="ui container contents">
-		<div class="ui segment">
+
+			<div class="ui segment">
+				
 			<div class="ui link special cards four columns">
 				<c:forEach var="i" items="${movie}" begin="1" end="4">
+					
 					<div class="card column blurring dimmable image main_movie">
 					<input type="hidden" value="${i.movie_num}"/><!-- 영화 번호 넣을자리 -->
 						<img src="resources/images/travel.jpg"><!-- 영화이미지 넣을자리 -->
@@ -95,7 +99,7 @@ function moreList(){
 							<div class="description">
 								<div class="ui header">영화제목 : 여행 </div>
 								<h4>줄거리 : </h4>
-								<p>난나라 난나난난나</p>
+								<p>${i.movie_summary } 날짜: ${i.movie_opening_date } ${i.movie_URL } </p>
 							</div>
 						</div>
 						<div class="actions">
@@ -108,19 +112,16 @@ function moreList(){
 							</div>
 						</div>
 					</div>
-
 				</c:forEach>
-				<div class="addbtn" id="addbtn">
-					<a href="javascript:moreList();" class="ui horizontal divider header">
-					<i class="far fa-hand-point-down"></i>
-						더 보기
+				<div class="ui top right attached label green">
+					<a href="javascript:moreList();">
+						<i class="far fa-hand-point-down"></i> &nbsp; 더 보기
 					</a>
-					<input type="hidden" value="1" id="page"/>		
+					<input type="hidden" value="1" id="page"/>
 				</div>
-
 		</div>
 	</div>
-
+				
 	<div class="ui segment">
 		<div class="ui items">
 			<div class="item">
@@ -154,6 +155,9 @@ function moreList(){
 				</div>
 			</div>
 		</div>
+		<div class="ui top right attached label green">
+			<i class="far fa-hand-point-down"></i> &nbsp; 더 보기
+		</div>
 	</div>
 
 	<div class="ui segment">
@@ -173,5 +177,8 @@ function moreList(){
 				</div>
 			</div>
 		</c:forEach>
+		<div class="ui top right attached label green">
+			<i class="far fa-hand-point-down"></i> &nbsp; 더 보기
+		</div>
 	</div>
 </div>
