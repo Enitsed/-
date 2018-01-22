@@ -44,7 +44,7 @@
 	</div>
 </div>
 		
-<div class="ui mini modal">
+<div class="ui mini modal login_modal">
 	<div class="header">로그인 화면</div>
 	<form class="ui form segment" id="loginForm">
 		<div class="input field">

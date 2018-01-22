@@ -26,12 +26,12 @@ $(document).ready(function() {
 
 	// 로그인 창 띄우기
 	$('#loginBtn').on('click', function() {
-		$('.ui.modal').modal('show');
+		$('.ui.modal.login_modal').modal('show');
 	});
 
 	// 로그인 창 닫기
 	$('#closeBtn').on('click', function() {
-		$('.ui.modal').modal('hide');
+		$('.ui.modal.login_modal').modal('hide');
 	});
 
 	// 메인 페이지 카드
