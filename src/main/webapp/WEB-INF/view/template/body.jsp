@@ -111,9 +111,13 @@ function moreList(){
 
 				</c:forEach>
 				<div class="addbtn" id="addbtn">
-					<a href="javascript:moreList();" class="btn btn-primary">더보기</a>
+					<a href="javascript:moreList();" class="ui horizontal divider header">
+					<i class="far fa-hand-point-down"></i>
+						더 보기
+					</a>
 					<input type="hidden" value="1" id="page"/>		
-			</div>
+				</div>
+
 		</div>
 	</div>
 

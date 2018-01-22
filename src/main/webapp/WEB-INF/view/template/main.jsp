@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/css/semantic.min.css">
 <link rel="stylesheet" type="text/css" href="resources/css/custom.css">
+
 </head>
 <body>
 	<tiles:insertAttribute name="header" />
@@ -28,6 +29,6 @@
 	<script src="resources/js/jquery.vide.min.js"></script>
 	<script src="resources/js/semantic.min.js"></script>
 	<script src="resources/js/custom.js"></script>
-
+	<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
 </body>
 </html>
