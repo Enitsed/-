@@ -69,7 +69,7 @@
 					<div class="ui dimmer">
 						<div class="ui content">
 							<div class="ui center">
-								<div class="ui inverted button" id="movie_modal">더 보기</div>
+								<p>${i.movie_kor_title}</p>
 								<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 								<br /> <br />
 								<div class="ui divider"></div>
@@ -80,7 +80,7 @@
 					</div>
 				</div>
 
-				<div class="ui modal movie">
+				<div class="ui modal movie" id="modal${i.movie_num}">
 					<i class="close icon"></i>
 					<div class="header">영화</div>
 					<div class="image content">

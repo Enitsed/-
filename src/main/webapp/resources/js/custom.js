@@ -5,10 +5,11 @@ $(document).ready(function() {
 	"use strict";
 
 	// 영화 상세보기
-	$('#movie_modal').on('click', function() {
-			
+	$('.main_movie').on('click', function() {
 		var movie_num=$('.movie_num').val();
-		
+		var index = $(this).find('input[type="hidden"]').val();
+		var modal = '#modal'+index;
+		/*
 		$.ajax({
 			url: 'info?movie_num='+movie_num,
 			type:'GET',
@@ -27,12 +28,12 @@ $(document).ready(function() {
 						'</p>'+
 						'</li>'
 					}
-					
-				$(comment).appendTo("#bb");				
+				$(comment).appendTo("#bb");
 			}
 		})
+		*/
 		
-		$('.ui.modal.movie').modal('show');
+		$(modal).modal('show');
 		
 	})
 	

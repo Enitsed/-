@@ -47,15 +47,14 @@
 
 	<div class="ui segment">
 
-		<div class="ui link special cards four columns" id="movieListWindow">
+		<div class="ui link special cards four columns">
 			<c:forEach var="i" items="${movie}">
 				<div class="card column blurring dimmable image main_movie">
-					<input type="hidden" value="${i.movie_num}" />
 					<!-- 영화 번호 넣을자리 -->
-					<img src="resources/images/travel.jpg">
+					<input type="hidden" value="${i.movie_num}" />
 					<!-- 영화이미지 넣을자리 -->
-
-					<div class="ui dimmer" id = "movie_modal">
+					<img src="resources/images/travel.jpg">
+					<div class="ui dimmer">
 						<div class="ui content">
 							<div class="ui center">
 								<p>${i.movie_kor_title}</p>
@@ -68,8 +67,8 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="ui modal movie">
+				
+				<div class="ui modal movie" id="modal${i.movie_num}">
 					<i class="close icon"></i>
 					<div class="header">영화</div>
 					<div class="image content">
