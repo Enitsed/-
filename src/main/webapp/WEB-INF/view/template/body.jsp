@@ -3,6 +3,43 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
+<script>
+	function moreList() {
+		var page = ($("#page").val() + 1);
+		$
+				.ajax({
+					url : 'addMovie.do?page=' + page,
+					type : 'GET',
+					dataType : 'json',
+					success : function(data) {
+						//console.log(data);
+						var content = "";
+						for (var i = 0; i < data.length; i++) {
+							content += '<div class="card column blurring dimmable image">'
+									+ '<input type="hidden" value="${data.movie_num}" />'
+									+ '<img src="resources/images/travel.jpg">'
+									+ '<div class="ui dimmer">'
+									+ '<div class="content">'
+									+ '<div class="center">'
+									+ '<div class="ui inverted button">CLICK</div>'
+									+ '</div>' + '</div>' + '</div>' + '</div>'
+						}
+						var page = ($("#page").val() + 1);
+						content += '<div class="btns"><a href="javascript:moreList();" class="btn btn-primary">더보기</a><input type="hidden" value="'+ page +'" id="page"/></div>';
+						$('#addbtn').remove();//remove btn
+						//alert(content);
+						$(content).appendTo("#aa");
+					},
+					error : function(request, status, error) {
+						alert("code:" + request.status + "\n" + "message:"
+								+ request.responseText + "\n" + "error:"
+								+ error);
+					}
+				});
+	};
+</script>
+
 <!-- 빵덩어리 -->
 <div class="ui container list">
 	<div class="ui tiny breadcrumb">
@@ -60,15 +97,21 @@
 							</p>
 						</div>
 					</div>
-					<div class="actions">
-						<div class="ui black deny button">닫기</div>
-						<div class="ui positive right labeled icon button">
-							상세페이지로 이동 <i class="checkmark icon"></i>
-						</div>
+				</div>
+				<div class="actions">
+					<div class="ui black deny button">닫기</div>
+					<div class="ui positive right labeled icon button">
+						상세페이지로 이동 <i class="checkmark icon"></i>
 					</div>
 					<div id="bb"></div>
+
 				</div>
 			</c:forEach>
+			<div class="ui top right attached label green">
+				<a href="javascript:moreList();"> <i
+					class="far fa-hand-point-down"></i> &nbsp; 더 보기
+				</a> <input type="hidden" value="1" id="page" />
+			</div>
 		</div>
 	</div>
 

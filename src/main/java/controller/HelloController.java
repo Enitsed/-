@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import api.MovieApi;
 import dto.CommentDTO;
 import dto.MemDTO;
-import dto.MovieDTO;
 import service.MemService;
 import service.MovieService;
 
@@ -42,7 +41,7 @@ public class HelloController {
 		ModelAndView mav = new ModelAndView();
 		MovieApi api = new MovieApi();
 		api.MovieNewsApi(mav);
-		
+
 		mav.addObject("movie", movieservice.movieInfoProcess(1));
 		mav.setViewName("index");
 		return mav;
@@ -129,6 +128,6 @@ public class HelloController {
 		List<CommentDTO> aList = movieservice.commentListProcess(movie_num);
 		System.out.println(aList.size());
 		return map;
-
 	}
+
 }

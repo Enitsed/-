@@ -21,19 +21,20 @@
 		<put-attribute name="title" value="자유게시판" />
 		<put-attribute name="body" value="/WEB-INF/view/boardbody.jsp" />
 	</definition>
-	
+
 	<definition name="board_detail" extends="index">
 		<put-attribute name="title" value="글 상세보기" />
 		<put-attribute name="body" value="/WEB-INF/view/board_detail.jsp" />
 	</definition>
-	
+
 	<definition name="board_write" extends="index">
 		<put-attribute name="title" value="글 쓰기" />
 		<put-attribute name="body" value="/WEB-INF/view/board_write.jsp" />
 	</definition>
-	
+
 	<definition name="movieInfoList" extends="index">
 		<put-attribute name="title" value="영화 정보" />
 		<put-attribute name="body" value="/WEB-INF/view/movieInfoList.jsp" />
 	</definition>
+	
 </tiles-definitions>
