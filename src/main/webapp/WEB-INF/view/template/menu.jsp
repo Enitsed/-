@@ -18,9 +18,9 @@
 		</div>
 		<div class="ui item right">
 			<div class="ui action input">
-				<input type="text" placeholder="Search...">
+				<input type="text" placeholder="Search">
 				<button class="ui icon button">
-					<i class="search icon"></i>
+					<a href="searchResult"><i class="search icon"></i></a>
 				</button>
 			</div>
 		</div>

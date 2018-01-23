@@ -61,6 +61,11 @@ public class HelloController {
 	public String boardDetail() {
 		return "board_detail";
 	}
+	
+	@RequestMapping("/searchResult")
+	public String searchResult() {
+		return "search_result";
+	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public ModelAndView signUp(MemDTO dto) {
