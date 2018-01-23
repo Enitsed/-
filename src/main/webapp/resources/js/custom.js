@@ -6,6 +6,7 @@ $(document).ready(function() {
 
 	// 영화 상세보기
 	$('#movie_modal').on('click', function() {
+			
 		var movie_num=$('.movie_num').val();
 		
 		$.ajax({
@@ -39,19 +40,31 @@ $(document).ready(function() {
 	})
 	
 	//아이디 중복체크
-	$('#checkId').on('click',function(){
-		$.ajax({
-			type:'POST',
-			dataType:'text',
-			url:'chkId',
-			data:'mem_id='+$('#id').val(),
-			success:function(rs){
-				chkId(rs);
-			},
-			error:function(request,status,error){
-	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	           }
-		});
+	$('#checkId').on('click',function(e){
+
+		if($('#id').val() == '') {
+			alert("아이디를 입력해주세요.");
+			e.preventDefault();
+		} else {
+			$.ajax({
+				type:'POST',
+				dataType:'text',
+				url:'chkId',
+				data:'mem_id='+$('#id').val(),
+				success:function(rs){
+					if(rs == 1){
+						alert('사용 불가');
+						$('#id_ck').val('1');
+					}else{
+						alert('사용 가능');
+						$('#id_ck').val('2');
+					}
+				},
+				error:function(request,status,error){
+		            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		           }
+			});
+		}
 	});
 	
 	// 별점
@@ -120,6 +133,16 @@ $(document).ready(function() {
 				rules : [ {
 					type : 'empty',
 					prompt : '아이디를 입력해주세요.'
+				} ]
+			},
+			id_ck : {
+				identifier : 'id_ck',
+				rules : [ {
+					type : 'Integer[0]',
+					prompt : '중복 체크를 하지 않으셨습니다. 중복체크 해주세요.'
+				} , {
+					type : 'isExactly[1]',
+					prompt : '중복된 아이디입니다.'
 				} ]
 			},
 			password : {
