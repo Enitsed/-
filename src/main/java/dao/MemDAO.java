@@ -9,4 +9,6 @@ public interface MemDAO {
 	public String find(MemDTO dto);
 	
 	public String chkId(String mem_id);
+	
+	public String login(MemDTO dto);
 }
