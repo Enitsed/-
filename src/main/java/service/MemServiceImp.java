@@ -30,4 +30,9 @@ public class MemServiceImp implements MemService{
 		return (cid==null)?false:true;
 	}
 
+	@Override
+	public String login(MemDTO dto) {
+		return dao.login(dto);
+	}
+
 }

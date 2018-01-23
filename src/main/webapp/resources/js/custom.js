@@ -109,15 +109,15 @@ $(document).ready(function() {
 	$('.ui.form#loginForm').form({
 		on : 'blur',
 		fields : {
-			id : {
-				identifier : 'id',
+			loginid : {
+				identifier : 'loginid',
 				rules : [ {
 					type : 'empty',
 					prompt : '아이디를 입력해주세요.'
 				} ]
 			},
-			password : {
-				identifier : 'password',
+			loginpassword : {
+				identifier : 'loginpassword',
 				rules : [ {
 					type : 'empty',
 					prompt : '비밀번호를 입력하세요.'

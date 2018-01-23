@@ -46,12 +46,12 @@
 		
 <div class="ui mini modal login_modal">
 	<div class="header">로그인 화면</div>
-	<form class="ui form segment" id="loginForm">
+	<form class="ui form segment" id="loginForm" action="loginsuccess" method="post">
 		<div class="input field">
-			<label>아이디</label> <input placeholder="아이디 입력" name="loginid" type="text" id="loginid">
+			<label>아이디</label> <input placeholder="아이디 입력" name="mem_id" type="text" id="loginid">
 		</div>
 		<div class="input field">
-			<label>비밀번호</label> <input name="loginpassword" type="password" id="loginpassword">
+			<label>비밀번호</label> <input placeholder="비밀번호 입력" name="mem_pw" type="password" id="loginpassword">
 		</div>
 		<div class="ui field middle center aligned grid">
 			<div class="ui positive tiny button submit">로그인</div>
