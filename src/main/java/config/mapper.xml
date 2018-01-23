@@ -18,6 +18,10 @@
 	<select id="chk" parameterType="String" resultType="String">
 		select mem_id from mem where mem_id=#{mem_id}
 	</select>
+	
+	<select id="login" parameterType="dto.MemDTO" resultType="String">
+		select mem_name from mem where mem_id=#{mem_id}
+	</select>
 
 </mapper>
 

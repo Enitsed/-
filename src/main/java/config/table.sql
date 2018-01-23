@@ -26,6 +26,7 @@ insert into mem values(mem_seq.nextval,'a','b','c','d','e','f')
 --select * from mem
 --drop table mem
 --drop sequence mem_seq
+
 --------------------------------------------------------
 ---회원 등급 테이블-------------------------------------------
 create table grade(

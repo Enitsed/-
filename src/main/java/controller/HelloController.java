@@ -61,6 +61,11 @@ public class HelloController {
 	public String boardDetail() {
 		return "board_detail";
 	}
+	
+	@RequestMapping("/searchResult")
+	public String searchResult() {
+		return "search_result";
+	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public ModelAndView signUp(MemDTO dto) {
@@ -90,14 +95,20 @@ public class HelloController {
 	}
 
 	@RequestMapping("/login")
-	public String loginPage() {
-		return "loginForm";
+	public ModelAndView login(MemDTO dto, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		boolean rs = service.findProcess(dto);
+		if(rs) {
+			String name = service.login(dto);
+			session.setAttribute("kid", name);
+			mav.setViewName("redirect:/main");
+		}
+		return mav;
 	}
 
 	@RequestMapping("/loginsuccess")
 	public ModelAndView loginsuccess(String kid, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		// System.out.println(kid);
 		session.setAttribute("kid", kid);
 		mav.setViewName("redirect:/main");
 		return mav;

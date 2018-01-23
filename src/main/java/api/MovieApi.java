@@ -66,18 +66,14 @@ public class MovieApi {
 					case XmlPullParser.START_TAG: { // 臾댁“嫄� �떆�옉�븯硫� 留뚮궓
 						String tag = parser.getName();
 						if(tag.equals("description")) {
-							System.out.println("1");
 							if(dto != null)
 								dto.setDescription(parser.nextText());
 						}else if(tag.equals("title")) {
-							System.out.println("2");
 							if(dto != null)	
 								dto.setTitle(parser.nextText());
 						}else if(tag.equals("item")) {
-							System.out.println("3");
 							dto = new MovieNewsDTO();
 						}else if(tag.equals("originallink")) {
-							System.out.println("4");
 							if(dto != null)
 								dto.setOriginallink(parser.nextText());
 						}
@@ -86,7 +82,6 @@ public class MovieApi {
 					case XmlPullParser.END_TAG: {
 						String tag2 = parser.getName();
 						if(tag2.equals("item")) {
-							System.out.println("6");
 							list.add(dto);
 							dto = null;
 						}

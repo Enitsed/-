@@ -32,4 +32,10 @@ public class MemDaoImp implements MemDAO{
 		return sqlSession.selectOne("mem.chk",mem_id);
 	}
 
+	@Override
+	public String login(MemDTO dto) {
+		return sqlSession.selectOne("mem.login",dto);
+
+	}
+
 }
