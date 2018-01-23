@@ -26,10 +26,7 @@ $(document).ready(function() {
 						'<p> <button>delete</button> <button>update</button>'+
 						'</p>'+
 						'</li>'
-						
 					}
-					
-					
 					
 				$(comment).appendTo("#bb");				
 			}
@@ -43,7 +40,8 @@ $(document).ready(function() {
 	$('#checkId').on('click',function(e){
 
 		if($('#id').val() == '') {
-			alert("아이디를 입력해주세요.");
+			$('.idFail .ui.header').text("아이디를 입력해주세요.");
+			$('.ui.tiny.modal.idFail').modal('show');
 			e.preventDefault();
 		} else {
 			$.ajax({
@@ -53,11 +51,13 @@ $(document).ready(function() {
 				data:'mem_id='+$('#id').val(),
 				success:function(rs){
 					if(rs == 1){
-						alert('사용 불가');
-						$('#id_ck').val('1');
+						$('.idFail .ui.header').text("아이디가 이미 존재합니다.");
+						$('.ui.tiny.modal.idFail').modal('show');
+						$('#id_ck').val(1);
 					}else{
-						alert('사용 가능');
-						$('#id_ck').val('2');
+						$('.idFail .ui.header').text("사용할 수 있는 아이디입니다.");
+						$('.ui.tiny.modal.idFail').modal('show');
+						$('#id_ck').val(2);
 					}
 				},
 				error:function(request,status,error){
@@ -65,6 +65,11 @@ $(document).ready(function() {
 		           }
 			});
 		}
+	});
+	
+	// 중복확인창 닫기
+	$('.idFail .actions .ui.button').on('click', function(e) {
+		$('.ui.tiny.modal.idFail').modal('hide');
 	});
 	
 	// 별점
@@ -138,10 +143,10 @@ $(document).ready(function() {
 			id_ck : {
 				identifier : 'id_ck',
 				rules : [ {
-					type : 'Integer[0]',
+					type : 'not[0]',
 					prompt : '중복 체크를 하지 않으셨습니다. 중복체크 해주세요.'
 				} , {
-					type : 'isExactly[1]',
+					type : 'not[1]',
 					prompt : '중복된 아이디입니다.'
 				} ]
 			},

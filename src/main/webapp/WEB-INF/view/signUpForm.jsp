@@ -64,4 +64,14 @@
 		</form>
 	</div>
 	
+	<div class="ui tiny modal idFail">
+		<i class="close icon"></i>
+		<div class="ui header">
+			아이디 중복확인
+		</div>
+		<div class="actions">
+			<div class="ui tiny green button">닫기</div>
+		</div>
+	</div>
+	
 
