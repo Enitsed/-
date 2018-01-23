@@ -8,6 +8,7 @@ import dto.MovieDTO;
 
 public interface MovieDAO {
 	public List<MovieDTO> movieInfoProcess(int page);
-	public List<CommentDTO> commentListMethod(int movie_num);
+	public List<CommentDTO> commentListProcess(int movie_num);
+	public List<MovieDTO> moviedetailProcess(int movie_num);
 
 }

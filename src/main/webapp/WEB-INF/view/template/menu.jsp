@@ -6,7 +6,7 @@
 <div class="ui attached stackable menu">
 	<div class="ui container">
 		<a class="item" href="main"> <i class="home icon"></i> Home
-		</a> <a class="item"> <i class="grid layout icon"></i> 영화정보
+		</a> <a class="item" href="movieInfoList"> <i class="grid layout icon"></i> 영화정보
 		</a> <a class="item" href="free"> <i class="grid layout icon"></i> 게시판
 		</a>
 		<div class="ui simple dropdown item">

@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -21,13 +22,22 @@ public class MovieDaoImp implements MovieDAO{
 	
 	@Override
 	public List<MovieDTO> movieInfoProcess(int page) {
-		int page2 = page * 3;
-		return sqlSession.selectList("movie.list" , page2);
+		int end = page * 8;
+		int start = end - 8;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("movie.list" , map);
 	}
 
 	@Override
-	public List<CommentDTO> commentListMethod(int movie_num) {
+	public List<CommentDTO> commentListProcess(int movie_num) {
 		return sqlSession.selectList("movie.comment",movie_num);
+	}
+
+	@Override
+	public List<MovieDTO> moviedetailProcess(int movie_num) {
+		return sqlSession.selectList("movie.info",movie_num);
 	}
 
 }

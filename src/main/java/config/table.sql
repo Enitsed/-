@@ -19,6 +19,8 @@ start with 1
 increment by 1
 nocache
 nocycle;
+
+insert into mem values(2,'testID','pw','남','홍길동','test@naver.com','서울특별시')
 insert into mem values(mem_seq.nextval,'a','b','c','d','e','f')
 --alter table mem add(mem_email varchar2(20));
 --select * from mem
@@ -65,25 +67,33 @@ nocycle;
 --drop sequence movie_seq
 
 -----------------영화 코멘트
+
 create table comment2(
 	comment_num number primary key,
 	movie_num number,
 	replytext varchar2(1000),
 	mem_num number,
+	mem_id varchar2(20),
 	regdate date,
 	constraint comment2_movie_num_fk foreign key(movie_num) references movie(movie_num),
 	constraint comment2_mem_num_fk foreign key(mem_num) references mem(mem_num)
 );
-create sequence comment_num_seq
+create sequence comment2_num_seq
 start with 1
 increment by 1
 nocache
 nocycle;
 
-insert into comment2 values(1,1,'테스트',1,'2017-01-19')
+insert into comment2 values(1,1,'테스트',2,'testID','2017-01-19')
+insert into comment2 values(2,2,'테스트2',2,'testID','2017-01-23')
+insert into comment2 values(3,2,'테스트3',2,'testID','2017-01-24')
+insert into comment2 values(4,2,'테스트4',3,'bbbb','2017-01-25')
+
+select * from comment2 where movie_num=2
+
 select * from comment2
-drop table comment
-drop sequence comment_num_seq
+drop table comment2
+drop sequence comment2_num_seq
 ----------------comment
 --------------------------------------------------------
 ---평점 테이블----------------------------------------------
@@ -145,6 +155,30 @@ create table movie_actor(
 	--movie_actor테이블의 actor_num 외래키 제약조건
 );
 
+
+create table movie_director(
+	movie_director_num number primary key,		--영화배우 번호
+	movie_num number,						--영화번호
+	constraint movie_director_movie_num_fk foreign key(movie_num) references movie(movie_num),
+	--movie_actor테이블의 movie_num 외래키 제약조건
+	constraint movie_director_director_num_fk foreign key(movie_director_num) references director(director_num)
+	--movie_actor테이블의 actor_num 외래키 제약조건
+);
+
+select * from director
+select * from movie_director
+
+insert into director values(1, '이봉주');
+insert into movie_director values(1, 1);
+
+select * from director, movie_director where movie_director_num = director_num
+    		select movie_num, director_name from director, movie_director where movie_director_num = director_num
+
+
+create table director(
+	director_num number primary key,	--배우번호
+	director_name varchar2(100)			--배우이름
+);
 --select * from movie_actor
 --drop table movie_actor
 
@@ -192,21 +226,6 @@ create table reply(
 
 --select * from reply
 --drop table reply
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 =======
 drop sequence mem_num_seq 

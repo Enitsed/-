@@ -23,14 +23,14 @@ import java.io.IOException;
 //http://localhost:8090/mymovie
 public class MovieApi {
 	public void MovieNewsApi(ModelAndView mav){
-		String clientId = "Tg0i0_m2zuXFQkFIV1_v";// 애플리케이션 클라이언트 아이디값";
-		String clientSecret = "9MrgSD3oMF";// 애플리케이션 클라이언트 시크릿값";
+		String clientId = "Tg0i0_m2zuXFQkFIV1_v";// �븷�뵆由ъ��씠�뀡 �겢�씪�씠�뼵�듃 �븘�씠�뵒媛�";
+		String clientSecret = "9MrgSD3oMF";// �븷�뵆由ъ��씠�뀡 �겢�씪�씠�뼵�듃 �떆�겕由욧컪";
 		List<MovieNewsDTO> list = new ArrayList<MovieNewsDTO>();
 		try {
 			String text = URLEncoder.encode("영화", "UTF-8");
 			// String apiURL = "https://openapi.naver.com/v1/search/movie.xml?query="+ text;
-			// // json 결과
-			String apiURL = "https://openapi.naver.com/v1/search/news.xml?display=5&query=" + text; // xml 결과
+			// // json 寃곌낵
+			String apiURL = "https://openapi.naver.com/v1/search/news.xml?display=5&query=" + text; // xml 寃곌낵
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
@@ -38,9 +38,9 @@ public class MovieApi {
 			con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
 			int responseCode = con.getResponseCode();
 			BufferedReader br;
-			if (responseCode == 200) { // 정상 호출
+			if (responseCode == 200) { // �젙�긽 �샇異�
 				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			} else { // 에러 발생
+			} else { // �뿉�윭 諛쒖깮
 				br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 			}
 			String inputLine;
@@ -53,17 +53,17 @@ public class MovieApi {
             System.out.println(response.toString());
 
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-			XmlPullParser parser = factory.newPullParser(); // 연결하는거 담고
+			XmlPullParser parser = factory.newPullParser(); // �뿰寃고븯�뒗嫄� �떞怨�
 			parser.setInput(new StringReader(response.toString()));
 			int eventType = parser.getEventType();
 			MovieNewsDTO dto = null;
 			while (eventType != XmlPullParser.END_DOCUMENT) {
 				switch (eventType) {
-					case XmlPullParser.END_DOCUMENT:// 문서의 끝
+					case XmlPullParser.END_DOCUMENT:// 臾몄꽌�쓽 �걹
 						break;
 					case XmlPullParser.START_DOCUMENT:
 						break;
-					case XmlPullParser.START_TAG: { // 무조건 시작하면 만남
+					case XmlPullParser.START_TAG: { // 臾댁“嫄� �떆�옉�븯硫� 留뚮궓
 						String tag = parser.getName();
 						if(tag.equals("description")) {
 							System.out.println("1");
@@ -97,7 +97,7 @@ public class MovieApi {
 			}
 			mav.addObject("list", list);
 		} catch (Exception e) {
-			System.out.println("오류");
+			System.out.println("�삤瑜�");
 		}
 	}
 }

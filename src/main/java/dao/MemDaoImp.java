@@ -27,4 +27,9 @@ public class MemDaoImp implements MemDAO{
 		return sqlSession.selectOne("mem.find",dto);
 	}
 
+	@Override
+	public String chkId(String mem_id) {
+		return sqlSession.selectOne("mem.chk",mem_id);
+	}
+
 }
