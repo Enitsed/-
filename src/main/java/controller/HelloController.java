@@ -95,26 +95,22 @@ public class HelloController {
 	}
 
 	@RequestMapping("/login")
-	public String loginPage() {
-		return "loginForm";
-	}
-
-	@RequestMapping("/loginsuccess")
-	public ModelAndView loginsuccess(MemDTO dto, HttpSession session) {
+	public ModelAndView login(MemDTO dto, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		// System.out.println(kid);
 		boolean rs = service.findProcess(dto);
 		if(rs) {
 			String name = service.login(dto);
 			session.setAttribute("kid", name);
 			mav.setViewName("redirect:/main");
-		}else {
-			/*
-			 * 로그인 실패시 할거
-			 */
-			mav.setViewName("redirect:/main");
-			return mav;
 		}
+		return mav;
+	}
+
+	@RequestMapping("/loginsuccess")
+	public ModelAndView loginsuccess(String kid, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		session.setAttribute("kid", kid);
+		mav.setViewName("redirect:/main");
 		return mav;
 	}
 

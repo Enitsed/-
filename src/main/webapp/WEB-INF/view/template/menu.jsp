@@ -46,7 +46,7 @@
 		
 <div class="ui mini modal login_modal">
 	<div class="header">로그인 화면</div>
-	<form class="ui form segment" id="loginForm" action="loginsuccess" method="post">
+	<form class="ui form segment" id="loginForm" action="login" method="post">
 		<div class="input field">
 			<label>아이디</label> <input placeholder="아이디 입력" name="mem_id" type="text" id="loginid">
 		</div>
