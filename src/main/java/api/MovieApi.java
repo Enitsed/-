@@ -22,7 +22,7 @@ import java.io.IOException;
 
 //http://localhost:8090/mymovie
 public class MovieApi {
-	public void MovieNewsApi(ModelAndView mav){
+	public void MovieNewsApi(ModelAndView mav) {
 		String clientId = "Tg0i0_m2zuXFQkFIV1_v";// �븷�뵆由ъ��씠�뀡 �겢�씪�씠�뼵�듃 �븘�씠�뵒媛�";
 		String clientSecret = "9MrgSD3oMF";// �븷�뵆由ъ��씠�뀡 �겢�씪�씠�뼵�듃 �떆�겕由욧컪";
 		List<MovieNewsDTO> list = new ArrayList<MovieNewsDTO>();
@@ -48,9 +48,9 @@ public class MovieApi {
 			while ((inputLine = br.readLine()) != null) {
 				response.append(inputLine);
 			}
-			
+
 			br.close();
-            System.out.println(response.toString());
+			System.out.println(response.toString());
 
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 			XmlPullParser parser = factory.newPullParser(); // �뿰寃고븯�뒗嫄� �떞怨�
@@ -59,34 +59,34 @@ public class MovieApi {
 			MovieNewsDTO dto = null;
 			while (eventType != XmlPullParser.END_DOCUMENT) {
 				switch (eventType) {
-					case XmlPullParser.END_DOCUMENT:// 臾몄꽌�쓽 �걹
-						break;
-					case XmlPullParser.START_DOCUMENT:
-						break;
-					case XmlPullParser.START_TAG: { // 臾댁“嫄� �떆�옉�븯硫� 留뚮궓
-						String tag = parser.getName();
-						if(tag.equals("description")) {
-							if(dto != null)
-								dto.setDescription(parser.nextText());
-						}else if(tag.equals("title")) {
-							if(dto != null)	
-								dto.setTitle(parser.nextText());
-						}else if(tag.equals("item")) {
-							dto = new MovieNewsDTO();
-						}else if(tag.equals("originallink")) {
-							if(dto != null)
-								dto.setOriginallink(parser.nextText());
-						}
-						break;
+				case XmlPullParser.END_DOCUMENT:// 臾몄꽌�쓽 �걹
+					break;
+				case XmlPullParser.START_DOCUMENT:
+					break;
+				case XmlPullParser.START_TAG: { // 臾댁“嫄� �떆�옉�븯硫� 留뚮궓
+					String tag = parser.getName();
+					if (tag.equals("description")) {
+						if (dto != null)
+							dto.setDescription(parser.nextText());
+					} else if (tag.equals("title")) {
+						if (dto != null)
+							dto.setTitle(parser.nextText());
+					} else if (tag.equals("item")) {
+						dto = new MovieNewsDTO();
+					} else if (tag.equals("originallink")) {
+						if (dto != null)
+							dto.setOriginallink(parser.nextText());
 					}
-					case XmlPullParser.END_TAG: {
-						String tag2 = parser.getName();
-						if(tag2.equals("item")) {
-							list.add(dto);
-							dto = null;
-						}
-						break;
+					break;
+				}
+				case XmlPullParser.END_TAG: {
+					String tag2 = parser.getName();
+					if (tag2.equals("item")) {
+						list.add(dto);
+						dto = null;
 					}
+					break;
+				}
 				}
 				eventType = parser.next();
 			}

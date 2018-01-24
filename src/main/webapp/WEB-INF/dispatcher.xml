@@ -25,7 +25,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:config/mainMapper.xml</value>
-				<value>classpath:config/mapper.xml</value>
+				<value>classpath:config/memMapper.xml</value>
 				<value>classpath:config/movieMapper.xml</value>
 			</list>
 		</property>
@@ -99,16 +99,16 @@
 	<bean class="controller.HelloController">
 		<property name="movieservice" ref="svc2" />
 	</bean>
-	
+
 	<!-- 무비 컨트롤러 -->
 	<bean class="controller.MovieController">
 		<property name="movieservice" ref="svc2" />
 	</bean>
-	
+
 	<!-- 게시판 컨트롤러 -->
 	<bean class="controller.BoardController">
 	</bean>
-	
+
 	<!-- 멤버 컨트롤러 -->
 	<bean class="controller.MemberController">
 		<property name="service" ref="svc" />

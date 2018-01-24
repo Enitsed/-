@@ -3,23 +3,22 @@ package dao;
 import java.util.HashMap;
 import java.util.List;
 
-
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.CommentDTO;
 import dto.MovieDTO;
 
-public class MovieDaoImp implements MovieDAO{
+public class MovieDaoImp implements MovieDAO {
 	SqlSessionTemplate sqlSession;
-	
+
+	public MovieDaoImp() {
+
+	}
+
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
-	public MovieDaoImp() {
-		
-	}
-	
+
 	@Override
 	public List<MovieDTO> movieInfoProcess(int page) {
 		int end = page * 8;
@@ -27,17 +26,17 @@ public class MovieDaoImp implements MovieDAO{
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
-		return sqlSession.selectList("movie.list" , map);
+		return sqlSession.selectList("movie.list", map);
 	}
 
 	@Override
 	public List<CommentDTO> commentListProcess(int movie_num) {
-		return sqlSession.selectList("movie.comment",movie_num);
+		return sqlSession.selectList("movie.comment", movie_num);
 	}
 
 	@Override
 	public List<MovieDTO> moviedetailProcess(int movie_num) {
-		return sqlSession.selectList("movie.info",movie_num);
+		return sqlSession.selectList("movie.info", movie_num);
 	}
 
 }

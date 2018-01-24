@@ -1,6 +1,5 @@
 package controller;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -33,6 +32,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public ModelAndView signUp(MemDTO dto, HttpServletRequest req) {
+		// 회원 가입 실행 페이지
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = req.getSession();
 		service.registerProcess(dto);

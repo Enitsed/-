@@ -24,6 +24,6 @@
 		select * from
 		movie where movie_num=#{movie_num}
 	</select>
-	
+
 </mapper>
     
