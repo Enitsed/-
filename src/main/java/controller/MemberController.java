@@ -1,5 +1,6 @@
 package controller;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,31 +16,30 @@ import service.MemService;
 @Controller
 public class MemberController {
 	MemService service;
-	
+
 	public MemberController() {
-		
+
 	}
 
 	public void setService(MemService service) {
 		this.service = service;
 	}
-	
+
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public String viewSignUp() {
+		// 회원가입 페이지로 이동
+		return "signUpForm";
+	}
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public ModelAndView signUp(MemDTO dto) {
+	public ModelAndView signUp(MemDTO dto, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = req.getSession();
 		service.registerProcess(dto);
 		System.out.println("num =" + dto.getMem_num() + " id= " + dto.getMem_id() + " pw=" + dto.getMem_pw() + " name="
 				+ dto.getMem_name() + " email=" + dto.getMem_email() + " address=" + dto.getMem_address() + " sex="
 				+ dto.getMem_sex());
 		mav.setViewName("redirect:/main");
-		return mav;
-	}
-
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public ModelAndView viewSignUp(MemDTO dto) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("signUpForm");
 		return mav;
 	}
 
@@ -56,7 +56,7 @@ public class MemberController {
 	public ModelAndView login(MemDTO dto, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		boolean rs = service.findProcess(dto);
-		if(rs) {
+		if (rs) {
 			String name = service.login(dto);
 			session.setAttribute("kid", name);
 			mav.setViewName("redirect:/main");
@@ -89,6 +89,4 @@ public class MemberController {
 		return "redirect:/main";
 	}
 
-	
-	
 }

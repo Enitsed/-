@@ -119,7 +119,9 @@
 	<bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">
 			<list>
-				<value>/WEB-INF/tiles.xml</value>
+				<value>/WEB-INF/mainTiles.xml</value>
+				<value>/WEB-INF/boardTiles.xml</value>
+				<value>/WEB-INF/memberTiles.xml</value>
 			</list>
 		</property>
 	</bean>
