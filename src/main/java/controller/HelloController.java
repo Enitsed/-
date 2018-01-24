@@ -47,21 +47,6 @@ public class HelloController {
 		return mav;
 	}
 
-	@RequestMapping("/free")
-	public String board() {
-		return "freeboard";
-	}
-
-	@RequestMapping("/boardWrite")
-	public String boardWrite() {
-		return "board_write";
-	}
-
-	@RequestMapping("/boardDetail")
-	public String boardDetail() {
-		return "board_detail";
-	}
-	
 	@RequestMapping("/searchResult")
 	public String searchResult() {
 		return "search_result";

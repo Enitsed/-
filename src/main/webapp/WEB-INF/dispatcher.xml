@@ -102,6 +102,8 @@
 	<bean class="controller.MovieController">
 		<property name="movieservice" ref="svc2" />
 	</bean>
+	<bean class="controller.BoardController">
+	</bean>
 
 
 	<!-- tiles -->
