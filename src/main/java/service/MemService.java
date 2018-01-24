@@ -4,11 +4,14 @@ import dto.MemDTO;
 
 public interface MemService {
 
-	public boolean findProcess(MemDTO dto);
+	// 중복검사
+	public boolean idCheckProcess(MemDTO userDTO);
 
-	public void registerProcess(MemDTO dto);
+	// 회원가입 진행
+	public void registerProcess(MemDTO userDTO);
 
-	public boolean chkIdProcess(String mem_id);
-
-	public String login(MemDTO dto);
+	// 로그인 진행
+	public MemDTO loginProcess(MemDTO userDTO);
+	
+	// 
 }

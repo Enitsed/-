@@ -4,11 +4,9 @@ import dto.MemDTO;
 
 public interface MemDAO {
 
-	public void register(MemDTO dto);
+	public void register(MemDTO userDTO);
 
-	public String find(MemDTO dto);
-	
-	public String chkId(String mem_id);
-	
-	public String login(MemDTO dto);
+	public Integer idCheck(MemDTO userDTO);
+
+	public MemDTO login(MemDTO userDTO);
 }

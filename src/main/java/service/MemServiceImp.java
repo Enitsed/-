@@ -15,25 +15,22 @@ public class MemServiceImp implements MemService {
 	}
 
 	@Override
-	public boolean findProcess(MemDTO dto) {
-		String id = dao.find(dto);
-		return (id == null) ? false : true;
+	public boolean idCheckProcess(MemDTO userDTO) {
+		// dao.chkId의 결과값이 1이면 회원 아니면 비회원
+		System.out.println(dao.idCheck(userDTO));
+		return (dao.idCheck(userDTO) != null) ? true : false;
 	}
 
 	@Override
-	public void registerProcess(MemDTO dto) {
-		dao.register(dto);
+	public void registerProcess(MemDTO userDTO) {
+		// 회원가입 메서드
+		dao.register(userDTO);
 	}
 
 	@Override
-	public boolean chkIdProcess(String mem_id) {
-		String cid = dao.chkId(mem_id);
-		return (cid == null) ? false : true;
-	}
-
-	@Override
-	public String login(MemDTO dto) {
-		return dao.login(dto);
+	public MemDTO loginProcess(MemDTO userDTO) {
+		// 로그인 메서드
+		return dao.login(userDTO);
 	}
 
 }

@@ -4,40 +4,54 @@
 $(document).ready(function() {
 	"use strict";
 
+	var signUpStatus = '';
+	
+	// 로그인 성공 여부 알림창
+	if(loginStatus != "") {
+		$('.loginStatus .ui.header').text(loginStatus);
+		$('.ui.tiny.modal.loginStatus').modal('show');
+	}
+	// 로그인 성공 여부 알림창 닫기
+	$('.loginStatus .actions .button').on('click', function(){
+		$('.ui.tiny.modal.loginStatus').modal('hide');
+	});
+	
+	// 회원 가입 성공 여부 알림창
+	if (signUpStatus === "true"){
+		// 회원가입 성공시
+		$('.idFail .ui.header').text("회원가입에 성공하였습니다.");
+		$('.ui.tiny.modal.idFail').modal('show');
+		// similar behavior as an HTTP redirect
+		$('.ui.tiny.modal.idFail').modal({
+			onHidden: function(){
+				window.location.replace("http://localhost:8090/finalproject/main");
+			}
+		});
+	} else if (signUpStatus === "false"){
+		$('.idFail .ui.header').text("회원가입에 실패하였습니다. 다시 시도해 주세요");
+		$('.ui.tiny.modal.idFail').modal('show');
+	}
+
 	// 영화 상세보기
 	$('.main_movie').on('click', function() {
 		var movie_num=$('.movie_num').val();
 		var index = $(this).find('input[type="hidden"]').val();
 		var modal = '#modal'+index;
 		/*
-		$.ajax({
-			url: 'info?movie_num='+movie_num,
-			type:'GET',
-			dataType:'json',
-			success : function(data){
-				//alert(JSON.stringify(data.info[0].movie_kor_title));
-				$('.time_sub').remove();
-				var comment = "";
-					for(var i=0; i<data.comment.length; i++){
-					comment +=
-						'<li class=time_sub id="'+data.comment[i].comment_num+'">'+
-						'<p>'+data.comment[i].mem_id+'</p>'+
-						'<p>'+data.comment[i].replytext+'</p>'+
-						'<p>'+data.comment[i].regdate+'</p>'+
-						'<p> <button>delete</button> <button>update</button>'+
-						'</p>'+
-						'</li>'
-					}
-				$(comment).appendTo("#bb");
-			}
-		})
-		*/
+		 * $.ajax({ url: 'info?movie_num='+movie_num, type:'GET',
+		 * dataType:'json', success : function(data){
+		 * //alert(JSON.stringify(data.info[0].movie_kor_title));
+		 * $('.time_sub').remove(); var comment = ""; for(var i=0; i<data.comment.length;
+		 * i++){ comment += '<li class=time_sub id="'+data.comment[i].comment_num+'">'+ '<p>'+data.comment[i].mem_id+'</p>'+ '<p>'+data.comment[i].replytext+'</p>'+ '<p>'+data.comment[i].regdate+'</p>'+ '<p>
+		 * <button>delete</button> <button>update</button>'+ '</p>'+ '</li>' }
+		 * $(comment).appendTo("#bb"); } })
+		 */
 		
 		$(modal).modal('show');
 		
 	})
 	
-	//아이디 중복체크
+	// 아이디 중복체크
 	$('#checkId').on('click',function(e){
 
 		if($('#id').val() == '') {
@@ -48,17 +62,17 @@ $(document).ready(function() {
 			$.ajax({
 				type:'POST',
 				dataType:'text',
-				url:'chkId',
+				url:'checkId',
 				data:'mem_id='+$('#id').val(),
-				success:function(rs){
-					if(rs == 1){
+				success:function(result) {
+					if(result == "true") {
 						$('.idFail .ui.header').text("아이디가 이미 존재합니다.");
 						$('.ui.tiny.modal.idFail').modal('show');
-						$('#id_ck').val(1);
-					}else{
+						$('#id_check_result').val(1);
+					} else {
 						$('.idFail .ui.header').text("사용할 수 있는 아이디입니다.");
 						$('.ui.tiny.modal.idFail').modal('show');
-						$('#id_ck').val(2);
+						$('#id_check_result').val(2);
 					}
 				},
 				error:function(request,status,error){
@@ -77,7 +91,7 @@ $(document).ready(function() {
 	$('.ui.rating')
 	  .rating();
 
-	// 카카오톡 로그인
+	// 카카오톡 로그인 버튼 이미지
 	$('#kakaoLoginImage').on('mouseenter', function() {
 		$(this).prop('src', 'resources/images/loginBtnHover.png');
 		$(this).css('cursor', 'pointer');
@@ -110,15 +124,15 @@ $(document).ready(function() {
 	$('.ui.form#loginForm').form({
 		on : 'blur',
 		fields : {
-			loginid : {
-				identifier : 'loginid',
+			loginId : {
+				identifier : 'loginId',
 				rules : [ {
 					type : 'empty',
 					prompt : '아이디를 입력해주세요.'
 				} ]
 			},
-			loginpassword : {
-				identifier : 'loginpassword',
+			loginPassword : {
+				identifier : 'loginPassword',
 				rules : [ {
 					type : 'empty',
 					prompt : '비밀번호를 입력하세요.'
@@ -141,14 +155,14 @@ $(document).ready(function() {
 					prompt : '아이디를 입력해주세요.'
 				} ]
 			},
-			id_ck : {
-				identifier : 'id_ck',
+			id_check_result : {
+				identifier : 'id_check_result',
 				rules : [ {
 					type : 'not[0]',
 					prompt : '중복 체크를 하지 않으셨습니다. 중복체크 해주세요.'
 				} , {
 					type : 'not[1]',
-					prompt : '중복된 아이디입니다.'
+					prompt : '이미 존재하는 아이디입니다.'
 				} ]
 			},
 			password : {

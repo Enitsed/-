@@ -24,19 +24,19 @@
 				</button>
 			</div>
 		</div>
-		<c:if test="${empty sessionScope.kid}">
+		<c:if test="${empty userDTO}">
 			<div class="ui item">
 				<div class="ui">
-					<a href="signup">
+					<a href="signUp">
 					<button class="ui green basic button">회원 가입</button></a>
 					<button class="ui orange basic button" id="loginBtn">로그인</button>
 				</div>
 			</div>
 		</c:if>
-		<c:if test="${not empty sessionScope.kid}">
+		<c:if test="${not empty userDTO}">
 			<div class="ui item">
 				<div class="ui">
-						<a>${sessionScope.kid}님 환영합니다.</a> &nbsp;&nbsp;&nbsp;
+						<a>${userDTO.mem_name}님 환영합니다.</a> &nbsp;&nbsp;&nbsp;
 						<button class="ui orange basic button" onclick="ktout()">로그아웃</button>
 				</div>
 			</div>
@@ -48,10 +48,10 @@
 	<div class="header">로그인 화면</div>
 	<form class="ui form segment" id="loginForm" action="login" method="post">
 		<div class="input field">
-			<label>아이디</label> <input placeholder="아이디 입력" name="mem_id" type="text" id="loginid">
+			<label>아이디</label> <input placeholder="아이디 입력" name="mem_id" type="text" id="loginId">
 		</div>
 		<div class="input field">
-			<label>비밀번호</label> <input placeholder="비밀번호 입력" name="mem_pw" type="password" id="loginpassword">
+			<label>비밀번호</label> <input placeholder="비밀번호 입력" name="mem_pw" type="password" id="loginPassword">
 		</div>
 		<div class="ui field middle center aligned grid">
 			<div class="ui positive tiny button submit">로그인</div>
@@ -69,7 +69,20 @@
 	<br />
 	
 	<div class="ui center aligned grid message">
-		처음 인가요? <a href="signup">회원 가입</a>하세요!
+		처음 인가요? <a href="signUp">회원 가입</a>하세요!
 	</div>
 </div>
 
+<div class="ui tiny modal loginStatus">
+	<i class="close icon"></i>
+	<div class="ui header">
+		아이디 중복확인
+	</div>
+	<div class="actions">
+		<div class="ui tiny green button">닫기</div>
+	</div>
+</div>
+	
+<script type="text/javascript">
+	var loginStatus = "${loginStatus}";	
+</script>

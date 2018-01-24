@@ -5,25 +5,17 @@
 
 <mapper namespace="mem">
 
-	<select id="find" parameterType="dto.MemDTO" resultType="String">
-		select
-		mem_name from mem
-		where mem_id=#{mem_id} and mem_pw=#{mem_pw}
-	</select>
-
 	<insert id="insert" parameterType="dto.MemDTO">
 		insert into mem
 		values(mem_seq.nextval,#{mem_id},#{mem_pw},#{mem_sex},#{mem_name},#{mem_address},#{mem_email})
 	</insert>
 
-	<select id="chk" parameterType="String" resultType="String">
-		select mem_id
-		from mem where mem_id=#{mem_id}
+	<select id="isMemberExist" parameterType="String" resultType="java.lang.Integer">
+		SELECT NVL2(mem_id, 1, 0) FROM mem where mem_id = #{mem_id}
 	</select>
 
-	<select id="login" parameterType="dto.MemDTO" resultType="String">
-		select
-		mem_name from mem where mem_id=#{mem_id}
+	<select id="login" parameterType="dto.MemDTO" resultType="dto.MemDTO">
+		select * from mem where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</select>
 
 </mapper>

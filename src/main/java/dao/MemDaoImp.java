@@ -16,25 +16,18 @@ public class MemDaoImp implements MemDAO {
 	}
 
 	@Override
-	public void register(MemDTO dto) {
-		sqlSession.insert("mem.insert", dto);
+	public void register(MemDTO userDTO) {
+		sqlSession.insert("mem.insert", userDTO);
 	}
 
 	@Override
-	public String find(MemDTO dto) {
-
-		return sqlSession.selectOne("mem.find", dto);
+	public MemDTO login(MemDTO userDTO) {
+		return sqlSession.selectOne("mem.login", userDTO);
 	}
 
 	@Override
-	public String chkId(String mem_id) {
-		return sqlSession.selectOne("mem.chk", mem_id);
-	}
-
-	@Override
-	public String login(MemDTO dto) {
-		return sqlSession.selectOne("mem.login", dto);
-
+	public Integer idCheck(MemDTO userDTO) {
+		return sqlSession.selectOne("mem.isMemberExist", userDTO.getMem_id());
 	}
 
 }

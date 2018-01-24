@@ -24,68 +24,68 @@ public class MemberController {
 		this.service = service;
 	}
 
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
 	public String viewSignUp() {
 		// 회원가입 페이지로 이동
 		return "signUpForm";
 	}
 
-	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public ModelAndView signUp(MemDTO dto, HttpServletRequest req) {
-		// 회원 가입 실행 페이지
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = req.getSession();
-		service.registerProcess(dto);
-		System.out.println("num =" + dto.getMem_num() + " id= " + dto.getMem_id() + " pw=" + dto.getMem_pw() + " name="
-				+ dto.getMem_name() + " email=" + dto.getMem_email() + " address=" + dto.getMem_address() + " sex="
-				+ dto.getMem_sex());
-		mav.setViewName("redirect:/main");
-		return mav;
+	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
+	public @ResponseBody boolean checkId(MemDTO userDTO, HttpServletRequest request) {
+		// 아이디 중복 확인 메서드
+		System.out.println(service.idCheckProcess(userDTO));
+		return service.idCheckProcess(userDTO);
 	}
 
-	@RequestMapping(value = "/chkId", method = RequestMethod.POST)
-	public @ResponseBody int chkId(String mem_id, HttpServletRequest request) {
-		boolean rs = service.chkIdProcess(mem_id);
-		if (rs)
-			return 1;
-		else
-			return 2;
-	}
-
-	@RequestMapping("/login")
-	public ModelAndView login(MemDTO dto, HttpSession session) {
+	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
+	public ModelAndView signUp(MemDTO userDTO, HttpServletRequest request) {
+		// 회원 가입 실행
 		ModelAndView mav = new ModelAndView();
-		boolean rs = service.findProcess(dto);
-		if (rs) {
-			String name = service.login(dto);
-			session.setAttribute("kid", name);
-			mav.setViewName("redirect:/main");
+		try {
+			// 회원가입 시도
+			service.registerProcess(userDTO);
+			request.setAttribute("resultSignUp", true);
+		} catch (Exception e) {
+			// 회원가입 실패시
+			request.setAttribute("resultSignUp", false);
 		}
+		/*
+		 * System.out.println("num =" + userDTO.getMem_num() + " id= " +
+		 * userDTO.getMem_id() + " pw=" + userDTO.getMem_pw() + " name=" +
+		 * userDTO.getMem_name() + " email=" + userDTO.getMem_email() + " address=" +
+		 * userDTO.getMem_address() + " sex=" + userDTO.getMem_sex());
+		 */
+
+		mav.setViewName("signUpForm");
 		return mav;
 	}
 
-	@RequestMapping("/loginsuccess")
-	public ModelAndView loginsuccess(String kid, HttpSession session) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView login(MemDTO userDTO, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		session.setAttribute("kid", kid);
-		mav.setViewName("redirect:/main");
+		if (service.idCheckProcess(userDTO)) {
+			try {
+				MemDTO foundUserDTO = service.loginProcess(userDTO);
+				if (foundUserDTO != null) {
+					session.setAttribute("userDTO", foundUserDTO);
+					session.setAttribute("loginStatus", "로그인에 성공하였습니다.");
+				} else {
+					session.setAttribute("loginStatus", "비밀번호가 일치하지 않습니다.");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				session.setAttribute("loginStatus", "로그인에 실패하였습니다.");
+			}
+		} else {
+			session.setAttribute("loginStatus", "회원이 존재하지 않습니다.");
+		}
+		mav.setViewName("index");
 		return mav;
 	}
 
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/main";
-	}
-
-	@RequestMapping("/check")
-	public String logincheck(MemDTO dto, HttpSession session) {
-
-		boolean result = service.findProcess(dto);
-		if (result) {
-			// System.out.println(dto.getMem_id());
-			session.setAttribute("kid", dto.getMem_id());
-		}
 		return "redirect:/main";
 	}
 
