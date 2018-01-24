@@ -95,12 +95,13 @@
 
 				</div>
 			</c:forEach>
-			<div class="ui top right attached label green" id=  "addBtn"class="addBtn">
-				<a href="javascript:moreList();" > <i
-					class="far fa-hand-point-down"></i> &nbsp; 더 보기
-					 <input type="hidden" name="currentPage" id="currentPage" value="1" />
-				</a>
-			</div>
 		</div>
+		<div class="ui horizontal divider">
+			<a class="ui teal button" href="javascript:moreList();" >
+				<i class="far fa-hand-point-down"></i> &nbsp; 더 보기
+			</a>
+		</div>
+		
 	</div>
+	
 </div>
