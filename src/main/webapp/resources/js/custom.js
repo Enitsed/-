@@ -3,8 +3,11 @@
 
 $(document).ready(function() {
 	"use strict";
-
-	var signUpStatus = '';
+	
+	// 회원가입 성공 여부 알림
+	if (document.location.href == "http://localhost:8090/finalproject/signUp") {
+		$('form').on('submit', signUpCheckStatus());
+	}
 	
 	// 로그인 성공 여부 알림창
 	if(loginStatus != "") {
@@ -16,21 +19,6 @@ $(document).ready(function() {
 		$('.ui.tiny.modal.loginStatus').modal('hide');
 	});
 	
-	// 회원 가입 성공 여부 알림창
-	if (signUpStatus === "true"){
-		// 회원가입 성공시
-		$('.idFail .ui.header').text("회원가입에 성공하였습니다.");
-		$('.ui.tiny.modal.idFail').modal('show');
-		// similar behavior as an HTTP redirect
-		$('.ui.tiny.modal.idFail').modal({
-			onHidden: function(){
-				window.location.replace("http://localhost:8090/finalproject/main");
-			}
-		});
-	} else if (signUpStatus === "false"){
-		$('.idFail .ui.header').text("회원가입에 실패하였습니다. 다시 시도해 주세요");
-		$('.ui.tiny.modal.idFail').modal('show');
-	}
 
 	// 영화 상세보기
 	$('.main_movie').on('click', function() {
@@ -257,3 +245,22 @@ function ktout() {
 };
 // ]]>
 
+function signUpCheckStatus() {
+
+	// 회원 가입 성공 여부 알림창
+	if (signUpStatus == "true"){
+		// 회원가입 성공시
+		$('.idFail .ui.header').text("회원가입에 성공하였습니다.");
+		$('.ui.tiny.modal.idFail').modal('show');
+		// similar behavior as an HTTP redirect
+		$('.ui.tiny.modal.idFail').modal({
+			onHidden: function(){
+				window.location.replace("http://localhost:8090/finalproject/main");
+			}
+		});
+	} else if (signUpStatus == "false"){
+		$('.idFail .ui.header').text("회원가입에 실패하였습니다. 다시 시도해 주세요");
+		$('.ui.tiny.modal.idFail').modal('show');
+	}
+	
+}

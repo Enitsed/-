@@ -76,7 +76,6 @@
 	</div>
 	
 	<script type="text/javascript">
-	
-		var signUpStatus = '${resultSignUp}';
-	
+		var signUpStatus = '';
+		signUpStatus = '${resultSignUp}';
 	</script>
