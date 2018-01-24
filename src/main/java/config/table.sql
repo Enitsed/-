@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 --------------------------------------------------------
 ---회원 테이블----------------------------------------------
 create table mem(
@@ -10,9 +9,7 @@ create table mem(
 	mem_email varchar2(20),		   --회원이메일
 	mem_address varchar2(300)	   --회원주소
 );
-drop table mem
-drop sequence mem_seq
-select * from mem
+
 --회원 테이블 시퀀스
 create sequence mem_seq
 start with 1
@@ -20,9 +17,6 @@ increment by 1
 nocache
 nocycle;
 
-insert into mem values(2,'testID','pw','남','홍길동','test@naver.com','서울특별시')
-insert into mem values(mem_seq.nextval,'a','b','c','d','e','f')
---alter table mem add(mem_email varchar2(20));
 --select * from mem
 --drop table mem
 --drop sequence mem_seq
@@ -35,7 +29,6 @@ create table grade(
 	constraint grade_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 	--grade테이블의 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
-    		select * from movie where movie_num > 0 AND movie_num <=3
 
 
 --select * from grade
@@ -44,18 +37,17 @@ create table grade(
 --------------------------------------------------------
 ---영화 테이블----------------------------------------------
 create table movie(
-	movie_num number primary key,	--영화번호
+	movie_num number primary key,		--영화번호
+	movie_rating varchar2(500),			--영화등급
 	movie_kor_title varchar2(500),		--영화한글제목
 	movie_eng_title varchar2(500),		--영화영어제목
 	movie_opening_date date,			--영화개봉일
 	movie_summary varchar2(1000),		--영화줄거리
-	movie_production_date date,			--영화제작일
 	movie_image varchar2(500),			--이미지
-	movie_url varchar2(500)				--url
+	movie_url varchar2(500),			--url
+	nation varchar2(50)					--영화국가
 );
-insert into movie values(1,'신과함께','Along with the GODS','2017-12-20','슬픈영화ㅠㅠ','2017-1-1','없음','없음');
-insert into movie values(2,'코코','COCO','2017-1-1','애니메이션','2017-1-15','없음','없음');
-select * from movie
+
 --영화테이블 시퀀스
 create sequence movie_seq
 start with 1
@@ -67,39 +59,11 @@ nocycle;
 --drop table movie
 --drop sequence movie_seq
 
------------------영화 코멘트
 
-create table comment2(
-	comment_num number primary key,
-	movie_num number,
-	replytext varchar2(1000),
-	mem_num number,
-	mem_id varchar2(20),
-	regdate date,
-	constraint comment2_movie_num_fk foreign key(movie_num) references movie(movie_num),
-	constraint comment2_mem_num_fk foreign key(mem_num) references mem(mem_num)
-);
-create sequence comment2_num_seq
-start with 1
-increment by 1
-nocache
-nocycle;
-
-insert into comment2 values(1,1,'테스트',2,'testID','2017-01-19')
-insert into comment2 values(2,2,'테스트2',2,'testID','2017-01-23')
-insert into comment2 values(3,2,'테스트3',2,'testID','2017-01-24')
-insert into comment2 values(4,2,'테스트4',3,'bbbb','2017-01-25')
-
-select * from comment2 where movie_num=2
-
-select * from comment2
-drop table comment2
-drop sequence comment2_num_seq
-----------------comment
 --------------------------------------------------------
 ---평점 테이블----------------------------------------------
 create table rating(
-	mem_num number,			--회원번호
+	mem_num number,				--회원번호
 	movie_num number(10),		--영화번호
 	coment varchar2(1000),		--코멘트
 	star_point number(10),		--별점
@@ -116,21 +80,33 @@ create table rating(
 --------------------------------------------------------
 ---카테고리 테이블----------------------------------------------
 create table category(
-	movie_category varchar2(500) primary key,	--영화카테고리
-	movie_num number,						--영화번호
-	constraint category_movie_num_fk foreign key(movie_num) references movie(movie_num)
-	--category테이블 movie_num 외래키 제약조건
+	category_num number primary key,	--장르번호
+	category_name varchar2(50)			--장르이름
 );
 
 --select * from category
 --drop table category
+
+--------------------------------------------------------
+---영화카테고리 테이블----------------------------------------------
+create table movie_category(
+	category_num number,	--장르번호
+	movie_num number,		--영화번호
+	constraint movie_category_num_fk foreign key(category_num) references category(category_num),
+	--category테이블 category_num 외래키 제약조건
+	constraint movie_category_movie_num_fk foreign key(movie_num) references movie(movie_num)
+	--category테이블 movie_num 외래키 제약조건
+);
+
+--select * from movie_category
+--drop table movie_category
 
 
 --------------------------------------------------------
 ---배우 테이블----------------------------------------------
 create table actor(
 	actor_num number primary key,	--배우번호
-	actor_name varchar2(100)			--배우이름
+	actor_name varchar2(100)		--배우이름
 );
 
 --배우테이블 시퀀스
@@ -145,43 +121,51 @@ nocycle;
 --drop sequence actor_seq
 
 --------------------------------------------------------
----영화배우 테이블-------------------------------------------
+---영화출연배우 테이블-------------------------------------------
 create table movie_actor(
-	movie_actor_num number primary key,		--영화배우 번호
-	movie_num number,						--영화번호
-	actor_num number,						--배우번호
+	movie_num number,		--영화번호
+	actor_num number,		--배우번호
 	constraint movie_actor_movie_num_fk foreign key(movie_num) references movie(movie_num),
 	--movie_actor테이블의 movie_num 외래키 제약조건
 	constraint movie_actor_actor_num_fk foreign key(actor_num) references actor(actor_num)
 	--movie_actor테이블의 actor_num 외래키 제약조건
 );
 
+--select * from movie_actor
+--drop table movie_actor
 
+--------------------------------------------------------
+---영화감독 테이블-------------------------------------------
+create table director(
+	director_num number primary key,	--감독번호
+	director_name varchar2(100)			--감독이름
+);
+
+--영화감독 시퀀스
+create sequence director_seq
+start with 1
+increment by 1
+nocache
+nocycle;
+
+--select * from director
+--drop table director
+
+--------------------------------------------------------
+---출연영화감독 테이블-------------------------------------------
 create table movie_director(
-	movie_director_num number primary key,		--영화배우 번호
-	movie_num number,						--영화번호
+	movie_num number,		--영화번호
+	director_num number,	--감독번호
 	constraint movie_director_movie_num_fk foreign key(movie_num) references movie(movie_num),
 	--movie_actor테이블의 movie_num 외래키 제약조건
-	constraint movie_director_director_num_fk foreign key(movie_director_num) references director(director_num)
+	constraint movie_director_director_num_fk foreign key(director_num) references director(director_num)
 	--movie_actor테이블의 actor_num 외래키 제약조건
 );
 
-select * from director
-select * from movie_director
-
-insert into director values(1, '이봉주');
-insert into movie_director values(1, 1);
-
-select * from director, movie_director where movie_director_num = director_num
-    		select movie_num, director_name from director, movie_director where movie_director_num = director_num
+--select * from movie_director
+--drop table movie_director
 
 
-create table director(
-	director_num number primary key,	--배우번호
-	director_name varchar2(100)			--배우이름
-);
---select * from movie_actor
---drop table movie_actor
 
 --------------------------------------------------------
 ---게시판 테이블--------------------------------------------
@@ -227,9 +211,3 @@ create table reply(
 
 --select * from reply
 --drop table reply
-
-=======
-drop sequence mem_num_seq 
-
-drop table mem
->>>>>>> sxdf
