@@ -84,8 +84,16 @@ create table category(
 	category_name varchar2(50)			--장르이름
 );
 
+--카테고리테이블 시퀀스
+create sequence category_seq
+start with 1
+increment by 1
+nocache
+nocycle;
+
 --select * from category
 --drop table category
+--drop sequence category_seq
 
 --------------------------------------------------------
 ---영화카테고리 테이블----------------------------------------------
