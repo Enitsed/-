@@ -9,6 +9,7 @@ import dto.ActorDTO;
 import dto.CategoryDTO;
 import dto.CommentDTO;
 import dto.DirectorDTO;
+import dto.LikeDTO;
 import dto.MovieDTO;
 
 public class MovieDaoImp implements MovieDAO {
@@ -49,6 +50,12 @@ public class MovieDaoImp implements MovieDAO {
 	@Override
 	public List<MovieDTO> moviedetailProcess(int movie_num) {
 		return sqlSession.selectList("movie.info", movie_num);
+	}
+
+	@Override
+	public String likeProcess(LikeDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
