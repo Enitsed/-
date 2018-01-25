@@ -16,39 +16,38 @@
   </style>
 
 <script>
-	function moreList() {
-		var page = ($("#page").val() + 1);
-		$
-				.ajax({
-					url : 'addMovie.do?page=' + page,
-					type : 'GET',
-					dataType : 'json',
-					success : function(data) {
-						//console.log(data);
-						var content = "";
-						for (var i = 0; i < data.length; i++) {
-							content += '<div class="card column blurring dimmable image">'
-									+ '<input type="hidden" value="${data.movie_num}" />'
-									+ '<img src="resources/images/travel.jpg">'
-									+ '<div class="ui dimmer">'
-									+ '<div class="content">'
-									+ '<div class="center">'
-									+ '<div class="ui inverted button">CLICK</div>'
-									+ '</div>' + '</div>' + '</div>' + '</div>'
-						}
-						var page = ($("#page").val() + 1);
-						content += '<div class="btns"><a href="javascript:moreList();" class="btn btn-primary">더보기</a><input type="hidden" value="'+ page +'" id="page"/></div>';
-						$('#addbtn').remove();//remove btn
-						//alert(content);
-						$(content).appendTo("#aa");
-					},
-					error : function(request, status, error) {
-						alert("code:" + request.status + "\n" + "message:"
-								+ request.responseText + "\n" + "error:"
-								+ error);
-					}
-				});
-	};
+function moreList() {
+	var page = ($("#page").val() + 1);
+	$.ajax({
+		url : 'addMovie.do?page=' + page,
+		type : 'GET',
+		dataType : 'json',
+		success : function(data) {
+			//console.log(data);
+			var content = "";
+			for (var i = 0; i < data.length; i++) {
+				content += '<div class="card column blurring dimmable image">'
+						+ '<input type="hidden" value="${data.movie_num}" />'
+						+ '<img src="resources/images/travel.jpg">'
+						+ '<div class="ui dimmer">'
+						+ '<div class="content">'
+						+ '<div class="center">'
+						+ '<div class="ui inverted button">CLICK</div>'
+						+ '</div>' + '</div>' + '</div>' + '</div>'
+			}
+			var page = ($("#page").val() + 1);
+			content += '<div class="btns"><a href="javascript:moreList();" class="btn btn-primary">더보기</a><input type="hidden" value="'+ page +'" name="page"/></div>';
+			$('#addbtn').remove();//remove btn
+			//alert(content);
+			$(content).appendTo("#aa");
+		},
+		error : function(request, status, error) {
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n" + "error:"
+					+ error);
+		}
+	});
+};
 </script>
 
 <!-- 빵덩어리 -->
