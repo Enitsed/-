@@ -95,6 +95,12 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping("/test2")
+	public ModelAndView findPwPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("test2");
+		return mav;
+	}
 	
 	@RequestMapping(value="/findId", method = RequestMethod.POST)
 	public ModelAndView findId(MemDTO userDTO) {
