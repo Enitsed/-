@@ -32,4 +32,16 @@ public class MemServiceImp implements MemService {
 		return dao.login(userDTO);
 	}
 
+	@Override
+	public MemDTO findIdProcess(MemDTO userDTO) {
+		// 아이디 찾기
+		return dao.findId(userDTO);
+	}
+	
+	@Override
+	public MemDTO findPwProcess(MemDTO userDTO) {
+		// 비밀번호 찾기
+		return dao.findPw(userDTO);
+	}
+
 }

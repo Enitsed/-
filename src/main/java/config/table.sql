@@ -20,7 +20,9 @@ nocycle;
 --select * from mem
 --drop table mem
 --drop sequence mem_seq
+select mem_id from mem where mem_name=#{mem_name} and mem_email=#{mem_email}
 
+select mem_id from mem where mem_name='d' and mem_email='e'
 --------------------------------------------------------
 ---회원 등급 테이블-------------------------------------------
 create table grade(
@@ -45,7 +47,7 @@ create table movie(
 	movie_summary varchar2(4000),		--영화줄거리
 	movie_image varchar2(1000),			--이미지
 	movie_url varchar2(500),			--url
-	nation varchar2(100)					--영화국가
+	nation varchar2(100)				--영화국가
 );
 
 --영화테이블 시퀀스
@@ -55,7 +57,7 @@ increment by 1
 nocache
 nocycle;
 
---select * from movie where movie_kor_title= '버드보이와 잊혀진 아이들'
+--select * from movie where movie_num='50'
 --drop table movie
 --drop sequence movie_seq
 
@@ -104,7 +106,6 @@ insert into category values(category_seq.nextval, '무협');
 insert into category values(category_seq.nextval, '문예');
 insert into category values(category_seq.nextval, '뮤직');
 insert into category values(category_seq.nextval, '미스터리');
-insert into category values(category_seq.nextval, '반공/분단');
 insert into category values(category_seq.nextval, '범죄');
 insert into category values(category_seq.nextval, '사회물(경향)');
 insert into category values(category_seq.nextval, '스릴러');
@@ -219,7 +220,8 @@ create table movie_director(
 	constraint movie_director_director_num_fk foreign key(director_num) references director(director_num)
 	--movie_actor테이블의 actor_num 외래키 제약조건
 );
-select count(*) from director where director_name = 'asd'
+
+
 --select * from movie_director
 --drop table movie_director
 
@@ -270,7 +272,12 @@ create table reply(
 --select * from reply
 --drop table reply
 
+<<<<<<< HEAD
 create table comment2(
+=======
+
+create table movie_comment(
+>>>>>>> 3ab8ecdee29ea52207d3147f53758162f3ca59d4
    comment_num number,
    movie_num number,
    replytext varchar2(500),
@@ -286,11 +293,19 @@ increment by 1
 nocache
 nocycle;
 
+<<<<<<< HEAD
 insert into comment2 values(comment_num_seq.nextval,1,'테스트',4,'aaaaaa','2018-01-25',0)
 
 select * from comment2
 
 drop table comment2
+=======
+insert into movie_comment values(comment_num_seq.nextval,1,'테스트',4,'aaaaaa','2018-01-25',0)
+
+select * from movie_comment
+
+drop table movie_comment
+>>>>>>> 3ab8ecdee29ea52207d3147f53758162f3ca59d4
 drop sequence comment_num_seq
 
 select * from COMMENTLIKE
@@ -313,4 +328,8 @@ select * from commentlike
 
 
 drop table commentlike
+<<<<<<< HEAD
 drop sequence like_num_seq
+=======
+drop sequence like_num_seq
+>>>>>>> 3ab8ecdee29ea52207d3147f53758162f3ca59d4

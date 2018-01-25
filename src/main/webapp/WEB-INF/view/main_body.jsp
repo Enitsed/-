@@ -4,6 +4,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<<<<<<< HEAD:src/main/webapp/WEB-INF/view/template/body.jsp
+=======
+ <style>
+    #slideShowImages { 
+      border: 1px gray solid;
+    }   
+  
+    #slideShowImages img { 
+      border: 0.8em black solid;
+      padding: 3px;
+    }   
+  </style>
+
+<script>
+function moreList() {
+	var page = ($("#page").val() + 1);
+	$.ajax({
+		url : 'addMovie.do?page=' + page,
+		type : 'GET',
+		dataType : 'json',
+		success : function(data) {
+			//console.log(data);
+			var content = "";
+			for (var i = 0; i < data.length; i++) {
+				content += '<div class="card column blurring dimmable image">'
+						+ '<input type="hidden" value="${data.movie_num}" />'
+						+ '<img src="resources/images/travel.jpg">'
+						+ '<div class="ui dimmer">'
+						+ '<div class="content">'
+						+ '<div class="center">'
+						+ '<div class="ui inverted button">CLICK</div>'
+						+ '</div>' + '</div>' + '</div>' + '</div>'
+			}
+			var page = ($("#page").val() + 1);
+			content += '<div class="btns"><a href="javascript:moreList();" class="btn btn-primary">더보기</a><input type="hidden" value="'+ page +'" name="page"/></div>';
+			$('#addbtn').remove();//remove btn
+			//alert(content);
+			$(content).appendTo("#aa");
+		},
+		error : function(request, status, error) {
+			alert("code:" + request.status + "\n" + "message:"
+					+ request.responseText + "\n" + "error:"
+					+ error);
+		}
+	});
+};
+</script>
+
+>>>>>>> 3ab8ecdee29ea52207d3147f53758162f3ca59d4:src/main/webapp/WEB-INF/view/main_body.jsp
 <!-- 빵덩어리 -->
 <div class="ui container list">
 	<div class="ui tiny breadcrumb">

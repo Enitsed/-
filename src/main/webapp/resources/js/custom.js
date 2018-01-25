@@ -13,18 +13,85 @@ $(document).ready(function () {
 	if (document.location.href == "http://localhost:8090/finalproject/signUp") {
 		$('form').on('submit', signUpCheckStatus());
 	}
+	
+	//아이디 찾기 알림
+	if(findIdStatus != ""){
+		$('.findIdStatus .ui.header').text(findIdStatus);
+		$('.ui.tiny.modal.findIdStatus').modal('show');
+	}
+	
+	//아이디 찾기 닺기
+	$('.findIdStatus .actions .button').on('click',function(){
+		$('.ui.tiny.modal.findIdStatus').modal('hide');
+	})
+	
+	// 아이디 찾기 유효성 검사
+	$('.ui.form#findId').form({
+		on: 'blur',
+		fields: {
+			findName: {
+				identifier: 'findName',
+				rules: [{
+					type: 'empty',
+					prompt: '이름을 입력해주세요.'
+			}]
+			},
+			findEmail: {
+				identifier: 'findEmail',
+				rules: [{
+					type: 'empty',
+					prompt: '이메일을 입력하세요.'
+				}, {
+					type: 'email',
+					prompt: '이메일 형식으로 입력해주세요.'
+				}]
+			}
+		}
+	});
 
+	// 비밀번호 찾기 유효성 검사
+	$('.ui.form#findPw').form({
+		on: 'blur',
+		fields: {
+			findId: {
+				identifier: 'findId',
+				rules: [{
+					type: 'empty',
+					prompt: '아이디를 입력해주세요.'
+			}]
+			},
+			findName: {
+				identifier: 'findName',
+				rules: [{
+					type: 'empty',
+					prompt: '이름을 입력하세요.'
+				}]
+			}
+		}
+	});
+	
+	//비밀번호 찾기 알림
+	if(findPwStatus != ""){
+		$('.findPwStatus .ui.header').text(findPwStatus);
+		$('.ui.tiny.modal.findPwStatus').modal('show');
+	}
+	
+	//아이디 찾기 닺기
+	$('.findPwStatus .actions .button').on('click',function(){
+		$('.ui.tiny.modal.findPwStatus').modal('hide');
+	})
+	
 	// 로그인 성공 여부 알림창
 	if (loginStatus != "") {
 		$('.loginStatus .ui.header').text(loginStatus);
 		$('.ui.tiny.modal.loginStatus').modal('show');
 	}
+	
 	// 로그인 성공 여부 알림창 닫기
 	$('.loginStatus .actions .button').on('click', function () {
 		$('.ui.tiny.modal.loginStatus').modal('hide');
 	});
-
-/*
+	
 	// 영화 상세보기
 	$('.main_movie').on('click', function () {
 		var movie_num = $('.movie_num').val();
@@ -65,203 +132,204 @@ $(document).ready(function () {
 				$(comment).appendTo(".ui.large.feed");
 
 				$(modal).modal('show');
-
+				/*
 				$('.like').on('click', function () {
+				   $.ajax({
+				      type: 'GET',
+				      dataType: 'json',
+				      url: 'like',
+				      data: 'mem_id=' + $('.mem_id').val() + '&comment_num=' + $('.comment_num').val(),
+				      success: function (data) {
+				         var like = $('.like').attr('value');
+				         // var like =$('.like').text();
+				         alert(data.like);
+				         alert(like);
+				         if (data.like == null) {
+				            like += 1;
+				            $('.like').text(like);
+				         } else {
+				            like -= 1;
+				            $('.like').text(like);
 
-					$.ajax({
-						type: 'GET',
-						dataType: 'json',
-						url: 'like',
-						data: 'mem_id=' + $('.mem_id').val() + '&comment_num=' + $('.comment_num').val(),
-						success: function (data) {
-							var like = $('.like').attr('value');
-							// var like =$('.like').text();
-							alert(data.like);
-							alert(like);
-							if (data.like == null) {
-								like += 1;
-								$('.like').text(like);
-							} else {
-								like -= 1;
-								$('.like').text(like);
-
-							}
-						}
-					});
+				         }
+				      }
+				   });
 
 				});
+				*/
 
-			}
-		});
-*/
-		// 아이디 중복체크
-		$('#checkId').on('click', function (e) {
-
-			if ($('#id').val() == '') {
-				$('.idFail .ui.header').text("아이디를 입력해주세요.");
-				$('.ui.tiny.modal.idFail').modal('show');
-				e.preventDefault();
-			} else {
-				$.ajax({
-					type: 'POST',
-					dataType: 'text',
-					url: 'checkId',
-					data: 'mem_id=' + $('#id').val(),
-					success: function (result) {
-						if (result == "true") {
-							$('.idFail .ui.header').text("아이디가 이미 존재합니다.");
-							$('.ui.tiny.modal.idFail').modal('show');
-							$('#id_check_result').val(1);
-						} else {
-							$('.idFail .ui.header').text("사용할 수 있는 아이디입니다.");
-							$('.ui.tiny.modal.idFail').modal('show');
-							$('#id_check_result').val(2);
-						}
-					},
-					error: function (request, status, error) {
-						alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-					}
-				});
-			}
-		});
-
-		// 중복확인창 닫기
-		$('.idFail .actions .ui.button').on('click', function (e) {
-			$('.ui.tiny.modal.idFail').modal('hide');
-		});
-
-		// 별점
-		$('.ui.rating')
-			.rating();
-
-		// 카카오톡 로그인 버튼 이미지
-		$('#kakaoLoginImage').on('mouseenter', function () {
-			$(this).prop('src', 'resources/images/loginBtnHover.png');
-			$(this).css('cursor', 'pointer');
-		});
-
-		$('#kakaoLoginImage').on('mouseleave', function () {
-			$(this).prop('src', 'resources/images/loginBtn.png');
-			$(this).css('cursor', 'default');
-		});
-
-		// 로그인 창 띄우기
-		$('#loginBtn').on('click', function () {
-			$('.ui.modal.login_modal').modal('show');
-		});
-
-		// 로그인 창 닫기
-		$('#closeBtn').on('click', function () {
-			$('.ui.modal.login_modal').modal('hide');
-		});
-
-		// 메인 페이지 카드
-		$('.special.cards .image.main_movie').dimmer({
-			on: 'hover'
-		});
-
-		// 메뉴 드랍 다운
-		$('.ui.dropdown').dropdown();
-
-		// 로그인 유효성 검사
-		$('.ui.form#loginForm').form({
-			on: 'blur',
-			fields: {
-				loginId: {
-					identifier: 'loginId',
-					rules: [{
-						type: 'empty',
-						prompt: '아이디를 입력해주세요.'
-				}]
-				},
-				loginPassword: {
-					identifier: 'loginPassword',
-					rules: [{
-						type: 'empty',
-						prompt: '비밀번호를 입력하세요.'
-				}, {
-						type: 'minLength[6]',
-						prompt: '비밀번호 : 최소 {ruleValue} 글자 이상 입력 하세요.'
-				}]
-				}
-			}
-		});
-
-		// 회원가입 유효성 검사
-		$('.ui.form#signUpForm').form({
-			on: 'blur',
-			fields: {
-				id: {
-					identifier: 'id',
-					rules: [{
-						type: 'empty',
-						prompt: '아이디를 입력해주세요.'
-				}]
-				},
-				id_check_result: {
-					identifier: 'id_check_result',
-					rules: [{
-						type: 'not[0]',
-						prompt: '중복 체크를 하지 않으셨습니다. 중복체크 해주세요.'
-				}, {
-						type: 'not[1]',
-						prompt: '이미 존재하는 아이디입니다.'
-				}]
-				},
-				password: {
-					identifier: 'password',
-					rules: [{
-						type: 'empty',
-						prompt: '비밀번호를 입력하세요.'
-				}, {
-						type: 'minLength[6]',
-						prompt: '비밀번호 : 최소 {ruleValue} 글자 이상 입력 하세요.'
-				}]
-				},
-				passwordConfirm: {
-					identifier: 'passwordConfirm',
-					rules: [{
-						type: 'empty',
-						prompt: '비밀번호 확인란에도 입력하세요.'
-				}, {
-						type: 'minLength[6]',
-						prompt: '비밀번호 확인 : 최소 {ruleValue} 글자 이상 입력 하세요.'
-				}, {
-						type: 'match[password]',
-						prompt: '{ruleValue} 와 동일해야합니다. '
-				}]
-				},
-				name: {
-					identifier: 'name',
-					rules: [{
-						type: 'empty',
-						prompt: '이름을 입력해주세요.'
-				}]
-				},
-				gender: {
-					identifier: 'gender',
-					rules: [{
-						type: 'empty',
-						prompt: '성별을 선택해 주세요.'
-				}]
-				},
-				email: {
-					identifier: 'email',
-					rules: [{
-						type: 'email',
-						prompt: '이메일 형식으로 입력해주세요.'
-				}]
-				},
-				terms: {
-					identifier: 'terms',
-					rules: [{
-						type: 'checked',
-						prompt: '회원가입 약관에 동의해야 합니다.'
-				}]
-				}
 			}
 		});
 	});
+
+	// 아이디 중복체크
+	$('#checkId').on('click', function (e) {
+
+		if ($('#id').val() == '') {
+			$('.idFail .ui.header').text("아이디를 입력해주세요.");
+			$('.ui.tiny.modal.idFail').modal('show');
+			e.preventDefault();
+		} else {
+			$.ajax({
+				type: 'POST',
+				dataType: 'text',
+				url: 'checkId',
+				data: 'mem_id=' + $('#id').val(),
+				success: function (result) {
+					if (result == "true") {
+						$('.idFail .ui.header').text("아이디가 이미 존재합니다.");
+						$('.ui.tiny.modal.idFail').modal('show');
+						$('#id_check_result').val(1);
+					} else {
+						$('.idFail .ui.header').text("사용할 수 있는 아이디입니다.");
+						$('.ui.tiny.modal.idFail').modal('show');
+						$('#id_check_result').val(2);
+					}
+				},
+				error: function (request, status, error) {
+					alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+				}
+			});
+		}
+	});
+
+	// 중복확인창 닫기
+	$('.idFail .actions .ui.button').on('click', function (e) {
+		$('.ui.tiny.modal.idFail').modal('hide');
+	});
+
+	// 별점
+	$('.ui.rating')
+		.rating();
+
+	// 카카오톡 로그인 버튼 이미지
+	$('#kakaoLoginImage').on('mouseenter', function () {
+		$(this).prop('src', 'resources/images/loginBtnHover.png');
+		$(this).css('cursor', 'pointer');
+	});
+
+	$('#kakaoLoginImage').on('mouseleave', function () {
+		$(this).prop('src', 'resources/images/loginBtn.png');
+		$(this).css('cursor', 'default');
+	});
+
+	// 로그인 창 띄우기
+	$('#loginBtn').on('click', function () {
+		$('.ui.modal.login_modal').modal('show');
+	});
+
+	// 로그인 창 닫기
+	$('#closeBtn').on('click', function () {
+		$('.ui.modal.login_modal').modal('hide');
+	});
+
+	// 메인 페이지 카드
+	$('.special.cards .image.main_movie').dimmer({
+		on: 'hover'
+	});
+
+	// 메뉴 드랍 다운
+	$('.ui.dropdown').dropdown();
+
+	// 로그인 유효성 검사
+	$('.ui.form#loginForm').form({
+		on: 'blur',
+		fields: {
+			loginId: {
+				identifier: 'loginId',
+				rules: [{
+					type: 'empty',
+					prompt: '아이디를 입력해주세요.'
+			}]
+			},
+			loginPassword: {
+				identifier: 'loginPassword',
+				rules: [{
+					type: 'empty',
+					prompt: '비밀번호를 입력하세요.'
+			}, {
+					type: 'minLength[6]',
+					prompt: '비밀번호 : 최소 {ruleValue} 글자 이상 입력 하세요.'
+			}]
+			}
+		}
+	});
+
+	// 회원가입 유효성 검사
+	$('.ui.form#signUpForm').form({
+		on: 'blur',
+		fields: {
+			id: {
+				identifier: 'id',
+				rules: [{
+					type: 'empty',
+					prompt: '아이디를 입력해주세요.'
+			}]
+			},
+			id_check_result: {
+				identifier: 'id_check_result',
+				rules: [{
+					type: 'not[0]',
+					prompt: '중복 체크를 하지 않으셨습니다. 중복체크 해주세요.'
+			}, {
+					type: 'not[1]',
+					prompt: '이미 존재하는 아이디입니다.'
+			}]
+			},
+			password: {
+				identifier: 'password',
+				rules: [{
+					type: 'empty',
+					prompt: '비밀번호를 입력하세요.'
+			}, {
+					type: 'minLength[6]',
+					prompt: '비밀번호 : 최소 {ruleValue} 글자 이상 입력 하세요.'
+			}]
+			},
+			passwordConfirm: {
+				identifier: 'passwordConfirm',
+				rules: [{
+					type: 'empty',
+					prompt: '비밀번호 확인란에도 입력하세요.'
+			}, {
+					type: 'minLength[6]',
+					prompt: '비밀번호 확인 : 최소 {ruleValue} 글자 이상 입력 하세요.'
+			}, {
+					type: 'match[password]',
+					prompt: '{ruleValue} 와 동일해야합니다. '
+			}]
+			},
+			name: {
+				identifier: 'name',
+				rules: [{
+					type: 'empty',
+					prompt: '이름을 입력해주세요.'
+			}]
+			},
+			gender: {
+				identifier: 'gender',
+				rules: [{
+					type: 'empty',
+					prompt: '성별을 선택해 주세요.'
+			}]
+			},
+			email: {
+				identifier: 'email',
+				rules: [{
+					type: 'email',
+					prompt: '이메일 형식으로 입력해주세요.'
+			}]
+			},
+			terms: {
+				identifier: 'terms',
+				rules: [{
+					type: 'checked',
+					prompt: '회원가입 약관에 동의해야 합니다.'
+			}]
+			}
+		}
+	});
+});
 
 
 	// <![CDATA[

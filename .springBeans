@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
-		<config>src/main/java/config/mainMapper.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcher.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

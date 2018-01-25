@@ -23,16 +23,16 @@ public class MemberController {
 		this.service = service;
 	}
 
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
-	public String viewSignUp() {
-		// 회원가입 페이지로 이동
-		return "signUpForm";
-	}
-
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
 	public @ResponseBody boolean checkId(MemDTO userDTO) {
 		// 아이디 중복 확인 메서드
 		return service.idCheckProcess(userDTO);
+	}
+
+	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	public String viewSignUp() {
+		// 회원가입 페이지로 이동
+		return "signUpForm";
 	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
@@ -86,6 +86,59 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/main";
+	}
+
+	@RequestMapping("/findId")
+	public ModelAndView findIdPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("findIdForm");
+		return mav;
+	}
+
+	@RequestMapping("/findPw")
+	public ModelAndView findPwPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("findPwForm");
+		return mav;
+	}
+
+	@RequestMapping(value = "/findId", method = RequestMethod.POST)
+	public ModelAndView findId(MemDTO userDTO) {
+		ModelAndView mav = new ModelAndView();
+		MemDTO user = service.findIdProcess(userDTO);
+		mav.addObject("user", user);
+		if (user == null) {
+			mav.addObject("findIdStatus", "일치하는 회원이 없습니다.");
+		}
+		if (user != null) {
+			try {
+				mav.addObject("findIdStatus", "회원님의 아이디는 '" + user.getMem_id() + "' 입니다.");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			mav.addObject("findIdStatus", user.getMem_id());
+		}
+		mav.setViewName("index");
+		return mav;
+	}
+
+	@RequestMapping(value = "/findPw", method = RequestMethod.POST)
+	public ModelAndView findPw(MemDTO userDTO) {
+		ModelAndView mav = new ModelAndView();
+		MemDTO user = service.findPwProcess(userDTO);
+		mav.addObject("user", user);
+		if (user != null) {
+			try {
+				mav.addObject("findPwStatus", "회원님의 비밀번호는 '" + user.getMem_pw() + "' 입니다.");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			mav.addObject("findPwStatus", "일치하는 회원이 없습니다.");
+		}
+		mav.addObject("user", user);
+		mav.setViewName("index");
+		return mav;
 	}
 
 }

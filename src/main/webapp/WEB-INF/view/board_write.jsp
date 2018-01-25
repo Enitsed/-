@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ page import = "java.util.Calendar" %>
+<%
+	Calendar cal = Calendar.getInstance();
+%>
     
 	<!-- 빵덩어리 -->
 	<div class="ui container list">
@@ -29,24 +32,24 @@
 				
 		        <div class="field">
 					<label>작성자</label>
-		          <input type="text" value="현우" disabled>
+		          <input type="text" value="${userDTO.mem_name}" disabled>
 		        </div>
 		        
 		        <div class="field">
 					<label>작성일</label>
-		          <input type="text" value="2018-01-22" disabled>
+		          <input type="text" value="<%=cal.get(Calendar.YEAR) %>-<%=cal.get(Calendar.MONTH)+1 %>-<%=cal.get(Calendar.DATE) %>" disabled>
 		        </div>
 		        
 		        <div class="field">
 					<label>추천 수</label>
-		          <input type="text" value="-2" disabled>
+		          <input type="text" value="0" disabled>
 		        </div>
 		        
 			</div>
 			
 			<div class="field">
 				<label>제목</label>
-				<input type="text" value="현우는 짱짱맨" disabled>
+				<input type="text">
 	        </div>
 		        
 		        
