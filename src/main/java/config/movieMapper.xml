@@ -26,7 +26,7 @@
 
 	<select id="comment" parameterType="int" resultType="dto.CommentDTO">
 		select *
-		from comment2 where movie_num=#{movie_num} order by comment_num desc
+		from movie_comment where movie_num=#{movie_num} order by comment_num desc
 	</select>
 
 	<select id="info" parameterType="int" resultType="dto.MovieDTO">

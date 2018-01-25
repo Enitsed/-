@@ -23,16 +23,16 @@ public class MemberController {
 		this.service = service;
 	}
 
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
-	public String viewSignUp() {
-		// 회원가입 페이지로 이동
-		return "signUpForm";
-	}
-
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
 	public @ResponseBody boolean checkId(MemDTO userDTO) {
 		// 아이디 중복 확인 메서드
 		return service.idCheckProcess(userDTO);
+	}
+
+	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	public String viewSignUp() {
+		// 회원가입 페이지로 이동
+		return "signUpForm";
 	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
@@ -87,57 +87,49 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/main";
 	}
-	
+
 	@RequestMapping("/test")
 	public ModelAndView findIdPage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("test");
 		return mav;
 	}
-	
+
 	@RequestMapping("/test2")
 	public ModelAndView findPwPage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("test2");
 		return mav;
 	}
-	
-	@RequestMapping(value="/findId", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/findId", method = RequestMethod.POST)
 	public ModelAndView findId(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
 		MemDTO user = service.findIdProcess(userDTO);
-		mav.addObject("user",user);
-		if(user!=null) {
+		mav.addObject("user", user);
+		if (user != null) {
 			try {
-				mav.addObject("findIdStatus",user.getMem_id());
-			}catch(Exception e){
+				mav.addObject("findIdStatus", user.getMem_id());
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		}else {
-			mav.addObject("findIdStatus","존재하지 않습니다.");
+
+		} else {
+			mav.addObject("findIdStatus", "존재하지 않습니다.");
 		}
-		System.out.println("아이디 찾기 : "+user.getMem_id());
+		System.out.println("아이디 찾기 : " + user.getMem_id());
 		mav.setViewName("index");
 		return mav;
 	}
-	
-	@RequestMapping(value="/findPw", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/findPw", method = RequestMethod.POST)
 	public ModelAndView findPw(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
 		MemDTO user = service.findPwProcess(userDTO);
-		mav.addObject("user",user);
-		System.out.println("비밀번호 찾기 : "+user.getMem_pw());
+		mav.addObject("user", user);
+		System.out.println("비밀번호 찾기 : " + user.getMem_pw());
 		mav.setViewName("index");
 		return mav;
 	}
 
 }
-
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-package dto;
+package api.src.dto;
 
 public class ActorDTO {
 	private String actor_name;
