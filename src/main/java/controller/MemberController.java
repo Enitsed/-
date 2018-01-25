@@ -116,9 +116,8 @@ public class MemberController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			mav.addObject("findIdStatus", user.getMem_id());
 		}
-		mav.setViewName("index");
+		mav.setViewName("findIdForm");
 		return mav;
 	}
 
@@ -137,7 +136,7 @@ public class MemberController {
 			mav.addObject("findPwStatus", "일치하는 회원이 없습니다.");
 		}
 		mav.addObject("user", user);
-		mav.setViewName("index");
+		mav.setViewName("findPwForm");
 		return mav;
 	}
 

@@ -87,7 +87,7 @@
 </div>
 	
 <script type="text/javascript">
-	var loginStatus = "${loginStatus}";	
+	var loginStatus = "${loginStatus}";
 	var findIdStatus = "${findIdStatus}";
 	var findPwStatus = "${findPwStatus}";
 </script>

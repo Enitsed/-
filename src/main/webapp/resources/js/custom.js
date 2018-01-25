@@ -25,6 +25,17 @@ $(document).ready(function () {
 		$('.ui.tiny.modal.findIdStatus').modal('hide');
 	})
 	
+	//비밀번호 찾기 알림
+	if(findPwStatus != ""){
+		$('.findPwStatus .ui.header').text(findPwStatus);
+		$('.ui.tiny.modal.findPwStatus').modal('show');
+	}
+	
+	//비밀번호 찾기 닺기
+	$('.findPwStatus .actions .button').on('click',function(){
+		$('.ui.tiny.modal.findPwStatus').modal('hide');
+	})
+	
 	// 아이디 찾기 유효성 검사
 	$('.ui.form#findId').form({
 		on: 'blur',
