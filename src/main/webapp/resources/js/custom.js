@@ -14,10 +14,27 @@ $(document).ready(function () {
 		$('form').on('submit', signUpCheckStatus());
 	}
 	
+	//아이디 찾기 알림
 	if(findIdStatus != ""){
-		$('.loginStatus .ui.header').text(findIdStatus);
-		$('.ui.tiny.modl.findIdStatus').modal('show');
+		$('.findIdStatus .ui.header').text(findIdStatus);
+		$('.ui.tiny.modal.findIdStatus').modal('show');
 	}
+	
+	//아이디 찾기 닺기
+	$('.findIdStatus .actions .button').on('click',function(){
+		$('.ui.tiny.modal.findIdStatus').modal('hide');
+	})
+	
+	//비밀번호 찾기 알림
+	if(findPwStatus != ""){
+		$('.findPwStatus .ui.header').text(findPwStatus);
+		$('.ui.tiny.modal.findPwStatus').modal('show');
+	}
+	
+	//아이디 찾기 닺기
+	$('.findPwStatus .actions .button').on('click',function(){
+		$('.ui.tiny.modal.findPwStatus').modal('hide');
+	})
 	
 	// 로그인 성공 여부 알림창
 	if (loginStatus != "") {
