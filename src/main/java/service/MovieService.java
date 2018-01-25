@@ -11,5 +11,6 @@ public interface MovieService {
 	public List<CommentDTO> commentListProcess(int movie_num);
 	public List<MovieDTO> moviedetailProcess(int movie_num);
 	public String likeProcess(LikeDTO dto);
-
+	public List<MovieDTO> movieListProcess(String keyword);
+	public int searchCountProcess(String keyword);
 }

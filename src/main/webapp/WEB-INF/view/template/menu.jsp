@@ -16,16 +16,18 @@
 				<a class="item"><i class="edit icon"></i> 정보 수정</a> <a class="item"><i
 					class="settings icon"></i> 환경 설정</a>
 			</div>
-		</div>
-		<div class="ui item right">
-			<div class="ui action input">
-				<input type="text" placeholder="Search">
-				<button class="ui icon button">
-					<a href="searchResult"><i class="search icon"></i></a>
-				</button>
+			<div class="ui item right">
+				<form id="search" action="searchResult" method="post">
+					<div class="ui action input">
+						<input type="text" placeholder="Search" name="keyword"
+							value="${map.keyword }">
+						<button class="ui icon button">
+							<a href="searchResult"><i class="search icon"></i></a>
+						</button>
+					</div>
+				</form>
 			</div>
-		</div>
-		<c:if test="${empty userDTO}">
+			<c:if test="${empty userDTO}">
 			<div class="ui item">
 				<div class="ui">
 					<a class="ui green basic button" href="signUp">회원 가입</a> <a

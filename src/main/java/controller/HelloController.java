@@ -35,16 +35,11 @@ public class HelloController {
 		ModelAndView mav = new ModelAndView();
 		MovieApi api = new MovieApi();
 		api.MovieNewsApi(mav);
-
 		mav.addObject("movie", movieservice.movieInfoProcess(1));
 		mav.setViewName("index");
 		return mav;
 	}
 
-	@RequestMapping("/searchResult")
-	public String searchResult() {
-		return "search_result";
-	}
 
 	@RequestMapping(value = "info", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> movieDetailInfo(int movie_num) {

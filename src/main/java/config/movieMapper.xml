@@ -39,5 +39,15 @@
 		where mem_id = #{mem_id} and comment_num = #{comment_num}
 	</select>
 
+	<select id="searchList" parameterType="String" resultType="dto.MovieDTO">
+		select * from
+		movie where movie_kor_title like '%'||#{keyword}||'%'
+	</select>
+
+	<select id="searchCount" parameterType="String" resultType="int">
+		select count(*) from
+		movie where movie_kor_title like '%'||#{keyword}||'%'
+	</select>
+	
 </mapper>
     
