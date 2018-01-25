@@ -11,3 +11,11 @@ td .tdcontent {
 	height: 40px;
 	overflow-y: scroll;
 }
+
+.ui.small.comments{
+	margin-left: 100px;
+}
+
+.ui.large.feed{
+	margin-left: 40px;
+}
