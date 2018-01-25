@@ -31,5 +31,15 @@ public class MovieServiceImp implements MovieService{
 	public String likeProcess(LikeDTO dto) {
 		return dao.likeProcess(dto);
 	}
+	@Override
+	public List<MovieDTO> movieListProcess(String keyword) {
+		// TODO Auto-generated method stub
+		return dao.movieListProcess(keyword);
+	}
+	@Override
+	public int searchCountProcess(String keyword) {
+		// TODO Auto-generated method stub
+		return dao.searchCountProcess(keyword);
+	}
 
 }

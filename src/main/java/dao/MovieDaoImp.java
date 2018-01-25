@@ -58,4 +58,16 @@ public class MovieDaoImp implements MovieDAO {
 		return null;
 	}
 
+	@Override
+	public List<MovieDTO> movieListProcess(String keyword) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("movie.searchList",keyword);
+	}
+
+	@Override
+	public int searchCountProcess(String keyword) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("movie.searchCount",keyword);
+	}
+
 }
