@@ -8,7 +8,7 @@
 			<div class="active section">자유게시판</div>
 		</div>
 	</div>
-<!--  -->
+<!-- 보드 테이블 -->
 
 	<div class="ui container">
 	
@@ -65,13 +65,13 @@
 						<i class="right arrow icon"></i>
 					</div>
 				</div>
-				<div class="ui right floated vertical animated fade button">
-					<a href="boardWrite">
-						<div class="hidden content">글쓰기</div>
-						<div class="visible content">
-							<i class="pencil icon"></i>
-						</div>
-					</a>
+				<div class="ui right floated vertical animated fade button" id="writeBtn">
+					<div class="hidden content">
+						<i class="pencil icon"></i>
+					</div>
+					<div class="visible content">
+						글쓰기
+					</div>
 				</div>
 				<div class="ui right floated sizes animated fade button">
 					<div class="visible content">List 보기가 커야함</div>

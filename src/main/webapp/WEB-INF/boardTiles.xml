@@ -6,7 +6,7 @@
 <tiles-definitions>
 	<definition name="freeboard" extends="index">
 		<put-attribute name="title" value="자유게시판" />
-		<put-attribute name="body" value="/WEB-INF/view/boardbody.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/board_body.jsp" />
 	</definition>
 
 	<definition name="board_detail" extends="index">

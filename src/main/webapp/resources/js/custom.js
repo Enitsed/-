@@ -4,6 +4,11 @@
 $(document).ready(function() {
 	"use strict";
 	
+	// 글쓰기 write 버튼
+	$('#writeBtn').click(function() {
+		$(location).attr('href', "http://localhost:8090/finalproject/boardWrite");
+	});
+	
 	// 회원가입 성공 여부 알림
 	if (document.location.href == "http://localhost:8090/finalproject/signUp") {
 		$('form').on('submit', signUpCheckStatus());

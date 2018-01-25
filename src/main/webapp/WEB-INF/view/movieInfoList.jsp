@@ -42,6 +42,14 @@
 	};
 </script>
 
+<!-- 빵덩어리 -->
+<div class="ui container list">
+	<div class="ui tiny breadcrumb">
+		<a class="section">Home</a>
+		<i class="right chevron icon divider"></i>
+		<div class="active section">영화정보</div>
+	</div>
+</div>
 
 <div class="ui container contents">
 

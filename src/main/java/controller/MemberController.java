@@ -1,6 +1,5 @@
 package controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -31,23 +30,22 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
-	public @ResponseBody boolean checkId(MemDTO userDTO, HttpServletRequest request) {
+	public @ResponseBody boolean checkId(MemDTO userDTO) {
 		// 아이디 중복 확인 메서드
-		System.out.println(service.idCheckProcess(userDTO));
 		return service.idCheckProcess(userDTO);
 	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-	public ModelAndView signUp(MemDTO userDTO, HttpServletRequest request) {
+	public ModelAndView signUp(MemDTO userDTO) {
 		// 회원 가입 실행
 		ModelAndView mav = new ModelAndView();
 		try {
 			// 회원가입 시도
 			service.registerProcess(userDTO);
-			request.setAttribute("resultSignUp", true);
+			mav.addObject("resultSignUp", true);
 		} catch (Exception e) {
 			// 회원가입 실패시
-			request.setAttribute("resultSignUp", false);
+			mav.addObject("resultSignUp", false);
 		}
 		/*
 		 * System.out.println("num =" + userDTO.getMem_num() + " id= " +
@@ -67,17 +65,18 @@ public class MemberController {
 			try {
 				MemDTO foundUserDTO = service.loginProcess(userDTO);
 				if (foundUserDTO != null) {
+					mav.addObject("loginStatus", "로그인에 성공하였습니다.");
 					session.setAttribute("userDTO", foundUserDTO);
-					session.setAttribute("loginStatus", "로그인에 성공하였습니다.");
+
 				} else {
-					session.setAttribute("loginStatus", "비밀번호가 일치하지 않습니다.");
+					mav.addObject("loginStatus", "비밀번호가 일치하지 않습니다.");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				session.setAttribute("loginStatus", "로그인에 실패하였습니다.");
+				mav.addObject("loginStatus", "로그인에 실패하였습니다.");
 			}
 		} else {
-			session.setAttribute("loginStatus", "회원이 존재하지 않습니다.");
+			mav.addObject("loginStatus", "회원이 존재하지 않습니다.");
 		}
 		mav.setViewName("index");
 		return mav;

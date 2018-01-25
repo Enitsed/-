@@ -17,7 +17,6 @@ public class MemServiceImp implements MemService {
 	@Override
 	public boolean idCheckProcess(MemDTO userDTO) {
 		// dao.chkId의 결과값이 1이면 회원 아니면 비회원
-		System.out.println(dao.idCheck(userDTO));
 		return (dao.idCheck(userDTO) != null) ? true : false;
 	}
 
