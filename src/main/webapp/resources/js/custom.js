@@ -75,7 +75,7 @@ $(document).ready(function() {
 					data:'mem_id='+$('.mem_id').val()+'&comment_num='+$('.comment_num').val(),
 					success:function(data) {
 						var like = $('.like').attr('value');
-						//var like =$('.like').text();
+						// var like =$('.like').text();
 						alert(data.like);
 						alert(like);
 						if(data.like==null){
@@ -91,6 +91,7 @@ $(document).ready(function() {
 			 });
 			 
 		  });
+		  
 		 }
 	});
 	
@@ -317,5 +318,7 @@ function signUpCheckStatus() {
 		$('.idFail .ui.header').text("회원가입에 실패하였습니다. 다시 시도해 주세요");
 		$('.ui.tiny.modal.idFail').modal('show');
 	}
-	
+
 }
+
+});
