@@ -13,17 +13,23 @@ $(document).ready(function () {
 	if (document.location.href == "http://localhost:8090/finalproject/signUp") {
 		$('form').on('submit', signUpCheckStatus());
 	}
-
+	alert(findIdStatus);
+	if(findIdStatus != ""){
+		$('.loginStatus .ui.header').text(findIdStatus);
+		$('.ui.tiny.modl.findIdStatus').modal('show');
+	}
+	
 	// 로그인 성공 여부 알림창
 	if (loginStatus != "") {
 		$('.loginStatus .ui.header').text(loginStatus);
 		$('.ui.tiny.modal.loginStatus').modal('show');
 	}
+	
 	// 로그인 성공 여부 알림창 닫기
 	$('.loginStatus .actions .button').on('click', function () {
 		$('.ui.tiny.modal.loginStatus').modal('hide');
 	});
-
+	
 	// 영화 상세보기
 	$('.main_movie').on('click', function () {
 		var movie_num = $('.movie_num').val();

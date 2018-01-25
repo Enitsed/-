@@ -88,4 +88,5 @@
 	
 <script type="text/javascript">
 	var loginStatus = "${loginStatus}";	
+	var findIdStatus = "${findIdStatus}";
 </script>

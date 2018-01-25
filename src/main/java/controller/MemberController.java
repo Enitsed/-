@@ -107,6 +107,16 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		MemDTO user = service.findIdProcess(userDTO);
 		mav.addObject("user",user);
+		if(user!=null) {
+			try {
+				mav.addObject("findIdStatus",user.getMem_id());
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
+		}else {
+			mav.addObject("findIdStatus","존재하지 않습니다.");
+		}
 		System.out.println("아이디 찾기 : "+user.getMem_id());
 		mav.setViewName("index");
 		return mav;
