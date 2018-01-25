@@ -42,10 +42,10 @@ create table movie(
 	movie_kor_title varchar2(500),		--영화한글제목
 	movie_eng_title varchar2(500),		--영화영어제목
 	movie_opening_date date,			--영화개봉일
-	movie_summary varchar2(1000),		--영화줄거리
-	movie_image varchar2(500),			--이미지
+	movie_summary varchar2(4000),		--영화줄거리
+	movie_image varchar2(1000),			--이미지
 	movie_url varchar2(500),			--url
-	nation varchar2(50)					--영화국가
+	nation varchar2(100)					--영화국가
 );
 
 --영화테이블 시퀀스
@@ -55,10 +55,9 @@ increment by 1
 nocache
 nocycle;
 
---select * from movie
+--select * from movie where movie_kor_title= '버드보이와 잊혀진 아이들'
 --drop table movie
 --drop sequence movie_seq
-
 
 --------------------------------------------------------
 ---평점 테이블----------------------------------------------
@@ -83,6 +82,51 @@ create table category(
 	category_num number primary key,	--장르번호
 	category_name varchar2(50)			--장르이름
 );
+
+insert into category values(category_seq.nextval, 'SF');
+insert into category values(category_seq.nextval, '갱스터');
+insert into category values(category_seq.nextval, '공포');
+insert into category values(category_seq.nextval, '드라마');
+insert into category values(category_seq.nextval, '멜로드라마');
+insert into category values(category_seq.nextval, '뮤지컬');
+insert into category values(category_seq.nextval, '서부');
+insert into category values(category_seq.nextval, '시대극/사극');
+insert into category values(category_seq.nextval, '액션');
+insert into category values(category_seq.nextval, '장르');
+insert into category values(category_seq.nextval, '코메디');
+insert into category values(category_seq.nextval, '가족');
+insert into category values(category_seq.nextval, '계몽');
+insert into category values(category_seq.nextval, '군사');
+insert into category values(category_seq.nextval, '느와르');
+insert into category values(category_seq.nextval, '동성애');;
+insert into category values(category_seq.nextval, '로드무비');
+insert into category values(category_seq.nextval, '무협');
+insert into category values(category_seq.nextval, '문예');
+insert into category values(category_seq.nextval, '뮤직');
+insert into category values(category_seq.nextval, '미스터리');
+insert into category values(category_seq.nextval, '반공/분단');
+insert into category values(category_seq.nextval, '범죄');
+insert into category values(category_seq.nextval, '사회물(경향)');
+insert into category values(category_seq.nextval, '스릴러');
+insert into category values(category_seq.nextval, '스포츠');
+insert into category values(category_seq.nextval, '신파');
+insert into category values(category_seq.nextval, '실험');
+insert into category values(category_seq.nextval, '아동');
+insert into category values(category_seq.nextval, '어드벤처');
+insert into category values(category_seq.nextval, '에로');
+insert into category values(category_seq.nextval, '연쇄극');
+insert into category values(category_seq.nextval, '옴니버스');
+insert into category values(category_seq.nextval, '재난');
+insert into category values(category_seq.nextval, '전기');
+insert into category values(category_seq.nextval, '전쟁');
+insert into category values(category_seq.nextval, '종교');
+insert into category values(category_seq.nextval, '첩보');
+insert into category values(category_seq.nextval, '청춘영화');
+insert into category values(category_seq.nextval, '판타지');
+insert into category values(category_seq.nextval, '하이틴(고교)');
+insert into category values(category_seq.nextval, '합작(번안물)');
+insert into category values(category_seq.nextval, '해양액션');
+insert into category values(category_seq.nextval, '활극');
 
 --카테고리테이블 시퀀스
 create sequence category_seq
@@ -109,7 +153,12 @@ create table movie_category(
 --select * from movie_category
 --drop table movie_category
 
-
+delete from movie_actor;
+delete from movie_director;
+delete from actor;
+delete from director;
+delete from movie;
+delete from movie_category;
 --------------------------------------------------------
 ---배우 테이블----------------------------------------------
 create table actor(
@@ -158,7 +207,8 @@ nocycle;
 
 --select * from director
 --drop table director
-
+--drop sequence director_seq
+select b.director_name from movie_director a, director b where a.movie_num = 1 and a.director_num = b.director_num
 --------------------------------------------------------
 ---출연영화감독 테이블-------------------------------------------
 create table movie_director(
@@ -169,11 +219,11 @@ create table movie_director(
 	constraint movie_director_director_num_fk foreign key(director_num) references director(director_num)
 	--movie_actor테이블의 actor_num 외래키 제약조건
 );
-
+select count(*) from director where director_name = 'asd'
 --select * from movie_director
 --drop table movie_director
 
-
+INSERT INTO movie_director (select movie_num, director_num from director, movie where director_name = 'aa' AND movie_kor_title = 'aa')
 
 --------------------------------------------------------
 ---게시판 테이블--------------------------------------------
