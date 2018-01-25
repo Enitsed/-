@@ -8,9 +8,18 @@ public class CommentDTO {
 	private String mem_id;
 	private String replytext;
 	private Date regdate;
+	private int likecount;
 
 	public CommentDTO() {
-		
+
+	}
+
+	public int getLikecount() {
+		return likecount;
+	}
+
+	public void setLikecount(int likecount) {
+		this.likecount = likecount;
 	}
 
 	public int getComment_num() {
@@ -52,6 +61,5 @@ public class CommentDTO {
 	public void setReplytext(String replytext) {
 		this.replytext = replytext;
 	}
-	
-	
+
 }

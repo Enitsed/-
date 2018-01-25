@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.CommentDTO;
+import dto.LikeDTO;
 import dto.MovieDTO;
 
 public class MovieDaoImp implements MovieDAO {
@@ -37,6 +38,11 @@ public class MovieDaoImp implements MovieDAO {
 	@Override
 	public List<MovieDTO> moviedetailProcess(int movie_num) {
 		return sqlSession.selectList("movie.info", movie_num);
+	}
+
+	@Override
+	public String likeProcess(LikeDTO dto) {
+		return sqlSession.selectOne("movie.like",dto);
 	}
 
 }

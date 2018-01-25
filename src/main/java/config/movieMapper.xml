@@ -24,6 +24,11 @@
 		select * from
 		movie where movie_num=#{movie_num}
 	</select>
+	
+	<select id="like" parameterType="dto.LikeDTO" resultType="String">
+		select mem_id from commentlike
+		where mem_id = #{mem_id} and comment_num = #{comment_num}
+	</select>
 
 </mapper>
     

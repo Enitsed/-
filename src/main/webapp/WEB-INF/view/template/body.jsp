@@ -97,13 +97,30 @@
 							</p>
 						</div>
 					</div>
-				
+					
+					<div class="ui large feed">
+					<h3 class="ui dividing header">Comments</h3>
+						
+					</div>
+					
+					<div class="ui small comments">
+					 <form class="ui reply form">
+    					<div class="field">
+     					 <textarea></textarea>
+    					</div>
+    					<div class="ui blue labeled submit icon button">
+     					 <i class="icon edit"></i> Add Reply
+    					</div>
+  					</form>
+					
+					</div>
+					
 					<div class="actions">
 						<div class="ui black deny button">닫기</div>
 						<div class="ui positive right labeled icon button">
 							상세페이지로 이동 <i class="checkmark icon"></i>
 						</div>
-						<div id="bb"></div>
+						
 					</div>
 				</div>
 			</c:forEach>

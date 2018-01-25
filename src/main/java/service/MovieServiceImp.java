@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.MovieDAO;
 import dto.CommentDTO;
+import dto.LikeDTO;
 import dto.MovieDTO;
 
 public class MovieServiceImp implements MovieService{
@@ -25,6 +26,10 @@ public class MovieServiceImp implements MovieService{
 	@Override
 	public List<MovieDTO> moviedetailProcess(int movie_num) {
 		return dao.moviedetailProcess(movie_num);
+	}
+	@Override
+	public String likeProcess(LikeDTO dto) {
+		return dao.likeProcess(dto);
 	}
 
 }

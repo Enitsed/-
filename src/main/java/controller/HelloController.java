@@ -3,6 +3,8 @@ package controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import api.MovieApi;
 import dto.CommentDTO;
+import dto.LikeDTO;
+import dto.MemDTO;
 import service.MovieService;
 
 // http://localhost:8090/finalproject/main
@@ -49,6 +53,17 @@ public class HelloController {
 		map.put("comment", movieservice.commentListProcess(movie_num));
 		List<CommentDTO> aList = movieservice.commentListProcess(movie_num);
 		System.out.println(aList.size());
+		return map;
+	}
+	
+	@RequestMapping(value="like", method=RequestMethod.GET)
+	public @ResponseBody HashMap<String, String> like(LikeDTO dto,HttpSession session, MemDTO dto2){
+		HashMap<String,String> map = new HashMap<String, String>();
+		System.out.println("아이디:"+dto.getMem_id());
+		System.out.println("댓글번호:"+dto.getComment_num());
+		System.out.println(movieservice.likeProcess(dto));
+		System.out.println("로그인한아이디:"+dto2.getMem_id());
+		map.put("like", movieservice.likeProcess(dto));
 		return map;
 	}
 
