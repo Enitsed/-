@@ -88,17 +88,17 @@ public class MemberController {
 		return "redirect:/main";
 	}
 
-	@RequestMapping("/test")
+	@RequestMapping("/findId")
 	public ModelAndView findIdPage() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("test");
+		mav.setViewName("findIdForm");
 		return mav;
 	}
 
-	@RequestMapping("/test2")
+	@RequestMapping("/findPw")
 	public ModelAndView findPwPage() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("test2");
+		mav.setViewName("findPwForm");
 		return mav;
 	}
 
@@ -109,12 +109,12 @@ public class MemberController {
 		mav.addObject("user", user);
 		if (user != null) {
 			try {
-				mav.addObject("findIdStatus","회원님의 아이디는 '"+user.getMem_id()+"' 입니다.");
-			}catch(Exception e){
+				mav.addObject("findIdStatus", "회원님의 아이디는 '" + user.getMem_id() + "' 입니다.");
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-				mav.addObject("findIdStatus", user.getMem_id());
-			}
+			mav.addObject("findIdStatus", user.getMem_id());
+		}
 		System.out.println("아이디 찾기 : " + user.getMem_id());
 		mav.setViewName("index");
 		return mav;
@@ -124,15 +124,15 @@ public class MemberController {
 	public ModelAndView findPw(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
 		MemDTO user = service.findPwProcess(userDTO);
-		mav.addObject("user",user);
-		if(user!=null) {
+		mav.addObject("user", user);
+		if (user != null) {
 			try {
-				mav.addObject("findPwStatus","회원님의 비밀번호는 '"+user.getMem_pw()+"' 입니다.");
-			}catch(Exception e) {
+				mav.addObject("findPwStatus", "회원님의 비밀번호는 '" + user.getMem_pw() + "' 입니다.");
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("비밀번호 찾기 : "+user.getMem_pw());
+		System.out.println("비밀번호 찾기 : " + user.getMem_pw());
 		mav.addObject("user", user);
 		System.out.println("비밀번호 찾기 : " + user.getMem_pw());
 		mav.setViewName("index");
