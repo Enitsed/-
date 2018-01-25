@@ -109,13 +109,10 @@ public class MemberController {
 		mav.addObject("user",user);
 		if(user!=null) {
 			try {
-				mav.addObject("findIdStatus",user.getMem_id());
+				mav.addObject("findIdStatus","회원님의 아이디는 '"+user.getMem_id()+"' 입니다.");
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
-		}else {
-			mav.addObject("findIdStatus","존재하지 않습니다.");
 		}
 		System.out.println("아이디 찾기 : "+user.getMem_id());
 		mav.setViewName("index");
@@ -127,6 +124,13 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		MemDTO user = service.findPwProcess(userDTO);
 		mav.addObject("user",user);
+		if(user!=null) {
+			try {
+				mav.addObject("findPwStatus","회원님의 비밀번호는 '"+user.getMem_pw()+"' 입니다.");
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		System.out.println("비밀번호 찾기 : "+user.getMem_pw());
 		mav.setViewName("index");
 		return mav;
