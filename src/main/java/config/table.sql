@@ -272,8 +272,12 @@ create table reply(
 --select * from reply
 --drop table reply
 
+<<<<<<< HEAD
+create table comment2(
+=======
 
 create table movie_comment(
+>>>>>>> 3ab8ecdee29ea52207d3147f53758162f3ca59d4
    comment_num number,
    movie_num number,
    replytext varchar2(500),
@@ -289,11 +293,19 @@ increment by 1
 nocache
 nocycle;
 
+<<<<<<< HEAD
+insert into comment2 values(comment_num_seq.nextval,1,'테스트',4,'aaaaaa','2018-01-25',0)
+
+select * from comment2
+
+drop table comment2
+=======
 insert into movie_comment values(comment_num_seq.nextval,1,'테스트',4,'aaaaaa','2018-01-25',0)
 
 select * from movie_comment
 
 drop table movie_comment
+>>>>>>> 3ab8ecdee29ea52207d3147f53758162f3ca59d4
 drop sequence comment_num_seq
 
 select * from COMMENTLIKE
@@ -316,4 +328,8 @@ select * from commentlike
 
 
 drop table commentlike
+<<<<<<< HEAD
 drop sequence like_num_seq
+=======
+drop sequence like_num_seq
+>>>>>>> 3ab8ecdee29ea52207d3147f53758162f3ca59d4

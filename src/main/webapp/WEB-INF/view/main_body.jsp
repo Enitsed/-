@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<<<<<<< HEAD:src/main/webapp/WEB-INF/view/template/body.jsp
+=======
  <style>
     #slideShowImages { 
       border: 1px gray solid;
@@ -50,11 +52,11 @@ function moreList() {
 };
 </script>
 
+>>>>>>> 3ab8ecdee29ea52207d3147f53758162f3ca59d4:src/main/webapp/WEB-INF/view/main_body.jsp
 <!-- 빵덩어리 -->
 <div class="ui container list">
 	<div class="ui tiny breadcrumb">
-		<a class="section">Home</a>
-			<i class="right chevron icon divider"></i>
+		<a class="section">Home</a> <i class="right chevron icon divider"></i>
 		<div class="active section">메인 페이지</div>
 	</div>
 </div>
@@ -67,18 +69,20 @@ function moreList() {
 
 <div class="ui container contents">
 	<div class="ui segment">
-		<div class="ui link special cards four columns">
+		<div class="ui link special cards four columns slide">
 			<c:forEach var="i" items="${movie}">
-				<div class="card column blurring dimmable image main_movie">
+				<div
+					class="card column blurring dimmable image main_movie slide_box fade2">
 					<input type="hidden" value="${i.movie_num}" />
 					<!-- 영화 번호 넣을자리 -->
 					<c:choose>
 						<c:when test="${i.movie_image eq '이미지 없음'}">
-							<img src="resources/images/travel.jpg">
+							<img class="slideImg" src="resources/images/travel.jpg">
 						</c:when>
 						<c:otherwise>
-							<c:forTokens var="item" items="${i.movie_image}" delims="|" end="0">
-								<img src="${item}">
+							<c:forTokens var="item" items="${i.movie_image}" delims="|"
+								end="0">
+								<img class="slideImg" src="${item}">
 							</c:forTokens>
 						</c:otherwise>
 					</c:choose>
@@ -102,7 +106,7 @@ function moreList() {
 					<div class="header">영화</div>
 					<div class="image content">
 						<div class="ui medium image">
-							<img src="${i.movie_image}">
+							<img  src="">
 						</div>
 						<div class="description">
 							<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
@@ -124,18 +128,15 @@ function moreList() {
 					</div>
 				</div>
 			</c:forEach>
-			<div class="ui top right attached label green">
-				<a href="javascript:moreList();"> <i
-					class="far fa-hand-point-down"></i> &nbsp; 더 보기
-				</a> <input type="hidden" value="1" id="page" />
-			</div>
+			<a class="prev" onclick="plusSlides(-1)">❮</a> <a class="next"
+				onclick="plusSlides(1)">❯</a>
 		</div>
 	</div>
 
 	<div class="ui segment">
 		<div class="ui items">
 			<div class="item">
-				<div class="image">
+				<div class="image" style="width: 100px">
 					<img src="resources/images/test.jpg">
 				</div>
 				<div class="content">
@@ -150,7 +151,7 @@ function moreList() {
 				</div>
 			</div>
 			<div class="item">
-				<div class="image">
+				<div class="image" style="width: 100px">
 					<img src="resources/images/test.jpg">
 				</div>
 				<div class="content">
