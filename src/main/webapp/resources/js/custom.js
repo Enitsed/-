@@ -19,6 +19,7 @@ $(document).ready(function () {
 		$('.loginStatus .ui.header').text(loginStatus);
 		$('.ui.tiny.modal.loginStatus').modal('show');
 	}
+	
 	// 로그인 성공 여부 알림창 닫기
 	$('.loginStatus .actions .button').on('click', function () {
 		$('.ui.tiny.modal.loginStatus').modal('hide');

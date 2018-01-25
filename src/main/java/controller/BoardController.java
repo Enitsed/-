@@ -9,10 +9,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dto.MemDTO;
+import service.BoardService;
 
 @Controller
 public class BoardController {
+	BoardService service;
 
+	public BoardController() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public void setService(BoardService service) {
+		this.service = service;
+	}
+	
 	@RequestMapping("/free")
 	public String board() {
 		return "freeboard";
@@ -24,6 +34,7 @@ public class BoardController {
 		session = request.getSession();
 		MemDTO userDTO = (MemDTO) session.getAttribute("userDTO");
 		mav.addObject("userDTO", userDTO);
+		mav.setViewName("board_write");
 		return mav;
 	}
 
