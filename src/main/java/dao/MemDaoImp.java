@@ -30,4 +30,14 @@ public class MemDaoImp implements MemDAO {
 		return sqlSession.selectOne("mem.isMemberExist", userDTO.getMem_id());
 	}
 
+	@Override
+	public MemDTO findId(MemDTO userDTO) {
+		return sqlSession.selectOne("mem.findId",userDTO);
+	}
+	
+	@Override
+	public MemDTO findPw(MemDTO userDTO) {
+		return sqlSession.selectOne("mem.findPw",userDTO);
+	}
+
 }

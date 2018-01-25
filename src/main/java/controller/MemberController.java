@@ -87,5 +87,41 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/main";
 	}
+	
+	@RequestMapping("/test")
+	public ModelAndView findIdPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("test");
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/findId", method = RequestMethod.POST)
+	public ModelAndView findId(MemDTO userDTO) {
+		ModelAndView mav = new ModelAndView();
+		MemDTO user = service.findIdProcess(userDTO);
+		mav.addObject("user",user);
+		System.out.println("아이디 찾기 : "+user.getMem_id());
+		mav.setViewName("index");
+		return mav;
+	}
+	
+	@RequestMapping(value="/findPw", method = RequestMethod.POST)
+	public ModelAndView findPw(MemDTO userDTO) {
+		ModelAndView mav = new ModelAndView();
+		MemDTO user = service.findPwProcess(userDTO);
+		mav.addObject("user",user);
+		System.out.println("비밀번호 찾기 : "+user.getMem_pw());
+		mav.setViewName("index");
+		return mav;
+	}
 
 }
+
+
+
+
+
+
+
+

@@ -70,9 +70,9 @@
 	<div class="ui center aligned grid message">
 		처음 인가요? <a href="signUp">회원 가입</a>하세요!
 		<div class="ui horizontal divider"></div>
-		<a class="ui tiny inverted blue button" href="#"><i class="help circle icon"></i>아이디 찾기</a>
+		<a class="ui tiny inverted blue button" href="test"><i class="help circle icon"></i>아이디 찾기</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		<a class="ui tiny inverted blue button" href="#"><i class="help circle icon"></i>비밀번호 찾기</a>
+		<a class="ui tiny inverted blue button" href="test2"><i class="help circle icon"></i>비밀번호 찾기</a>
 	</div>
 </div>
 
