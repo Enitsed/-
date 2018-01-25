@@ -24,7 +24,7 @@ $(document).ready(function () {
 		$('.ui.tiny.modal.loginStatus').modal('hide');
 	});
 
-
+/*
 	// 영화 상세보기
 	$('.main_movie').on('click', function () {
 		var movie_num = $('.movie_num').val();
@@ -93,7 +93,7 @@ $(document).ready(function () {
 
 			}
 		});
-
+*/
 		// 아이디 중복체크
 		$('#checkId').on('click', function (e) {
 
@@ -138,12 +138,12 @@ $(document).ready(function () {
 		$('#kakaoLoginImage').on('mouseenter', function () {
 			$(this).prop('src', 'resources/images/loginBtnHover.png');
 			$(this).css('cursor', 'pointer');
-		})
+		});
 
 		$('#kakaoLoginImage').on('mouseleave', function () {
 			$(this).prop('src', 'resources/images/loginBtn.png');
 			$(this).css('cursor', 'default');
-		})
+		});
 
 		// 로그인 창 띄우기
 		$('#loginBtn').on('click', function () {
@@ -263,6 +263,7 @@ $(document).ready(function () {
 		});
 	});
 
+
 	// <![CDATA[
 	// 사용할 앱의 JavaScript 키를 설정해 주세요.
 	Kakao.init('331f6e91bdb4a956167313811ffb0d23');
@@ -317,7 +318,5 @@ $(document).ready(function () {
 			$('.idFail .ui.header').text("회원가입에 실패하였습니다. 다시 시도해 주세요");
 			$('.ui.tiny.modal.idFail').modal('show');
 		}
+	};
 
-	}
-
-});

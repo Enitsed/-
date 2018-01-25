@@ -27,9 +27,8 @@
 		<c:if test="${empty userDTO}">
 			<div class="ui item">
 				<div class="ui">
-					<a href="signUp">
-					<button class="ui green basic button">회원 가입</button></a>
-					<button class="ui orange basic button" id="loginBtn">로그인</button>
+					<a class="ui green basic button" href="signUp">회원 가입</a>
+					<a class="ui orange basic button" id="loginBtn">로그인</a>
 				</div>
 			</div>
 		</c:if>
