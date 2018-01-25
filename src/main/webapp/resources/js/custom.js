@@ -13,7 +13,7 @@ $(document).ready(function () {
 	if (document.location.href == "http://localhost:8090/finalproject/signUp") {
 		$('form').on('submit', signUpCheckStatus());
 	}
-	alert(findIdStatus);
+	
 	if(findIdStatus != ""){
 		$('.loginStatus .ui.header').text(findIdStatus);
 		$('.ui.tiny.modl.findIdStatus').modal('show');
