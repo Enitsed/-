@@ -9,10 +9,19 @@
 	</select>
 
 	<select id="director" resultType="dto.DirectorDTO"
-		parameterType="java.util.Map">
-		select movie_num, director_name from director,
-		movie_director where
-		movie_director_num = director_num
+		parameterType="int">
+		select b.director_name from movie_director a, director b where a.movie_num = #{movie_num} and a.director_num = b.director_num
+		
+	</select>
+	
+	<select id="actor" resultType="dto.DirectorDTO"
+		parameterType="int">
+		select b.actor_name from movie_actor a, actor b where a.movie_num = #{movie_num} and a.actor_num = b.actor_num		
+	</select>
+	
+	<select id="category" resultType="dto.DirectorDTO"
+		parameterType="int">
+		select b.category_name from movie_category a, category b where a.movie_num = #{movie_num} and a.category_num = b.category_num				
 	</select>
 
 	<select id="comment" parameterType="int" resultType="dto.CommentDTO">

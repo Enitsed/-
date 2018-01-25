@@ -1,8 +1,19 @@
+<%@page import="java.io.Console"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+ <style>
+    #slideShowImages { 
+      border: 1px gray solid;
+    }   
+  
+    #slideShowImages img { 
+      border: 0.8em black solid;
+      padding: 3px;
+    }   
+  </style>
 
 <script>
 	function moreList() {
@@ -43,7 +54,8 @@
 <!-- 빵덩어리 -->
 <div class="ui container list">
 	<div class="ui tiny breadcrumb">
-		<a class="section">Home</a> <i class="right chevron icon divider"></i>
+		<a class="section">Home</a>
+			<i class="right chevron icon divider"></i>
 		<div class="active section">메인 페이지</div>
 	</div>
 </div>
@@ -55,17 +67,23 @@
 <!-- 바디 -->
 
 <div class="ui container contents">
-
 	<div class="ui segment">
-
 		<div class="ui link special cards four columns">
 			<c:forEach var="i" items="${movie}">
 				<div class="card column blurring dimmable image main_movie">
 					<input type="hidden" value="${i.movie_num}" />
 					<!-- 영화 번호 넣을자리 -->
-					<img src="resources/images/travel.jpg">
+					<c:choose>
+						<c:when test="${i.movie_image eq '이미지 없음'}">
+							<img src="resources/images/travel.jpg">
+						</c:when>
+						<c:otherwise>
+							<c:forTokens var="item" items="${i.movie_image}" delims="|" end="0">
+								<img src="${item}">
+							</c:forTokens>
+						</c:otherwise>
+					</c:choose>
 					<!-- 영화이미지 넣을자리 -->
-
 					<div class="ui dimmer">
 						<div class="ui content">
 							<div class="ui center">
@@ -85,7 +103,7 @@
 					<div class="header">영화</div>
 					<div class="image content">
 						<div class="ui medium image">
-							<img src="resources/images/travel.jpg">
+							<img src="${i.movie_image}">
 						</div>
 						<div class="description">
 							<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
@@ -93,11 +111,11 @@
 							<p>
 								개봉일 :
 								<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short"
-									value="${i.movie_production_date}" />
+									value="${i.movie_opening_date}" />
 							</p>
 						</div>
 					</div>
-				
+
 					<div class="actions">
 						<div class="ui black deny button">닫기</div>
 						<div class="ui positive right labeled icon button">
