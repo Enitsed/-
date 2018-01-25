@@ -8,20 +8,19 @@ import dto.BoardDTO;
 import dto.PageDTO;
 
 public class BoardDaoImp implements BoardDAO {
-	SqlSessionTemplate session;
+	SqlSessionTemplate sqlSession;
 
 	public BoardDaoImp() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void setSession(SqlSessionTemplate session) {
-		this.session = session;
+	public void setSqlSession(SqlSessionTemplate sqlSession) {
+		this.sqlSession = sqlSession;
 	}
 
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne("board.count");
 	}
 
 	@Override

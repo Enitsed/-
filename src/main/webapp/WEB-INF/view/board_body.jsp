@@ -74,9 +74,9 @@
 					</div>
 				</div>
 				<div class="ui right floated sizes animated fade button">
-					<div class="visible content">List 보기가 커야함</div>
+					<div class="visible content">글 목록 보기</div>
 					<div class="hidden content">
-						글 목록 보기
+						<i class="content icon"></i>
 					</div>
 				</div>
 				
