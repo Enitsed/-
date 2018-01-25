@@ -25,6 +25,51 @@ $(document).ready(function () {
 		$('.ui.tiny.modal.findIdStatus').modal('hide');
 	})
 	
+	// 아이디 찾기 유효성 검사
+	$('.ui.form#findId').form({
+		on: 'blur',
+		fields: {
+			findName: {
+				identifier: 'findName',
+				rules: [{
+					type: 'empty',
+					prompt: '이름을 입력해주세요.'
+			}]
+			},
+			findEmail: {
+				identifier: 'findEmail',
+				rules: [{
+					type: 'empty',
+					prompt: '이메일을 입력하세요.'
+				}, {
+					type: 'email',
+					prompt: '이메일 형식으로 입력해주세요.'
+				}]
+			}
+		}
+	});
+
+	// 비밀번호 찾기 유효성 검사
+	$('.ui.form#findPw').form({
+		on: 'blur',
+		fields: {
+			findId: {
+				identifier: 'findId',
+				rules: [{
+					type: 'empty',
+					prompt: '아이디를 입력해주세요.'
+			}]
+			},
+			findName: {
+				identifier: 'findName',
+				rules: [{
+					type: 'empty',
+					prompt: '이름을 입력하세요.'
+				}]
+			}
+		}
+	});
+	
 	//비밀번호 찾기 알림
 	if(findPwStatus != ""){
 		$('.findPwStatus .ui.header').text(findPwStatus);
