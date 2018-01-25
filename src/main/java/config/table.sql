@@ -269,3 +269,48 @@ create table reply(
 
 --select * from reply
 --drop table reply
+
+create table comment2(
+   comment_num number,
+   movie_num number,
+   replytext varchar2(500),
+   mem_num number,
+   mem_id varchar2(20),
+   regdate Date,
+   likecount number
+);
+
+create sequence comment_num_seq
+start with 1
+increment by 1
+nocache
+nocycle;
+
+insert into comment2 values(comment_num_seq.nextval,1,'테스트',4,'aaaaaa','2018-01-25',0)
+
+select * from comment2
+
+drop table comment2
+drop sequence comment_num_seq
+
+select * from COMMENTLIKE
+
+create table commentlike(
+   like_num number,
+   mem_id varchar2(20),
+   comment_num number
+);
+
+create sequence like_num_seq
+start with 1
+increment by 1
+nocache
+nocycle;
+
+insert into COMMENTLIKE values(like_num_seq.nextval,'bbbbbb',1)
+
+select * from commentlike
+
+
+drop table commentlike
+drop sequence like_num_seq

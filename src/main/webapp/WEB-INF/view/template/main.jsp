@@ -17,11 +17,8 @@
 </head>
 <body>
 	<tiles:insertAttribute name="header" />
-
 	<tiles:insertAttribute name="menu" />
-
 	<tiles:insertAttribute name="body" />
-
 	<tiles:insertAttribute name="footer" />
 	<script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<script src="resources/js/jquery.min.js"></script>
