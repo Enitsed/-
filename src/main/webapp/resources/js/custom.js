@@ -429,4 +429,4 @@ $(document).ready(function () {
 		for(i = 0 ; i < 3 ; i ++){
 			slides[slideIndex + i].style.display = "inline"
 		}
-	}
+}
