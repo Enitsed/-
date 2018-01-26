@@ -13,4 +13,6 @@ public interface MemDAO {
 	public MemDTO findId(MemDTO userDTO);
 	
 	public MemDTO findPw(MemDTO userDTO);
+	
+	public void updateInfo(MemDTO userDTO);
 }

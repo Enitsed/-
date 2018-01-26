@@ -25,5 +25,9 @@
 	<select id="findPw" parameterType="dto.MemDTO" resultType="dto.MemDTO">
 		select mem_pw from mem where mem_id=#{mem_id} and mem_name=#{mem_name}
 	</select>
+	
+	<update id="updateInfo" parameterType="dto.MemDTO">
+		update mem set mem_pw=#{mem_pw},mem_name=#{mem_name},mem_email=#{mem_email},mem_address=#{mem_address} where mem_id=#{mem_id}
+	</update>
 
 </mapper>

@@ -18,4 +18,6 @@ public interface MemService {
 	
 	// 비밀번호 찾기
 	public MemDTO findPwProcess(MemDTO userDTO);
+	
+	public void updateProcess(MemDTO userDTO);
 }

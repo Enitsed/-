@@ -140,4 +140,18 @@ public class MemberController {
 		return mav;
 	}
 
+	@RequestMapping("/myPage")
+	public ModelAndView myPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("myPage");
+		return mav;
+	}
+	
+	@RequestMapping(value="updateInfo", method=RequestMethod.POST)
+	public ModelAndView update(MemDTO userDTO) {
+		ModelAndView mav = new ModelAndView();
+		service.updateProcess(userDTO);
+		mav.setViewName("index");
+		return mav;
+	}
 }

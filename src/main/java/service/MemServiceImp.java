@@ -44,4 +44,11 @@ public class MemServiceImp implements MemService {
 		return dao.findPw(userDTO);
 	}
 
+	@Override
+	public void updateProcess(MemDTO userDTO) {
+		System.out.println(userDTO.getMem_name());
+		System.out.println("이름2 : "+userDTO.getMem_id());
+		dao.updateInfo(userDTO);
+	}
+
 }
