@@ -39,14 +39,22 @@ public class MovieController {
 	@RequestMapping(value = "/searchResult", method = RequestMethod.POST)
 	public ModelAndView movieSearchResult(@RequestParam(defaultValue = "") String keyword) {
 		ModelAndView mav = new ModelAndView();
+		System.out.println("1");
 		List<MovieDTO> searchlist = movieservice.movieListProcess(keyword);
+		System.out.println("1");
+
 		int searchcount = movieservice.searchCountProcess(keyword);
+		System.out.println("1");
+
 		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println("1");
+
 		map.put("searchlist", searchlist);
 		map.put("keyword", keyword);
 		map.put("searchcount", searchcount);
 		mav.addObject("map", map);
 		mav.setViewName("search_result");
+		System.out.println("1");
 		return mav;
 	}
 }

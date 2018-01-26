@@ -32,7 +32,16 @@
 								<!-- 영화 번호 넣을자리 -->
 								<input type="hidden" value="${i.movie_num}" />
 								<!-- 영화이미지 넣을자리 -->
-								<img src="resources/images/travel.jpg">
+								<c:choose>
+						<c:when test="${i.movie_image eq '이미지 없음'}">
+							<img src="resources/images/travel.jpg">
+						</c:when>
+						<c:otherwise>
+							<c:forTokens var="item" items="${i.movie_image}" delims="|" end="0">
+								<img src="${item}">
+							</c:forTokens>
+						</c:otherwise>
+					</c:choose>
 								<div class="ui dimmer">
 									<div class="ui content">
 										<div class="ui center">
@@ -61,7 +70,7 @@
 										<p>
 											개봉일 :
 											<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short"
-												value="${i.movie_production_date}" />
+												value="${i.movie_opening_date}" />
 										</p>
 									</div>
 								</div>

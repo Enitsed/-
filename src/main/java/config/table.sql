@@ -57,6 +57,7 @@ increment by 1
 nocache
 nocycle;
 
+select movie_kor_title from movie where movie_kor_title like '%백설%'
 --select * from movie where movie_num='50'
 --drop table movie
 --drop sequence movie_seq

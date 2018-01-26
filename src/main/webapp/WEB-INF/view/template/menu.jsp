@@ -23,7 +23,7 @@
 		<div class="ui item right">
 			<form id="search" action="searchResult" method="post" name="search">
 				<div class="ui action input">
-					<input type="text" placeholder="Search" name="keyword" value="">
+					<input type="text" placeholder="Search" name="keyword">
 					<div class="ui icon button" onclick="document.search.submit();">
 						<i class="search icon"></i>
 					</div>
