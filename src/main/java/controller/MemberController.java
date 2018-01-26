@@ -60,7 +60,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(MemDTO userDTO, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("redirect:/main");
 		if (service.idCheckProcess(userDTO)) {
 			try {
 				MemDTO foundUserDTO = service.loginProcess(userDTO);
@@ -78,7 +78,6 @@ public class MemberController {
 		} else {
 			mav.addObject("loginStatus", "회원이 존재하지 않습니다.");
 		}
-		mav.setViewName("index");
 		return mav;
 	}
 
