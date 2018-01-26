@@ -4,8 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<<<<<<< HEAD:src/main/webapp/WEB-INF/view/template/body.jsp
-=======
  <style>
     #slideShowImages { 
       border: 1px gray solid;
@@ -52,7 +50,6 @@ function moreList() {
 };
 </script>
 
->>>>>>> 3ab8ecdee29ea52207d3147f53758162f3ca59d4:src/main/webapp/WEB-INF/view/main_body.jsp
 <!-- 빵덩어리 -->
 <div class="ui container list">
 	<div class="ui tiny breadcrumb">

@@ -26,6 +26,6 @@
 	<script src="resources/js/semantic.min.js"></script>
 	<script src="resources/js/custom.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
-		
+
 </body>
 </html>
