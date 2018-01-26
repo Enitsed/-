@@ -47,7 +47,6 @@ public class MovieController {
 		map.put("searchcount", searchcount);
 		mav.addObject("map", map);
 		mav.setViewName("search_result");
-		System.out.println("1");
 		return mav;
 	}
 }
