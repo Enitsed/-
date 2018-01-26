@@ -14,7 +14,7 @@
 	<form method="post" class="ui form" action="updateInfo">
 		<div class="field">
 			<label>아이디</label>
-			<input class="ui input" type="text" name="mem_id" value="${userDTO.mem_id}">
+			<input class="ui input" type="text" name="mem_id" value="${userDTO.mem_id}" disabled>
 		</div>
 		<div class="field">
 			<label>비밀번호</label>
