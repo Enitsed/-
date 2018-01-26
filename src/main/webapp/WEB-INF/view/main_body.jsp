@@ -174,19 +174,12 @@ function moreList() {
 				<div class="item">
 					<div class="content">
 						<a href="${list.originallink}">${list.title}</a>
-						<div class="meta">
-							<span>Description</span>
+						<div class="extra">
+							<span>${list.description}</span>
 						</div>
-						<div class="description">
-							<p></p>
-						</div>
-						<div class="extra">${list.description}</div>
 					</div>
 				</div>
 			</div>
 		</c:forEach>
-		<div class="ui top right attached label green">
-			<i class="far fa-hand-point-down"></i> &nbsp; 더 보기
-		</div>
 	</div>
 </div>
