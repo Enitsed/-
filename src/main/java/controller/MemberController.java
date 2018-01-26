@@ -8,15 +8,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import api.MovieApi;
 import dto.MemDTO;
 import service.MemService;
+import service.MovieService;
 
 @Controller
 public class MemberController {
 	MemService service;
+	MovieService movieservice;
 
 	public MemberController() {
 
+	}
+
+	public void setMovieservice(MovieService movieservice) {
+		this.movieservice = movieservice;
 	}
 
 	public void setService(MemService service) {
@@ -60,7 +67,8 @@ public class MemberController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(MemDTO userDTO, HttpSession session) {
-		ModelAndView mav = new ModelAndView("redirect:/main");
+		ModelAndView mav = new ModelAndView();
+		MovieApi api = new MovieApi();
 		if (service.idCheckProcess(userDTO)) {
 			try {
 				MemDTO foundUserDTO = service.loginProcess(userDTO);
@@ -78,6 +86,9 @@ public class MemberController {
 		} else {
 			mav.addObject("loginStatus", "회원이 존재하지 않습니다.");
 		}
+		api.MovieNewsApi(mav);
+		mav.addObject("movie", movieservice.movieInfoProcess(1));
+		mav.setViewName("index");
 		return mav;
 	}
 
@@ -145,15 +156,15 @@ public class MemberController {
 		mav.setViewName("myPage");
 		return mav;
 	}
-	
-	@RequestMapping(value="updateInfo", method=RequestMethod.POST)
+
+	@RequestMapping(value = "updateInfo", method = RequestMethod.POST)
 	public ModelAndView update(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
 		service.updateProcess(userDTO);
-		if(userDTO!=null) {
-			mav.addObject("updateInfoStatus","회원정보를 수정하였습니다.");
-		}else {
-			mav.addObject("updateInfoStatus","회원정보 수정에 실패하였습니다.");
+		if (userDTO != null) {
+			mav.addObject("updateInfoStatus", "회원정보를 수정하였습니다.");
+		} else {
+			mav.addObject("updateInfoStatus", "회원정보 수정에 실패하였습니다.");
 		}
 		mav.setViewName("myPage");
 		return mav;

@@ -119,6 +119,7 @@
 	<!-- 멤버 컨트롤러 -->
 	<bean class="controller.MemberController">
 		<property name="service" ref="memSvc" />
+		<property name="movieservice" ref="movieSvc" />
 	</bean>
 
 
