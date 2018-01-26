@@ -16,34 +16,32 @@
 				<a class="item"><i class="edit icon"></i> 정보 수정</a> <a class="item"><i
 					class="settings icon"></i> 환경 설정</a>
 			</div>
-			<div class="ui item right">
-				<form id="search" action="searchResult" method="post">
-					<div class="ui action input">
-						<input type="text" placeholder="Search" name="keyword"
-							value="${map.keyword }">
-						<button class="ui icon button">
-							<a href="searchResult"><i class="search icon"></i></a>
-						</button>
-					</div>
-				</form>
-			</div>
-			<c:if test="${empty userDTO}">
-				<div class="ui item">
-					<div class="ui">
-						<a class="ui green basic button" href="signUp">회원 가입</a> <a
-							class="ui orange basic button" id="loginBtn">로그인</a>
-					</div>
-				</div>
-			</c:if>
-			<c:if test="${not empty userDTO}">
-				<div class="ui item">
-					<div class="ui">
-						<a>${userDTO.mem_name}님 환영합니다.</a> &nbsp;&nbsp;&nbsp;
-						<button class="ui orange basic button" onclick="ktout()">로그아웃</button>
-					</div>
-				</div>
-			</c:if>
 		</div>
+		<div class="ui item right">
+			<form id="search" action="searchResult" method="post">
+				<div class="ui action input">
+					<input type="text" placeholder="Search" name="keyword" value="">
+					<a class="ui icon button" href="searchResult"> <i
+						class="search icon"></i></a>
+				</div>
+			</form>
+		</div>
+		<c:if test="${empty userDTO}">
+			<div class="ui item">
+				<div class="ui">
+					<a class="ui green basic button" href="signUp">회원 가입</a> <a
+						class="ui orange basic button" id="loginBtn">로그인</a>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty userDTO}">
+			<div class="ui item">
+				<div class="ui">
+					<a>${userDTO.mem_name}님 환영합니다.</a> &nbsp;&nbsp;&nbsp;
+					<button class="ui orange basic button" onclick="ktout()">로그아웃</button>
+				</div>
+			</div>
+		</c:if>
 	</div>
 </div>
 <div class="ui mini modal login_modal">
