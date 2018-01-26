@@ -399,3 +399,34 @@ $(document).ready(function () {
 		}
 	};
 
+	var slideIndex = 1;
+	showSlides(slideIndex);
+
+	function plusSlides(n) {
+		var slides = document.getElementsByClassName("slide_box");
+		for(var i = 0 ; i < 3 ; i ++){
+			if(slides.length <=  slideIndex + i + n ||  slideIndex + n < 1){
+				return;
+			}
+		}
+		showSlides(slideIndex += n);
+	}
+
+	function currentSlide(n) {
+		showSlides(slideIndex = n);
+	}
+
+	function showSlides(n) {
+		var i;
+		var slides = document.getElementsByClassName("slide_box");
+	
+		for (i = 0; i < slides.length; i++) {
+			slides[i].style.display = "none";
+		}
+
+		slides[slideIndex - 1].style.display = "block";
+		
+		for(i = 0 ; i < 3 ; i ++){
+			slides[slideIndex + i].style.display = "inline"
+		}
+	}
