@@ -46,8 +46,6 @@ public class MemServiceImp implements MemService {
 
 	@Override
 	public void updateProcess(MemDTO userDTO) {
-		System.out.println(userDTO.getMem_name());
-		System.out.println("이름2 : "+userDTO.getMem_id());
 		dao.updateInfo(userDTO);
 	}
 

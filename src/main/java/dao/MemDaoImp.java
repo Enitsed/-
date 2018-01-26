@@ -42,8 +42,6 @@ public class MemDaoImp implements MemDAO {
 
 	@Override
 	public void updateInfo(MemDTO userDTO) {
-		System.out.println(userDTO.getMem_name());
-		System.out.println("이름 : "+userDTO.getMem_id());
 		sqlSession.update("mem.updateInfo",userDTO);
 	}
 
