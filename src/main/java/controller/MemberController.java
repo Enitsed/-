@@ -151,7 +151,12 @@ public class MemberController {
 	public ModelAndView update(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
 		service.updateProcess(userDTO);
-		mav.setViewName("index");
+		if(userDTO!=null) {
+			mav.addObject("updateInfoStatus","회원정보를 수정하였습니다.");
+		}else {
+			mav.addObject("updateInfoStatus","회원정보 수정에 실패하였습니다.");
+		}
+		mav.setViewName("myPage");
 		return mav;
 	}
 }

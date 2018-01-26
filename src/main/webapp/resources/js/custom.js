@@ -25,6 +25,18 @@ $(document).ready(function () {
 		$('.ui.tiny.modal.findIdStatus').modal('hide');
 	})
 	
+	//회원정보 수정 알림
+	if(updateInfoStatus != ""){
+		$('.updateInfoStatus .ui.header').text(updateInfoStatus);
+		$('.ui.tiny.modal.updateInfoStatus').modal('show');
+	}
+	
+	//회원정보 수정 닺기
+	$('.updateInfoStatus .actions .button').on('click',function(){
+		$('.ui.tiny.modal.updateInfoStatus').modal('hide');
+		$(location).attr('href', "http://localhost:8090/finalproject/main");
+	})
+	
 	//비밀번호 찾기 알림
 	if(findPwStatus != ""){
 		$('.findPwStatus .ui.header').text(findPwStatus);

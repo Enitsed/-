@@ -14,7 +14,8 @@
 	<form method="post" class="ui form" action="updateInfo">
 		<div class="field">
 			<label>아이디</label>
-			<input class="ui input" type="text" name="mem_id" value="${userDTO.mem_id}" disabled>
+			<input class="ui input" type="text" value="${userDTO.mem_id}" disabled>
+			<input type="hidden" name="mem_id" value="${userDTO.mem_id}">
 		</div>
 		<div class="field">
 			<label>비밀번호</label>
@@ -40,4 +41,13 @@
 			<input class="ui button" type="submit" id="updateBtn" value="수정">
 		</div>
 	</form>
+</div>
+<div class="ui tiny modal updateInfoStatus">
+	<i class="close icon"></i>
+	<div class="ui header">
+		회원정보 수정
+	</div>
+	<div class="actions">
+		<div class="ui tiny green button">닫기</div>
+	</div>
 </div>

@@ -98,4 +98,5 @@
 	var loginStatus = "${loginStatus}";
 	var findIdStatus = "${findIdStatus}";
 	var findPwStatus = "${findPwStatus}";
+	var updateInfoStatus = "${updateInfoStatus}";
 </script>
