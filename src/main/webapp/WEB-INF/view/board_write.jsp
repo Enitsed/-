@@ -32,12 +32,12 @@
 				
 		        <div class="field">
 					<label>작성자</label>
-		          <input type="text" value="${userDTO.mem_name}" disabled>
+		          <td>${userDTO.mem_name}</td>
 		        </div>
 		        
 		        <div class="field">
 					<label>작성일</label>
-		          <input type="text" value="<%=cal.get(Calendar.YEAR) %>-<%=cal.get(Calendar.MONTH)+1 %>-<%=cal.get(Calendar.DATE) %>" disabled>
+		          <td name="board_date"><%=cal.get(Calendar.YEAR) %>-<%=cal.get(Calendar.MONTH)+1 %>-<%=cal.get(Calendar.DATE) %></td>
 		        </div>
 		        
 		        <div class="field">
@@ -49,11 +49,11 @@
 			
 			<div class="field">
 				<label>제목</label>
-				<input type="text">
+				<input type="text" name="board_name">
 	        </div>
 		        
 		        
-			<div class="field">
+			<div class="field" name="board_content">
 				<label>내용</label>
 				<textarea></textarea>
 			</div>
