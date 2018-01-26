@@ -421,12 +421,12 @@ $(document).ready(function () {
 		var slides = document.getElementsByClassName("slide_box");
 	
 		for (i = 0; i < slides.length; i++) {
-			slides[i].style.display = "none";
+			$(slides[i]).css("display", "none");
 		}
 
-		slides[slideIndex - 1].style.display = "block";
+		$(slides[slideIndex - 1]).css("display", "block");
 		
 		for(i = 0 ; i < 3 ; i ++){
-			slides[slideIndex + i].style.display = "inline"
+			$(slides[slideIndex + i]).css("display", "inline");
 		}
-}
+	}

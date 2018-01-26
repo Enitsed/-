@@ -76,10 +76,6 @@ body {
 	background-color: rgba(0, 0, 0, 0.8);
 }
 
-.active {
-	background-color: #717171;
-}
-
 .fade2 {
 	-webkit-animation-name: fade;
 	-webkit-animation-duration: 0.5s;
