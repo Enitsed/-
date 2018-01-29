@@ -15,22 +15,28 @@
 	
 		<div class="ui clearing segment">
 		
-			<table class="ui celled padded table">
+			<table class="ui single line selectable celled padded table">
 				<thead>
 					<tr>
-						<th class="center aligned" width="20px">작성일</th>
-						<th class="center aligned" width="20px">추천 수</th>
-						<th class="center aligned" width="20px">작성자</th>
-						<th class="center aligned" width="50px">제목</th>
-						<th class="center aligned" width="20px">조회 수</th>
+						<th class="center aligned two wide">작성일</th>
+						<th class="center aligned two wide">추천 수</th>
+						<th class="center aligned two wide">작성자</th>
+						<th class="center aligned ten wide">제목</th>
+						<th class="center aligned two wide">조회 수</th>
 	
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${aList }" var="boardDTO">
 						<tr>
+							<td class="center aligned">
+								<span>${boardDTO.board_date }</span>
+							</td>
 							<td>
-								<span class="ui center aligned">${boardDTO.board_date }</span>
+								<div class="ui star rating" data-rating="3" data-max-rating="5"></div>
+							</td>
+							<td class="center aligned">
+								<a href="#">${boardDTO.board_writer }</a>
 							</td>
 							<td class="center aligned">
 								<c:url var="boardView" value="boardDetail">
@@ -40,12 +46,6 @@
 								<a href="${boardView }">
 									${boardDTO.board_name }
 								</a>
-							</td>
-							<td>
-								<div class="ui star rating" data-rating="3" data-max-rating="5"></div>
-							</td>
-							<td class="center aligned">
-								<a href="#">${boardDTO.board_writer }</a>
 							</td>
 							<td class="center aligned">
 								${boardDTO.board_hits }
