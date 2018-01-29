@@ -39,6 +39,7 @@
 		</div>
 		<div class="field">
 			<input class="ui button" type="submit" id="updateBtn" value="수정">
+			<a class="ui button" href="http://localhost:8090/finalproject/main">취소</a>
 		</div>
 	</form>
 </div>
