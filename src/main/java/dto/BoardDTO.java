@@ -5,7 +5,7 @@ import java.util.Date;
 public class BoardDTO {
 	private int board_num;
 	private int mem_num;
-	private String board_write;
+	private String board_writer;
 	private String board_name;
 	private String board_content;
 	private int board_hits;
@@ -33,11 +33,11 @@ public class BoardDTO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
-	public String getBoard_write() {
-		return board_write;
+	public String getBoard_writer() {
+		return board_writer;
 	}
-	public void setBoard_write(String board_write) {
-		this.board_write = board_write;
+	public void setBoard_writer(String board_writer) {
+		this.board_writer = board_writer;
 	}
 	public String getBoard_name() {
 		return board_name;

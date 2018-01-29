@@ -18,8 +18,6 @@ public interface BoardService {
 
 	public void reStepProcess(BoardDTO dto);
 
-	public BoardDTO updateSelectProcess(int num);
-
 	public void updateProcess(BoardDTO dto, HttpServletRequest request);
 
 	public void deleteProcess(int num, HttpServletRequest request);

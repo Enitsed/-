@@ -4,11 +4,6 @@
 $(document).ready(function () {
 	"use strict";
 	
-	// 글쓰기 write 버튼
-	$('#writeBtn').click(function () {
-		$(location).attr('href', "http://localhost:8090/finalproject/boardWrite");
-	});
-
 	// 회원가입 성공 여부 알림
 	if (document.location.href == "http://localhost:8090/finalproject/signUp") {
 		$('form').on('submit', signUpCheckStatus());
@@ -99,7 +94,7 @@ $(document).ready(function () {
 		$('.ui.tiny.modal.findPwStatus').modal('show');
 	}
 	
-	//아이디 찾기 닺기
+	//아이디 찾기 닫기
 	$('.findPwStatus .actions .button').on('click',function(){
 		$('.ui.tiny.modal.findPwStatus').modal('hide');
 	})
