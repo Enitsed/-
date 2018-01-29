@@ -23,7 +23,6 @@
 						image = imagUrl[0];
 					}
 					content = '<div class="card column blurring dimmable image main_movie">' + 
-								'<input type="hidden" value="'+value.movie_num+'" />'+
 								'<img class="slideImg" src="'+image+'">' +
 								'<div class="ui dimmer">'+
 								'<div class="ui content">'+
@@ -33,7 +32,7 @@
 								'<br /> <br />'+
 								'<div class="ui divider"></div>'+
 								'<br /> <br /> <br />'+
-								'<div class="ui star rating" data-rating="5" data-max-rating="5"></div>'+
+								'<div class="ui star rating" data-rating="5" data-max-rating="5" id="'+value.movie_num+'"></div>'+
 								'</div>'+
 								'</div>'+
 								'</div>'+
@@ -106,7 +105,7 @@
 								<br /> <br />
 								<div class="ui divider"></div>
 								<br /> <br /> <br />
-								<div class="ui star rating" data-rating="5" data-max-rating="5"></div>
+								<div class="ui star rating" data-rating="5" data-max-rating="5" id="${i.movie_num}"></div>
 							</div>
 						</div>
 					</div>

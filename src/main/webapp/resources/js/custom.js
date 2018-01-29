@@ -3,12 +3,13 @@
 
 $(document).ready(function () {
 	"use strict";
+
 	
 	// 회원가입 성공 여부 알림
 	if (document.location.href == "http://localhost:8090/finalproject/signUp") {
 		$('form').on('submit', signUpCheckStatus());
 	}
-	
+
 	//아이디 찾기 알림
 	if(findIdStatus != ""){
 		$('.findIdStatus .ui.header').text(findIdStatus);
@@ -19,7 +20,7 @@ $(document).ready(function () {
 	$('.findIdStatus .actions .button').on('click',function(){
 		$('.ui.tiny.modal.findIdStatus').modal('hide');
 	})
-	
+
 	//회원정보 수정 알림
 	if(updateInfoStatus != ""){
 		$('.updateInfoStatus .ui.header').text(updateInfoStatus);
@@ -109,6 +110,76 @@ $(document).ready(function () {
 	$('.loginStatus .actions .button').on('click', function () {
 		$('.ui.tiny.modal.loginStatus').modal('hide');
 	});
+	
+	// 영화 상세보기
+	$('.main_movie').on('click', function () {
+		var movie_num = $('.movie_num').val();
+		var index = $(this).find('input[type="hidden"]').val();
+		var modal = '#modal' + index;
+
+		$.ajax({
+			url: 'info?movie_num=' + index,
+			type: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				// alert(JSON.stringify(data.info[0].movie_kor_title));
+				$('.event').remove();
+				var comment = "";
+				for (var i = 0; i < data.comment.length; i++) {
+					var sdate = new Date(data.comment[i].regdate);
+					var sm = sdate.getFullYear() + "/";
+					sm = sm + (sdate.getMonth() + 1) + "/";
+					sm = sm + sdate.getDate();
+
+					comment +=
+						'<div class="event">' +
+						'<div class="label">' +
+						'<img src="resources/images/user.png">' +
+						'</div>' +
+						'<input type="hidden" class="comment_num" value="' + data.comment[i].comment_num + '"/>' +
+						'<div class="content">' +
+						'<div class="summary">' +
+						'<a class="user">' + data.comment[i].mem_id + '</a>' +
+						'<input type="hidden" class="mem_id" value="' + data.comment[i].mem_id + '"/>' +
+						'<div class="date">' + sm + '</div></div>' +
+						'<div class="extra text">' + data.comment[i].replytext + '</div>' +
+						'<div class="meta">' +
+						'<a class="like" value="' + data.comment[i].likecount + '"><i class="like icon"></i>' + data.comment[i].likecount + '</a>' +
+						'</div></div></div>'
+
+				}
+				$(comment).appendTo(".ui.large.feed");
+
+				$(modal).modal('show');
+				/*
+				$('.like').on('click', function () {
+				   $.ajax({
+				      type: 'GET',
+				      dataType: 'json',
+				      url: 'like',
+				      data: 'mem_id=' + $('.mem_id').val() + '&comment_num=' + $('.comment_num').val(),
+				      success: function (data) {
+				         var like = $('.like').attr('value');
+				         // var like =$('.like').text();
+				         alert(data.like);
+				         alert(like);
+				         if (data.like == null) {
+				            like += 1;
+				            $('.like').text(like);
+				         } else {
+				            like -= 1;
+				            $('.like').text(like);
+
+				         }
+				      }
+				   });
+
+				});
+				*/
+
+			}
+		});
+	});
 
 	// 아이디 중복체크
 	$('#checkId').on('click', function (e) {
@@ -145,12 +216,15 @@ $(document).ready(function () {
 	$('.idFail .actions .ui.button').on('click', function (e) {
 		$('.ui.tiny.modal.idFail').modal('hide');
 	});
+	
 	$('.ui.rating').rating();
 	
 	// 별점
 	$('.ui.rating').on("click",function(){
 		var rating = $(this).rating("get rating", this);
 		var num =  $('#member_num').val();
+		var movie_num = $(this).attr("id");
+		alert(rating + " " + num + " " + movie_num);
 		if(num < 1){
 			alert("로그인부터 해라");
 			return;
@@ -158,7 +232,7 @@ $(document).ready(function () {
 		$.ajax({
 			type: 'GET',
 			dataType: 'json',
-			url: 'addrating.do?movie_num=' + $('#mov_num').val() + "&member_num=" + num + "&rating="+rating,
+			url: 'addrating.do?movie_num=' + movie_num + "&member_num=" + num + "&rating="+rating,
 			success: function (res) {
 				alert("평점이 등록 되었습니다.")
 			},
