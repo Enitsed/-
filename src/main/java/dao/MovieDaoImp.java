@@ -54,8 +54,34 @@ public class MovieDaoImp implements MovieDAO {
 
 	@Override
 	public String likeProcess(LikeDTO dto) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("movie.like",dto);
+	}
+
+	@Override
+	public void likeplusProcess(LikeDTO dto) {
+		sqlSession.update("movie.likeplus",dto);
+	}
+
+	@Override
+	public void likeminusProcess(LikeDTO dto) {
+		sqlSession.update("movie.likeminus",dto);
+	}
+
+	@Override
+	public void likeinsertProcess(LikeDTO dto) {
+		sqlSession.insert("movie.likeinsert",dto);
+	}
+
+	@Override
+	public void likedeleteProcess(LikeDTO dto) {
+		sqlSession.delete("movie.likedelete",dto);
+		
+	}
+
+	@Override
+	public void insertCommentProcees(CommentDTO dto) {
+		sqlSession.insert("movie.replyinsert",dto);
+		
 	}
 
 }

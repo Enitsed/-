@@ -12,5 +12,13 @@ public interface MovieDAO {
 	public List<CommentDTO> commentListProcess(int movie_num);
 	public List<MovieDTO> moviedetailProcess(int movie_num);
 	public String likeProcess(LikeDTO dto);
+	
+	public void likeplusProcess(LikeDTO dto);
+	public void likeminusProcess(LikeDTO dto);
+	
+	public void likeinsertProcess(LikeDTO dto);
+	public void likedeleteProcess(LikeDTO dto);
+	
+	public void insertCommentProcees(CommentDTO dto);
 
 }

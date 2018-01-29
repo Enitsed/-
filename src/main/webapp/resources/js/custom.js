@@ -3,7 +3,7 @@
 
 $(document).ready(function () {
 	"use strict";
-
+	
 	// 글쓰기 write 버튼
 	$('#writeBtn').click(function () {
 		$(location).attr('href', "http://localhost:8090/finalproject/boardWrite");
@@ -24,13 +24,14 @@ $(document).ready(function () {
 	$('.loginStatus .actions .button').on('click', function () {
 		$('.ui.tiny.modal.loginStatus').modal('hide');
 	});
-
+	/*
 	// 영화 상세보기
 	$('.main_movie').on('click', function () {
 		var movie_num = $('.movie_num').val();
 		var index = $(this).find('input[type="hidden"]').val();
 		var modal = '#modal' + index;
-
+		
+		/*
 		$.ajax({
 			url: 'info?movie_num=' + index,
 			type: 'GET',
@@ -65,8 +66,9 @@ $(document).ready(function () {
 				$(comment).appendTo(".ui.large.feed");
 
 				$(modal).modal('show');
-				/*
+				
 				$('.like').on('click', function () {
+					
 				   $.ajax({
 				      type: 'GET',
 				      dataType: 'json',
@@ -89,11 +91,11 @@ $(document).ready(function () {
 				   });
 
 				});
-				*/
+				
 
 			}
 		});
-	});
+	});*/
 
 	// 아이디 중복체크
 	$('#checkId').on('click', function (e) {

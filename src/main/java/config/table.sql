@@ -49,7 +49,7 @@ create table movie(
 	movie_url varchar2(500),			--url
 	nation varchar2(100)				--영화국가
 );
-
+insert into movie values(1,'19','첫번째영화','first','2014-01-01','요약입니다','이미지없움','url','nation')
 --영화테이블 시퀀스
 create sequence movie_seq
 start with 1
@@ -271,3 +271,50 @@ create table reply(
 
 --select * from reply
 --drop table reply
+create table movie_comment(
+	comment_num number,
+	movie_num number,
+	replyText varchar2(500),
+	mem_num number,
+	mem_id varchar2(20),
+	regdate Date,
+	likecount number
+);
+select * from movie_comment
+create sequence comment_num_seq
+start with 1
+increment by 1
+nocache
+nocycle;
+
+insert into movie_comment values(comment_num_seq.nextval,1,'테스트',4,'aaaaaa','2018-01-25',0)
+insert into movie_comment values(comment_num_seq.nextval,1,'테스트2',4,'aaaaaa','2018-02-02',0)
+delete from movie_comment where comment_num = 11
+select * from movie_comment
+delete from movie_comment
+drop table movie_comment
+drop sequence comment_num_seq
+
+select * from COMMENTLIKE
+select * from movie_comment where comment_num=1
+update movie_comment set likecount=likecount-1 where comment_num=1
+
+create table commentlike(
+   like_num number,
+   mem_id varchar2(20),
+   comment_num number
+);
+
+create sequence like_num_seq
+start with 1
+increment by 1
+nocache
+nocycle;
+
+insert into COMMENTLIKE values(like_num_seq.nextval,'bbbbbb',1)
+
+select * from commentlike
+delete  from commentlike
+
+drop table commentlike
+drop sequence like_num_seq

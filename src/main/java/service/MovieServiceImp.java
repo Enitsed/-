@@ -21,6 +21,7 @@ public class MovieServiceImp implements MovieService{
 	}
 	@Override
 	public List<CommentDTO> commentListProcess(int movie_num) {
+		//dao.insertCommentProcees(dto);
 		return dao.commentListProcess(movie_num);
 	}
 	@Override
@@ -30,6 +31,27 @@ public class MovieServiceImp implements MovieService{
 	@Override
 	public String likeProcess(LikeDTO dto) {
 		return dao.likeProcess(dto);
+	}
+	@Override
+	public void likeplusProcess(LikeDTO dto) {
+		dao.likeplusProcess(dto);
+	}
+	@Override
+	public void likeminusProcess(LikeDTO dto) {
+		dao.likeminusProcess(dto);
+	}
+	@Override
+	public void likeinsertProcess(LikeDTO dto) {
+		dao.likeinsertProcess(dto);
+	}
+	@Override
+	public void likedeleteProcess(LikeDTO dto) {
+		dao.likedeleteProcess(dto);
+		
+	}
+	@Override
+	public void insertCommentProcess(CommentDTO dto) {
+		dao.insertCommentProcees(dto);
 	}
 
 }

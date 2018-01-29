@@ -47,10 +47,10 @@
 	<div class="header">로그인 화면</div>
 	<form class="ui form segment" id="loginForm" action="login" method="post">
 		<div class="input field">
-			<label>아이디</label> <input placeholder="아이디 입력" name="mem_id" type="text" id="loginId">
+			<label>아이디</label> <input placeholder="아이디 입력" name="mem_id" type="text" id="loginId"/>
 		</div>
 		<div class="input field">
-			<label>비밀번호</label> <input placeholder="비밀번호 입력" name="mem_pw" type="password" id="loginPassword">
+			<label>비밀번호</label> <input placeholder="비밀번호 입력" name="mem_pw" type="password" id="loginPassword"/>
 		</div>
 		<div class="ui field middle center aligned grid">
 			<div class="ui positive tiny button submit">로그인</div>
