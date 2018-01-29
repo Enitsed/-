@@ -16,14 +16,13 @@
 			<c:if test="${not empty userDTO}">
 				<a class="item" href="myPage"><i class="edit icon"></i> 정보 수정</a> 
 			</c:if>
-			<a class="item">
-				<i class="settings icon"></i> 환경 설정</a>
+			
 			</div>
 		</div>
 		<div class="ui item right">
 			<form id="search" action="searchResult" method="post" name="search">
 				<div class="ui action input">
-					<input type="text" placeholder="Search" name="keyword" value="">
+					<input type="text" placeholder="Search" name="keyword">
 					<div class="ui icon button" onclick="document.search.submit();">
 						<i class="search icon"></i>
 					</div>
@@ -55,9 +54,9 @@
 	<form class="ui form segment" id="loginForm" action="login"
 		method="post">
 		<div class="input field">
-			<label>아이디</label> <input placeholder="아이디 입력" name="mem_id"
-				type="text" id="loginId">
+			<label>아이디</label> <input placeholder="아이디 입력" name="mem_id" type="text" id="loginId"/>
 		</div>
+		
 		<div class="input field">
 			<label>비밀번호</label> <input placeholder="비밀번호 입력" name="mem_pw"
 				type="password" id="loginPassword">
@@ -100,4 +99,5 @@
 	var loginStatus = "${loginStatus}";
 	var findIdStatus = "${findIdStatus}";
 	var findPwStatus = "${findPwStatus}";
+	var updateInfoStatus = "${updateInfoStatus}";
 </script>
