@@ -24,7 +24,7 @@
 					}
 					content = '<div class="card column blurring dimmable image main_movie">' + 
 								'<input type="hidden" value="'+value.movie_num+'" />'+
-								'<img src="'+image+'">' +
+								'<img class="slideImg" src="'+image+'">' +
 								'<div class="ui dimmer">'+
 								'<div class="ui content">'+
 								'<div class="ui center">'+
@@ -81,9 +81,7 @@
 
 
 <div class="ui container contents">
-
 	<div class="ui segment">
-
 		<div class="ui link special cards four columns" id="movieListWindow">
 			<c:forEach var="i" items="${movie}">
 				<div class="card column blurring dimmable image main_movie">
@@ -92,11 +90,11 @@
 					<!-- 영화이미지 넣을자리 -->
 					<c:choose>
 						<c:when test="${i.movie_image eq '이미지 없음'}">
-							<img src="resources/images/travel.jpg">
+							<img class="slideImg" src="resources/images/travel.jpg">
 						</c:when>
 						<c:otherwise>
 							<c:forTokens var="item" items="${i.movie_image}" delims="|" end="0">
-								<img src="${item}">
+								<img class="slideImg" src="${item}">
 							</c:forTokens>
 						</c:otherwise>
 					</c:choose>

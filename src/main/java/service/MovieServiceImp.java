@@ -41,5 +41,9 @@ public class MovieServiceImp implements MovieService{
 		// TODO Auto-generated method stub
 		return dao.searchCountProcess(keyword);
 	}
+	@Override
+	public void addRating(int member_num, int movie_num, int rating) {
+		dao.addRating(member_num, movie_num, rating);
+	}
 
 }

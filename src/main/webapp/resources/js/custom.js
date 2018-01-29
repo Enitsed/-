@@ -208,11 +208,29 @@ $(document).ready(function () {
 	$('.idFail .actions .ui.button').on('click', function (e) {
 		$('.ui.tiny.modal.idFail').modal('hide');
 	});
-
+	$('.ui.rating').rating();
+	
 	// 별점
-	$('.ui.rating')
-		.rating();
-
+	$('.ui.rating').on("click",function(){
+		var rating = $(this).rating("get rating", this);
+		var num =  $('#member_num').val();
+		if(num < 1){
+			alert("로그인부터 해라");
+			return;
+		}
+		$.ajax({
+			type: 'GET',
+			dataType: 'json',
+			url: 'addrating.do?movie_num=' + $('#mov_num').val() + "&member_num=" + num + "&rating="+rating,
+			success: function (res) {
+				alert("평점이 등록 되었습니다.")
+			},
+			error: function (request, status, error) {
+				alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+			}
+		});
+	});
+	
 	// 카카오톡 로그인 버튼 이미지
 	$('#kakaoLoginImage').on('mouseenter', function () {
 		$(this).prop('src', 'resources/images/loginBtnHover.png');

@@ -35,6 +35,7 @@
 				<div class="ui">
 					<a class="ui green basic button" href="signUp">회원 가입</a> <a
 						class="ui orange basic button" id="loginBtn">로그인</a>
+						<input type="hidden" id="member_num" value="0"/>
 				</div>
 			</div>
 		</c:if>
@@ -43,6 +44,7 @@
 				<div class="ui">
 					<a>${userDTO.mem_name}님 환영합니다.</a> &nbsp;&nbsp;&nbsp;
 					<button class="ui orange basic button" onclick="ktout()">로그아웃</button>
+					<input type="hidden" id="member_num" value="${userDTO.mem_num}"/>
 				</div>
 			</div>
 		</c:if>

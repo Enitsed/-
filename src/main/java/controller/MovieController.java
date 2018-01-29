@@ -49,4 +49,11 @@ public class MovieController {
 		mav.setViewName("search_result");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/addrating.do")
+	public @ResponseBody String movieAddRating(int movie_num, int member_num, int rating) {
+		System.out.println(movie_num +" " +  movie_num+" " + rating);
+		movieservice.addRating(member_num, movie_num, rating);
+		return "1";
+	}
 }

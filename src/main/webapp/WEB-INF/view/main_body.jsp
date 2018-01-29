@@ -4,52 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
- <style>
-    #slideShowImages { 
-      border: 1px gray solid;
-    }   
-  
-    #slideShowImages img { 
-      border: 0.8em black solid;
-      padding: 3px;
-    }   
-  </style>
-
-<script>
-function moreList() {
-	var page = ($("#page").val() + 1);
-	$.ajax({
-		url : 'addMovie.do?page=' + page,
-		type : 'GET',
-		dataType : 'json',
-		success : function(data) {
-			//console.log(data);
-			var content = "";
-			for (var i = 0; i < data.length; i++) {
-				content += '<div class="card column blurring dimmable image">'
-						+ '<input type="hidden" value="${data.movie_num}" />'
-						+ '<img src="resources/images/travel.jpg">'
-						+ '<div class="ui dimmer">'
-						+ '<div class="content">'
-						+ '<div class="center">'
-						+ '<div class="ui inverted button">CLICK</div>'
-						+ '</div>' + '</div>' + '</div>' + '</div>'
-			}
-			var page = ($("#page").val() + 1);
-			content += '<div class="btns"><a href="javascript:moreList();" class="btn btn-primary">더보기</a><input type="hidden" value="'+ page +'" name="page"/></div>';
-			$('#addbtn').remove();//remove btn
-			//alert(content);
-			$(content).appendTo("#aa");
-		},
-		error : function(request, status, error) {
-			alert("code:" + request.status + "\n" + "message:"
-					+ request.responseText + "\n" + "error:"
-					+ error);
-		}
-	});
-};
-</script>
-
 <!-- 빵덩어리 -->
 <div class="ui container list">
 	<div class="ui tiny breadcrumb">
@@ -68,9 +22,8 @@ function moreList() {
 	<div class="ui segment">
 		<div class="ui link special cards four columns slide">
 			<c:forEach var="i" items="${movie}">
-				<div
-					class="card column blurring dimmable image main_movie slide_box fade2">
-					<input type="hidden" value="${i.movie_num}" />
+				<div class="card column blurring dimmable image main_movie slide_box fade2">
+					<input id="mov_num" type="hidden" value="${i.movie_num}" />
 					<!-- 영화 번호 넣을자리 -->
 					<c:choose>
 						<c:when test="${i.movie_image eq '이미지 없음'}">
@@ -92,7 +45,7 @@ function moreList() {
 								<br /> <br />
 								<div class="ui divider"></div>
 								<br /> <br /> <br />
-								<div class="ui star rating" data-rating="5" data-max-rating="5"></div>
+								<div class="ui star rating addRating" data-rating="5" data-max-rating="5"></div>
 							</div>
 						</div>
 					</div>
