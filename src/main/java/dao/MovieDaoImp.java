@@ -31,7 +31,7 @@ public class MovieDaoImp implements MovieDAO {
 		map.put("start", start);
 		map.put("end", end);
 		List<MovieDTO> list = sqlSession.selectList("movie.list", map);
-		for(int i = 0 ; i < list.size() ; i ++) {
+		for (int i = 0; i < list.size(); i++) {
 			List<DirectorDTO> directorList = sqlSession.selectList("movie.director", list.get(i).getMovie_num());
 			list.get(i).setMovie_director(directorList);
 			List<ActorDTO> actorList = sqlSession.selectList("movie.actor", list.get(i).getMovie_num());
@@ -82,6 +82,18 @@ public class MovieDaoImp implements MovieDAO {
 	public void insertCommentProcees(CommentDTO dto) {
 		sqlSession.insert("movie.replyinsert",dto);
 		
+	}
+
+	@Override
+	public List<MovieDTO> movieListProcess(String keyword) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("movie.searchList",keyword);
+	}
+
+	@Override
+	public int searchCountProcess(String keyword) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("movie.searchCount",keyword);
 	}
 
 }

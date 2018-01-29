@@ -44,4 +44,9 @@ public class MemServiceImp implements MemService {
 		return dao.findPw(userDTO);
 	}
 
+	@Override
+	public void updateProcess(MemDTO userDTO) {
+		dao.updateInfo(userDTO);
+	}
+
 }

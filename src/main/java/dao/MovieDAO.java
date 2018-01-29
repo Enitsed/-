@@ -21,4 +21,7 @@ public interface MovieDAO {
 	
 	public void insertCommentProcees(CommentDTO dto);
 
+	public List<MovieDTO> movieListProcess(String keyword);
+	public int searchCountProcess(String keyword);
+
 }

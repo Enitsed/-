@@ -8,31 +8,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import api.MovieApi;
 import dto.MemDTO;
 import service.MemService;
+import service.MovieService;
 
 @Controller
 public class MemberController {
 	MemService service;
+	MovieService movieservice;
 
 	public MemberController() {
 
+	}
+
+	public void setMovieservice(MovieService movieservice) {
+		this.movieservice = movieservice;
 	}
 
 	public void setService(MemService service) {
 		this.service = service;
 	}
 
-	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
-	public String viewSignUp() {
-		// 회원가입 페이지로 이동
-		return "signUpForm";
-	}
-
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
 	public @ResponseBody boolean checkId(MemDTO userDTO) {
 		// 아이디 중복 확인 메서드
 		return service.idCheckProcess(userDTO);
+	}
+
+	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	public String viewSignUp() {
+		// 회원가입 페이지로 이동
+		return "signUpForm";
 	}
 
 	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
@@ -61,6 +68,7 @@ public class MemberController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(MemDTO userDTO, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		MovieApi api = new MovieApi();
 		if (service.idCheckProcess(userDTO)) {
 			try {
 				MemDTO foundUserDTO = service.loginProcess(userDTO);
@@ -78,6 +86,8 @@ public class MemberController {
 		} else {
 			mav.addObject("loginStatus", "회원이 존재하지 않습니다.");
 		}
+		api.MovieNewsApi(mav);
+		mav.addObject("movie", movieservice.movieInfoProcess(1));
 		mav.setViewName("index");
 		return mav;
 	}
@@ -87,47 +97,76 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/main";
 	}
-	
-	@RequestMapping("/test")
+
+	@RequestMapping("/findId")
 	public ModelAndView findIdPage() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("test");
+		mav.setViewName("findIdForm");
 		return mav;
 	}
-	
-	@RequestMapping("/test2")
+
+	@RequestMapping("/findPw")
 	public ModelAndView findPwPage() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("test2");
+		mav.setViewName("findPwForm");
 		return mav;
 	}
-	
-	@RequestMapping(value="/findId", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/findId", method = RequestMethod.POST)
 	public ModelAndView findId(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
 		MemDTO user = service.findIdProcess(userDTO);
-		mav.addObject("user",user);
-		System.out.println("아이디 찾기 : "+user.getMem_id());
-		mav.setViewName("index");
+		mav.addObject("user", user);
+		if (user == null) {
+			mav.addObject("findIdStatus", "일치하는 회원이 없습니다.");
+		}
+		if (user != null) {
+			try {
+				mav.addObject("findIdStatus", "회원님의 아이디는 '" + user.getMem_id() + "' 입니다.");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		mav.setViewName("findIdForm");
 		return mav;
 	}
-	
-	@RequestMapping(value="/findPw", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/findPw", method = RequestMethod.POST)
 	public ModelAndView findPw(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
 		MemDTO user = service.findPwProcess(userDTO);
-		mav.addObject("user",user);
-		System.out.println("비밀번호 찾기 : "+user.getMem_pw());
-		mav.setViewName("index");
+		mav.addObject("user", user);
+		if (user != null) {
+			try {
+				mav.addObject("findPwStatus", "회원님의 비밀번호는 '" + user.getMem_pw() + "' 입니다.");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			mav.addObject("findPwStatus", "일치하는 회원이 없습니다.");
+		}
+		mav.addObject("user", user);
+		mav.setViewName("findPwForm");
 		return mav;
 	}
 
+	@RequestMapping("/myPage")
+	public ModelAndView myPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("myPage");
+		return mav;
+	}
+
+	@RequestMapping(value = "updateInfo", method = RequestMethod.POST)
+	public ModelAndView update(MemDTO userDTO) {
+		ModelAndView mav = new ModelAndView();
+		service.updateProcess(userDTO);
+		if (userDTO != null) {
+			mav.addObject("updateInfoStatus", "회원정보를 수정하였습니다.");
+		} else {
+			mav.addObject("updateInfoStatus", "회원정보 수정에 실패하였습니다.");
+		}
+		mav.setViewName("myPage");
+		return mav;
+	}
 }
-
-
-
-
-
-
-
-

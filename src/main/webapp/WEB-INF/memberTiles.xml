@@ -9,4 +9,19 @@
 		<put-attribute name="body" value="/WEB-INF/view/signUpForm.jsp" />
 	</definition>
 	
+	<definition name="myPage" extends="index">
+		<put-attribute name="title" value="회원정보 수정" />
+		<put-attribute name="body" value="/WEB-INF/view/myPage.jsp" />
+	</definition>
+	
+	<definition name="findIdForm" extends="index">
+		<put-attribute name="title" value="아이디 찾기" />
+		<put-attribute name="body" value="/WEB-INF/view/findIdView.jsp" />
+	</definition>
+	
+	<definition name="findPwForm" extends="index">
+		<put-attribute name="title" value="비밀번호 찾기" />
+		<put-attribute name="body" value="/WEB-INF/view/findPwView.jsp" />
+	</definition>
+	
 </tiles-definitions>

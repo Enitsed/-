@@ -57,6 +57,7 @@ increment by 1
 nocache
 nocycle;
 
+select movie_kor_title from movie where movie_kor_title like '%백설%'
 --select * from movie where movie_num='50'
 --drop table movie
 --drop sequence movie_seq
@@ -232,14 +233,14 @@ INSERT INTO movie_director (select movie_num, director_num from director, movie 
 create table board(
 	board_num number primary key,	--게시글번호
 	mem_num number,					--회원번호
-	board_writer varchar2(10),			--작성자
-	board_name varchar2(10),			--제목
-	board_content varchar2(500),		--내용
-	board_hits number(10),				--조회수
-	board_relnum number(10),			--관련글번호
+	board_writer varchar2(10),		--작성자
+	board_name varchar2(10),		--제목
+	board_content varchar2(500),	--내용
+	board_hits number(10),			--조회수
+	board_relnum number(10),		--관련글번호
 	board_reply_level number,		--답글레벨
 	board_reply_step number,		--답글단계
-	board_date date,					--작성일
+	board_date date,				--작성일
 	board_reply_amount number,		--댓글개수
 	constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 	--board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
@@ -254,7 +255,6 @@ nocycle;
 --select * from board
 --drop table board
 --drop sequence board_seq
-
 --------------------------------------------------------
 ---댓글 테이블----------------------------------------------
 create table reply(
@@ -271,16 +271,19 @@ create table reply(
 
 --select * from reply
 --drop table reply
+
+
+
 create table movie_comment(
-	comment_num number,
-	movie_num number,
-	replyText varchar2(500),
-	mem_num number,
-	mem_id varchar2(20),
-	regdate Date,
-	likecount number
+   comment_num number,
+   movie_num number,
+   replytext varchar2(500),
+   mem_num number,
+   mem_id varchar2(20),
+   regdate Date,
+   likecount number
 );
-select * from movie_comment
+
 create sequence comment_num_seq
 start with 1
 increment by 1
@@ -292,6 +295,9 @@ insert into movie_comment values(comment_num_seq.nextval,1,'테스트2',4,'aaaaa
 delete from movie_comment where comment_num = 11
 select * from movie_comment
 delete from movie_comment
+
+select * from movie_comment
+
 drop table movie_comment
 drop sequence comment_num_seq
 
@@ -318,3 +324,4 @@ delete  from commentlike
 
 drop table commentlike
 drop sequence like_num_seq
+

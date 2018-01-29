@@ -53,5 +53,14 @@ public class MovieServiceImp implements MovieService{
 	public void insertCommentProcess(CommentDTO dto) {
 		dao.insertCommentProcees(dto);
 	}
+	
+	public List<MovieDTO> movieListProcess(String keyword) {
+		// TODO Auto-generated method stub
+		return dao.movieListProcess(keyword);
+	}
+	@Override
+	public int searchCountProcess(String keyword) {
+		return dao.searchCountProcess(keyword);
+	}
 
 }

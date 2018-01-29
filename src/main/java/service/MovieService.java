@@ -20,4 +20,6 @@ public interface MovieService {
 	
 	public void insertCommentProcess(CommentDTO dto);
 
+	public List<MovieDTO> movieListProcess(String keyword);
+	public int searchCountProcess(String keyword);
 }

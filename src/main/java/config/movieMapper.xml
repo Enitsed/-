@@ -59,5 +59,15 @@
 	<insert id="replyinsert" parameterType="dto.CommentDTO">
 		insert into movie_comment values(comment_num_seq.nextval,#{movie_num},#{replytext},#{mem_num},#{mem_id},sysdate,0)
 	</insert>
+	<select id="searchList" parameterType="String" resultType="dto.MovieDTO">
+		select * from
+		movie where movie_kor_title like '%'||#{keyword}||'%'
+	</select>
+
+	<select id="searchCount" parameterType="String" resultType="int">
+		select count(*) from
+		movie where movie_kor_title like '%'||#{keyword}||'%'
+	</select>
+	
 </mapper>
     

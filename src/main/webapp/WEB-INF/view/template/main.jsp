@@ -17,11 +17,8 @@
 </head>
 <body>
 	<tiles:insertAttribute name="header" />
-
 	<tiles:insertAttribute name="menu" />
-
 	<tiles:insertAttribute name="body" />
-
 	<tiles:insertAttribute name="footer" />
 	<script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<script src="resources/js/jquery.min.js"></script>
@@ -29,6 +26,6 @@
 	<script src="resources/js/semantic.min.js"></script>
 	<script src="resources/js/custom.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
-		
+
 </body>
 </html>

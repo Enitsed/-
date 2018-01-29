@@ -40,4 +40,9 @@ public class MemDaoImp implements MemDAO {
 		return sqlSession.selectOne("mem.findPw",userDTO);
 	}
 
+	@Override
+	public void updateInfo(MemDTO userDTO) {
+		sqlSession.update("mem.updateInfo",userDTO);
+	}
+
 }
