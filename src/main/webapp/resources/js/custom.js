@@ -31,7 +31,7 @@ $(document).ready(function () {
 		$('.ui.tiny.modal.updateInfoStatus').modal('show');
 	}
 	
-	//회원정보 수정 닺기
+	//회원정보 수정 닫기
 	$('.updateInfoStatus .actions .button').on('click',function(){
 		$('.ui.tiny.modal.updateInfoStatus').modal('hide');
 		$(location).attr('href', "http://localhost:8090/finalproject/main");

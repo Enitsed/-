@@ -16,8 +16,7 @@
 			<c:if test="${not empty userDTO}">
 				<a class="item" href="myPage"><i class="edit icon"></i> 정보 수정</a> 
 			</c:if>
-			<a class="item">
-				<i class="settings icon"></i> 환경 설정</a>
+			
 			</div>
 		</div>
 		<div class="ui item right">
