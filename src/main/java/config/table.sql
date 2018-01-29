@@ -67,7 +67,6 @@ select movie_kor_title from movie where movie_kor_title like '%백설%'
 create table rating(
 	mem_num number,				--회원번호
 	movie_num number(10),		--영화번호
-	coment varchar2(1000),		--코멘트
 	star_point number(10),		--별점
 	write_date date,			--작성날짜
 	constraint rating_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade,
@@ -289,6 +288,8 @@ start with 1
 increment by 1
 nocache
 nocycle;
+drop table movie_comment
+drop sequence comment_num_seq
 
 insert into movie_comment values(comment_num_seq.nextval,1,'테스트',4,'aaaaaa','2018-01-25',0)
 insert into movie_comment values(comment_num_seq.nextval,1,'테스트2',4,'aaaaaa','2018-02-02',0)
@@ -316,7 +317,8 @@ start with 1
 increment by 1
 nocache
 nocycle;
-
+drop table commentlike 
+drop sequence like_num_seq
 insert into COMMENTLIKE values(like_num_seq.nextval,'bbbbbb',1)
 
 select * from commentlike
