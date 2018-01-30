@@ -46,15 +46,6 @@ public class HelloController {
 		return "search_result";
 	}
 
-	/*
-	 * @RequestMapping(value = "info", method = RequestMethod.GET)
-	 * public @ResponseBody HashMap<String, Object> movieDetailInfo(int movie_num) {
-	 * HashMap<String, Object> map = new HashMap<String, Object>(); map.put("info",
-	 * movieservice.moviedetailProcess(movie_num)); map.put("comment",
-	 * movieservice.commentListProcess(movie_num)); List<CommentDTO> aList =
-	 * movieservice.commentListProcess(movie_num); System.out.println(aList.size());
-	 * return map; }
-	 */
 	@RequestMapping(value = "info", method = RequestMethod.GET)
 	public @ResponseBody List<CommentDTO> movieDetailInfo(int movie_num) {
 		// List<CommentDTO> aList = movieservice.commentListProcess(movie_num);
@@ -87,9 +78,14 @@ public class HelloController {
 	@RequestMapping(value = "insertcomment", method = RequestMethod.GET)
 	public @ResponseBody List<CommentDTO> insertcomment(CommentDTO dto) {
 		movieservice.insertCommentProcess(dto);
-		System.out.println("영화번호:" + dto.getMovie_num());
-
 		return movieservice.commentListProcess(dto.getMovie_num());
 	}
-
+	
+	@RequestMapping(value="deletecomment",method=RequestMethod.GET)
+	public @ResponseBody List<CommentDTO> deleteComment(int comment_num, int movie_num){
+		movieservice.deleteCommentProcess(comment_num);
+		return movieservice.commentListProcess(movie_num);
+	}
+	
 }
+

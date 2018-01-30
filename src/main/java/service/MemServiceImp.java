@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import dao.MemDAO;
 import dto.MemDTO;
 
@@ -47,6 +49,12 @@ public class MemServiceImp implements MemService {
 	@Override
 	public void updateProcess(MemDTO userDTO) {
 		dao.updateInfo(userDTO);
+	}
+
+	@Override
+	public List<MemDTO> memInfo(MemDTO userDTO) {
+		// TODO Auto-generated method stub
+		return dao.memInfo(userDTO);
 	}
 
 }

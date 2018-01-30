@@ -3,6 +3,13 @@
 
 $(document).ready(function () {
 	"use strict";
+	var currentPosition = parseInt($("#sidebox").css("top")); 
+	$(window).scroll(function() { 
+		var position = $(window).scrollTop(); 
+		$("#sidebox").stop().animate({
+			"top":position+currentPosition+"px"
+			},1000); 
+		});
 
 	
 	// 회원가입 성공 여부 알림

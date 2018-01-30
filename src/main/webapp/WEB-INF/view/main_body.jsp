@@ -55,9 +55,9 @@ $(document).ready(function(){
                   '<div class="date">' + sm + '</div></div>' +
                   '<div class="extra text">' + value.replytext + '</div>' +
                   '<div class="meta">' +
-                  '<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '&nbsp;Likes</a>'
+                  '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
                   if(session_id==value.mem_id){
-                     comment+='<a><i class="trash icon"></i>삭제</a>'
+                     comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'d
                   }
                   +'</div></div></div>'
                   $(comment).appendTo(".ui.large.feed");
@@ -74,10 +74,14 @@ $(document).ready(function(){
    $(document).on('click','.ui.blue.labeled.submit.icon.button',commentinsert);
    
    function commentinsert(){
+      
+      var comments = $(this).parent().find('textarea').val();//replytext
+      var number = parseInt($(this).attr('id'));
+      alert(comments);
       var comments = $('textarea').val();//코멘트 내용 가져오기
       //var number =  $(document).find('.movie_num').val();
       var number = parseInt($(this).attr('id'));
-      alert(number);
+     
       $.ajax({
          
          url : 'insertcomment?mem_id='+session_id+'&replytext='+comments+'&movie_num='+number+'&mem_num='+session_num,
@@ -85,6 +89,7 @@ $(document).ready(function(){
          dataType:'json',
          success : function(data){
             $('.event').remove();
+
             $.each(data,function(index,value){
                var insert="";
                var sdate = new Date(value.regdate);
@@ -107,7 +112,7 @@ $(document).ready(function(){
                   '<div class="meta">' +
                   '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
                   if(session_id==value.mem_id){
-                     insert+='<a class="del" value="'+value.comment_num+'"><i class="trash icon"></i>삭제</a>'
+                     insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
                   }
                   +'</div></div></div>'
                   $(insert).appendTo(".ui.large.feed");
@@ -161,48 +166,54 @@ $(document).on('click','.like',like);
 
    $(document).on('click','.del',del);
    function del(){
-      alert('아아');
+      var comment_number = parseInt($(this).attr('value'));
+      var movie_number = parseInt($(this).attr('id'));
+      
+      $.ajax({
+    	  url : 'deletecomment',
+    	  type:'GET',
+    	  data : 'comment_num='+comment_number+'&movie_num='+movie_number,
+    	  success : function(data){
+    		  $('.event').remove();
+    		  $.each(data,function(index,value){
+                  var movie_comment="";
+                  var sdate = new Date(value.regdate);
+                  var sm = sdate.getFullYear() + "/";
+                  sm = sm + (sdate.getMonth() + 1) + "/";
+                  sm = sm + sdate.getDate();
+
+                  movie_comment +=
+                     '<div class="event">' +
+                     '<div class="label">' +
+                     '<img src="resources/images/user.png">' +
+                     '</div>' +
+                     '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
+                     '<div class="content">' +
+                     '<div class="summary">' +
+                     '<a class="user">' + value.mem_id + '</a>' +
+                     '<input type="hidden" class="mem_id" value="' + value.mem_id + '"/>' +
+                     '<div class="date">' + sm + '</div></div>' +
+                     '<div class="extra text">' + value.replytext + '</div>' +
+                     '<div class="meta">' +
+                     '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
+                     if(session_id==value.mem_id){
+                    	 movie_comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
+                     }
+                     +'</div></div></div>'
+                     $(movie_comment).appendTo(".ui.large.feed");
+                     
+               });
+               
+    	  }//success
+      });//ajax
    }
    
+
    
 });//document 끝
    
 </script>
 
-<script>
-function moreList() {
-   var page = ($("#page").val() + 1);
-   $.ajax({
-      url : 'addMovie.do?page=' + page,
-      type : 'GET',
-      dataType : 'json',
-      success : function(data) {
-         //console.log(data);
-         var content = "";
-         for (var i = 0; i < data.length; i++) {
-            content += '<div class="card column blurring dimmable image">'
-                  + '<input type="hidden" value="${data.movie_num}" />'
-                  + '<img src="resources/images/travel.jpg">'
-                  + '<div class="ui dimmer">'
-                  + '<div class="content">'
-                  + '<div class="center">'
-                  + '<div class="ui inverted button">CLICK</div>'
-                  + '</div>' + '</div>' + '</div>' + '</div>'
-         }
-         var page = ($("#page").val() + 1);
-         content += '<div class="btns"><a href="javascript:moreList();" class="btn btn-primary">더보기</a><input type="hidden" value="'+ page +'" name="page"/></div>';
-         $('#addbtn').remove();//remove btn
-         //alert(content);
-         $(content).appendTo("#aa");
-      },
-      error : function(request, status, error) {
-         alert("code:" + request.status + "\n" + "message:"
-               + request.responseText + "\n" + "error:"
-               + error);
-      }
-   });
-};
-</script>
 
 
 
@@ -226,6 +237,9 @@ function moreList() {
          <c:forEach var="i" items="${movie}">
             <div
                class="card column blurring dimmable image main_movie slide_box fade2">
+
+               <input type="hidden" value="${i.movie_num}" />
+
                <!-- 영화 번호 넣을자리 -->
                <c:choose>
                   <c:when test="${i.movie_image eq '이미지 없음'}">
@@ -247,7 +261,10 @@ function moreList() {
                         <br /> <br />
                         <div class="ui divider"></div>
                         <br /> <br /> <br />
+                        <div class="ui star rating" data-rating="5" data-max-rating="5"></div>
+
                         <div class="ui star rating" data-rating="5" data-max-rating="5" id="${i.movie_num}"></div>
+
                      </div>
                   </div>
                </div>

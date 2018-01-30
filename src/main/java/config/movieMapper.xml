@@ -73,6 +73,10 @@
 		select count(*) from rating where #{member_num} = mem_num and #{movie_num} = movie_num
 	</select>
 	
+	<delete id="commentdelete" parameterType="int">
+		delete from movie_comment where comment_num = #{comment_num}
+	</delete>
+
 	<insert id="pluseRating" parameterType="java.util.Map">
 		insert  INTO rating(mem_num, movie_num, star_point, write_date)
 		values(#{member_num},#{movie_num},#{rating}, SYSDATE)

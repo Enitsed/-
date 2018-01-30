@@ -99,6 +99,11 @@ public class MovieDaoImp implements MovieDAO {
 	}
 
 	@Override
+	public void deleteCommentProcess(int comment_num) {
+		 sqlSession.delete("movie.commentdelete",comment_num);
+	}
+
+
 	public void addRating(int member_num, int movie_num, int rating) {
 		 Map<String, Integer> map = new HashMap();
 		 map.put("member_num", member_num);
