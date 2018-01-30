@@ -19,6 +19,7 @@ public interface MovieService {
 	public void likedeleteProcess(LikeDTO dto);
 	
 	public void insertCommentProcess(CommentDTO dto);
+	public void deleteCommentProcess(int comment_num);
 
 	public List<MovieDTO> movieListProcess(String keyword);
 	public int searchCountProcess(String keyword);

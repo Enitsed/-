@@ -56,7 +56,7 @@ start with 1
 increment by 1
 nocache
 nocycle;
-
+select * from movie
 select movie_kor_title from movie where movie_kor_title like '%백설%'
 --select * from movie where movie_num='50'
 --drop table movie
@@ -290,8 +290,7 @@ increment by 1
 nocache
 nocycle;
 
-insert into movie_comment values(comment_num_seq.nextval,1,'테스트',4,'aaaaaa','2018-01-25',0)
-insert into movie_comment values(comment_num_seq.nextval,1,'테스트2',4,'aaaaaa','2018-02-02',0)
+
 delete from movie_comment where comment_num = 11
 select * from movie_comment
 delete from movie_comment
@@ -316,8 +315,6 @@ start with 1
 increment by 1
 nocache
 nocycle;
-
-insert into COMMENTLIKE values(like_num_seq.nextval,'bbbbbb',1)
 
 select * from commentlike
 delete  from commentlike

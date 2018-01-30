@@ -21,7 +21,6 @@ public class MovieServiceImp implements MovieService{
 	}
 	@Override
 	public List<CommentDTO> commentListProcess(int movie_num) {
-		//dao.insertCommentProcees(dto);
 		return dao.commentListProcess(movie_num);
 	}
 	@Override
@@ -55,12 +54,15 @@ public class MovieServiceImp implements MovieService{
 	}
 	
 	public List<MovieDTO> movieListProcess(String keyword) {
-		// TODO Auto-generated method stub
 		return dao.movieListProcess(keyword);
 	}
 	@Override
 	public int searchCountProcess(String keyword) {
 		return dao.searchCountProcess(keyword);
+	}
+	@Override
+	public void deleteCommentProcess(int comment_num) {
+		 dao.deleteCommentProcess(comment_num);
 	}
 
 }

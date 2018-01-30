@@ -96,4 +96,9 @@ public class MovieDaoImp implements MovieDAO {
 		return sqlSession.selectOne("movie.searchCount",keyword);
 	}
 
+	@Override
+	public void deleteCommentProcess(int comment_num) {
+		 sqlSession.delete("movie.commentdelete",comment_num);
+	}
+
 }

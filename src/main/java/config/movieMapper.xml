@@ -69,5 +69,9 @@
 		movie where movie_kor_title like '%'||#{keyword}||'%'
 	</select>
 	
+	<delete id="commentdelete" parameterType="int">
+		delete from movie_comment where comment_num = #{comment_num}
+	</delete>
+	
 </mapper>
     
