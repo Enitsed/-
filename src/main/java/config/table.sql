@@ -244,12 +244,17 @@ create table board(
 	constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 	--board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
+
 --게시판테이블 시퀀스
 create sequence board_seq
 start with 1
 increment by 1
 nocache
 nocycle;
+
+insert into
+board(board_num,mem_num,board_writer,board_name,board_content,board_hits,board_relnum,board_reply_level,board_reply_step,board_date,board_reply_amount)
+values(board_seq.nextval,1,'adsad','gaa','test',0,board_seq.nextval,0,0,sysdate,0)
 
 --select * from board
 --drop table board

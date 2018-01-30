@@ -11,16 +11,12 @@ $(document).ready(function () {
 			},1000); 
 		});
 
-	// 글쓰기 write 버튼
-	$('#writeBtn').click(function () {
-		$(location).attr('href', "http://localhost:8090/finalproject/boardWrite");
-	});
-
+	
 	// 회원가입 성공 여부 알림
 	if (document.location.href == "http://localhost:8090/finalproject/signUp") {
 		$('form').on('submit', signUpCheckStatus());
 	}
-	
+
 	//아이디 찾기 알림
 	if(findIdStatus != ""){
 		$('.findIdStatus .ui.header').text(findIdStatus);
@@ -30,6 +26,18 @@ $(document).ready(function () {
 	//아이디 찾기 닺기
 	$('.findIdStatus .actions .button').on('click',function(){
 		$('.ui.tiny.modal.findIdStatus').modal('hide');
+	})
+
+	//회원정보 수정 알림
+	if(updateInfoStatus != ""){
+		$('.updateInfoStatus .ui.header').text(updateInfoStatus);
+		$('.ui.tiny.modal.updateInfoStatus').modal('show');
+	}
+	
+	//회원정보 수정 닫기
+	$('.updateInfoStatus .actions .button').on('click',function(){
+		$('.ui.tiny.modal.updateInfoStatus').modal('hide');
+		$(location).attr('href', "http://localhost:8090/finalproject/main");
 	})
 	
 	//비밀번호 찾기 알림
@@ -94,7 +102,7 @@ $(document).ready(function () {
 		$('.ui.tiny.modal.findPwStatus').modal('show');
 	}
 	
-	//아이디 찾기 닺기
+	//아이디 찾기 닫기
 	$('.findPwStatus .actions .button').on('click',function(){
 		$('.ui.tiny.modal.findPwStatus').modal('hide');
 	})
