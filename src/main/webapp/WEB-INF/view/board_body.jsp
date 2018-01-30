@@ -19,7 +19,6 @@
 				<thead>
 					<tr>
 						<th class="center aligned two wide">작성일</th>
-						<th class="center aligned two wide">추천 수</th>
 						<th class="center aligned two wide">작성자</th>
 						<th class="center aligned ten wide">제목</th>
 						<th class="center aligned two wide">조회 수</th>
@@ -31,9 +30,6 @@
 						<tr>
 							<td class="center aligned">
 								<span>${boardDTO.board_date }</span>
-							</td>
-							<td>
-								<div class="ui star rating" data-rating="3" data-max-rating="5"></div>
 							</td>
 							<td class="center aligned">
 								<a href="#">${boardDTO.board_writer }</a>
@@ -75,23 +71,24 @@
 		</c:forEach>
 		
 		<c:if test="${pv.totalPage>pv.endPage }">
-				<div class="ui animated button" onclick="location.href='free?currentPage=${pv.startPage + pv.blockPage }'">
-					<div class="visible content">다음</div>
-					<div class="hidden content">
-						<i class="right arrow icon"></i>
-					</div>
+			<div class="ui animated button" onclick="location.href='free?currentPage=${pv.startPage + pv.blockPage }'">
+				<div class="visible content">다음</div>
+				<div class="hidden content">
+					<i class="right arrow icon"></i>
 				</div>
+			</div>
 		</c:if>
 		
-				<div class="ui right floated vertical animated fade button" onclick="location.href='boardWrite'">
-					<div class="hidden content">
-						<i class="pencil icon"></i>
-					</div>
-					<div class="visible content">
-							글쓰기
-					</div>
+		<c:if test="${not empty userDTO }">
+			<div class="ui right floated vertical animated fade button" onclick="location.href='boardWrite'">
+				<div class="hidden content">
+					<i class="pencil icon"></i>
 				</div>
-				
+				<div class="visible content">
+						글쓰기
+				</div>
+			</div>
+		</c:if>
 		</div>
 		
 	</div>
