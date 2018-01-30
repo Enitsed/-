@@ -176,10 +176,6 @@ public class MemberController {
 	public ModelAndView memInfo(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
 		List<MemDTO> aList = service.memInfo(userDTO);
-		for(int i=0;i<aList.size();i++) {
-			userDTO=aList.get(i);
-			System.out.println(userDTO.getMem_num() +"/"+ userDTO.getMem_id() +"/"+ userDTO.getMem_name() +"/" + userDTO.getMem_grade() );
-		}
 		mav.addObject("memList",aList);
 		mav.setViewName("memInfoList");
 		return mav;
