@@ -43,6 +43,14 @@ public class BoardServiceImp implements BoardService {
 	@Override
 	public void reStepProcess(BoardDTO dto) {
 		dao.reStepCount(dto);
+		dto.setBoard_reply_step(dto.getBoard_reply_step() + 1);
+		dto.setBoard_reply_level(dto.getBoard_reply_level() + 1);
+		dao.save(dto);
+	}
+
+	@Override
+	public BoardDTO updateSelectProcess(int num) {
+		return dao.updateNum(num);
 	}
 
 	@Override

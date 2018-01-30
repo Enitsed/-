@@ -22,4 +22,6 @@ public interface BoardDAO {
 
 	public void delete(int num);
 
+	public BoardDTO updateNum(int num);
+
 }

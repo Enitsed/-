@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 	<!-- 빵덩어리 -->
 	<div class="ui container list">
 		<div class="ui tiny breadcrumb">
 			<a class="section">Home</a> <i class="right chevron icon divider"></i>
-			<div class="active section">글 쓰기</div>
+			<div class="active section">글 수정</div>
 		</div>
 	</div>
     
    <div class="ui container">
    
-	<form class="ui form segment" action="boardWrite" method="post">
+	<form class="ui form segment" action="boardUpdate" method="post">
 		<div class="four fields">
 			<div class="field">
 				<label>목록 선택</label>
@@ -47,12 +47,12 @@
 			
 			<div class="field">
 				<label>제목</label>
-				<input type="text" name="board_name">
+				<input type="text" name="board_name" value="${dto.board_name }">
 	        </div>
 		        
 			<div class="field">
 				<label>내용</label>
-				<textarea name="board_content"></textarea>
+				<textarea name="board_content">${dto.board_content }</textarea>
 			</div>
 			
 			<div class="four fields">
@@ -64,6 +64,8 @@
 					</div>
 				</div>
 			</div>
+			<input type="hidden" value="${currentPage }" name="currentPage">
+			<input type="hidden" value="${dto.board_num }" name="board_num">
 			<button class="ui button" type="submit">글 올리기</button>
 		</form>
     </div>

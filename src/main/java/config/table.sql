@@ -233,8 +233,8 @@ create table board(
 	board_num number primary key,	--게시글번호
 	mem_num number,					--회원번호
 	board_writer varchar2(10),		--작성자
-	board_name varchar2(10),		--제목
-	board_content varchar2(500),	--내용
+	board_name varchar2(100),		--제목
+	board_content varchar2(3000),	--내용
 	board_hits number(10),			--조회수
 	board_relnum number(10),		--관련글번호
 	board_reply_level number,		--답글레벨
@@ -244,6 +244,12 @@ create table board(
 	constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 	--board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
+
+--게시판 글 제목 길이 수정
+alter table board modify(board_name varchar2(100));
+-- 게시판 글 내용 길이 수정
+alter table board modify(board_content varchar2(3000));
+
 
 --게시판테이블 시퀀스
 create sequence board_seq

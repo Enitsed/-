@@ -19,6 +19,11 @@
 		<put-attribute name="body" value="/WEB-INF/view/board_write.jsp" />
 	</definition>
 
+	<definition name="board_update" extends="index">
+		<put-attribute name="title" value="글 수정" />
+		<put-attribute name="body" value="/WEB-INF/view/board_update.jsp" />
+	</definition>
+
 	<definition name="movieInfoList" extends="index">
 		<put-attribute name="title" value="영화 정보" />
 		<put-attribute name="body" value="/WEB-INF/view/movieInfoList.jsp" />

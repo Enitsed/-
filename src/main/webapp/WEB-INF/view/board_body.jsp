@@ -15,7 +15,7 @@
 	
 		<div class="ui clearing segment">
 		
-			<table class="ui single line selectable celled padded table">
+			<table class="ui selectable celled padded table">
 				<thead>
 					<tr>
 						<th class="center aligned two wide">작성일</th>
@@ -55,27 +55,40 @@
 				</tbody>
 			</table>
 			
-				<!-- 버튼 리스트 -->
-				<div class="ui animated button">
-					<div class="visible content">이전</div>
-					<div class="hidden content">
-						<i class="left arrow icon"></i>
-					</div>
+
+			<!-- 버튼 리스트 -->
+		<c:if test="${pv.startPage > 1}">
+			<div class="ui animated button" onclick="location.href='free?currentPage=${pv.startPage - pv.blockPage}'">
+				<div class="visible content">이전</div>
+				<div class="hidden content">
+					<i class="left arrow icon"></i>
 				</div>
-				<div class="ui animated button">
+			</div>
+		</c:if>
+	
+		<c:forEach var="i" begin="${pv.startPage }" end="${pv.endPage }">
+			<c:url var="currPage" value="free">
+				<c:param name="currentPage" value="${i }" />
+			</c:url>
+			<a class="ui button" href="${currPage }"> <c:out value="${i }" />
+			</a>
+		</c:forEach>
+		
+		<c:if test="${pv.totalPage>pv.endPage }">
+				<div class="ui animated button" onclick="location.href='free?currentPage=${pv.startPage + pv.blockPage }'">
 					<div class="visible content">다음</div>
 					<div class="hidden content">
 						<i class="right arrow icon"></i>
 					</div>
 				</div>
-				<div class="ui right floated vertical animated fade button" id="writeBtn">
+		</c:if>
+		
+				<div class="ui right floated vertical animated fade button" onclick="location.href='boardWrite'">
 					<div class="hidden content">
-						<a href="boardWrite">
-							<i class="pencil icon"></i>
-						</a>
+						<i class="pencil icon"></i>
 					</div>
 					<div class="visible content">
-						글쓰기
+							글쓰기
 					</div>
 				</div>
 				
