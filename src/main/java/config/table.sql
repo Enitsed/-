@@ -283,6 +283,8 @@ create table movie_comment(
    likecount number
 );
 
+select * from movie_comment
+
 create sequence comment_num_seq
 start with 1
 increment by 1

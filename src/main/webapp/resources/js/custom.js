@@ -3,6 +3,13 @@
 
 $(document).ready(function () {
 	"use strict";
+	var currentPosition = parseInt($("#sidebox").css("top")); 
+	$(window).scroll(function() { 
+		var position = $(window).scrollTop(); 
+		$("#sidebox").stop().animate({
+			"top":position+currentPosition+"px"
+			},1000); 
+		});
 
 	// 글쓰기 write 버튼
 	$('#writeBtn').click(function () {
