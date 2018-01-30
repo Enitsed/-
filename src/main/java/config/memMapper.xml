@@ -31,6 +31,7 @@
 	</update>
 	
 	<resultMap id="memInfo" type="dto.MemDTO">
+		<result property="mem_num" column="mem_num"/>
 		<result property="mem_id" column="mem_id"/>
 		<result property="mem_name" column="mem_name"/>
 		<result property="mem_grade" column="mem_grade"/>
