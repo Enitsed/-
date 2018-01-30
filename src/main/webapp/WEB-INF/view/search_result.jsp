@@ -34,7 +34,7 @@
 								<!-- 영화이미지 넣을자리 -->
 								<c:choose>
 						<c:when test="${i.movie_image eq '이미지 없음'}">
-							<img src="resources/images/travel.jpg">
+							<img src="resources/images/no_image.png">
 						</c:when>
 						<c:otherwise>
 							<c:forTokens var="item" items="${i.movie_image}" delims="|" end="0">

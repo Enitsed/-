@@ -57,7 +57,7 @@ $(document).ready(function(){
                   '<div class="meta">' +
                   '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
                   if(session_id==value.mem_id){
-                     comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'d
+                     comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
                   }
                   +'</div></div></div>'
                   $(comment).appendTo(".ui.large.feed");
@@ -243,7 +243,7 @@ $(document).on('click','.like',like);
                <!-- 영화 번호 넣을자리 -->
                <c:choose>
                   <c:when test="${i.movie_image eq '이미지 없음'}">
-                     <img class="slideImg" src="resources/images/travel.jpg">
+                     <img class="slideImg" src="resources/images/no_image.png">
                   </c:when>
                   <c:otherwise>
                      <c:forTokens var="item" items="${i.movie_image}" delims="|"
