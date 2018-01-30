@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 빵덩어리 -->
 	<div class="ui container list">
 		<div class="ui tiny breadcrumb">
@@ -14,41 +15,43 @@
 	
 		<div class="ui clearing segment">
 		
-			<table class="ui celled padded table">
+			<table class="ui single line selectable celled padded table">
 				<thead>
 					<tr>
-						<th class="center aligned">작성일</th>
-						<th class="center aligned">제목</th>
-						<th class="center aligned">추천 수</th>
-						<th class="center aligned">작성자</th>
-						<th class="center aligned" style="width: 650px">내용</th>
-						<th class="center aligned">조회 수</th>
+						<th class="center aligned two wide">작성일</th>
+						<th class="center aligned two wide">추천 수</th>
+						<th class="center aligned two wide">작성자</th>
+						<th class="center aligned ten wide">제목</th>
+						<th class="center aligned two wide">조회 수</th>
 	
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							<h2 class="ui center aligned header">A</h2>
-						</td>
-						<td class="center aligned">
-							<a href="boardDetail">
-								Power Output
-							</a>
-						</td>
-						<td>
-							<div class="ui star rating" data-rating="3" data-max-rating="5"></div>
-						</td>
-						<td class="center aligned">
-							<a href="#">현우</a>
-						</td>
-						<td class="center aligned">
-							<div class="description tdcontent">블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라블라</div>
-						</td>
-						<td class="center aligned">
-							80
-						</td>
-					</tr>
+					<c:forEach items="${aList }" var="boardDTO">
+						<tr>
+							<td class="center aligned">
+								<span>${boardDTO.board_date }</span>
+							</td>
+							<td>
+								<div class="ui star rating" data-rating="3" data-max-rating="5"></div>
+							</td>
+							<td class="center aligned">
+								<a href="#">${boardDTO.board_writer }</a>
+							</td>
+							<td class="center aligned">
+								<c:url var="boardView" value="boardDetail">
+									<c:param name="num" value="${boardDTO.board_num }"></c:param>
+									<c:param name="currentPage" value="${pv.currentPage}"></c:param>
+								</c:url>
+								<a href="${boardView }">
+									${boardDTO.board_name }
+								</a>
+							</td>
+							<td class="center aligned">
+								${boardDTO.board_hits }
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 			
@@ -67,16 +70,12 @@
 				</div>
 				<div class="ui right floated vertical animated fade button" id="writeBtn">
 					<div class="hidden content">
-						<i class="pencil icon"></i>
+						<a href="boardWrite">
+							<i class="pencil icon"></i>
+						</a>
 					</div>
 					<div class="visible content">
 						글쓰기
-					</div>
-				</div>
-				<div class="ui right floated sizes animated fade button">
-					<div class="visible content">글 목록 보기</div>
-					<div class="hidden content">
-						<i class="content icon"></i>
 					</div>
 				</div>
 				

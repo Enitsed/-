@@ -8,44 +8,77 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dto.BoardDTO;
 import dto.MemDTO;
+import dto.PageDTO;
 import service.BoardService;
 
 @Controller
 public class BoardController {
 	BoardService service;
+	private int currentPage;
+	private PageDTO pdto;
 
 	public BoardController() {
-		// TODO Auto-generated constructor stub
+
 	}
-	
+
 	public void setService(BoardService service) {
 		this.service = service;
 	}
-	
+
 	@RequestMapping("/free")
-	public String board() {
-		return "freeboard";
-	}
+	public ModelAndView listMethod(PageDTO pv) {
+		ModelAndView mav = new ModelAndView();
+		int totalRecord = service.countProcess();
+		if (totalRecord >= 1) {
+			if (pv.getCurrentPage() == 0) {
+				currentPage = 1;
+			} else {
+				currentPage = pv.getCurrentPage();
+			}
+			pdto = new PageDTO(currentPage, totalRecord);
+			mav.addObject("pv", pdto);
+			mav.addObject("aList", service.listProcess(pdto));
+		}
+		mav.setViewName("freeboard");
+		return mav;
+	} // end listMethod()
 
 	@RequestMapping(value = "/boardWrite", method = RequestMethod.GET)
-	public ModelAndView boardWritePage(HttpServletRequest request, HttpSession session) {
+	public ModelAndView boardWritePage(HttpServletRequest request, HttpSession session, PageDTO pv, BoardDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		session = request.getSession();
 		MemDTO userDTO = (MemDTO) session.getAttribute("userDTO");
+		if (dto.getBoard_relnum() != 0) {
+			mav.addObject("currentPage", pv.getCurrentPage());
+			mav.addObject("dto", dto);
+		}
 		mav.addObject("userDTO", userDTO);
 		mav.setViewName("board_write");
 		return mav;
 	}
 
 	@RequestMapping(value = "/boardWrite", method = RequestMethod.POST)
-	public String boardWrite() {
-		return "board_write";
+	public ModelAndView boardWrite(BoardDTO dto) {
+		ModelAndView mav = new ModelAndView("redirect:/free");
+		// 답변글이면
+		if (dto.getBoard_relnum() != 0) {
+			service.reStepProcess(dto);
+		} else {
+			// 제목글이면
+			service.insertProcess(dto);
+		}
+		return mav;
 	}
 
 	@RequestMapping("/boardDetail")
-	public String boardDetail() {
-		return "board_detail";
+	public ModelAndView boardDetail(int currentPage, int num) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto", service.contentProcess(num));
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("board_detail");
+		return mav;
 	}
 
 }

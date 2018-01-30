@@ -1,7 +1,9 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -101,4 +103,18 @@ public class MovieDaoImp implements MovieDAO {
 		 sqlSession.delete("movie.commentdelete",comment_num);
 	}
 
+
+	public void addRating(int member_num, int movie_num, int rating) {
+		 Map<String, Integer> map = new HashMap();
+		 map.put("member_num", member_num);
+		 map.put("movie_num", movie_num);
+		 map.put("rating", rating);
+
+		int count = sqlSession.selectOne("movie.searchRating",map);
+		if(count > 0) {
+			sqlSession.selectOne("movie.updateRating",map);
+		}else {
+			sqlSession.selectOne("movie.pluseRating",map);
+		}
+	}
 }

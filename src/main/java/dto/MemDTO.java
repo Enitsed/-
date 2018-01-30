@@ -8,6 +8,15 @@ public class MemDTO {
 	private String mem_name;
 	private String mem_email;
 	private String mem_address;
+	private String mem_grade;
+
+	public String getMem_grade() {
+		return mem_grade;
+	}
+
+	public void setMem_grade(String mem_grade) {
+		this.mem_grade = mem_grade;
+	}
 
 	public MemDTO() {
 

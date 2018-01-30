@@ -67,7 +67,6 @@ select movie_kor_title from movie where movie_kor_title like '%백설%'
 create table rating(
 	mem_num number,				--회원번호
 	movie_num number(10),		--영화번호
-	coment varchar2(1000),		--코멘트
 	star_point number(10),		--별점
 	write_date date,			--작성날짜
 	constraint rating_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade,
@@ -245,12 +244,17 @@ create table board(
 	constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 	--board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
+
 --게시판테이블 시퀀스
 create sequence board_seq
 start with 1
 increment by 1
 nocache
 nocycle;
+
+insert into
+board(board_num,mem_num,board_writer,board_name,board_content,board_hits,board_relnum,board_reply_level,board_reply_step,board_date,board_reply_amount)
+values(board_seq.nextval,1,'adsad','gaa','test',0,board_seq.nextval,0,0,sysdate,0)
 
 --select * from board
 --drop table board
@@ -284,11 +288,15 @@ create table movie_comment(
    likecount number
 );
 
+select * from movie_comment
+
 create sequence comment_num_seq
 start with 1
 increment by 1
 nocache
 nocycle;
+drop table movie_comment
+drop sequence comment_num_seq
 
 
 delete from movie_comment where comment_num = 11
@@ -315,6 +323,12 @@ start with 1
 increment by 1
 nocache
 nocycle;
+<<<<<<< HEAD
+=======
+drop table commentlike 
+drop sequence like_num_seq
+insert into COMMENTLIKE values(like_num_seq.nextval,'bbbbbb',1)
+>>>>>>> 8c9a8eb84c7d8168a18bfb927077505b55cd7e82
 
 select * from commentlike
 delete  from commentlike

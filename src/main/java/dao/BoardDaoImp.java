@@ -11,7 +11,7 @@ public class BoardDaoImp implements BoardDAO {
 	SqlSessionTemplate sqlSession;
 
 	public BoardDaoImp() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
@@ -25,56 +25,37 @@ public class BoardDaoImp implements BoardDAO {
 
 	@Override
 	public List<BoardDTO> list(PageDTO pv) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("board.list", pv);
 	}
 
 	@Override
 	public void readCount(int num) {
-		// TODO Auto-generated method stub
-
+		sqlSession.update("board.readCount", num);
 	}
 
 	@Override
 	public BoardDTO content(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("board.content", num);
 	}
 
 	@Override
 	public void reStepCount(BoardDTO dto) {
-		// TODO Auto-generated method stub
-
+		sqlSession.update("board.reStepCount", dto);
 	}
 
 	@Override
 	public void save(BoardDTO dto) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public BoardDTO updateNum(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		sqlSession.insert("board.save", dto);
 	}
 
 	@Override
 	public void update(BoardDTO dto) {
-		// TODO Auto-generated method stub
-
+		sqlSession.update("board.update", dto);
 	}
 
 	@Override
 	public void delete(int num) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public String getFile(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		sqlSession.delete("board_delete", num);
 	}
 
 }

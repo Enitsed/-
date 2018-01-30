@@ -57,7 +57,7 @@ $(document).ready(function(){
                   '<div class="meta">' +
                   '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
                   if(session_id==value.mem_id){
-                     comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
+                     comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'d
                   }
                   +'</div></div></div>'
                   $(comment).appendTo(".ui.large.feed");
@@ -78,6 +78,10 @@ $(document).ready(function(){
       var comments = $(this).parent().find('textarea').val();//replytext
       var number = parseInt($(this).attr('id'));
       alert(comments);
+      var comments = $('textarea').val();//코멘트 내용 가져오기
+      //var number =  $(document).find('.movie_num').val();
+      var number = parseInt($(this).attr('id'));
+     
       $.ajax({
          
          url : 'insertcomment?mem_id='+session_id+'&replytext='+comments+'&movie_num='+number+'&mem_num='+session_num,
@@ -85,7 +89,7 @@ $(document).ready(function(){
          dataType:'json',
          success : function(data){
             $('.event').remove();
-            
+
             $.each(data,function(index,value){
                var insert="";
                var sdate = new Date(value.regdate);
@@ -204,10 +208,13 @@ $(document).on('click','.like',like);
       });//ajax
    }
    
+
    
 });//document 끝
    
 </script>
+
+
 
 
 <!-- 빵덩어리 -->
@@ -230,7 +237,9 @@ $(document).on('click','.like',like);
          <c:forEach var="i" items="${movie}">
             <div
                class="card column blurring dimmable image main_movie slide_box fade2">
+
                <input type="hidden" value="${i.movie_num}" />
+
                <!-- 영화 번호 넣을자리 -->
                <c:choose>
                   <c:when test="${i.movie_image eq '이미지 없음'}">
@@ -253,6 +262,9 @@ $(document).on('click','.like',like);
                         <div class="ui divider"></div>
                         <br /> <br /> <br />
                         <div class="ui star rating" data-rating="5" data-max-rating="5"></div>
+
+                        <div class="ui star rating" data-rating="5" data-max-rating="5" id="${i.movie_num}"></div>
+
                      </div>
                   </div>
                </div>

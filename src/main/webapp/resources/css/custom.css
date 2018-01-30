@@ -99,4 +99,12 @@ screen and (max-width: 300px)
 {
 .slprev, .slnext, .text {font-size: 11px}
 }
-
+#sidebox 
+{ 
+	background-color:#F0F0F0;
+	position:absolute; 
+	width:120px; 
+	top:433px; 
+	right:0;
+	padding: 3px 10px 
+}

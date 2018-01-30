@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 
 	<div class="ui section divider"></div>
+	<div id="sidebox">
+		<div id="data"></div>
+		<input type="text" id = "message"/><input type="button" id="sendBtn" value="보내기"/>
+	</div>
 
 	<!-- 푸터 -->
 	<div class="container footer">
