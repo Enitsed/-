@@ -20,6 +20,7 @@ public class MemDaoImp implements MemDAO {
 	@Override
 	public void register(MemDTO userDTO) {
 		sqlSession.insert("mem.insert", userDTO);
+		sqlSession.insert("mem.insertGrade",userDTO);
 	}
 
 	@Override

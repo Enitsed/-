@@ -54,6 +54,7 @@ public class MemberController {
 			mav.addObject("resultSignUp", true);
 		} catch (Exception e) {
 			// 회원가입 실패시
+			e.printStackTrace();
 			mav.addObject("resultSignUp", false);
 		}
 		/*

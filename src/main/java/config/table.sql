@@ -32,6 +32,7 @@ create table grade(
 	--grade테이블의 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
 
+insert into grade (select mem_num, '기본' from mem where mem_id = 'asdasd')
 
 --select * from grade
 --drop table grade
