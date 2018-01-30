@@ -15,6 +15,11 @@
 			<div class="menu">
 			<c:if test="${not empty userDTO}">
 				<a class="item" href="myPage"><i class="edit icon"></i> 정보 수정</a> 
+				<c:if test="${userDTO.mem_id eq 'admin'}">
+				<form action="memInfo" method="post">
+					<input type="submit" class="item"/> <i class="setting icon"></i> 회원 정보
+				</form>
+				</c:if>
 			</c:if>
 			
 			</div>

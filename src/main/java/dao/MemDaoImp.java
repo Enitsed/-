@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.MemDTO;
@@ -43,6 +45,12 @@ public class MemDaoImp implements MemDAO {
 	@Override
 	public void updateInfo(MemDTO userDTO) {
 		sqlSession.update("mem.updateInfo",userDTO);
+	}
+
+	@Override
+	public List<MemDTO> memInfo(MemDTO userDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mem.memInfoList",userDTO);
 	}
 
 }

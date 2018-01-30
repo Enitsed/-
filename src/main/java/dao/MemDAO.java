@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import dto.MemDTO;
 
 public interface MemDAO {
@@ -15,4 +17,6 @@ public interface MemDAO {
 	public MemDTO findPw(MemDTO userDTO);
 	
 	public void updateInfo(MemDTO userDTO);
+	
+	public List<MemDTO> memInfo(MemDTO userDTO);
 }
