@@ -383,7 +383,44 @@ $(document).ready(function () {
 			}
 		}
 	});
+	
+	
+	// 게시판 글 카테고리 선택 검증
+	$('.form.boardWrite')
+	.form({
+	  on: 'blur',
+	  fields: {
+		  board_category: {
+	      identifier  : 'board_category',
+	      rules: [
+	        {
+	          type   : 'empty',
+	          prompt : '게시판 글 카테고리를 선택하세요.'
+	        }
+	      ]
+	    },
+      board_name: {
+          identifier  : 'board_name',
+          rules: [
+            {
+              type   : 'maxLength[20]',
+              prompt : '제목은 20자 이내로 작성하세요.'
+            }
+          ]
+        },
+        board_content: {
+          identifier  : 'board_content',
+          rules: [
+            {
+              type   : 'maxLength[500]',
+              prompt : '내용은 500자 이내로 작성하세요.'
+            }
+          ]
+        }
+	  }
+	});
 });
+
 
 
 	// <![CDATA[

@@ -1,5 +1,6 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,13 +21,13 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public int countProcess() {
-		return dao.count();
+	public int countProcess(Integer board_category) {
+		return dao.count(board_category);
 	}
 
 	@Override
-	public List<BoardDTO> listProcess(PageDTO pv) {
-		return dao.list(pv);
+	public List<BoardDTO> listProcess(HashMap<String, Integer> param) {
+		return dao.list(param);
 	}
 
 	@Override

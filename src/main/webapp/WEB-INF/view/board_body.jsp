@@ -8,16 +8,16 @@
 	
 		<div class="ui clearing segment">
 			<div class="ui four item menu">
-				<a class="item">
+				<a class="item" href="free?board_category=1">
 					공지사항
 				</a>
-				<a class="item">
+				<a class="item" href="free?board_category=2">
 					건의게시판
 				</a>
-				<a class="item">
+				<a class="item" href="free?board_category=3">
 					질문과답변
 				</a>
-				<a class="active item" href="free">
+				<a class="item" href="free?board_category=4">
 					자유게시판
 				</a>
 			</div>

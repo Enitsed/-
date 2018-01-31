@@ -5,17 +5,26 @@
 
 <mapper namespace="board">
 
-	<select id="count" resultType="int">
+	<select id="count" resultType="int" parameterType="java.lang.Integer">
 		select count(*) from board
+		<where>
+			<if test="value != null">
+				board_category = #{value}
+			</if>
+		</where>
 	</select>
 
-	<select id="list" resultType="dto.BoardDTO" parameterType="dto.PageDTO">
-   <![CDATA[
-     select b.* from
-     (select rownum as rm, a.*   from(
-     select * from board order by board_relnum desc, board_reply_step asc)a)b
-     where b.rm>=#{startRow} and b.rm <= #{endRow}
-	]]>
+	<select id="list" resultType="dto.BoardDTO" parameterType="java.util.HashMap">
+		select b.* from
+		(select rownum as rm, a.* from(
+		select * from board
+		<where>
+			<if test="board_category != null">
+				board_category = #{board_category}
+			</if>
+		</where>
+		order by board_relnum desc, board_reply_step asc)a)b
+		where b.rm between #{startRow} and #{endRow}
 	</select>
 
 	<update id="readCount" parameterType="int">
@@ -41,7 +50,7 @@
 	<!-- -->
 	<insert id="save" parameterType="dto.BoardDTO">
 		insert into
-		board(board_num,mem_num,board_writer,board_name,board_content,board_hits,board_relnum,board_reply_level,board_reply_step,board_date,board_reply_amount)
+		board(board_num,mem_num,board_writer,board_name,board_content,board_hits,board_relnum,board_reply_level,board_reply_step,board_date,board_reply_amount,board_category)
 		values(board_seq.nextval,#{mem_num},#{board_writer},#{board_name},#{board_content},0,
 		<choose>
 			<when test="board_relnum==0">
@@ -51,13 +60,14 @@
 				#{board_relnum}
 			</otherwise>
 		</choose>
-		,0,0,sysdate,0)
+		,0,0,sysdate,0,#{board_category})
 	</insert>
 
 	<update id="update" parameterType="dto.BoardDTO">
-		update board 
+		update board
 		set board_name=#{board_name}, board_content=#{board_content}
-		where board_num=#{board_num}
+		where
+		board_num=#{board_num}
 	</update>
 
 	<delete id="delete" parameterType="int">

@@ -1,16 +1,16 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import dto.BoardDTO;
-import dto.PageDTO;
 
 public interface BoardService {
-	public int countProcess();
+	public int countProcess(Integer board_category);
 
-	public List<BoardDTO> listProcess(PageDTO pv);
+	public List<BoardDTO> listProcess(HashMap<String, Integer> param);
 
 	public void insertProcess(BoardDTO dto);
 
