@@ -233,6 +233,8 @@ $(document).on('click','.like',like);
 
 <div class="ui container contents">
    <div class="ui segment">
+   
+	  <div class="ui top attached green label">박스 오피스 영화 리스트</div>
       <div class="ui link special cards four columns slide">
          <c:forEach var="i" items="${movie}">
             <div
@@ -321,7 +323,8 @@ $(document).on('click','.like',like);
    </div>
 
    <div class="ui segment">
-      <div class="ui items">
+		<div class="ui top attached green label">게시판 글 리스트</div>
+		<div class="ui items">
          <div class="item">
             <div class="image" style="width: 100px">
                <img src="resources/images/test.jpg">
@@ -353,12 +356,13 @@ $(document).on('click','.like',like);
             </div>
          </div>
       </div>
-      <div class="ui top right attached label green">
+      <div class="ui top right attached label green inverted button">
          <i class="far fa-hand-point-down"></i> &nbsp; 더 보기
       </div>
    </div>
 
    <div class="ui segment">
+	<div class="ui top attached green label">관련 뉴스기사</div>
       <c:forEach items="${list}" var="list">
          <div class="ui items">
             <div class="item">
