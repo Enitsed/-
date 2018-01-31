@@ -35,7 +35,7 @@
 	</update>
 	
 	<update id="memUpdate" parameterType="dto.MemDTO">
-		update grade set mem_grade=#{list.mem_grade} where mem_num=#{list.mem_num}
+		update grade set mem_grade=#{mem_grade} where mem_num=#{mem_num}
 	</update>
 	
 	<resultMap id="memInfo" type="dto.MemDTO">
