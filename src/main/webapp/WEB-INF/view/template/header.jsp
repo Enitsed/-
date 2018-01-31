@@ -3,10 +3,8 @@
 
 <!-- 헤더 -->
 	<div class="top">
-		<a href="main">
-			<h2 class="ui center aligned icon header">
-				<i class="circular users icon"></i> Final Project
-				<div class="sub header center aligned">영화 평점 사이트</div>
-			</h2>
-		</a>
+		<h2 class="ui center aligned icon header" onclick="location.href='main'">
+			<i class="circular users icon looping"></i> Final Project
+			<span class="sub header center aligned">영화 평점 사이트</span>
+		</h2>
 	</div>

@@ -3,6 +3,13 @@
 
 $(document).ready(function () {
 	"use strict";
+	
+	// 메인 헤더 아이콘 애니메이션
+	$('.circular.users.icon').transition({
+	    animation : 'pulse',
+	    duration  : '3s'
+	  });
+	
 	var currentPosition = parseInt($("#sidebox").css("top")); 
 	$(window).scroll(function() { 
 		var position = $(window).scrollTop(); 
