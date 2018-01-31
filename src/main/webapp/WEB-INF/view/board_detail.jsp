@@ -27,6 +27,15 @@
 							<div class="hidden content">삭제</div>
 						</div>
 					</c:if>
+					<c:if test="${userDTO.mem_id eq 'admin'}">
+						<div class="ui vertical animated fade inverted blue button"
+							onclick="location.href='boardDelete?num=${dto.board_num}&currentPage=${currentPage }'">
+							<div class="visible content">
+								<i class="trash icon"></i>
+							</div>
+							<div class="hidden content">삭제</div>
+						</div>
+					</c:if>
 
 					<c:url value="free" var="pageList">
 						<c:param name="currentPage" value="${currentPage }"></c:param>
