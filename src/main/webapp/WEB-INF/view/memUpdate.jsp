@@ -5,7 +5,7 @@
 <div class="ui container list">
 	<div class="ui tiny breadcrumb">
 		<a class="section">Home</a> <i class="right chevron icon divider"></i>
-		<div class="active section">회원정보</div>
+		<div class="active section">정보수정</div>
 	</div>
 </div>
 
@@ -20,15 +20,25 @@
 	<c:forEach var="list" items="${memList}">
 		<div class="field">
 			<input class="ui input" type="text" value="${list.mem_num}" disabled>
-			<input type="hidden" name="mem_id" value="${list.mem_num }">
+			<input type="hidden" name="mem_id" value="${list.mem_num}">
 			<input class="ui input" type="text" value="${list.mem_id}" disabled>
 			<input class="ui input" type="text" value="${list.mem_name}" disabled>
-			<input class="ui input" type="text" value="${list.mem_grade}" disabled>
+			<input class="ui input" type="text" name="mem_grade" value="${list.mem_grade}">
 		</div>
 	</c:forEach>
 	<div class="field">
 	</br>
-		<a class="ui button" href="memUpdate">수정</a>
-		<a class="ui button" href="http://localhost:8090/finalproject/main">취소</a>
+		<form action="memUpdateInfo" method="post">
+			<input class="ui button" type="submit" value="수정">
+			<a class="ui button" href="http://localhost:8090/finalproject/memInfo">취소</a>
+		</form>
+	</div>
+</div>
+
+<div class="ui tiny modal loginStatus">
+	<i class="close icon"></i>
+	<div class="ui header">회원정보수정</div>
+	<div class="actions">
+		<div class="ui tiny green button">닫기</div>
 	</div>
 </div>

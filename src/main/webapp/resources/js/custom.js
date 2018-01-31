@@ -34,6 +34,18 @@ $(document).ready(function () {
 	$('.findIdStatus .actions .button').on('click',function(){
 		$('.ui.tiny.modal.findIdStatus').modal('hide');
 	})
+	
+	//회원등급 수정 알림
+	if(memUpdateStatus != ""){
+		$('.memUpdateStatus .ui.header').text(memUpdateStatus);
+		$('.ui.tiny.modal.memUpdateStatus').modal('show');
+	}
+	
+	//회원등급 수정 닫기
+	$('.memUpdateStatus .actions .button').on('click',function(){
+		$('.ui.tiny.modal.memUpdateStatus').modal('hide');
+		$(location).attr('href', "http://localhost:8090/finalproject/main");
+	})
 
 	//회원정보 수정 알림
 	if(updateInfoStatus != ""){

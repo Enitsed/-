@@ -57,4 +57,10 @@ public class MemServiceImp implements MemService {
 		return dao.memInfo(userDTO);
 	}
 
+	@Override
+	public void memUpdate(MemDTO userDTO) {
+		dao.memUpdate(userDTO);
+		
+	}
+
 }
