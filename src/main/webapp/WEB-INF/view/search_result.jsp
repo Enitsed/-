@@ -3,14 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!-- 빵덩어리 -->
-<div class="ui container list">
-	<div class="ui tiny breadcrumb">
-		<a class="section">Home</a> <i class="right chevron icon divider"></i>
-		<div class="active section">검색결과</div>
-	</div>
-</div>
-
 <!--  -->
 
 <div class="ui container contents">
@@ -33,15 +25,16 @@
 								<input type="hidden" value="${i.movie_num}" />
 								<!-- 영화이미지 넣을자리 -->
 								<c:choose>
-						<c:when test="${i.movie_image eq '이미지 없음'}">
-							<img src="resources/images/no_image.png">
-						</c:when>
-						<c:otherwise>
-							<c:forTokens var="item" items="${i.movie_image}" delims="|" end="0">
-								<img src="${item}">
-							</c:forTokens>
-						</c:otherwise>
-					</c:choose>
+									<c:when test="${i.movie_image eq '이미지 없음'}">
+										<img src="resources/images/no_image.png">
+									</c:when>
+									<c:otherwise>
+										<c:forTokens var="item" items="${i.movie_image}" delims="|"
+											end="0">
+											<img src="${item}">
+										</c:forTokens>
+									</c:otherwise>
+								</c:choose>
 								<div class="ui dimmer">
 									<div class="ui content">
 										<div class="ui center">

@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-	<!-- 빵덩어리 -->
-	<div class="ui container list">
-		<div class="ui tiny breadcrumb">
-			<a class="section">Home</a> <i class="right chevron icon divider"></i>
-			<div class="active section">글 쓰기</div>
-		</div>
-	</div>
-    
+
    <div class="ui container">
    
 	<form class="ui form segment" action="boardWrite" method="post">

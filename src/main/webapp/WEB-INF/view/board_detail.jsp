@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 빵덩어리 -->
-<div class="ui container list">
-	<div class="ui tiny breadcrumb">
-		<a class="section">Home</a> <i class="right chevron icon divider"></i>
-		<div class="active section">자유게시판 상세보기</div>
-	</div>
-</div>
 
 <div class="ui segment">
 	<!-- 상세보기  -->

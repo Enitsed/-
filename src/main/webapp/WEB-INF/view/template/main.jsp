@@ -17,6 +17,14 @@
 <body>
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="menu" />
+	<!-- 빵덩어리 -->
+	<div class="ui container list">
+		<div class="ui tiny breadcrumb">
+			<a class="section" href="main">Home</a>
+			<i class="right chevron icon divider"></i>
+			<div class="active section"><tiles:getAsString name="title" /></div>
+		</div>
+	</div>
 	<tiles:insertAttribute name="body" />
 	<tiles:insertAttribute name="footer" />
 	<script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
