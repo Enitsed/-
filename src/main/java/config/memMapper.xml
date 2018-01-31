@@ -34,6 +34,10 @@
 		update mem set mem_pw=#{mem_pw},mem_name=#{mem_name},mem_email=#{mem_email},mem_address=#{mem_address} where mem_id=#{mem_id}
 	</update>
 	
+	<update id="memUpdate" parameterType="dto.MemDTO">
+		update grade set mem_grade=#{list.mem_grade} where mem_num=#{list.mem_num}
+	</update>
+	
 	<resultMap id="memInfo" type="dto.MemDTO">
 		<result property="mem_num" column="mem_num"/>
 		<result property="mem_id" column="mem_id"/>
