@@ -214,16 +214,6 @@ $(document).on('click','.like',like);
    
 </script>
 
-
-
-
-<!-- 빵덩어리 -->
-<div class="ui container list">
-   <div class="ui tiny breadcrumb">
-      <a class="section">Home</a> <i class="right chevron icon divider"></i>
-      <div class="active section">메인 페이지</div>
-   </div>
-</div>
 <!-- 동영상 -->
 <div class="ui fluid container video_clip" id="banner"
    data-vide-bg="resources/images/travel"
