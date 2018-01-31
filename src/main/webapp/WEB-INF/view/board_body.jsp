@@ -14,7 +14,20 @@
 	<div class="ui container">
 	
 		<div class="ui clearing segment">
-		
+			<div class="ui four item menu">
+				<a class="item">
+					공지사항
+				</a>
+				<a class="item">
+					건의게시판
+				</a>
+				<a class="item">
+					질문과답변
+				</a>
+				<a class="active item" href="free">
+					자유게시판
+				</a>
+			</div>
 			<table class="ui selectable celled padded table">
 				<thead>
 					<tr>

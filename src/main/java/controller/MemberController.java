@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -161,23 +162,25 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
-	public ModelAndView update(MemDTO userDTO) {
+	public ModelAndView update(MemDTO userDTO, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
 		service.updateProcess(userDTO);
 		if (userDTO != null) {
 			mav.addObject("updateInfoStatus", "회원정보를 수정하였습니다.");
+			session.setAttribute("userDTO", userDTO);
 		} else {
 			mav.addObject("updateInfoStatus", "회원정보 수정에 실패하였습니다.");
 		}
 		mav.setViewName("myPage");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/memInfo", method = RequestMethod.POST)
 	public ModelAndView memInfo(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
 		List<MemDTO> aList = service.memInfo(userDTO);
-		mav.addObject("memList",aList);
+		mav.addObject("memList", aList);
 		mav.setViewName("memInfoList");
 		return mav;
 	}

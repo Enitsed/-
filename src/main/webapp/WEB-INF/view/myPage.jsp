@@ -24,6 +24,7 @@
 		<div class="field">
 			<label>성별</label>
 			<input class="ui input" type="text" value="${userDTO.mem_sex}" disabled>
+			<input name="mem_sex" type="hidden" value="${userDTO.mem_sex}">
 		</div>
 		<div class="field">
 			<label>이름</label>

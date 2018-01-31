@@ -18,10 +18,12 @@
 				<div class="ui selection dropdown">
 					<div class="default text">Select</div>
 					<i class="dropdown icon"></i>
-					<input name="hidden-field" type="hidden">
+					<input name="board_category" type="hidden">
 					<div class="menu">
-						<div class="item" data-value="1">자유게시판</div>
-						<div class="item" data-value="2">건의게시판</div>
+						<div class="item" data-value="1">공지사항</div>
+						<div class="item" data-value="2">자유게시판</div>
+						<div class="item" data-value="3">건의게시판</div>
+						<div class="item" data-value="4">질문과답변</div>
 					</div>
 				</div>
 			</div>
