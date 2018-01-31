@@ -1,29 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-<body>
-<table border="1">
-	<tr>
-		<th>회원번호</th>
-		<th>아이디</th>
-		<th>이름</th>
-		<th>등급</th>
-	</tr>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 빵덩어리 -->
+<div class="ui container list">
+	<div class="ui tiny breadcrumb">
+		<a class="section">Home</a> <i class="right chevron icon divider"></i>
+		<div class="active section">회원정보</div>
+	</div>
+</div>
+
+<div class="ui container">
+	<div class="field">
+		<label>회원번호</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<label>아이디</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<label>이름</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<label>등급</label>
+	</div>
+
 	<c:forEach var="list" items="${memList}">
-	<tr>
-		<td>${list.mem_num}</td>
-		<td>${list.mem_id}</td>
-		<td>${list.mem_name}</td>
-		<td>${list.mem_grade}</td>
-	</tr>
+		<div class="field">
+			<input class="ui input" type="text" value="${list.mem_num}" disabled>
+			<input type="hidden" name="mem_id" value="${list.mem_num }">
+			<input class="ui input" type="text" value="${list.mem_id}" disabled>
+			<input class="ui input" type="text" value="${list.mem_name}" disabled>
+			<input class="ui input" type="text" value="${list.mem_grade}" disabled>
+		</div>
 	</c:forEach>
-</table>
-</body>
-</html>
+</div>
