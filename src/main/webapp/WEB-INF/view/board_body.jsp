@@ -7,7 +7,7 @@
 	<div class="ui container">
 	
 		<div class="ui clearing segment">
-			<div class="ui four item menu">
+			<div class="ui four item menu boardCategoryMenu">
 				<a class="item" href="free?board_category=1">
 					공지사항
 				</a>
@@ -98,3 +98,8 @@
 		</div>
 		
 	</div>
+	
+	
+<script>
+	var board_category = '${board_category}';
+</script>

@@ -18,6 +18,11 @@ $(document).ready(function () {
 			},1000); 
 		});
 
+	// http://localhost:8090/finalproject/free
+	var boardUrl = document.location.href.slice(0, 39);
+	if(boardUrl.match(/free/gi)){
+		$('.boardCategoryMenu').children().eq(board_category-1).addClass("active");
+	}
 	
 	// 회원가입 성공 여부 알림
 	if (document.location.href == "http://localhost:8090/finalproject/signUp") {
@@ -46,11 +51,13 @@ $(document).ready(function () {
 		$('.ui.tiny.modal.memUpdateStatus').modal('hide');
 		$(location).attr('href', "http://localhost:8090/finalproject/main");
 	})
-
+	
 	//회원정보 수정 알림
-	if(updateInfoStatus != ""){
-		$('.updateInfoStatus .ui.header').text(updateInfoStatus);
-		$('.ui.tiny.modal.updateInfoStatus').modal('show');
+	if(document.location.href == "http://localhost:8090/finalproject/memUpdate"){
+		if(updateInfoStatus != ""){
+			$('.updateInfoStatus .ui.header').text(updateInfoStatus);
+			$('.ui.tiny.modal.updateInfoStatus').modal('show');
+		}
 	}
 	
 	//회원정보 수정 닫기
