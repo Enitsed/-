@@ -21,7 +21,9 @@ $(document).ready(function () {
 	// http://localhost:8090/finalproject/free
 	var boardUrl = document.location.href.slice(0, 39);
 	if(boardUrl.match(/free/gi)){
-		$('.boardCategoryMenu').children().eq(board_category-1).addClass("active");
+		if(board_category != 0){
+			$('.boardCategoryMenu').children().eq(board_category-1).addClass("active");
+		}
 	}
 	
 	// 회원가입 성공 여부 알림
