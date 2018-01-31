@@ -14,11 +14,11 @@
 			더 보기 <i class="dropdown icon"></i>
 			<div class="menu">
 			<c:if test="${not empty userDTO}">
-				<a class="item" href="myPage"><i class="edit icon"></i> 정보 수정</a> 
+				<a class="item" href="myPage"><i class="edit icon"></i>정보 수정</a> 
 				<c:if test="${userDTO.mem_id eq 'admin'}">
-				<form action="memInfo" method="post">
-					<i class="setting icon"><input type="submit" class="item" value="회원 정보"/></i>
-				</form>
+					<a class="item" href="memInfo">
+						<i class="setting icon"></i>회원 정보
+					</a>
 				</c:if>
 			</c:if>
 			

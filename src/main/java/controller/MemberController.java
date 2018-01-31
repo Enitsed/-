@@ -176,7 +176,7 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/memInfo", method = RequestMethod.POST)
+	@RequestMapping("/memInfo")
 	public ModelAndView memInfo(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
 		List<MemDTO> aList = service.memInfo(userDTO);
