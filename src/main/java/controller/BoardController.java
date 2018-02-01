@@ -18,6 +18,7 @@ import service.BoardService;
 @Controller
 public class BoardController {
 	BoardService service;
+	
 	private int currentPage;
 	private PageDTO pdto;
 

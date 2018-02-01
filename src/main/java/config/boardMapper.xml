@@ -74,5 +74,16 @@
 		delete from board where
 		board_num=#{num}
 	</delete>
+	
+	<select id="searchList" parameterType="String" resultType="dto.BoardDTO">
+		select * from
+		board where board_name like '%'||#{keyword}||'%'
+	</select>
+	
+	<select id="searchCount" parameterType="String" resultType="int">
+		select count(*) from
+		board where board_name like '%'||#{keyword}||'%'
+	</select>
+	
 
 </mapper>

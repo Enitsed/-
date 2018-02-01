@@ -23,4 +23,9 @@ public interface BoardService {
 	public void deleteProcess(int num, HttpServletRequest request);
 
 	public BoardDTO updateSelectProcess(int num);
+	
+	public List<BoardDTO> searchListProcess(String keyword);
+	
+	public int searchCountProcess(String keyword);
+	
 }

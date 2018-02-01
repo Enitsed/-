@@ -64,4 +64,14 @@ public class BoardServiceImp implements BoardService {
 		dao.delete(num);
 	}
 
+	@Override
+	public List<BoardDTO> searchListProcess(String keyword) {
+		return dao.searchList(keyword);
+	}
+
+	@Override
+	public int searchCountProcess(String keyword) {
+		return dao.searchCount(keyword);
+	}
+
 }

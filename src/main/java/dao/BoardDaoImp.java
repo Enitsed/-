@@ -64,4 +64,20 @@ public class BoardDaoImp implements BoardDAO {
 		return sqlSession.selectOne("board.content", num);
 	}
 
+	@Override
+	public List<BoardDTO> searchList(String keyword) {
+
+		return sqlSession.selectList("board.searchList", keyword);
+	}
+
+	@Override
+	public int searchCount(String keyword) {
+		return sqlSession.selectOne("board.searchCount", keyword);
+	}
+
+	
+
+
+	
+
 }
