@@ -6,12 +6,13 @@
 <!--  -->
 
 <div class="ui container contents">
-	<table class="ui celled padded table">
-		
+	<table class="ui selectable celled padded table">
+		<thead>
 			<tr align="center">
 				<th>'${map.keyword }' 에 대한 영화 검색결과 (${map.searchcount }개)</th>
 			</tr>
-		
+		</thead>
+		<tbody>
 			<tr>
 				<td>
 
@@ -78,18 +79,19 @@
 
 				</td>
 			</tr>
-
+		</tbody>
 	</table>
 
 	
 			
 			
-			<table class="ui celled padded table">
-					<tr align="center">
-						<th>'${map.keyword }' 에 대한 자유게시판 검색결과 (${map.boardcount }개)</th>
-					</tr>
-			</table>
 			<table class="ui selectable celled padded table">
+			<thead>
+					<tr align="center">
+						<th colspan="4">'${map.keyword }' 에 대한 자유게시판 검색결과 (${map.boardcount }개)</th>
+					</tr>
+			</thead>
+			<thead>
 					<tr>
 						<th class="center aligned two wide">작성일</th>
 						<th class="center aligned two wide">작성자</th>
@@ -97,8 +99,8 @@
 						<th class="center aligned two wide">조회 수</th>
 	
 					</tr>
-				
-				
+			</thead>
+				<tbody>
 					<c:forEach items="${map.searchbod }" var="boardDTO">
 						<tr>
 							<td class="center aligned">
@@ -121,6 +123,7 @@
 							</td>
 						</tr>
 					</c:forEach>
+					</tbody>
 			</table>
 			
 		<c:if test="${pv.startPage > 1}">
