@@ -12,7 +12,7 @@
 
 	<c:forEach var="list" items="${memList}">
 		<div class="field">
-			<input class="ui input" type="text" value="${list.mem_num}" disabled>
+			<a class="ui input" href="memUpdateInfo?mem_num=${list.mem_num}">${list.mem_num}</a>
 			<input type="hidden" name="mem_num" value="${list.mem_num}">
 			<input class="ui input" type="text" value="${list.mem_id}" disabled>
 			<input class="ui input" type="text" value="${list.mem_name}" disabled>
@@ -21,7 +21,7 @@
 	</c:forEach>
 	<div class="field">
 	</br>
-		<a class="ui button" href="memUpdate">수정</a>
+		<!-- <a class="ui button" href="memUpdate">수정</a> -->
 		<a class="ui button" href="http://localhost:8090/finalproject/main">취소</a>
 	</div>
 </div>

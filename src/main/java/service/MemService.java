@@ -26,4 +26,6 @@ public interface MemService {
 	public List<MemDTO> memInfo(MemDTO userDTO);
 	
 	public void memUpdate(MemDTO userDTO);
+	
+	public MemDTO mList(int mem_num);
 }

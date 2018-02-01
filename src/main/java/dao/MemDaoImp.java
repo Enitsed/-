@@ -1,7 +1,5 @@
 package dao;
 
-import java.util.HashMap;
-
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -52,15 +50,18 @@ public class MemDaoImp implements MemDAO {
 
 	@Override
 	public List<MemDTO> memInfo(MemDTO userDTO) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("mem.memInfoList",userDTO);
 	}
 
 	@Override
 	public void memUpdate(MemDTO userDTO) {
-		System.out.println("DaoImp : "+userDTO.getMem_num() +"/"+ userDTO.getMem_grade());
 		sqlSession.update("mem.memUpdate",userDTO);
 		
+	}
+
+	@Override
+	public MemDTO mList(int mem_num) {
+		return sqlSession.selectOne("mem.mList",mem_num);
 	}
 
 }

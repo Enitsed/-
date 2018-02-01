@@ -195,12 +195,22 @@ public class MemberController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/memUpdateInfo", method = RequestMethod.POST)
+	@RequestMapping(value="/memUpdateInfo",method=RequestMethod.GET)
+	public ModelAndView memL(MemDTO userDTO, HttpServletRequest request, int mem_num) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		List<MemDTO> aList = service.memInfo(userDTO);
+		MemDTO user = service.mList(mem_num);
+		session.setAttribute("memInfo", user);
+		mav.addObject("memList", aList);
+		mav.setViewName("memUpdate");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/memUpdateInfo",method=RequestMethod.POST)
 	public ModelAndView memUpdate(MemDTO memList, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		List<MemDTO> aList = service.memInfo(memList);
-		mav.addObject("memList", aList);
 		service.memUpdate(memList);
 		if (memList != null) {
 			mav.addObject("memUpdateStatus", "등급정보를 수정하였습니다.");
@@ -208,7 +218,7 @@ public class MemberController {
 		} else {
 			mav.addObject("memUpdateStatus", "등급정보 수정에 실패하였습니다.");
 		}
-		mav.setViewName("memUpdate");
+		mav.setViewName("redirect:/main");
 		return mav;
 	}
 }
