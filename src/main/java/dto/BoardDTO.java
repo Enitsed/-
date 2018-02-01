@@ -14,6 +14,11 @@ public class BoardDTO {
 	private int board_reply_step;
 	private Date board_date;
 	private int board_reply_amount;
+	private Integer board_category;
+
+	public BoardDTO() {
+
+	}
 
 	public int getBoard_relnum() {
 		return board_relnum;
@@ -101,6 +106,14 @@ public class BoardDTO {
 
 	public void setBoard_reply_amount(int board_reply_amount) {
 		this.board_reply_amount = board_reply_amount;
+	}
+
+	public Integer getBoard_category() {
+		return board_category;
+	}
+
+	public void setBoard_category(Integer board_category) {
+		this.board_category = board_category;
 	}
 
 }

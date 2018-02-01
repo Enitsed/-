@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.MemDTO;
@@ -18,6 +20,7 @@ public class MemDaoImp implements MemDAO {
 	@Override
 	public void register(MemDTO userDTO) {
 		sqlSession.insert("mem.insert", userDTO);
+		sqlSession.insert("mem.insertGrade",userDTO);
 	}
 
 	@Override
@@ -43,6 +46,22 @@ public class MemDaoImp implements MemDAO {
 	@Override
 	public void updateInfo(MemDTO userDTO) {
 		sqlSession.update("mem.updateInfo",userDTO);
+	}
+
+	@Override
+	public List<MemDTO> memInfo(MemDTO userDTO) {
+		return sqlSession.selectList("mem.memInfoList",userDTO);
+	}
+
+	@Override
+	public void memUpdate(MemDTO userDTO) {
+		sqlSession.update("mem.memUpdate",userDTO);
+		
+	}
+
+	@Override
+	public MemDTO mList(int mem_num) {
+		return sqlSession.selectOne("mem.mList",mem_num);
 	}
 
 }

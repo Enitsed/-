@@ -12,6 +12,7 @@ import dto.CategoryDTO;
 import dto.CommentDTO;
 import dto.DirectorDTO;
 import dto.LikeDTO;
+import dto.MoreCommentDTO;
 import dto.MovieDTO;
 
 public class MovieDaoImp implements MovieDAO {
@@ -99,6 +100,11 @@ public class MovieDaoImp implements MovieDAO {
 	}
 
 	@Override
+	public void deleteCommentProcess(int comment_num) {
+		 sqlSession.delete("movie.commentdelete",comment_num);
+	}
+
+
 	public void addRating(int member_num, int movie_num, int rating) {
 		Map<String, Integer> map = new HashMap();
 		map.put("member_num", member_num);
@@ -178,5 +184,10 @@ public class MovieDaoImp implements MovieDAO {
 		List<CategoryDTO> categoryList = sqlSession.selectList("movie.category", dto.getMovie_num());
 		dto.setCategory(categoryList);
 		return dto;
+	}
+
+	@Override
+	public List<CommentDTO> morecommentListProcess(MoreCommentDTO dto) {
+		return sqlSession.selectList("movie.morecomment",dto);
 	}
 }

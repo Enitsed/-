@@ -6,10 +6,14 @@
 <mapper namespace="mem">
 
 	<insert id="insert" parameterType="dto.MemDTO">
-		insert into mem
+		insert into mem(mem_num,mem_id,mem_pw,mem_sex,mem_name,mem_email,mem_address)
 		values(mem_seq.nextval,#{mem_id},#{mem_pw},#{mem_sex},#{mem_name},#{mem_email},#{mem_address})
 	</insert>
 
+	<insert id="insertGrade" parameterType="dto.MemDTO">
+		insert into grade (select mem_num, '기본' from mem where mem_id = #{mem_id})
+	</insert>
+	
 	<select id="isMemberExist" parameterType="String" resultType="java.lang.Integer">
 		SELECT NVL2(mem_id, 1, 0) FROM mem where mem_id = #{mem_id}
 	</select>
@@ -29,5 +33,24 @@
 	<update id="updateInfo" parameterType="dto.MemDTO">
 		update mem set mem_pw=#{mem_pw},mem_name=#{mem_name},mem_email=#{mem_email},mem_address=#{mem_address} where mem_id=#{mem_id}
 	</update>
+	
+	<update id="memUpdate" parameterType="dto.MemDTO">
+		update grade set mem_grade=#{mem_grade} where mem_num=#{mem_num}
+	</update>
+	
+	<resultMap id="memInfo" type="dto.MemDTO">
+		<result property="mem_num" column="mem_num"/>
+		<result property="mem_id" column="mem_id"/>
+		<result property="mem_name" column="mem_name"/>
+		<result property="mem_grade" column="mem_grade"/>
+	</resultMap>
 
+
+	<select id="memInfoList" resultMap="memInfo">
+		select m.mem_num, m.mem_id, m.mem_name, g.mem_grade from mem m,grade g where m.mem_num=g.mem_num
+	</select>
+	
+	<select id="mList" parameterType="Integer" resultMap="memInfo">
+		select m.mem_num, m.mem_id, m.mem_name, g.mem_grade from mem m,grade g where m.mem_num=g.mem_num and m.mem_num=#{mem_num}
+	</select>
 </mapper>

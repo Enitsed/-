@@ -6,7 +6,7 @@
 <div class="ui attached stackable menu">
 	<div class="ui container">
 		<a class="item" href="main"> <i class="home icon"></i> Home
-		</a> <a class="item" href="movieInfoList"> <i class="grid layout icon"></i>
+		</a> <a class="item" href="movieInfoList"> <i class="grid video icon"></i>
 			영화정보
 		</a> <a class="item" href="free"> <i class="grid layout icon"></i> 게시판
 		</a>
@@ -14,7 +14,12 @@
 			더 보기 <i class="dropdown icon"></i>
 			<div class="menu">
 			<c:if test="${not empty userDTO}">
-				<a class="item" href="myPage"><i class="edit icon"></i> 정보 수정</a> 
+				<a class="item" href="myPage"><i class="edit icon"></i>정보 수정</a> 
+				<c:if test="${userDTO.mem_id eq 'admin'}">
+					<a class="item" href="memInfo">
+						<i class="setting icon"></i>회원 정보
+					</a>
+				</c:if>
 			</c:if>
 			
 			</div>
@@ -100,4 +105,7 @@
 	var findIdStatus = "${findIdStatus}";
 	var findPwStatus = "${findPwStatus}";
 	var updateInfoStatus = "${updateInfoStatus}";
+	var memUpdateStatus = "${memUpdateStatus}";
+	var session_id = '${userDTO.mem_id}';
+	var session_num = '${userDTO.mem_num}';
 </script>

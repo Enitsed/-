@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -53,6 +57,7 @@ public class MemberController {
 			mav.addObject("resultSignUp", true);
 		} catch (Exception e) {
 			// 회원가입 실패시
+			e.printStackTrace();
 			mav.addObject("resultSignUp", false);
 		}
 		/*
@@ -158,16 +163,63 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping(value = "updateInfo", method = RequestMethod.POST)
-	public ModelAndView update(MemDTO userDTO) {
+	@RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
+	public ModelAndView update(MemDTO userDTO, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
 		service.updateProcess(userDTO);
 		if (userDTO != null) {
 			mav.addObject("updateInfoStatus", "회원정보를 수정하였습니다.");
+			session.setAttribute("userDTO", userDTO);
 		} else {
 			mav.addObject("updateInfoStatus", "회원정보 수정에 실패하였습니다.");
 		}
 		mav.setViewName("myPage");
+		return mav;
+	}
+
+	@RequestMapping("/memInfo")
+	public ModelAndView memInfo(MemDTO userDTO) {
+		ModelAndView mav = new ModelAndView();
+		List<MemDTO> aList = service.memInfo(userDTO);
+		mav.addObject("memList", aList);
+		mav.setViewName("memInfoList");
+		return mav;
+	}
+	
+	@RequestMapping("/memUpdate")
+	public ModelAndView memUpdate(MemDTO userDTO) {
+		ModelAndView mav = new ModelAndView();
+		List<MemDTO> aList = service.memInfo(userDTO);
+		mav.addObject("memList", aList);
+		mav.setViewName("memUpdate");
+		return mav;
+	}
+	
+	@RequestMapping(value="/memUpdateInfo",method=RequestMethod.GET)
+	public ModelAndView memL(MemDTO userDTO, HttpServletRequest request, int mem_num) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		List<MemDTO> aList = service.memInfo(userDTO);
+		MemDTO user = service.mList(mem_num);
+		session.setAttribute("memInfo", user);
+		mav.addObject("memList", aList);
+		mav.setViewName("memUpdate");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/memUpdateInfo",method=RequestMethod.POST)
+	public ModelAndView memUpdate(MemDTO memList, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		service.memUpdate(memList);
+		if (memList != null) {
+			mav.addObject("memUpdateStatus", "등급정보를 수정하였습니다.");
+			session.setAttribute("list", memList);
+		} else {
+			mav.addObject("memUpdateStatus", "등급정보 수정에 실패하였습니다.");
+		}
+		mav.setViewName("redirect:/main");
 		return mav;
 	}
 }

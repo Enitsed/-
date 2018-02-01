@@ -18,6 +18,8 @@ import dto.CommentDTO;
 import dto.LikeDTO;
 import dto.MemDTO;
 import dto.MovieDTO;
+
+import dto.MoreCommentDTO;
 import service.MovieService;
 
 // http://localhost:8090/finalproject/main
@@ -110,7 +112,21 @@ public class HelloController {
 	@RequestMapping(value="insertcomment",method=RequestMethod.GET)
 	public @ResponseBody List<CommentDTO> insertcomment(CommentDTO dto) {
 		movieservice.insertCommentProcess(dto);
-		System.out.println("영화번호:"+dto.getMovie_num());
 		return movieservice.commentListProcess(dto.getMovie_num());
 	}
+	
+	@RequestMapping(value="deletecomment",method=RequestMethod.GET)
+	public @ResponseBody List<CommentDTO> deleteComment(int comment_num, int movie_num){
+		movieservice.deleteCommentProcess(comment_num);
+		return movieservice.commentListProcess(movie_num);
+	}
+	
+	@RequestMapping(value="morecomment", method=RequestMethod.GET)
+	public @ResponseBody List<CommentDTO> morecomment(MoreCommentDTO dto){
+		
+		return movieservice.moreCommentProcess(dto);
+	}
+	
+>>>>>>> 3b11a6d75c1833158e2045e6fcdf2c4d0dc3743b
 }
+

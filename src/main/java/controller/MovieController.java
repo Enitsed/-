@@ -11,13 +11,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dto.BoardDTO;
 import dto.MovieDTO;
+import dto.PageDTO;
+import service.BoardService;
 import service.MovieService;
 
 @Controller
 public class MovieController {
 	MovieService movieservice;
-
+	BoardService boardservice;
+	private PageDTO pdto;
+	private int currentPage;
+	
+	public void setBoardservice(BoardService boardservice) {
+		this.boardservice = boardservice;
+	}
+	
 	public void setMovieservice(MovieService movieservice) {
 		this.movieservice = movieservice;
 	}
@@ -37,16 +47,31 @@ public class MovieController {
 	}
 	
 	@RequestMapping(value = "/searchResult", method = RequestMethod.POST)
-	public ModelAndView movieSearchResult(@RequestParam(defaultValue = "") String keyword) {
+	public ModelAndView movieSearchResult(@RequestParam(defaultValue = "") String keyword, PageDTO pv) {
 		ModelAndView mav = new ModelAndView();
-		List<MovieDTO> searchlist = movieservice.movieListProcess(keyword);
+		List<MovieDTO> searchmov = movieservice.movieListProcess(keyword);
+		List<BoardDTO> searchbod = boardservice.searchListProcess(keyword);
 		int searchcount = movieservice.searchCountProcess(keyword);
+		int totalRecord = boardservice.searchCountProcess(keyword);
+		if (totalRecord >= 1) {
+			if (pv.getCurrentPage() == 0) {
+				currentPage = 1;
+			} else {
+				currentPage = pv.getCurrentPage();
+			}
+			pdto = new PageDTO(currentPage, totalRecord);
+			mav.addObject("pv", pdto);
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("searchlist", searchlist);
+		map.put("searchbod", searchbod);
+		map.put("searchmov", searchmov);
 		map.put("keyword", keyword);
 		map.put("searchcount", searchcount);
+		map.put("boardcount", totalRecord);
 		mav.addObject("map", map);
 		mav.setViewName("search_result");
+		
 		return mav;	
 	}
 	

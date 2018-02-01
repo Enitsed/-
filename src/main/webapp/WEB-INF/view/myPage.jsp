@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<!-- 빵덩어리 -->
-<div class="ui container list">
-	<div class="ui tiny breadcrumb">
-		<a class="section">Home</a> <i class="right chevron icon divider"></i>
-		<div class="active section">회원정보 수정</div>
-	</div>
-</div>
 
 <!-- 몸통 -->
 <div class="ui container">
@@ -24,6 +16,7 @@
 		<div class="field">
 			<label>성별</label>
 			<input class="ui input" type="text" value="${userDTO.mem_sex}" disabled>
+			<input name="mem_sex" type="hidden" value="${userDTO.mem_sex}">
 		</div>
 		<div class="field">
 			<label>이름</label>

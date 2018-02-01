@@ -8,147 +8,148 @@
       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-   <mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:annotation-driven></mvc:annotation-driven>
 
-   <bean id="dataSource"
-      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-      <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-      <property name="url" value="jdbc:oracle:thin://@127.0.0.1:1521:xe" />
-      <property name="username" value="hr" />
-      <property name="password" value="a1234" />
-   </bean>
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin://@127.0.0.1:1521:xe" />
+		<property name="username" value="hr" />
+		<property name="password" value="a1234" />
+	</bean>
 
-   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-      <property name="dataSource" ref="dataSource" />
-      <!-- <property name="configLocation" value="classpath:config/configuration.xml"/> -->
-      <property name="mapperLocations">
-         <list>
-            <value>classpath:config/memMapper.xml</value>
-            <value>classpath:config/movieMapper.xml</value>
-            <value>classpath:config/boardMapper.xml</value>
-         </list>
-      </property>
-   </bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="configLocation" value="classpath:config/configuration.xml"/> -->
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:config/memMapper.xml</value>
+				<value>classpath:config/movieMapper.xml</value>
+				<value>classpath:config/boardMapper.xml</value>
+			</list>
+		</property>
+	</bean>
 
-   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-      <constructor-arg ref="sqlSessionFactory" />
-   </bean>
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
 
-   <!-- [4]TransactionManager 빈 선언 -->
-   <bean id="transactionManager"
-      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-      <property name="dataSource" ref="dataSource" />
-   </bean>
+	<!-- [4]TransactionManager 빈 선언 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 
-   <tx:advice id="txAdvice" transaction-manager="transactionManager">
-      <tx:attributes>
-         <tx:method name="*Process" rollback-for="java.lang.Exception" />
-      </tx:attributes>
-   </tx:advice>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*Process" rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
 
-   <!-- [6] 트랜잭션으로 처리할 메소드에 transactionManager 설정 -->
-   <aop:config>
-      <aop:pointcut expression="execution(* service.MemServiceImp.*Process(..))"
-         id="memPointCut" />
-      <aop:advisor advice-ref="txAdvice" pointcut-ref="memPointCut" />
-   </aop:config>
+	<!-- [6] 트랜잭션으로 처리할 메소드에 transactionManager 설정 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* service.MemServiceImp.*Process(..))"
+			id="memPointCut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="memPointCut" />
+	</aop:config>
 
-   <aop:config>
-      <aop:pointcut expression="execution(* service.MovieServiceImp.*Process(..))"
-         id="moviePointCut" />
-      <aop:advisor advice-ref="txAdvice" pointcut-ref="moviePointCut" />
-   </aop:config>
+	<aop:config>
+		<aop:pointcut expression="execution(* service.MovieServiceImp.*Process(..))"
+			id="moviePointCut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="moviePointCut" />
+	</aop:config>
 
-   <aop:config>
-      <aop:pointcut expression="execution(* service.BoardServiceImp.*Process(..))"
-         id="boardPointCut" />
-      <aop:advisor advice-ref="txAdvice" pointcut-ref="boardPointCut" />
-   </aop:config>
+	<aop:config>
+		<aop:pointcut expression="execution(* service.BoardServiceImp.*Process(..))"
+			id="boardPointCut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="boardPointCut" />
+	</aop:config>
 
-   <!-- [7] DAO 빈 선언 -->
-   <bean id="memDao" class="dao.MemDaoImp">
-      <property name="sqlSession" ref="sqlSession" />
-   </bean>
+	<!-- [7] DAO 빈 선언 -->
+	<bean id="memDao" class="dao.MemDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
 
-   <bean id="movieDao" class="dao.MovieDaoImp">
-      <property name="sqlSession" ref="sqlSession" />
-   </bean>
+	<bean id="movieDao" class="dao.MovieDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
 
-   <bean id="boardDao" class="dao.BoardDaoImp">
-      <property name="sqlSession" ref="sqlSession" />
-   </bean>
+	<bean id="boardDao" class="dao.BoardDaoImp">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
 
-   <!-- [8] Service 빈 선언 -->
-   <bean id="memSvc" class="service.MemServiceImp">
-      <property name="dao" ref="memDao" />
-   </bean>
+	<!-- [8] Service 빈 선언 -->
+	<bean id="memSvc" class="service.MemServiceImp">
+		<property name="dao" ref="memDao" />
+	</bean>
 
-   <bean id="movieSvc" class="service.MovieServiceImp">
-      <property name="dao" ref="movieDao" />
-   </bean>
+	<bean id="movieSvc" class="service.MovieServiceImp">
+		<property name="dao" ref="movieDao" />
+	</bean>
 
-   <bean id="boardSvc" class="service.BoardServiceImp">
-      <property name="dao" ref="boardDao" />
-   </bean>
+	<bean id="boardSvc" class="service.BoardServiceImp">
+		<property name="dao" ref="boardDao" />
+	</bean>
 
-   <!-- [10] View -->
-   <bean id="jsonView"
-      class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+	<!-- [10] View -->
+	<bean id="jsonView"
+		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
 
-   <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-      <property name="order" value="1" />
-   </bean>
-
-
-   <!-- controller -->
-   <!-- 메인 컨트롤러 -->
-   <bean class="controller.HelloController">
-      <property name="movieservice" ref="movieSvc" />
-   </bean>
-
-   <!-- 무비 컨트롤러 -->
-   <bean class="controller.MovieController">
-      <property name="movieservice" ref="movieSvc" />
-   </bean>
-
-   <!-- 게시판 컨트롤러 -->
-   <bean class="controller.BoardController">
-      <property name="service" ref="boardSvc"></property>
-   </bean>
-
-   <!-- 멤버 컨트롤러 -->
-   <bean class="controller.MemberController">
-      <property name="service" ref="memSvc" />
-      <property name="movieservice" ref="movieSvc" />
-   </bean>
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1" />
+	</bean>
 
 
-   <!-- tiles -->
-   <bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
-      <property name="definitions">
-         <list>
-            <value>/WEB-INF/mainTiles.xml</value>
-            <value>/WEB-INF/boardTiles.xml</value>
-            <value>/WEB-INF/memberTiles.xml</value>
-         </list>
-      </property>
-   </bean>
+	<!-- controller -->
+	<!-- 메인 컨트롤러 -->
+	<bean class="controller.HelloController">
+		<property name="movieservice" ref="movieSvc" />
+	</bean>
 
-   <!-- ViewResolver -->
-   <bean
-      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-      <property name="prefix" value="/WEB-INF/view/" />
-      <property name="suffix" value=".jsp" />
-      <property name="order" value="2" />
-   </bean>
+	<!-- 무비 컨트롤러 -->
+	<bean class="controller.MovieController">
+		<property name="movieservice" ref="movieSvc" />
+		<property name="boardservice" ref="boardSvc"></property>
+	</bean>
 
-   <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-      <property name="viewClass"
-         value="org.springframework.web.servlet.view.tiles2.TilesView" />
-      <property name="order" value="1" />
-   </bean>
+	<!-- 게시판 컨트롤러 -->
+	<bean class="controller.BoardController">
+		<property name="service" ref="boardSvc"></property>
+	</bean>
 
-   <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-      <property name="order" value="1" />
-   </bean>
+	<!-- 멤버 컨트롤러 -->
+	<bean class="controller.MemberController">
+		<property name="service" ref="memSvc" />
+		<property name="movieservice" ref="movieSvc" />
+	</bean>
+
+
+	<!-- tiles -->
+	<bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/mainTiles.xml</value>
+				<value>/WEB-INF/boardTiles.xml</value>
+				<value>/WEB-INF/memberTiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ViewResolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="2" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles2.TilesView" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1" />
+	</bean>
 </beans>

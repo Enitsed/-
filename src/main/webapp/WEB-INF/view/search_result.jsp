@@ -3,45 +3,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!-- 빵덩어리 -->
-<div class="ui container list">
-	<div class="ui tiny breadcrumb">
-		<a class="section">Home</a> <i class="right chevron icon divider"></i>
-		<div class="active section">검색결과</div>
-	</div>
-</div>
-
 <!--  -->
 
 <div class="ui container contents">
-	<table class="ui celled padded table">
-
-		<thead align="center">
-			<tr>
-				<th>'${map.keyword }' 에 대한 검색결과 (${map.searchcount }개)</th>
+	<table class="ui selectable celled padded table">
+		<thead>
+			<tr align="center">
+				<th>'${map.keyword }' 에 대한 영화 검색결과 (${map.searchcount }개)</th>
 			</tr>
 		</thead>
-
 		<tbody>
 			<tr>
 				<td>
 
 					<div class="ui link special cards four columns">
-						<c:forEach var="i" items="${map.searchlist}">
+						<c:forEach var="i" items="${map.searchmov}">
 							<div class="card column blurring dimmable image main_movie">
 								<!-- 영화 번호 넣을자리 -->
 								<input type="hidden" value="${i.movie_num}" />
 								<!-- 영화이미지 넣을자리 -->
 								<c:choose>
-						<c:when test="${i.movie_image eq '이미지 없음'}">
-							<img src="resources/images/travel.jpg">
-						</c:when>
-						<c:otherwise>
-							<c:forTokens var="item" items="${i.movie_image}" delims="|" end="0">
-								<img src="${item}">
-							</c:forTokens>
-						</c:otherwise>
-					</c:choose>
+									<c:when test="${i.movie_image eq '이미지 없음'}">
+										<img src="resources/images/no_image.png">
+									</c:when>
+									<c:otherwise>
+										<c:forTokens var="item" items="${i.movie_image}" delims="|"
+											end="0">
+											<img src="${item}">
+										</c:forTokens>
+									</c:otherwise>
+								</c:choose>
 								<div class="ui dimmer">
 									<div class="ui content">
 										<div class="ui center">
@@ -89,8 +80,75 @@
 				</td>
 			</tr>
 		</tbody>
-		<tfoot>
-		</tfoot>
 	</table>
 
+	
+			
+			
+			<table class="ui selectable celled padded table">
+			<thead>
+					<tr align="center">
+						<th colspan="4">'${map.keyword }' 에 대한 자유게시판 검색결과 (${map.boardcount }개)</th>
+					</tr>
+			</thead>
+			<thead>
+					<tr>
+						<th class="center aligned two wide">작성일</th>
+						<th class="center aligned two wide">작성자</th>
+						<th class="center aligned ten wide">제목</th>
+						<th class="center aligned two wide">조회 수</th>
+	
+					</tr>
+			</thead>
+				<tbody>
+					<c:forEach items="${map.searchbod }" var="boardDTO">
+						<tr>
+							<td class="center aligned">
+								<span>${boardDTO.board_date }</span>
+							</td>
+							<td class="center aligned">
+								<a href="#">${boardDTO.board_writer }</a>
+							</td>
+							<td class="center aligned">
+								<c:url var="boardView" value="boardDetail">
+									<c:param name="num" value="${boardDTO.board_num }"></c:param>
+									<c:param name="currentPage" value="${pv.currentPage}"></c:param>
+								</c:url>
+								<a href="${boardView }">
+									${boardDTO.board_name }
+								</a>
+							</td>
+							<td class="center aligned">
+								${boardDTO.board_hits }
+							</td>
+						</tr>
+					</c:forEach>
+					</tbody>
+			</table>
+			
+		<c:if test="${pv.startPage > 1}">
+			<div class="ui animated button" onclick="location.href='free?currentPage=${pv.startPage - pv.blockPage}'">
+				<div class="visible content">이전</div>
+				<div class="hidden content">
+					<i class="left arrow icon"></i>
+				</div>
+			</div>
+		</c:if>
+	
+		<c:forEach var="i" begin="${pv.startPage }" end="${pv.endPage }">
+			<c:url var="currPage" value="free">
+				<c:param name="currentPage" value="${i }" />
+			</c:url>
+			<a class="ui button" href="${currPage }"> <c:out value="${i }" />
+			</a>
+		</c:forEach>
+		
+		<c:if test="${pv.totalPage>pv.endPage }">
+			<div class="ui animated button" onclick="location.href='free?currentPage=${pv.startPage + pv.blockPage }'">
+				<div class="visible content">다음</div>
+				<div class="hidden content">
+					<i class="right arrow icon"></i>
+				</div>
+			</div>
+		</c:if>
 </div>

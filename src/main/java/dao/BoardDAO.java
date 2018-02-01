@@ -1,14 +1,15 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import dto.BoardDTO;
 import dto.PageDTO;
 
 public interface BoardDAO {
-	public int count();
+	public int count(Integer board_category);
 
-	public List<BoardDTO> list(PageDTO pv);
+	public List<BoardDTO> list(HashMap<String, Integer> param);
 
 	public void readCount(int num);
 
@@ -21,5 +22,11 @@ public interface BoardDAO {
 	public void update(BoardDTO dto);
 
 	public void delete(int num);
+
+	public BoardDTO updateNum(int num);
+	
+	public List<BoardDTO> searchList(String keyword);
+	
+	public int searchCount(String keyword);
 
 }

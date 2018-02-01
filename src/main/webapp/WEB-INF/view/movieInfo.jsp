@@ -3,18 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-<body>
-	
 	<c:forEach items="${info}" var="info">
 		<a>영화제목 : ${info.movie_kor_title }</a>
-		</br>
+		<br />
 		<a>개봉일 : <fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short" value="${info.movie_opening_date }" /></a>
 	</c:forEach>
 	
@@ -32,6 +23,3 @@
 		</c:forEach>
 	</c:if>
 		
-	
-</body>
-</html>

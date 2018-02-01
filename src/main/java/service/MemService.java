@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import dto.MemDTO;
 
 public interface MemService {
@@ -20,4 +22,10 @@ public interface MemService {
 	public MemDTO findPwProcess(MemDTO userDTO);
 	
 	public void updateProcess(MemDTO userDTO);
+	
+	public List<MemDTO> memInfo(MemDTO userDTO);
+	
+	public void memUpdate(MemDTO userDTO);
+	
+	public MemDTO mList(int mem_num);
 }
