@@ -9,7 +9,12 @@ create table mem(
 	mem_email varchar2(20),		   --회원이메일
 	mem_address varchar2(300)	   --회원주소
 );
-
+INSERT INTO movie_actor(
+(select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,  
+(select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,   
+(select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,   
+(select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,    
+(select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa'))
 --회원 테이블 시퀀스
 create sequence mem_seq
 start with 1
@@ -32,10 +37,16 @@ create table grade(
 	--grade테이블의 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
 
-
+INSERT INTO actor(actor_num, actor_name)
+SELECT actor_seq.nextval, 'as' FROM DUAL  
+WHERE NOT EXISTS (SELECT * FROM actor WHERE actor_name='as')  
 --select * from grade
 --drop table grade
+INSERT INTO actor (select actor_seq.nextval, '몰라' 
+where 0 >= (select count(*) from actor where actor_name = '몰라'))
 
+ INSERT INTO actor WHEN (select count(*) from actor where actor_name = '몰라') <= 0 THEN
+        VALUES (actor_seq.nextval, '몰라')
 --------------------------------------------------------
 ---영화 테이블----------------------------------------------
 create table movie(
@@ -49,6 +60,21 @@ create table movie(
 	movie_url varchar2(500),			--url
 	nation varchar2(100)				--영화국가
 );
+select * from actor
+select * from movie where movie_kor_title = '코코'
+delete from movie where movie_num > 277 and movie_num < 285
+delete from movie_actor where movie_num > 277 and movie_num < 285
+delete from movie_director where movie_num > 277 and movie_num < 285
+delete from movie_category where movie_num > 277 and movie_num < 285
+
+			INSERT INTO actor (select actor_seq.nextval,'as'
+			from dual where 0 >= (select count(*) from actor where actor_name = 'as'))
+
+ALTER system SET processes=100 scope=spfile
+
+select * from movie_director
+INSERT INTO actor VALUES()
+select count(*) from actor where actor_name = '" + name + "'";
 insert into movie values(1,'19','첫번째영화','first','2014-01-01','요약입니다','이미지없움','url','nation')
 --영화테이블 시퀀스
 create sequence movie_seq
@@ -153,7 +179,8 @@ create table movie_category(
 
 --select * from movie_category
 --drop table movie_category
-
+		select * from movie where movie_kor_title in ('코코','마터스')
+	
 delete from movie_actor;
 delete from movie_director;
 delete from actor;
@@ -166,6 +193,8 @@ create table actor(
 	actor_num number primary key,	--배우번호
 	actor_name varchar2(100)		--배우이름
 );
+	INSERT INTO actor (select actor_seq.nextval, '이병헌'
+	from actor where (select count(*) from actor where actor_name = '이병헌') <= 0)
 
 --배우테이블 시퀀스
 create sequence actor_seq

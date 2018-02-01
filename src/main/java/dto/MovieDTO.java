@@ -12,10 +12,10 @@ public class MovieDTO {
 	private String movie_summary;
 	private String movie_image;
 	private String movie_url;
-	private List<DirectorDTO> movie_director;
-	private List<ActorDTO> movie_actor;
+	private List<DirectorDTO> movie_director = new ArrayList<DirectorDTO>();
+	private List<ActorDTO> movie_actor = new ArrayList<ActorDTO>();
 	private String movie_rating;
-	private List<CategoryDTO> category;
+	private List<CategoryDTO> category = new ArrayList<CategoryDTO>();
 	private String nation;
 
 	public int getMovie_num() {
@@ -98,12 +98,20 @@ public class MovieDTO {
 		this.movie_director = movie_director;
 	}
 
+	public void addMovie_director(DirectorDTO dto) {
+		this.movie_director.add(dto);
+	}
+	
 	public List<ActorDTO> getMovie_actor() {
 		return movie_actor;
 	}
 
 	public void setMovie_actor(List<ActorDTO> movie_actor) {
 		this.movie_actor = movie_actor;
+	}
+	
+	public void addMovie_actor(ActorDTO dto) {
+		this.movie_actor.add(dto);
 	}
 
 	public List<CategoryDTO> getCategory() {
@@ -114,4 +122,7 @@ public class MovieDTO {
 		this.category = category;
 	}
 
+	public void addCategory(CategoryDTO dto) {
+		this.category.add(dto);
+	}
 }

@@ -9,18 +9,21 @@
 		select * from movie where #{end} >= movie_num AND movie_num > #{start}
 	</select>
   
+  	<select id="boxoffice" resultType="dto.MovieDTO" parameterType="String">
+		select * from movie where movie_kor_title = #{name}
+	</select>
+  
 	<select id="director" resultType="dto.DirectorDTO"
 		parameterType="int">
 		select b.director_name from movie_director a, director b where a.movie_num = #{movie_num} and a.director_num = b.director_num
-		
 	</select>
 	
-	<select id="actor" resultType="dto.DirectorDTO"
+	<select id="actor" resultType="dto.ActorDTO"
 		parameterType="int">
 		select b.actor_name from movie_actor a, actor b where a.movie_num = #{movie_num} and a.actor_num = b.actor_num		
 	</select>
 	
-	<select id="category" resultType="dto.DirectorDTO"
+	<select id="category" resultType="dto.CategoryDTO"
 		parameterType="int">
 		select b.category_name from movie_category a, category b where a.movie_num = #{movie_num} and a.category_num = b.category_num				
 	</select>
@@ -81,5 +84,39 @@
 	<update id="updateRating" parameterType="java.util.Map">
 		update rating set star_point = #{rating}, write_date = SYSDATE where #{member_num} = mem_num and #{movie_num} = movie_num
 	</update>
+	
+	<select id="searchMovie" parameterType="String" resultType="int">
+		select count(*) from movie where #{name} = movie_kor_title
+	</select>
+	
+	<insert id="insertMovie" parameterType="dto.MovieDTO">
+		INSERT INTO movie VALUES(movie_seq.nextval, #{movie_rating}, #{movie_kor_title}, #{movie_eng_title}, #{movie_opening_date}, #{movie_summary}, #{movie_image}, #{movie_url}, #{nation})
+	</insert>
+
+	<insert id="insertActor" parameterType="String">
+		INSERT INTO actor
+		(select actor_seq.nextval, #{actor_name} from dual where 0 >= (select count(*) from actor where actor_name = #{actor_name}))
+	</insert>
+	
+	<insert id="insertMovieActor" parameterType="java.util.Map">
+	INSERT INTO movie_actor
+	(select movie_num, actor_num from actor, movie where actor_name = #{movie_actor} AND movie_kor_title = #{movie_kor_title})
+	</insert>
+
+	<insert id="insertDirector" parameterType="String">
+		INSERT INTO director
+ 		(select director_seq.nextval, #{director_name}
+		from director where 0 >= (select count(*) from director where director_name = #{director_name}))
+	</insert>
+	
+	<insert id="insertMovieDirector" parameterType="java.util.Map">
+		INSERT INTO movie_director 
+		(select movie_num, director_num from director, movie where director_name = #{movie_director} AND movie_kor_title = #{movie_kor_title})
+	</insert>
+	
+	<insert id="insertMovieCategory" parameterType="java.util.Map">
+		INSERT INTO movie_category
+		(select category_num, movie_num from category, movie where category_name = #{movie_category} AND movie_kor_title = #{movie_kor_title})
+	</insert>
 </mapper>
     

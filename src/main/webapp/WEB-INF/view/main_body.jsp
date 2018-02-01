@@ -224,8 +224,7 @@ function moreList() {
    <div class="ui segment">
       <div class="ui link special cards four columns slide">
          <c:forEach var="i" items="${movie}">
-            <div
-               class="card column blurring dimmable image main_movie slide_box fade2">
+            <div class="card column blurring dimmable image main_movie slide_box fade2">
                <!-- 영화 번호 넣을자리 -->
                <c:choose>
                   <c:when test="${i.movie_image eq '이미지 없음'}">

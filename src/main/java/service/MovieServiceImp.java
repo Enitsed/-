@@ -3,18 +3,18 @@ package service;
 import java.util.List;
 
 import dao.MovieDAO;
+import dao.MovieDaoImp;
 import dto.CommentDTO;
 import dto.LikeDTO;
 import dto.MovieDTO;
 
 public class MovieServiceImp implements MovieService{
 	MovieDAO dao;
+	
 	public void setDao(MovieDAO dao) {
 		this.dao = dao;
 	}
-	public MovieServiceImp() {
-		
-	}
+	
 	@Override
 	public List<MovieDTO> movieInfoProcess(int page) {
 		return dao.movieInfoProcess(page);
@@ -66,5 +66,24 @@ public class MovieServiceImp implements MovieService{
 	public void addRating(int member_num, int movie_num, int rating) {
 		dao.addRating(member_num, movie_num, rating);
 	}
-
+	@Override
+	public MovieDTO BoxOfficeInsert(String name) {
+		return dao.BoxOfficeInsert(name);
+	}
+	@Override
+	public MovieDTO boxOffice(String name){
+		return dao.boxOffice(name);
+	}
+	@Override
+	public void BoxOfficeDirectorInsert(MovieDTO dto) {
+		dao.BoxOfficeDirectorInsert(dto);
+	}
+	@Override
+	public void BoxOfficeCategoryInsert(MovieDTO dto) {
+		dao.BoxOfficeCategoryInsert(dto);
+	}
+	@Override
+	public void BoxOfficeActorInsert(MovieDTO dto) {
+		dao.BoxOfficeActorInsert(dto);
+	}
 }

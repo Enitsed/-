@@ -2,6 +2,7 @@ package dto;
 
 public class ActorDTO {
 	private String actor_name;
+	
 	public String getActor_name() {
 		return actor_name;
 	}

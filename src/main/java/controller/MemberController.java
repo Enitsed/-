@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import api.MovieApi;
+import api.MovieNewsApi;
 import dto.MemDTO;
 import service.MemService;
 import service.MovieService;
@@ -68,7 +69,7 @@ public class MemberController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(MemDTO userDTO, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		MovieApi api = new MovieApi();
+		MovieNewsApi api = new MovieNewsApi();
 		if (service.idCheckProcess(userDTO)) {
 			try {
 				MemDTO foundUserDTO = service.loginProcess(userDTO);
@@ -86,7 +87,7 @@ public class MemberController {
 		} else {
 			mav.addObject("loginStatus", "회원이 존재하지 않습니다.");
 		}
-		api.MovieNewsApi(mav);
+		api.MovieNewsAPI(mav);
 		mav.addObject("movie", movieservice.movieInfoProcess(1));
 		mav.setViewName("index");
 		return mav;

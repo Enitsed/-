@@ -23,4 +23,10 @@ public interface MovieService {
 	public List<MovieDTO> movieListProcess(String keyword);
 	public int searchCountProcess(String keyword);
 	public void addRating(int member_num, int movie_num, int rating);
+	public MovieDTO BoxOfficeInsert(String name);
+	public MovieDTO boxOffice(String name);
+	public void BoxOfficeDirectorInsert(MovieDTO dto);
+	public void BoxOfficeCategoryInsert(MovieDTO dto);
+	public void BoxOfficeActorInsert(MovieDTO dto);
+	
 }
