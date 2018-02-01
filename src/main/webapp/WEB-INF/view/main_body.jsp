@@ -50,7 +50,6 @@
                         <br /> <br />
                         <div class="ui divider"></div>
                         <br /> <br /> <br />
-                        <div class="ui star rating" data-rating="5" data-max-rating="5"></div>
 
                         <div class="ui star rating" data-rating="5" data-max-rating="5" id="${i.movie_num}"></div>
 
@@ -103,8 +102,8 @@
                
             </div>
          </c:forEach>
-         <a class="prev" onclick="plusSlides(-1)">?</a> <a class="next"
-            onclick="plusSlides(1)">?</a>
+         <a class="prev" onclick="plusSlides(-1)"><i class="chevron left icon"></i></a> <a class="next"
+            onclick="plusSlides(1)"><i class="chevron right icon"></i></a>
       </div>
    </div>
 

@@ -11,13 +11,6 @@ import dto.MovieDTO;
 
 public class MovieServiceImp implements MovieService {
 	MovieDAO dao;
-<<<<<<< HEAD
-	
-	public void setDao(MovieDAO dao) {
-		this.dao = dao;
-	}
-	
-=======
 
 	public void setDao(MovieDAO dao) {
 		this.dao = dao;
@@ -27,7 +20,6 @@ public class MovieServiceImp implements MovieService {
 
 	}
 
->>>>>>> 3b11a6d75c1833158e2045e6fcdf2c4d0dc3743b
 	@Override
 	public List<MovieDTO> movieInfoProcess(int page) {
 		return dao.movieInfoProcess(page);
@@ -91,34 +83,35 @@ public class MovieServiceImp implements MovieService {
 	public void addRating(int member_num, int movie_num, int rating) {
 		dao.addRating(member_num, movie_num, rating);
 	}
-<<<<<<< HEAD
+
 	@Override
 	public MovieDTO BoxOfficeInsert(String name) {
 		return dao.BoxOfficeInsert(name);
 	}
+
 	@Override
-	public MovieDTO boxOffice(String name){
+	public MovieDTO boxOffice(String name) {
 		return dao.boxOffice(name);
 	}
+
 	@Override
 	public void BoxOfficeDirectorInsert(MovieDTO dto) {
 		dao.BoxOfficeDirectorInsert(dto);
 	}
+
 	@Override
 	public void BoxOfficeCategoryInsert(MovieDTO dto) {
 		dao.BoxOfficeCategoryInsert(dto);
 	}
+
 	@Override
 	public void BoxOfficeActorInsert(MovieDTO dto) {
 		dao.BoxOfficeActorInsert(dto);
 	}
-=======
 
 	@Override
 	public List<CommentDTO> moreCommentProcess(MoreCommentDTO dto) {
 		return dao.morecommentListProcess(dto);
 	}
 
-	
->>>>>>> 3b11a6d75c1833158e2045e6fcdf2c4d0dc3743b
 }
