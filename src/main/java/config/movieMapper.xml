@@ -117,8 +117,8 @@
 	</insert>
 	
 	<insert id="insertMovieActor" parameterType="java.util.Map">
-	INSERT INTO movie_actor
-	(select movie_num, actor_num from actor, movie where actor_name = #{movie_actor} AND movie_kor_title = #{movie_kor_title})
+		INSERT INTO movie_actor
+		(select movie_num, actor_num from actor, movie where actor_name = #{movie_actor} AND movie_kor_title = #{movie_kor_title})
 	</insert>
 
 	<insert id="insertDirector" parameterType="String">

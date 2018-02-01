@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,16 +60,18 @@ public class HelloController {
 				movieservice.BoxOfficeCategoryInsert(i);
 			}
 		}
-
+		/*
 		for (String i : list) {
 			try {
 				MovieDTO dto = movieservice.boxOffice(i);
 				if (dto.getMovie_kor_title() != null)
 					boxOfficeMovieList.add(dto);
 			} catch (NullPointerException e) {
-
+				System.out.println("여기네 문제가");
+				e.printStackTrace();
 			}
 		}
+		*/
 		mav.addObject("movie", boxOfficeMovieList);
 		api.MovieNewsAPI(mav);
 		mav.setViewName("index");

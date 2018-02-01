@@ -7,12 +7,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
-
 
 public class BoxOffice {
 	public List<String> boxOffice() {
@@ -20,18 +20,21 @@ public class BoxOffice {
 		try {
 			Calendar cal = new GregorianCalendar();
 			cal.add(Calendar.DATE, -1);
-			String year =  Integer.toString(cal.get(Calendar.YEAR));
+			String year = Integer.toString(cal.get(Calendar.YEAR));
 			String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
 			String date = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
-			if(Integer.parseInt(month) >0 && Integer.parseInt(month) <10)
-				month = "0"+month;
-			
-			if(Integer.parseInt(date) > 0 && Integer.parseInt(date) <10)
-				date = "0"+date;
+			if (Integer.parseInt(month) > 0 && Integer.parseInt(month) < 10)
+				month = "0" + month;
 
-			StringBuilder urlBuilder = new StringBuilder("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml");
-			urlBuilder.append("?" + URLEncoder.encode("key", "UTF-8") + "=2d4fd092a8bf189f85641f902b861596"); /* Service Key */
-			urlBuilder.append("&" + URLEncoder.encode("targetDt", "UTF-8") + "=" + URLEncoder.encode(year + month + date, "UTF-8")); /* 검색건수 */
+			if (Integer.parseInt(date) > 0 && Integer.parseInt(date) < 10)
+				date = "0" + date;
+
+			StringBuilder urlBuilder = new StringBuilder(
+					"http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml");
+			urlBuilder.append(
+					"?" + URLEncoder.encode("key", "UTF-8") + "=2d4fd092a8bf189f85641f902b861596"); /* Service Key */
+			urlBuilder.append("&" + URLEncoder.encode("targetDt", "UTF-8") + "="
+					+ URLEncoder.encode(year + month + date, "UTF-8")); /* 검색건수 */
 			URL url = new URL(urlBuilder.toString());
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
