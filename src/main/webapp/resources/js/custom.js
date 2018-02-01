@@ -3,6 +3,31 @@
 
 $(document).ready(function () {
 	"use strict";
+	
+	
+	// 메인 페이지 동영상
+	$('#banner').on('click', function(){
+		$('body').dimmer('show');
+		$("#banner").data("vide").getVideoObject().pause();
+		$('.ui.video').video();
+	});
+	
+	// 버튼 혹은 동영상 바깥 클릭 후 메인 동영상 재생 및 디머 숨기기
+	$('#banner_close').on('click', function(){
+		main_video_dimmer();
+	});
+	
+	function main_video_dimmer() {
+		$('body').dimmer('hide');
+		$("#banner").data("vide").getVideoObject().play();
+	};
+	
+	// 메인 헤더 아이콘 애니메이션
+	$('.circular.users.icon').transition({
+	    animation : 'pulse',
+	    duration  : '3s'
+	  });
+	
 	var currentPosition = parseInt($("#sidebox").css("top")); 
 	$(window).scroll(function() { 
 		var position = $(window).scrollTop(); 
@@ -11,6 +36,13 @@ $(document).ready(function () {
 			},1000); 
 		});
 
+	// http://localhost:8090/finalproject/free
+	var boardUrl = document.location.href.slice(0, 39);
+	if(boardUrl.match(/free/gi)){
+		if(board_category != 0){
+			$('.boardCategoryMenu').children().eq(board_category-1).addClass("active");
+		}
+	}
 	
 	// 회원가입 성공 여부 알림
 	if (document.location.href == "http://localhost:8090/finalproject/signUp") {
@@ -27,11 +59,25 @@ $(document).ready(function () {
 	$('.findIdStatus .actions .button').on('click',function(){
 		$('.ui.tiny.modal.findIdStatus').modal('hide');
 	})
-
+	
+	//회원등급 수정 알림
+	if(memUpdateStatus != ""){
+		$('.memUpdateStatus .ui.header').text(memUpdateStatus);
+		$('.ui.tiny.modal.memUpdateStatus').modal('show');
+	}
+	
+	//회원등급 수정 닫기
+	$('.memUpdateStatus .actions .button').on('click',function(){
+		$('.ui.tiny.modal.memUpdateStatus').modal('hide');
+		$(location).attr('href', "http://localhost:8090/finalproject/main");
+	})
+	
 	//회원정보 수정 알림
-	if(updateInfoStatus != ""){
-		$('.updateInfoStatus .ui.header').text(updateInfoStatus);
-		$('.ui.tiny.modal.updateInfoStatus').modal('show');
+	if(document.location.href == "http://localhost:8090/finalproject/memUpdate"){
+		if(updateInfoStatus != ""){
+			$('.updateInfoStatus .ui.header').text(updateInfoStatus);
+			$('.ui.tiny.modal.updateInfoStatus').modal('show');
+		}
 	}
 	
 	//회원정보 수정 닫기
@@ -308,7 +354,44 @@ $(document).ready(function () {
 			}
 		}
 	});
+	
+	
+	// 게시판 글 카테고리 선택 검증
+	$('.form.boardWrite')
+	.form({
+	  on: 'blur',
+	  fields: {
+		  board_category: {
+	      identifier  : 'board_category',
+	      rules: [
+	        {
+	          type   : 'empty',
+	          prompt : '게시판 글 카테고리를 선택하세요.'
+	        }
+	      ]
+	    },
+      board_name: {
+          identifier  : 'board_name',
+          rules: [
+            {
+              type   : 'maxLength[20]',
+              prompt : '제목은 20자 이내로 작성하세요.'
+            }
+          ]
+        },
+        board_content: {
+          identifier  : 'board_content',
+          rules: [
+            {
+              type   : 'maxLength[500]',
+              prompt : '내용은 500자 이내로 작성하세요.'
+            }
+          ]
+        }
+	  }
+	});
 });
+
 
 
 	// <![CDATA[

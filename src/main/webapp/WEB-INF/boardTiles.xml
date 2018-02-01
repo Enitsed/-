@@ -5,7 +5,7 @@
 
 <tiles-definitions>
 	<definition name="freeboard" extends="index">
-		<put-attribute name="title" value="자유게시판" />
+		<put-attribute name="title" value="게시판" />
 		<put-attribute name="body" value="/WEB-INF/view/board_body.jsp" />
 	</definition>
 
@@ -17,6 +17,11 @@
 	<definition name="board_write" extends="index">
 		<put-attribute name="title" value="글 쓰기" />
 		<put-attribute name="body" value="/WEB-INF/view/board_write.jsp" />
+	</definition>
+
+	<definition name="board_update" extends="index">
+		<put-attribute name="title" value="글 수정" />
+		<put-attribute name="body" value="/WEB-INF/view/board_update.jsp" />
 	</definition>
 
 	<definition name="movieInfoList" extends="index">

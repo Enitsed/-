@@ -265,7 +265,7 @@ $(document).on('click','.like',like);
 	  
 	   var hiddennum = $(this).parent().find('.hiddennum');
 	   var hiddennum2 = parseInt(hiddennum.attr('name'));
-	   alert(hiddennum2);
+	   
 		var page = parseInt($(this).attr('id'));
 		//var mov_num = $(this).parent().find('input[type="hidden"]').val();
 		var mov_num = $(this).prev().val();
@@ -312,7 +312,7 @@ $(document).on('click','.like',like);
 					
 		            $('#hidden').remove();
 		            $('.more').remove();
-		            alert(data.length);
+		            
 		            var plus="";
 		            if(data.length+2>hiddennum2)
 		            	plus+= '<input type="hidden" value="'+mov_num+'" id="hidden"/>'+
@@ -405,21 +405,7 @@ $(document).on('click','.like',like);
                      </p>
                   </div>
                </div>
-               <!--  
-               <c:if test="${not empty userDTO.mem_id}">
-               <div class="ui comments">
-                  <form class="ui reply form">
-                      <div class="field">
-                           <textarea id="text"></textarea>
-                      </div>
-                         <div class="ui blue labeled submit icon button" id="${i.movie_num}">
-                        <i class="icon edit"></i> Add Reply
-                         </div>
-                    </form>
-               </div>
-               </c:if>
-               -->
-               
+              
                
                <div class="ui large feed">
                

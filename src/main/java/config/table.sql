@@ -32,10 +32,13 @@ create table grade(
 	--grade테이블의 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
 
-
+insert into grade (select mem_num, '기본' from mem where mem_id = 'asdasd')
+select m.mem_id from mem m,grade g where m.mem_num=g.mem_num
 --select * from grade
 --drop table grade
+update grade set mem_grade='브론즈' where mem_num='1'
 
+update grade set mem_grade='기본' where mem_id=select m.mem_id from mem m,grade g where m.mem_num=g.mem_num
 --------------------------------------------------------
 ---영화 테이블----------------------------------------------
 create table movie(
@@ -233,17 +236,24 @@ create table board(
 	board_num number primary key,	--게시글번호
 	mem_num number,					--회원번호
 	board_writer varchar2(10),		--작성자
-	board_name varchar2(10),		--제목
-	board_content varchar2(500),	--내용
+	board_name varchar2(100),		--제목
+	board_content varchar2(3000),	--내용
 	board_hits number(10),			--조회수
 	board_relnum number(10),		--관련글번호
 	board_reply_level number,		--답글레벨
 	board_reply_step number,		--답글단계
 	board_date date,				--작성일
 	board_reply_amount number,		--댓글개수
+	board_category number,			--게시글 카테고리
 	constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 	--board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
+
+alter table board add board_category number
+--게시판 글 제목 길이 수정
+alter table board modify(board_name varchar2(100));
+-- 게시판 글 내용 길이 수정
+alter table board modify(board_content varchar2(3000));
 
 --게시판테이블 시퀀스
 create sequence board_seq
