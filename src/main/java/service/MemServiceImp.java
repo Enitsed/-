@@ -59,6 +59,7 @@ public class MemServiceImp implements MemService {
 
 	@Override
 	public void memUpdate(MemDTO userDTO) {
+		System.out.println("ServiceImp : "+userDTO.getMem_num() +"/"+ userDTO.getMem_grade());
 		dao.memUpdate(userDTO);
 		
 	}

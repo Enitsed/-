@@ -57,7 +57,7 @@ public class MemDaoImp implements MemDAO {
 
 	@Override
 	public void memUpdate(MemDTO userDTO) {
-		
+		System.out.println("DaoImp : "+userDTO.getMem_num() +"/"+ userDTO.getMem_grade());
 		sqlSession.update("mem.memUpdate",userDTO);
 		
 	}

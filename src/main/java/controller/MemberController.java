@@ -196,13 +196,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/memUpdateInfo", method = RequestMethod.POST)
-	public ModelAndView memUpdate(MemDTO userDTO, HttpServletRequest request) {
+	public ModelAndView memUpdate(MemDTO memList, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		service.memUpdate(userDTO);
-		if (userDTO != null) {
+		List<MemDTO> aList = service.memInfo(memList);
+		mav.addObject("memList", aList);
+		service.memUpdate(memList);
+		if (memList != null) {
 			mav.addObject("memUpdateStatus", "등급정보를 수정하였습니다.");
-			session.setAttribute("list", userDTO);
+			session.setAttribute("list", memList);
 		} else {
 			mav.addObject("memUpdateStatus", "등급정보 수정에 실패하였습니다.");
 		}

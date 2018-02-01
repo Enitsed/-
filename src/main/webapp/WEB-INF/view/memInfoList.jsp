@@ -13,7 +13,7 @@
 	<c:forEach var="list" items="${memList}">
 		<div class="field">
 			<input class="ui input" type="text" value="${list.mem_num}" disabled>
-			<input type="hidden" name="mem_id" value="${list.mem_num }">
+			<input type="hidden" name="mem_num" value="${list.mem_num}">
 			<input class="ui input" type="text" value="${list.mem_id}" disabled>
 			<input class="ui input" type="text" value="${list.mem_name}" disabled>
 			<input class="ui input" type="text" value="${list.mem_grade}" disabled>

@@ -33,10 +33,12 @@ create table grade(
 );
 
 insert into grade (select mem_num, '기본' from mem where mem_id = 'asdasd')
-
+select m.mem_id from mem m,grade g where m.mem_num=g.mem_num
 --select * from grade
 --drop table grade
+update grade set mem_grade='브론즈' where mem_num='1'
 
+update grade set mem_grade='기본' where mem_id=select m.mem_id from mem m,grade g where m.mem_num=g.mem_num
 --------------------------------------------------------
 ---영화 테이블----------------------------------------------
 create table movie(
