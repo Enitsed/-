@@ -305,6 +305,15 @@ delete from movie_comment
 
 select * from movie_comment
 
+select e.*
+from(select * from movie_comment where movie_num=1 order by comment_num desc)e
+where 6>rownum and rownum>0
+
+select e.*
+		from(select * from movie_comment where movie_num=1 order by comment_num desc)e
+		where 6>rownum and rownum > 0
+
+
 drop table movie_comment
 drop sequence comment_num_seq
 

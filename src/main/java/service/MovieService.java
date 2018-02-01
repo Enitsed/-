@@ -4,6 +4,7 @@ import java.util.List;
 
 import dto.CommentDTO;
 import dto.LikeDTO;
+import dto.MoreCommentDTO;
 import dto.MovieDTO;
 
 public interface MovieService {
@@ -24,4 +25,7 @@ public interface MovieService {
 	public List<MovieDTO> movieListProcess(String keyword);
 	public int searchCountProcess(String keyword);
 	public void addRating(int member_num, int movie_num, int rating);
+	
+	public List<CommentDTO> moreCommentProcess(MoreCommentDTO dto);
+	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import dao.MovieDAO;
 import dto.CommentDTO;
 import dto.LikeDTO;
+import dto.MoreCommentDTO;
 import dto.MovieDTO;
 
 public class MovieServiceImp implements MovieService {
@@ -82,4 +83,10 @@ public class MovieServiceImp implements MovieService {
 		dao.addRating(member_num, movie_num, rating);
 	}
 
+	@Override
+	public List<CommentDTO> moreCommentProcess(MoreCommentDTO dto) {
+		return dao.morecommentListProcess(dto);
+	}
+
+	
 }

@@ -15,6 +15,7 @@ import api.MovieApi;
 import dto.CommentDTO;
 import dto.LikeDTO;
 import dto.MemDTO;
+import dto.MoreCommentDTO;
 import service.MovieService;
 
 // http://localhost:8090/finalproject/main
@@ -85,6 +86,12 @@ public class HelloController {
 	public @ResponseBody List<CommentDTO> deleteComment(int comment_num, int movie_num){
 		movieservice.deleteCommentProcess(comment_num);
 		return movieservice.commentListProcess(movie_num);
+	}
+	
+	@RequestMapping(value="morecomment", method=RequestMethod.GET)
+	public @ResponseBody List<CommentDTO> morecomment(MoreCommentDTO dto){
+		
+		return movieservice.moreCommentProcess(dto);
 	}
 	
 }

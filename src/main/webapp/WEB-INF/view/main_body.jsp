@@ -20,77 +20,100 @@
 $(document).ready(function(){
    var session_id = '${userDTO.mem_id}';
    var session_num = '${userDTO.mem_num}';
+   var more=4;
+   
    // 영화 상세보기
    $('.main_movie').on('click', function () {
-      var movie_num = $('.movie_num').val();
-      var index = $(this).find('input[type="hidden"]').val();
-      var modal = '#modal' + index;
-      
-      
+      var mnum = $(this).find('input[type="hidden"]').val();
+      var modal = '#modal' + mnum;
+      var hi = $(this).parent().find('.hiddennum').attr('name');//10으로 초기화
+
       $.ajax({
-         url: 'info?movie_num=' + index,
+         url: 'info?movie_num=' + mnum,
          type: 'GET',
+         async: false,
          dataType: 'json',
          success: function (data) {
-            
             $('.event').remove();
             $.each(data,function(index,value){
-               var comment="";
-               var sdate = new Date(value.regdate);
-               var sm = sdate.getFullYear() + "/";
-               sm = sm + (sdate.getMonth() + 1) + "/";
-               sm = sm + sdate.getDate();
+  
+				var comment="";
+				var sdate = new Date(value.regdate);
+				var sm = sdate.getFullYear() + "/";
+				sm = sm + (sdate.getMonth() + 1) + "/";
+				sm = sm + sdate.getDate();
 
-               comment +=
-                  '<div class="event">' +
-                  '<div class="label">' +
-                  '<img src="resources/images/user.png">' +
-                  '</div>' +
-                  '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
-                  '<div class="content">' +
-                  '<div class="summary">' +
-                  '<a class="user">' + value.mem_id + '</a>' +
-                  //'<input type="hidden" class="mem_id" value="' + value.mem_id + '"/>' +
-                  '<input type="hidden" class="movie_num" value="'+value.movie_num+'"/>'+
-                  '<div class="date">' + sm + '</div></div>' +
-                  '<div class="extra text">' + value.replytext + '</div>' +
-                  '<div class="meta">' +
-                  '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
-                  if(session_id==value.mem_id){
-                     comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'d
-                  }
-                  +'</div></div></div>'
-                  $(comment).appendTo(".ui.large.feed");
-            });
+				comment +=
+					
+					'<div class="event">' +
+					'<div class="label">' +
+					'<img src="resources/images/user.png">' +
+					'</div>' +
+					'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
+					'<div class="content">' +
+					'<div class="summary">' +
+					'<a class="user">' + value.mem_id + '</a>' +
+					'<input type="hidden" class="movie_num" value="'+value.movie_num+'"/>'+
+					'<div class="date">' + sm + '</div></div>' +
+					'<div class="extra text">' + value.replytext + '</div>' +
+					'<div class="meta">' +
+					'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
+					if(session_id==value.mem_id){
+						comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
+					}
+					+'</div></div></div>';
+					$(comment).appendTo(".ui.large.feed");
+					if(index==more)
+	            		return false;
+            	
+			});//each
 
+            $('#hidden').remove();
+            $('.more').remove();
+            var plus="";
+            if(data.length>more)
+            	plus+= '<input type="hidden" value="'+mnum+'" id="hidden"/>'+
+					 '<a class="more" id="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글 더보기</a></br></br></br>'
+				$(plus).appendTo('.seemore');
+				
+				
+       
             $(modal).modal('show');
-            
-         }
+           
+         }//success
       });//ajax끝
+      
       
    });//movie modal 클릭 끝
    
    
-   $(document).on('click','.ui.blue.labeled.submit.icon.button',commentinsert);
-   
+   //$(document).on('click','.ui.blue.labeled.submit.icon.button',commentinsert);
+   $(document).on('click','.ui.basic.label',commentinsert);
    function commentinsert(){
+      var reset = $(this).parent().find('#text');
+      var comments = $(this).parent().find('#text').val();//replytext
+      var number = parseInt($(this).attr('id'));
+      if(comments==''){
+    	  alert('내용을 입력해주세요');
+    	  return false;
+      }
       
-      var comments = $(this).parent().find('textarea').val();//replytext
-      var number = parseInt($(this).attr('id'));
-      alert(comments);
-      var comments = $('textarea').val();//코멘트 내용 가져오기
+      
       //var number =  $(document).find('.movie_num').val();
-      var number = parseInt($(this).attr('id'));
+      //var number = parseInt($(this).attr('id'));
      
       $.ajax({
          
          url : 'insertcomment?mem_id='+session_id+'&replytext='+comments+'&movie_num='+number+'&mem_num='+session_num,
          type:'GET',
+         async: false,
+
          dataType:'json',
          success : function(data){
             $('.event').remove();
 
             $.each(data,function(index,value){
+            	 
                var insert="";
                var sdate = new Date(value.regdate);
                var sm = sdate.getFullYear() + "/";
@@ -116,9 +139,18 @@ $(document).ready(function(){
                   }
                   +'</div></div></div>'
                   $(insert).appendTo(".ui.large.feed");
+                  if(index==more)
+                   	  return false;
                   
             });
-            $('textarea').val('');
+            $('#hidden').remove();
+            $('.more').remove();
+            var plus2="";
+            if(data.length>more)
+            	plus2+= '<input type="hidden" value="'+number+'" id="hidden"/>'+
+					 '<a class="more" id="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글 더보기</a>'
+				$(plus2).appendTo('.seemore');
+            reset.val('');
             
             
          }//success끝
@@ -144,18 +176,25 @@ $(document).on('click','.like',like);
          type: 'GET',
          dataType: 'json',
          url: 'like',
+         async: false,
+
          data: 'mem_id=' + session_id + '&comment_num=' + num,
          success: function (data) {
             
             if (data.like != null) {
-               likey+=1;
+            	setTimeout(function(){
+            		 likey+=1;
+                     
+                     now.text('  '+likey+' '+'Likes');	
+            	},2000);
               
-               now.text('  '+likey+' '+'Likes');
             
             } else if(data.like==null){
-               likey -= 1;
-              
-               now.text('  '+likey+'  '+'Likes');
+            	setTimeout(function(){
+           		 likey-=1;
+                    
+                 now.text('  '+likey+' '+'Likes');	
+           	},2000);
                
             }
             
@@ -172,48 +211,127 @@ $(document).on('click','.like',like);
       $.ajax({
     	  url : 'deletecomment',
     	  type:'GET',
+    	  async: false,
     	  data : 'comment_num='+comment_number+'&movie_num='+movie_number,
     	  success : function(data){
     		  $('.event').remove();
-    		  $.each(data,function(index,value){
-                  var movie_comment="";
-                  var sdate = new Date(value.regdate);
-                  var sm = sdate.getFullYear() + "/";
-                  sm = sm + (sdate.getMonth() + 1) + "/";
-                  sm = sm + sdate.getDate();
 
-                  movie_comment +=
-                     '<div class="event">' +
-                     '<div class="label">' +
-                     '<img src="resources/images/user.png">' +
-                     '</div>' +
-                     '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
-                     '<div class="content">' +
-                     '<div class="summary">' +
-                     '<a class="user">' + value.mem_id + '</a>' +
-                     '<input type="hidden" class="mem_id" value="' + value.mem_id + '"/>' +
-                     '<div class="date">' + sm + '</div></div>' +
-                     '<div class="extra text">' + value.replytext + '</div>' +
-                     '<div class="meta">' +
-                     '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
-                     if(session_id==value.mem_id){
-                    	 movie_comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
-                     }
-                     +'</div></div></div>'
-                     $(movie_comment).appendTo(".ui.large.feed");
-                     
-               });
-               
+              $.each(data,function(index,value){
+                 var insert="";
+                 var sdate = new Date(value.regdate);
+                 var sm = sdate.getFullYear() + "/";
+                 sm = sm + (sdate.getMonth() + 1) + "/";
+                 sm = sm + sdate.getDate();
+
+                 insert +=
+                    '<div class="event">' +
+                    '<div class="label">' +
+                    '<img src="resources/images/user.png">' +
+                    '</div>' +
+                    '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
+                    '<div class="content">' +
+                    '<div class="summary">' +
+                    '<a class="user">' + value.mem_id + '</a>' +
+                    '<input type="hidden" class="mem_id" value="' + value.mem_id + '"/>' +
+                    '<div class="date">' + sm + '</div></div>' +
+                    '<div class="extra text">' + value.replytext + '</div>' +
+                    '<div class="meta">' +
+                    '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
+                    if(session_id==value.mem_id){
+                       insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
+                    }
+                    +'</div></div></div>'
+                    $(insert).appendTo(".ui.large.feed");
+                    if(index==more)
+                  	  return false;
+                    
+              });
+              
+              $('#hidden').remove();
+              $('.more').remove();
+              var plus2="";
+              if(data.length>more)
+              	plus2+= '<input type="hidden" value="'+number+'" id="hidden"/>'+
+  					 '<a class="more" id="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글 더보기</a>'
+  				$(plus2).appendTo('.seemore');
+           
     	  }//success
       });//ajax
    }
    
+   $(document).on('click','.more',morecomment);
+   
+   function morecomment(){
+	  
+	   var hiddennum = $(this).parent().find('.hiddennum');
+	   var hiddennum2 = parseInt(hiddennum.attr('name'));
+	   alert(hiddennum2);
+		var page = parseInt($(this).attr('id'));
+		//var mov_num = $(this).parent().find('input[type="hidden"]').val();
+		var mov_num = $(this).prev().val();
+		
+		$.ajax({
+			url :'morecomment',
+			dataType:'json',
+	    	type:'GET',
+	    	async: false,
+			data :'page='+hiddennum2+'&movie_num='+mov_num,
+			success : function(data){
+				 $('.event').remove();
+		            $.each(data,function(index,value){
+						var comment="";
+						var sdate = new Date(value.regdate);
+						var sm = sdate.getFullYear() + "/";
+						sm = sm + (sdate.getMonth() + 1) + "/";
+						sm = sm + sdate.getDate();
 
+						comment +=
+							
+							'<div class="event">' +
+							'<div class="label">' +
+							'<img src="resources/images/user.png">' +
+							'</div>' +
+							'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
+							'<div class="content">' +
+							'<div class="summary">' +
+							'<a class="user">' + value.mem_id + '</a>' +
+							'<input type="hidden" class="movie_num" value="'+value.movie_num+'"/>'+
+							'<div class="date">' + sm + '</div></div>' +
+							'<div class="extra text">' + value.replytext + '</div>' +
+							'<div class="meta">' +
+							'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>'+value.likecount+'</a>'
+							if(session_id==value.mem_id){
+								comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
+							}
+							+'</div></div></div>';
+							$(comment).appendTo(".ui.large.feed");
+							
+							if(index==hiddennum)
+								return false;
+					});//each
+					
+		            $('#hidden').remove();
+		            $('.more').remove();
+		            alert(data.length);
+		            var plus="";
+		            if(data.length+2>hiddennum2)
+		            	plus+= '<input type="hidden" value="'+mov_num+'" id="hidden"/>'+
+							 '<a class="more" id="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;댓글 더보기</a>'
+						$(plus).appendTo('.seemore');
+	               
+			}//success
+		
+		});//ajax끝
+		hiddennum2=hiddennum2+5;
+		hiddennum.attr('name',hiddennum2);
+		
+		
+		
+		
+	};//함수끝
    
-});//document 끝
-   
+});//document 끝   
 </script>
-
 
 
 
@@ -287,17 +405,12 @@ $(document).on('click','.like',like);
                      </p>
                   </div>
                </div>
-               
-               
-               <div class="ui large feed">
-               
-               </div>
-               
+               <!--  
                <c:if test="${not empty userDTO.mem_id}">
                <div class="ui comments">
                   <form class="ui reply form">
                       <div class="field">
-                           <textarea></textarea>
+                           <textarea id="text"></textarea>
                       </div>
                          <div class="ui blue labeled submit icon button" id="${i.movie_num}">
                         <i class="icon edit"></i> Add Reply
@@ -305,18 +418,44 @@ $(document).on('click','.like',like);
                     </form>
                </div>
                </c:if>
+               -->
+               
+               
+               <div class="ui large feed">
+               
+               	
+               </div>
+                
+                
+               <div class="seemore">
+                 <input type="hidden" class="hiddennum" id="10" name="10"/>
+               
+              
+               </div>
+               
+               
                
 
                <div class="actions">
+               <c:if test="${not empty userDTO.mem_id}">
+                  <div class="ui right labeled input">
+  					<input type="text" id="text" placeholder="내용을 입력하세요...">
+  					<div class="ui basic label" id="${i.movie_num}">
+    					<i class="comment outline icon"></i>
+  				  	</div>
+				  </div>
+               
+               </c:if>
                   <div class="ui black deny button">닫기</div>
                   <div class="ui positive right labeled icon button">
                      상세페이지로 이동 <i class="checkmark icon"></i>
                   </div>
                </div>
+               
             </div>
          </c:forEach>
-         <a class="prev" onclick="plusSlides(-1)">❮</a> <a class="next"
-            onclick="plusSlides(1)">❯</a>
+         <a class="prev" onclick="plusSlides(-1)">?</a> <a class="next"
+            onclick="plusSlides(1)">?</a>
       </div>
    </div>
 

@@ -12,6 +12,7 @@ import dto.CategoryDTO;
 import dto.CommentDTO;
 import dto.DirectorDTO;
 import dto.LikeDTO;
+import dto.MoreCommentDTO;
 import dto.MovieDTO;
 
 public class MovieDaoImp implements MovieDAO {
@@ -117,4 +118,11 @@ public class MovieDaoImp implements MovieDAO {
 			sqlSession.selectOne("movie.pluseRating",map);
 		}
 	}
+
+	@Override
+	public List<CommentDTO> morecommentListProcess(MoreCommentDTO dto) {
+		return sqlSession.selectList("movie.morecomment",dto);
+	}
+
+	
 }

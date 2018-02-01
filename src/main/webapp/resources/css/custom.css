@@ -108,3 +108,30 @@ screen and (max-width: 300px)
 	right:0;
 	padding: 3px 10px 
 }
+
+#text{
+	width: 400px;
+	height: 40px;
+}
+
+.ui.right.labeled.input{
+	margin-right: 70px;
+}
+
+
+
+.user{
+	margin-left: 15px;
+}
+
+.date{
+	margin-left: 15px;
+}
+
+.extra.text{
+	margin-left: 15px;
+}
+
+.like{
+	margin-left: 15px;
+}
