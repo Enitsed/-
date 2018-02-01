@@ -165,11 +165,11 @@ public class MemberController {
 	@RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
 	public ModelAndView update(MemDTO userDTO, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		//HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		service.updateProcess(userDTO);
 		if (userDTO != null) {
 			mav.addObject("updateInfoStatus", "회원정보를 수정하였습니다.");
-			//session.setAttribute("userDTO", userDTO);
+			session.setAttribute("userDTO", userDTO);
 		} else {
 			mav.addObject("updateInfoStatus", "회원정보 수정에 실패하였습니다.");
 		}
