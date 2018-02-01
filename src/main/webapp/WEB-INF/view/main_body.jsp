@@ -215,12 +215,21 @@ $(document).on('click','.like',like);
 </script>
 
 <!-- 동영상 -->
-<div class="ui fluid container video_clip" id="banner"
-   data-vide-bg="resources/images/travel"
-   data-vide-options="posterType: jpg, loop: true, muted: false"></div>
+<div class="ui page dimmable">
+	<div class="ui fluid container video_clip" id="banner" data-vide-bg="resources/images/travel" data-vide-options="posterType: jpg, loop: true, muted: false"></div>
+</div>
+
+<div class="ui dimmer">
+	<div class="center">
+		<div class="content">
+			<div class="ui video" data-source="youtube" data-id="BX-OFZUU0_E" data-image="resources/images/test.jpg" style="max-width: 90%; left: 5%; padding-bottom: 50%;"></div>
+			<div class="ui horizontal divider"><button class="ui red button" id="banner_close">Click to close</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <!-- 바디 -->
-
 <div class="ui container contents">
    <div class="ui segment">
    
@@ -273,7 +282,7 @@ $(document).on('click','.like',like);
                      <div class="ui header">영화제목 : ${i.movie_kor_title}</div>
                      <h4>줄거리 : ${i.movie_summary}</h4>
                      <p>
-                        개봉일 :
+                       	 개봉일 :
                         <fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short"
                            value="${i.movie_opening_date}" />
                      </p>

@@ -10,8 +10,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-<link rel="stylesheet" type="text/css"
-	href="resources/css/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/video.css">
 <link rel="stylesheet" type="text/css" href="resources/css/custom.css">
 </head>
 <body>
@@ -31,8 +31,8 @@
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/jquery.vide.min.js"></script>
 	<script src="resources/js/semantic.min.js"></script>
-	<script src="resources/js/custom.js"></script>
+	<script src="resources/js/video.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
-
+	<script src="resources/js/custom.js"></script>
 </body>
 </html>

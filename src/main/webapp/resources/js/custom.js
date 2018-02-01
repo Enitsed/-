@@ -4,6 +4,24 @@
 $(document).ready(function () {
 	"use strict";
 	
+	
+	// 메인 페이지 동영상
+	$('#banner').on('click', function(){
+		$('body').dimmer('show');
+		$("#banner").data("vide").getVideoObject().pause();
+		$('.ui.video').video();
+	});
+	
+	// 버튼 혹은 동영상 바깥 클릭 후 메인 동영상 재생 및 디머 숨기기
+	$('#banner_close').on('click', function(){
+		main_video_dimmer();
+	});
+	
+	function main_video_dimmer() {
+		$('body').dimmer('hide');
+		$("#banner").data("vide").getVideoObject().play();
+	};
+	
 	// 메인 헤더 아이콘 애니메이션
 	$('.circular.users.icon').transition({
 	    animation : 'pulse',
