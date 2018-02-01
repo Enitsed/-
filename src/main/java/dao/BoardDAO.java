@@ -24,5 +24,9 @@ public interface BoardDAO {
 	public void delete(int num);
 
 	public BoardDTO updateNum(int num);
+	
+	public List<BoardDTO> searchList(String keyword);
+	
+	public int searchCount(String keyword);
 
 }
