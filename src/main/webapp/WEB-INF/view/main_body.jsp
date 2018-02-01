@@ -5,9 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- 동영상 -->
-<div class="ui page dimmable">
-	<div class="ui fluid container video_clip" id="banner" data-vide-bg="resources/images/travel" data-vide-options="posterType: jpg, loop: true, muted: false"></div>
-</div>
+<div class="ui fluid container video_clip" id="banner" data-vide-bg="resources/images/travel" data-vide-options="posterType: jpg, loop: true, muted: false"></div>
 
 <div class="ui dimmer">
 	<div class="center">
@@ -18,6 +16,7 @@
 		</div>
 	</div>
 </div>
+
 <!-- 바디 -->
 <div class="ui container contents">
    <div class="ui segment">

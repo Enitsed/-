@@ -7,7 +7,7 @@ $(document).ready(function () {
 	
 	// 메인 페이지 동영상
 	$('#banner').on('click', function(){
-		$('body').dimmer('show');
+		$('body .dimmer').dimmer('show');
 		$("#banner").data("vide").getVideoObject().pause();
 		$('.ui.video').video();
 	});
@@ -18,7 +18,7 @@ $(document).ready(function () {
 	});
 	
 	function main_video_dimmer() {
-		$('body').dimmer('hide');
+		$('body .dimmer').dimmer('hide');
 		$("#banner").data("vide").getVideoObject().play();
 	};
 	
@@ -428,6 +428,7 @@ $(document).ready(function () {
 				alert('로그아웃 되었습니다');
 			}, 1000); // 로그아웃 처리되는 타임을 임시적으로 1000설정
 		});
+		location.href = "logout";
 	};
 	// ]]>
 
