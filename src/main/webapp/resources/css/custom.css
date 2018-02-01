@@ -122,29 +122,13 @@ iframe {
 	height: 500px;
 }
 
-#text{
-	width: 400px;
-	height: 40px;
+.text_comment{
+	width: 92%;
+	left: 4%;
+	margin: 0px 0px 10px 10px;
 }
 
-.ui.right.labeled.input{
-	margin-right: 70px;
+.seemore {
+	margin: 0px 10px 20px 10px;
 }
 
-
-
-.user{
-	margin-left: 15px;
-}
-
-.date{
-	margin-left: 15px;
-}
-
-.extra.text{
-	margin-left: 15px;
-}
-
-.like{
-	margin-left: 15px;
-}

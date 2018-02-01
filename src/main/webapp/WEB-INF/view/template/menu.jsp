@@ -106,4 +106,6 @@
 	var findPwStatus = "${findPwStatus}";
 	var updateInfoStatus = "${updateInfoStatus}";
 	var memUpdateStatus = "${memUpdateStatus}";
+	var session_id = '${userDTO.mem_id}';
+	var session_num = '${userDTO.mem_num}';
 </script>
