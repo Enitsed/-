@@ -28,7 +28,7 @@
 	</form>
 </div>
 
-<div class="ui tiny modal loginStatus">
+<div class="ui tiny modal memUpdateStatus">
 	<i class="close icon"></i>
 	<div class="ui header">회원정보수정</div>
 	<div class="actions">
