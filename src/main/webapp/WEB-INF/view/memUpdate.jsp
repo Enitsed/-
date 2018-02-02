@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="ui container">
-	<form action="memUpdateInfo" method="post">
+	<form action="memUpdateInfo" class="ui form" method="post">
 		<div class="field">
 			<label>회원번호</label>
 			<input class="ui input" type="text" value="${memInfo.mem_num}" disabled>
