@@ -112,8 +112,8 @@
 	</insert>
 
 	<insert id="insertActor" parameterType="String">
-		INSERT INTO actor
-		(select actor_seq.nextval, #{actor_name} from dual where 0 >= (select count(*) from actor where actor_name = #{actor_name}))
+		INSERT INTO actor (select actor_seq.nextval, #{actor_name} 
+		from dual where 0 >= (select count(*) from actor where actor_name = #{actor_name}))
 	</insert>
 	
 	<insert id="insertMovieActor" parameterType="java.util.Map">
@@ -124,7 +124,7 @@
 	<insert id="insertDirector" parameterType="String">
 		INSERT INTO director
  		(select director_seq.nextval, #{director_name}
-		from director where 0 >= (select count(*) from director where director_name = #{director_name}))
+		from dual where 0 >= (select count(*) from director where director_name = #{director_name}))
 	</insert>
 	
 	<insert id="insertMovieDirector" parameterType="java.util.Map">

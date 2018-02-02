@@ -60,13 +60,28 @@ create table movie(
 	movie_url varchar2(500),			--url
 	nation varchar2(100)				--영화국가
 );
-select * from actor
+select * from actor where actor_name = '김태리'
 select * from movie where movie_kor_title = '코코'
-delete from movie where movie_num > 277 and movie_num < 285
-delete from movie_actor where movie_num > 277 and movie_num < 285
-delete from movie_director where movie_num > 277 and movie_num < 285
-delete from movie_category where movie_num > 277 and movie_num < 285
+delete from movie where movie_num > 311 and movie_num < 317
+delete from movie_actor where movie_num > 306 and movie_num < 312
+delete from movie_director where movie_num > 306 and movie_num < 312
+delete from movie_category where movie_num > 306 and movie_num < 312
+delete from movie_comment where movie_num > 301 and movie_num < 307
+delete from rating where movie_num > 296 and movie_num < 302
 
+drop table actor
+delete from movie
+delete from movie_actor
+delete from actor
+delete from movie_director
+delete from director
+delete from movie_category
+delete from rating
+select * from movie_category
+select * from movie_director
+
+select * from movie_actor
+rating
 			INSERT INTO actor (select actor_seq.nextval,'as'
 			from dual where 0 >= (select count(*) from actor where actor_name = 'as'))
 

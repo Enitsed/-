@@ -45,6 +45,7 @@ public class HelloController {
 		List<MovieDTO> boxOfficeMovieList = new ArrayList<MovieDTO>();
 		
 		for (String i : list) {
+			System.out.println(i);
 			MovieDTO dto = movieservice.BoxOfficeInsert(i);
 			if (dto != null)
 				movieList.add(dto);
@@ -59,7 +60,6 @@ public class HelloController {
 				movieservice.BoxOfficeCategoryInsert(i);
 			}
 		}
-		
 		
 		for (String i : list) {
 			try {

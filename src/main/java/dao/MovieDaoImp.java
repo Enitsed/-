@@ -125,10 +125,14 @@ public class MovieDaoImp implements MovieDAO {
 		if (count <= 0) {
 			MovieApi api = new MovieApi();
 			dto = api.insertMovie(name);
+			
 			if (dto == null)
 				return null;
-			else
+			else {
+				System.out.println("asd : " + dto.getMovie_kor_title());
 				sqlSession.insert("movie.insertMovie", dto);
+				System.out.println("asd : " + dto.getMovie_kor_title());
+			}
 		}
 		return dto;
 	}
@@ -185,24 +189,24 @@ public class MovieDaoImp implements MovieDAO {
 		// 코드의 최적화를 위해 마지막 방법은 비추.
 		// 참고링크 : https://stackoverflow.com/questions/14720938/ora-12519-tnsno-appropriate-service-handler-found-while-inserting-into-oracle
 		try {
-			// List<DirectorDTO> directorList = sqlSession.selectList("movie.director", dto.getMovie_num());
-			// dto.setMovie_director(directorList);
+			List<DirectorDTO> directorList = sqlSession.selectList("movie.director", dto.getMovie_num());
+			dto.setMovie_director(directorList);
 		} catch (NullPointerException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		try {
-			// List<ActorDTO> actorList = sqlSession.selectList("movie.actor", dto.getMovie_num());
-			// dto.setMovie_actor(actorList);
+			List<ActorDTO> actorList = sqlSession.selectList("movie.actor", dto.getMovie_num());
+			dto.setMovie_actor(actorList);
 		} catch (NullPointerException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		try {
-			// List<CategoryDTO> categoryList = sqlSession.selectList("movie.category", dto.getMovie_num());
-			// dto.setCategory(categoryList);
+			List<CategoryDTO> categoryList = sqlSession.selectList("movie.category", dto.getMovie_num());
+			dto.setCategory(categoryList);
 		} catch (NullPointerException e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		

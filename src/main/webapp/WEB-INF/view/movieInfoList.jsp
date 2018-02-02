@@ -121,6 +121,25 @@
 						<div class="description">
 							<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
 							<h4>줄거리 : ${i.movie_summary}</h4>
+							<p>
+								감독 :
+								<c:forEach var="j" items="${i.movie_director}">
+									${j.director_name}
+								</c:forEach>
+							</p>
+							<p>
+								배우 :
+								<c:forEach var="j" items="${i.movie_actor}">
+									${j.actor_name}
+								</c:forEach>
+							</p>
+							<p>
+								장르 :
+								<c:forEach var="j" items="${i.category}">
+									${j.category_name}
+								</c:forEach>
+							</p>
+							
 							<p>개봉일 : 
 							<fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short"
 									value="${i.movie_opening_date}" /></p>
