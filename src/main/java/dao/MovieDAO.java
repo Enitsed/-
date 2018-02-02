@@ -32,4 +32,5 @@ public interface MovieDAO {
 	public void BoxOfficeCategoryInsert(MovieDTO dto);
 	public void BoxOfficeActorInsert(MovieDTO dto);	
 	public List<CommentDTO> morecommentListProcess(MoreCommentDTO dto);
+	public List<MovieDTO> maxCommentMovie();
 }

@@ -107,6 +107,93 @@
       </div>
    </div>
 
+	<div class="ui segment">
+		<div class="ui top attached green label">최근 코멘트 많이 달린 영화</div>
+		<div class="ui link special cards four columns">
+         <c:forEach var="i" items="${commentMovie}">
+
+            <div
+               class="card column blurring dimmable image main_movie">
+
+               <input type="hidden" value="${i.movie_num}" />
+
+               <!-- 영화 번호 넣을자리 -->
+               <c:choose>
+                  <c:when test="${i.movie_image eq '이미지 없음'}">
+                     <img class="slideImg" src="resources/images/no_image.png">
+                  </c:when>
+                  <c:otherwise>
+                     <c:forTokens var="item" items="${i.movie_image}" delims="|"
+                        end="0">
+                        <img class="slideImg" src="${item}">
+                     </c:forTokens>
+                  </c:otherwise>
+               </c:choose>
+               <!-- 영화이미지 넣을자리 -->
+               <div class="ui dimmer">
+                  <div class="ui content">
+                     <div class="ui center">
+                        <p>${i.movie_kor_title}</p>
+                        <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+                        <br /> <br />
+                        <div class="ui divider"></div>
+                        <br /> <br /> <br />
+
+                        <div class="ui star rating" data-rating="5" data-max-rating="5" id="${i.movie_num}"></div>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="ui modal movie" id="modal${i.movie_num}">
+               <i class="close icon"></i>
+               <div class="header">영화</div>
+               <div class="image content">
+                  <div class="ui medium image">
+                     <img  src="">
+                  </div>
+                  <div class="description">
+                     <div class="ui header">영화제목 : ${i.movie_kor_title}</div>
+                     <h4>줄거리 : ${i.movie_summary}</h4>
+                     <p>
+                        개봉일 :
+                        <fmt:formatDate pattern="yyyy/MM/dd" dateStyle="short"
+                           value="${i.movie_opening_date}" />
+                     </p>
+                  </div>
+               </div>
+               
+               <div class="ui large feed">
+               </div>
+                
+               <div class="seemore">
+                 <input type="hidden" class="hiddennum" id="10" name="10"/>
+               </div>
+
+               <c:if test="${not empty userDTO.mem_id}">
+                  <div class="ui left labeled input text_comment">
+  					<input type="text" class="comment_m" placeholder="내용을 입력하세요...">
+  					<div class="ui basic label" id="${i.movie_num}">
+    					<i class="comment outline icon"></i>
+  				  	</div>
+				  </div>
+               <div class="clearing item"></div>
+               </c:if>
+               
+               <div class="actions">
+                  <div class="ui black deny button">닫기</div>
+                  <div class="ui positive right labeled icon button">
+                    	 상세페이지로 이동 <i class="checkmark icon"></i>
+                  </div>
+               </div>
+               
+            </div>
+         </c:forEach>
+        
+      </div>
+   	</div>
+   	
    <div class="ui segment">
 	<div class="ui top attached green label">게시판 글 리스트</div>
       <div class="ui items">

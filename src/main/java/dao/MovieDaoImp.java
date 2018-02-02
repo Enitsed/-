@@ -213,4 +213,18 @@ public class MovieDaoImp implements MovieDAO {
 	public List<CommentDTO> morecommentListProcess(MoreCommentDTO dto) {
 		return sqlSession.selectList("movie.morecomment", dto);
 	}
+
+	@Override
+	public List<MovieDTO> maxCommentMovie() {
+		List<MovieDTO> list = sqlSession.selectList("movie.commentMaxMovie");
+		for (int i = 0; i < list.size(); i++) {
+			List<DirectorDTO> directorList = sqlSession.selectList("movie.director", list.get(i).getMovie_num());
+			list.get(i).setMovie_director(directorList);
+			List<ActorDTO> actorList = sqlSession.selectList("movie.actor", list.get(i).getMovie_num());
+			list.get(i).setMovie_actor(actorList);
+			List<CategoryDTO> categoryList = sqlSession.selectList("movie.category", list.get(i).getMovie_num());
+			list.get(i).setCategory(categoryList);
+		}
+		return list;
+	}
 }

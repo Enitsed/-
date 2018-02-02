@@ -319,6 +319,10 @@ create table movie_comment(
 
 select * from movie_comment
 
+select count(*) from movie_comment group by movie_num
+
+select a.* from movie a, (select movie_num from movie_comment where regdate > sysdate - 7 and regdate <= sysdate group by movie_num order by count(*)) b where a.movie_num  = b.movie_num and rownum <8
+
 create sequence comment_num_seq
 start with 1
 increment by 1

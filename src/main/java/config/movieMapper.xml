@@ -136,5 +136,9 @@
 		INSERT INTO movie_category
 		(select category_num, movie_num from category, movie where category_name = #{movie_category} AND movie_kor_title = #{movie_kor_title})
 	</insert>
+	
+	<select id="commentMaxMovie" resultType="dto.MovieDTO">
+		select a.* from movie a, (select movie_num from movie_comment where regdate > sysdate - 7 and sysdate >= regdate group by movie_num order by count(*)) b where a.movie_num  = b.movie_num and 8 > rownum 
+	</select>
 </mapper>
     

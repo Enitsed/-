@@ -114,4 +114,11 @@ public class MovieServiceImp implements MovieService {
 		return dao.morecommentListProcess(dto);
 	}
 
+	@Override
+	public List<MovieDTO> maxCommentMovie() {
+		// TODO Auto-generated method stub
+		return dao.maxCommentMovie();
+	}
+	
+
 }

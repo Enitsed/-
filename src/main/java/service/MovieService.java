@@ -30,6 +30,7 @@ public interface MovieService {
 	public void BoxOfficeDirectorInsert(MovieDTO dto);
 	public void BoxOfficeCategoryInsert(MovieDTO dto);
 	public void BoxOfficeActorInsert(MovieDTO dto);
-	
 	public List<CommentDTO> moreCommentProcess(MoreCommentDTO dto);
+	public List<MovieDTO> maxCommentMovie();
+
 }

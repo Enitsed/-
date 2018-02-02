@@ -620,7 +620,9 @@ $(document).ready(function () {
 	   function like(){
 	      var num = parseInt($(this).attr('value')); //코멘트 번호
 	      var now = $(this);
-	         var likey = parseInt($(this).text());
+	      var likey = parseInt($(this).text());
+	      $(this).hide();
+
 	      if(session_id){
 	         
 	      }else{
@@ -636,7 +638,6 @@ $(document).ready(function () {
 
 	         data: 'mem_id=' + session_id + '&comment_num=' + num,
 	         success: function (data) {
-	            
 	            if (data.like != null) {
 	            	setTimeout(function(){
 	            		 likey+=1;
@@ -653,9 +654,10 @@ $(document).ready(function () {
 	           	},2000);
 	               
 	            }
-	            
+	    	   $(this).show();
 	         }//success끝
 	      });//ajax끝
+	      
 	   }//like function()끝
 	   
 
@@ -707,7 +709,7 @@ $(document).ready(function () {
 	              $('.more').remove();
 	              var plus2="";
 	              if(data.length>more)
-	              	plus2+= '<input type="hidden" value="'+number+'" id="hidden"/>'+
+	              	plus2+= '<input type="hidden" value="'+movie_number+'" id="hidden"/>'+
 	  					 '<a class="more" id="10">댓글 더보기</a>'
 	  				$(plus2).appendTo('.seemore');
 	           
