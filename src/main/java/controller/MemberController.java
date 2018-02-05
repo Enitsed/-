@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +21,7 @@ import service.MovieService;
 public class MemberController {
 	MemService service;
 	MovieService movieservice;
+	String loginId;
 
 	public MemberController() {
 
@@ -78,10 +78,10 @@ public class MemberController {
 		if (service.idCheckProcess(userDTO)) {
 			try {
 				MemDTO foundUserDTO = service.loginProcess(userDTO);
+				loginId = foundUserDTO.getMem_id();
 				if (foundUserDTO != null) {
 					mav.addObject("loginStatus", "로그인에 성공하였습니다.");
 					session.setAttribute("userDTO", foundUserDTO);
-
 				} else {
 					mav.addObject("loginStatus", "비밀번호가 일치하지 않습니다.");
 				}
@@ -101,6 +101,7 @@ public class MemberController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
+		loginId="";
 		return "redirect:/main";
 	}
 
@@ -181,12 +182,20 @@ public class MemberController {
 	@RequestMapping("/memInfo")
 	public ModelAndView memInfo(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
-		List<MemDTO> aList = service.memInfo(userDTO);
-		mav.addObject("memList", aList);
-		mav.setViewName("memInfoList");
+		try {
+			if(loginId.equals("admin")) {
+				List<MemDTO> aList = service.memInfo(userDTO);
+				mav.addObject("memList", aList);
+				mav.setViewName("memInfoList");
+				return mav;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		mav.setViewName("index");
 		return mav;
 	}
-	
+
 	@RequestMapping("/memUpdate")
 	public ModelAndView memUpdate(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
@@ -195,8 +204,8 @@ public class MemberController {
 		mav.setViewName("memUpdate");
 		return mav;
 	}
-	
-	@RequestMapping(value="/memUpdateInfo",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/memUpdateInfo", method = RequestMethod.GET)
 	public ModelAndView memL(MemDTO userDTO, HttpServletRequest request, int mem_num) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
@@ -207,8 +216,8 @@ public class MemberController {
 		mav.setViewName("memUpdate");
 		return mav;
 	}
-	
-	@RequestMapping(value = "/memUpdateInfo",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/memUpdateInfo", method = RequestMethod.POST)
 	public ModelAndView memUpdate(MemDTO memList, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
@@ -219,6 +228,7 @@ public class MemberController {
 		} else {
 			mav.addObject("memUpdateStatus", "등급정보 수정에 실패하였습니다.");
 		}
+
 		mav.setViewName("redirect:/main");
 		return mav;
 	}
