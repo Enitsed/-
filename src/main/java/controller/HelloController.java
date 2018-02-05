@@ -43,7 +43,7 @@ public class HelloController {
 		List<String> list = api2.boxOffice();
 		List<MovieDTO> movieList = new ArrayList<MovieDTO>();
 		List<MovieDTO> boxOfficeMovieList = new ArrayList<MovieDTO>();
-		
+
 		for (String i : list) {
 			System.out.println(i);
 			MovieDTO dto = movieservice.BoxOfficeInsert(i);
@@ -60,17 +60,17 @@ public class HelloController {
 				movieservice.BoxOfficeCategoryInsert(i);
 			}
 		}
-		
+
 		for (String i : list) {
 			try {
 				MovieDTO dto = movieservice.boxOffice(i);
 				if (dto.getMovie_kor_title() != null)
 					boxOfficeMovieList.add(dto);
 			} catch (NullPointerException e) {
-				System.out.println("여기네 문제가");
+				e.printStackTrace();
 			}
-		}		
-		
+		}
+
 		mav.addObject("movie", boxOfficeMovieList);
 		mav.addObject("commentMovie", movieservice.maxCommentMovie());
 

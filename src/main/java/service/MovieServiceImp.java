@@ -119,6 +119,5 @@ public class MovieServiceImp implements MovieService {
 		// TODO Auto-generated method stub
 		return dao.maxCommentMovie();
 	}
-	
 
 }
