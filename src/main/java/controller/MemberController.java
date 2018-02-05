@@ -101,7 +101,7 @@ public class MemberController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		loginId="";
+		loginId = "";
 		return "redirect:/main";
 	}
 
@@ -183,13 +183,13 @@ public class MemberController {
 	public ModelAndView memInfo(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
 		try {
-			if(loginId.equals("admin")) {
+			if (loginId.equals("admin")) {
 				List<MemDTO> aList = service.memInfo(userDTO);
 				mav.addObject("memList", aList);
 				mav.setViewName("memInfoList");
 				return mav;
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		mav.setViewName("index");

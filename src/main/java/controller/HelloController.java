@@ -64,9 +64,8 @@ public class HelloController {
 		for (String i : list) {
 			try {
 				MovieDTO dto = movieservice.boxOffice(i);
-				if (dto != null && dto.getMovie_kor_title() != null) {
+				if (dto.getMovie_kor_title() != null)
 					boxOfficeMovieList.add(dto);
-				}
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
