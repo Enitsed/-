@@ -13,7 +13,7 @@
 			success : function(data) {
 						//console.log(data);
 				var content = "";
-				$.each(data, function(index, value){					
+				$.each(data, function(index, value){
 					var imagUrl = value.movie_image;
 					var image;
 					if(imagUrl == "이미지 없음"){
@@ -23,6 +23,7 @@
 						image = imagUrl[0];
 					}
 					content = '<div class="card column blurring dimmable image main_movie">' + 
+								'<input type="hidden" value="'+value.movie_num+'" />' +
 								'<img class="slideImg" src="'+image+'">' +
 								'<div class="ui dimmer">'+
 								'<div class="ui content">'+
@@ -59,13 +60,106 @@
 								'</div>'+
 								'<div id="bb"></div>'+
 								'</div>';
-					$(content).appendTo("#movieListWindow");
+					$("#movieListWindow").append(content); 
+					
+					$('.ui.rating').rating();////rating ui
+					$('.special.cards .image.main_movie').dimmer({
+							on: 'hover'
+					});////dimmer function
+					
+					$('.ui.rating').on("click",function(){
+						var rating = $(this).rating("get rating", this);
+						var num =  $('#member_num').val();
+						var movie_num = $(this).attr("id");
+						/* alert(rating + " " + num + " " + movie_num); */
+						if(num < 1){
+							alert("로그인부터 해라");
+							return;
+						}
+						$.ajax({
+							type: 'GET',
+							dataType: 'json',
+							url: 'addrating.do?movie_num=' + movie_num + "&member_num=" + num + "&rating="+rating,
+							success: function (res) {
+								alert("평점이 등록 되었습니다.")
+							},
+							error: function (request, status, error) {
+								alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+							}
+						});
+						
+					}); /////////////////ui rating click function
+					
+					
+					$('.main_movie').on('click', function () {
+					      var mnum = $(this).find('input[type="hidden"]').val();
+					      var modal = '#modal' + mnum;
+					      var hi = $(this).parent().find('.hiddennum').attr('name');//10으로 초기화
+
+					      $.ajax({
+					         url: 'info?movie_num=' + mnum,
+					         type: 'GET',
+					         async: false,
+					         dataType: 'json',
+					         success: function (data) {
+					            $('.event').remove();
+					            $.each(data,function(index,value){
+					  
+									var comment="";
+									var sdate = new Date(value.regdate);
+									var sm = sdate.getFullYear() + "/";
+									sm = sm + (sdate.getMonth() + 1) + "/";
+									sm = sm + sdate.getDate();
+
+									comment +=
+										'<div class="event">' +
+										'<div class="label">' +
+										'<img src="resources/images/user.png">' +
+										'</div>' +
+										'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
+										'<div class="content">' +
+										'<div class="summary">' +
+										'<a class="user">' + value.mem_id + '</a>' +
+										'<input type="hidden" class="movie_num" value="'+value.movie_num+'"/>'+
+										'<div class="date">' + sm + '</div></div>' +
+										'<div class="extra text">' + value.replytext + '</div>' +
+										'<div class="meta">' +
+										'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
+										if(session_id==value.mem_id){
+											comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
+										}
+										+'</div></div></div>';
+										$(comment).appendTo(".ui.large.feed");
+										if(index==more)
+						            		return false;
+					            	
+								});//each
+
+					            $('#hidden').remove();
+					            $('.more').remove();
+					            var plus="";
+					            if(data.length>more)
+					            	plus+= '<input type="hidden" value="'+mnum+'" id="hidden"/>'+
+										 '<a class="more" id="10">댓글 더보기</a>'
+									$(plus).appendTo('.seemore');
+									
+									
+					       
+					            $(modal).modal('show');
+					           
+					         }//success
+					      });//ajax끝
+					      
+					   });//movie modal 클릭 끝
+					
+					
+													
 
 				})
 						
 				if(data.length < 8){
 					$("#currentPage").val(page - 1);
-				}else{
+				}else{	
 					$("#currentPage").val(page);
 				}
 			},

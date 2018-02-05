@@ -209,7 +209,7 @@ $(document).ready(function () {
 		var rating = $(this).rating("get rating", this);
 		var num =  $('#member_num').val();
 		var movie_num = $(this).attr("id");
-		alert(rating + " " + num + " " + movie_num);
+		/*alert(rating + " " + num + " " + movie_num);*/
 		if(num < 1){
 			alert("로그인부터 해라");
 			return;
