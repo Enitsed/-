@@ -229,7 +229,7 @@ public class MemberController {
 			mav.addObject("memUpdateStatus", "등급정보 수정에 실패하였습니다.");
 		}
 
-		mav.setViewName("redirect:/main");
+		mav.setViewName("memUpdate");
 		return mav;
 	}
 }
