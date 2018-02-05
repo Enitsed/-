@@ -7,7 +7,7 @@
 <!-- 동영상 -->
 <div class="ui fluid container video_clip" id="banner"
 	data-vide-bg="resources/images/travel"
-	data-vide-options="posterType: jpg, loop: true, muted: false"></div>
+	data-vide-options="loop: false, muted: false"></div>
 
 <div class="ui dimmer">
 	<div class="center">
