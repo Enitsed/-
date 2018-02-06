@@ -67,7 +67,7 @@ public class HelloController {
 				if (dto.getMovie_kor_title() != null)
 					boxOfficeMovieList.add(dto);
 			} catch (NullPointerException e) {
-				e.printStackTrace();
+				
 			}
 		}
 
@@ -128,5 +128,4 @@ public class HelloController {
 	public @ResponseBody List<CommentDTO> morecomment(MoreCommentDTO dto) {
 		return movieservice.moreCommentProcess(dto);
 	}
-
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import api.BoxOffice;
 import api.MovieApi;
 import api.MovieNewsApi;
 import dto.MemDTO;
+import dto.MovieDTO;
 import service.MemService;
 import service.MovieService;
 
@@ -78,8 +81,8 @@ public class MemberController {
 		if (service.idCheckProcess(userDTO)) {
 			try {
 				MemDTO foundUserDTO = service.loginProcess(userDTO);
-				loginId = foundUserDTO.getMem_id();
 				if (foundUserDTO != null) {
+					loginId = foundUserDTO.getMem_id();
 					mav.addObject("loginStatus", "로그인에 성공하였습니다.");
 					session.setAttribute("userDTO", foundUserDTO);
 				} else {
@@ -93,7 +96,42 @@ public class MemberController {
 			mav.addObject("loginStatus", "회원이 존재하지 않습니다.");
 		}
 		api.MovieNewsAPI(mav);
-		mav.addObject("movie", movieservice.movieInfoProcess(1));
+		BoxOffice api2 = new BoxOffice();
+		List<String> list = api2.boxOffice();
+		List<MovieDTO> movieList = new ArrayList<MovieDTO>();
+		List<MovieDTO> boxOfficeMovieList = new ArrayList<MovieDTO>();
+
+		for (String i : list) {
+			System.out.println(i);
+			MovieDTO dto = movieservice.BoxOfficeInsert(i);
+			if (dto != null)
+				movieList.add(dto);
+			else
+				System.out.println("영화 없음");
+		}
+
+		for (MovieDTO i : movieList) {
+			if (i != null) {
+				movieservice.BoxOfficeActorInsert(i);
+				movieservice.BoxOfficeDirectorInsert(i);
+				movieservice.BoxOfficeCategoryInsert(i);
+			}
+		}
+
+		for (String i : list) {
+			try {
+				MovieDTO dto = movieservice.boxOffice(i);
+				if (dto.getMovie_kor_title() != null)
+					boxOfficeMovieList.add(dto);
+			} catch (NullPointerException e) {
+				
+			}
+		}
+
+		
+		mav.addObject("movie",boxOfficeMovieList);
+		mav.addObject("commentMovie", movieservice.maxCommentMovie());
+
 		mav.setViewName("index");
 		return mav;
 	}
@@ -232,4 +270,6 @@ public class MemberController {
 		mav.setViewName("memUpdate");
 		return mav;
 	}
+	
+	
 }
