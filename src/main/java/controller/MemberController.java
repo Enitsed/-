@@ -78,8 +78,8 @@ public class MemberController {
 		if (service.idCheckProcess(userDTO)) {
 			try {
 				MemDTO foundUserDTO = service.loginProcess(userDTO);
-				loginId = foundUserDTO.getMem_id();
 				if (foundUserDTO != null) {
+					loginId = foundUserDTO.getMem_id();
 					mav.addObject("loginStatus", "로그인에 성공하였습니다.");
 					session.setAttribute("userDTO", foundUserDTO);
 				} else {
@@ -92,6 +92,7 @@ public class MemberController {
 		} else {
 			mav.addObject("loginStatus", "회원이 존재하지 않습니다.");
 		}
+		
 		api.MovieNewsAPI(mav);
 		mav.addObject("movie", movieservice.movieInfoProcess(1));
 		mav.setViewName("index");
