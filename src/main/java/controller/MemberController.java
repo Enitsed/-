@@ -95,6 +95,7 @@ public class MemberController {
 		} else {
 			mav.addObject("loginStatus", "회원이 존재하지 않습니다.");
 		}
+		
 		api.MovieNewsAPI(mav);
 		BoxOffice api2 = new BoxOffice();
 		List<String> list = api2.boxOffice();
