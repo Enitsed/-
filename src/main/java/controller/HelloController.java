@@ -67,7 +67,7 @@ public class HelloController {
 				if (dto.getMovie_kor_title() != null)
 					boxOfficeMovieList.add(dto);
 			} catch (NullPointerException e) {
-				e.printStackTrace();
+				
 			}
 		}
 
