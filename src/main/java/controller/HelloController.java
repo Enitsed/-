@@ -128,5 +128,4 @@ public class HelloController {
 	public @ResponseBody List<CommentDTO> morecomment(MoreCommentDTO dto) {
 		return movieservice.moreCommentProcess(dto);
 	}
-
 }

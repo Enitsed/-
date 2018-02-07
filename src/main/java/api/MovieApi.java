@@ -193,10 +193,11 @@ public class MovieApi {
 					} else if (tag.equals("repRlsDate")) {
 						tagName = parser.nextText();
 						tagName = tagName.replaceAll("\\p{Z}", "");
+
 						if (movieDto != null) {
 							if (tagName.equals("")) {
-
-								movieDto.setMovie_opening_date(null);
+								Date fromDate = new Date(00000000);
+								movieDto.setMovie_opening_date(fromDate);
 							} else {
 								SimpleDateFormat toFormat = new SimpleDateFormat("yyyyMMdd");
 								Date fromDate = toFormat.parse(tagName);
