@@ -151,7 +151,7 @@ iframe {
 	height : 500px;
 }
 
-.ui .items {
+.ui.items.main_list {
 	width : 100%;
 	height : 450px;
 	overflow-y : scroll;

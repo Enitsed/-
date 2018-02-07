@@ -29,20 +29,20 @@
 			</div>
 		</div>
 
-		<div class="ui simple dropdown item">
-			더 보기 <i class="dropdown icon"></i>
-			<div class="menu">
-			<c:if test="${not empty userDTO}">
-				<a class="item" href="myPage"><i class="edit icon"></i>정보 수정</a> 
-				<c:if test="${userDTO.mem_id eq 'admin'}">
-					<a class="item" href="memInfo">
-						<i class="setting icon"></i>회원 정보
-					</a>
-				</c:if>
-			</c:if>
-			
+		<c:if test="${not empty userDTO}">
+			<div class="ui simple dropdown item">
+				더 보기 <i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item" href="myPage"><i class="edit icon"></i>정보 수정</a> 
+					<c:if test="${userDTO.mem_id eq 'admin'}">
+						<a class="item" href="memInfo">
+							<i class="setting icon"></i>회원 정보
+						</a>
+					</c:if>
+				</div>
 			</div>
-		</div>
+		</c:if>
+		
 		<div class="ui item right">
 			<form id="search" action="searchResult" method="post" name="search">
 				<div class="ui action input">

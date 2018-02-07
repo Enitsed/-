@@ -258,7 +258,7 @@
 
 	<div class="ui segment board_list">
 		<div class="ui top attached green label">게시판 글 리스트</div>
-		<div class="ui items">
+		<div class="ui items main_list">
 			<c:forEach var="bDto" items="${boardList }">
 			<div class="item">
 				<div class="content">
@@ -282,7 +282,7 @@
 
 	<div class="ui segment news_list">
 		<div class="ui top attached green label">관련 뉴스기사</div>
-		<div class="ui items">
+		<div class="ui items main_list">
 			<c:forEach items="${list}" var="list">
 				<div class="item">
 					<div class="content">
