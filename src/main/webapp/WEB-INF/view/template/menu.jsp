@@ -5,11 +5,30 @@
 <!-- 메뉴 -->
 <div class="ui attached stackable menu">
 	<div class="ui container">
-		<a class="item" href="main"> <i class="home icon"></i> Home
-		</a> <a class="item" href="movieInfoList"> <i class="grid video icon"></i>
-			영화정보
-		</a> <a class="item" href="free"> <i class="grid layout icon"></i> 게시판
-		</a>
+		<a class="item" href="main">
+			<i class="home icon"></i> Home
+		</a> 
+		<a class="item" href="movieInfoList">
+			<i class="grid video icon"></i> 영화정보
+		</a> 
+		<div class="ui simple dropdown item" onclick="location.href='free'">
+			<i class="grid layout icon"></i> 게시판
+			<div class="menu">
+			<a class="item" href="free?board_category=1">
+				공지사항
+			</a>
+			<a class="item" href="free?board_category=2">
+				건의사항
+			</a>
+			<a class="item" href="free?board_category=3">
+				질문과답변
+			</a>
+			<a class="item" href="free?board_category=4">
+				자유게시판
+			</a>
+			</div>
+		</div>
+
 		<div class="ui simple dropdown item">
 			더 보기 <i class="dropdown icon"></i>
 			<div class="menu">
