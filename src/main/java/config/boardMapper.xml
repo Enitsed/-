@@ -24,7 +24,8 @@
 			</if>
 		</where>
 		order by board_relnum desc, board_reply_step asc)a)b
-		where b.rm between #{startRow} and #{endRow}
+		where b.rm between
+		#{startRow} and #{endRow}
 	</select>
 
 	<update id="readCount" parameterType="int">
@@ -65,7 +66,8 @@
 
 	<update id="update" parameterType="dto.BoardDTO">
 		update board
-		set board_name=#{board_name}, board_content=#{board_content}
+		set
+		board_name=#{board_name}, board_content=#{board_content}
 		where
 		board_num=#{board_num}
 	</update>
@@ -74,16 +76,16 @@
 		delete from board where
 		board_num=#{num}
 	</delete>
-	
+
 	<select id="searchList" parameterType="String" resultType="dto.BoardDTO">
 		select * from
 		board where board_name like '%'||#{keyword}||'%'
 	</select>
-	
+
 	<select id="searchCount" parameterType="String" resultType="int">
 		select count(*) from
 		board where board_name like '%'||#{keyword}||'%'
 	</select>
-	
+
 
 </mapper>
