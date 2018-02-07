@@ -1,4 +1,4 @@
-package api;
+package api.src.api2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,13 +14,13 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import api.MovieDAO;
-import dto.ActorDTO;
-import dto.MovieDTO;
-import dto.CategoryDTO;
-import dto.DirectorDTO;
+import api.src.dto.CategoryDTO;
+import api.src.dto.DirectorDTO;
+import api.src.dao.MovieDAO;
+import api.src.dto.ActorDTO;
+import api.src.dto.MovieDTO;
 
-public class MovieListApi {
+public class MovieListAPI {
 
 	public void insert() {
 		List<MovieDTO> list = new ArrayList();
@@ -196,8 +196,8 @@ public class MovieListApi {
 						tagName = tagName.replaceAll("\\p{Z}", "");
 						if (movieDto != null) {
 							if (tagName.equals("")) {
-
-								movieDto.setMovie_opening_date(null);
+								Date fromDate = new Date(00000000);
+								movieDto.setMovie_opening_date(fromDate);
 							} else {
 								SimpleDateFormat toFormat = new SimpleDateFormat("yyyyMMdd");
 								Date fromDate = toFormat.parse(tagName);

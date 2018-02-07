@@ -1,4 +1,4 @@
-package api;
+package api.src.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,10 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import dto.ActorDTO;
-import dto.MovieDTO;
-import dto.CategoryDTO;
-import dto.DirectorDTO;
+import api.src.dto.CategoryDTO;
+import api.src.dto.DirectorDTO;
+import api.src.dto.ActorDTO;
+import api.src.dto.MovieDTO;
 
 public class MovieDAO {
 	Connection conn = null;
@@ -226,7 +226,6 @@ public class MovieDAO {
 				List<CategoryDTO> list = Movielist.get(i).getCategory();
 				for (int j = 0; j < list.size(); j++) {
 					String name = list.get(j).getCategory_name().replaceAll("\\p{Z}", "");
-					System.out.println(name);
 					if (!name.equals("")) {
 
 						String sql = "INSERT INTO movie_category (select category_num, movie_num from category, movie where category_name = '"
