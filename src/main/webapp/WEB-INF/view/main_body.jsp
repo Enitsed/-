@@ -256,7 +256,7 @@
 		</div>
 	</div>
 
-	<div class="ui segment">
+	<div class="ui segment board_list">
 		<div class="ui top attached green label">게시판 글 리스트</div>
 		<div class="ui items">
 			<c:forEach var="bDto" items="${boardList }">
@@ -272,6 +272,7 @@
 					<div class="extra">작성일 : ${bDto.board_date }</div>
 				</div>
 			</div>
+			<div class="ui divider"></div>
 			</c:forEach>
 		</div>
 		<div class="ui top right attached label green inverted button" onclick="location.href='free'">
@@ -279,10 +280,10 @@
 		</div>
 	</div>
 
-	<div class="ui segment">
+	<div class="ui segment news_list">
 		<div class="ui top attached green label">관련 뉴스기사</div>
-		<c:forEach items="${list}" var="list">
-			<div class="ui items">
+		<div class="ui items">
+			<c:forEach items="${list}" var="list">
 				<div class="item">
 					<div class="content">
 						<a href="${list.originallink}">${list.title}</a>
@@ -291,7 +292,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
+				<div class="ui divider"></div>
+			</c:forEach>
+		</div>
 	</div>
 </div>
