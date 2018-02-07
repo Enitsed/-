@@ -79,7 +79,6 @@ delete from movie_category
 delete from rating
 select * from movie_category
 select * from movie_director
-
 select * from movie_actor
 rating
 			INSERT INTO actor (select actor_seq.nextval,'as'

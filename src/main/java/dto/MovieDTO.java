@@ -101,7 +101,7 @@ public class MovieDTO {
 	public void addMovie_director(DirectorDTO dto) {
 		this.movie_director.add(dto);
 	}
-	
+
 	public List<ActorDTO> getMovie_actor() {
 		return movie_actor;
 	}
@@ -109,7 +109,7 @@ public class MovieDTO {
 	public void setMovie_actor(List<ActorDTO> movie_actor) {
 		this.movie_actor = movie_actor;
 	}
-	
+
 	public void addMovie_actor(ActorDTO dto) {
 		this.movie_actor.add(dto);
 	}

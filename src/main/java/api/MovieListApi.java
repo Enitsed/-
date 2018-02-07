@@ -6,9 +6,9 @@ import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -193,19 +193,14 @@ public class MovieListApi {
 						}
 					} else if (tag.equals("repRlsDate")) {
 						tagName = parser.nextText();
+						tagName = tagName.replaceAll("\\p{Z}", "");
 						if (movieDto != null) {
-							if (tagName == null) {
-								Date fromDate = new Date(00000000);
-								movieDto.setMovie_opening_date(fromDate);
-							} else {
-								tagName = tagName.replaceAll("\\p{Z}", "");
+							if (tagName.equals("")) {
 
-								SimpleDateFormat toFormat = new SimpleDateFormat("yyyy-MM-dd");
-								Date fromDate = null;
-								try {
-									fromDate = new Date(Integer.parseInt(tagName));
-								} catch (Exception e) {
-								}
+								movieDto.setMovie_opening_date(null);
+							} else {
+								SimpleDateFormat toFormat = new SimpleDateFormat("yyyyMMdd");
+								Date fromDate = toFormat.parse(tagName);
 								movieDto.setMovie_opening_date(fromDate);
 							}
 						}
