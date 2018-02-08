@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,17 +12,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import api.MovieApi;
+import api.BoxOffice;
+import api.MovieNewsApi;
 import dto.CommentDTO;
 import dto.LikeDTO;
 import dto.MemDTO;
 import dto.MoreCommentDTO;
+import dto.MovieDTO;
+import service.BoardService;
 import service.MovieService;
 
 //http://localhost:8090/finalproject/main
 @Controller
 public class HelloController {
 	MovieService movieservice;
+	BoardService boardservice;
 
 	public HelloController() {
 
@@ -31,13 +36,54 @@ public class HelloController {
 		this.movieservice = movieservice;
 	}
 
+	public void setBoardservice(BoardService boardservice) {
+		this.boardservice = boardservice;
+	}
+
 	@RequestMapping("/main")
 	public ModelAndView mainPage() {
 		ModelAndView mav = new ModelAndView();
-		MovieApi api = new MovieApi();
-		api.MovieNewsApi(mav);
+		MovieNewsApi api = new MovieNewsApi();
+		BoxOffice api2 = new BoxOffice();
+		List<String> list = api2.boxOffice();
+		List<MovieDTO> movieList = new ArrayList<MovieDTO>();
+		List<MovieDTO> boxOfficeMovieList = new ArrayList<MovieDTO>();
+		for (String i : list) {
+			System.out.println(i);
+			MovieDTO dto = movieservice.BoxOfficeInsert(i);
+			if (dto != null)
+				movieList.add(dto);
+			else
+				System.out.println("영화 없음");
+		}
 
-		mav.addObject("movie", movieservice.movieInfoProcess(1));
+		for (MovieDTO i : movieList) {
+			if (i != null) {
+				movieservice.BoxOfficeActorInsert(i);
+				movieservice.BoxOfficeDirectorInsert(i);
+				movieservice.BoxOfficeCategoryInsert(i);
+			}
+		}
+
+		for (String i : list) {
+			try {
+				MovieDTO dto = movieservice.boxOffice(i);
+				if (dto.getMovie_kor_title() != null)
+					boxOfficeMovieList.add(dto);
+			} catch (NullPointerException e) {
+
+			}
+		}
+		
+		HashMap<String, Integer> param = new HashMap<String, Integer>();
+		param.put("startRow", 1);
+		param.put("endRow", 5);
+		mav.addObject("boardList", boardservice.listProcess(param));
+
+		mav.addObject("movie", boxOfficeMovieList);
+		mav.addObject("commentMovie", movieservice.maxCommentMovie());
+		mav.addObject("category", 0);
+		api.MovieNewsAPI(mav);
 		mav.setViewName("index");
 		return mav;
 	}
@@ -50,7 +96,6 @@ public class HelloController {
 	@RequestMapping(value = "info", method = RequestMethod.GET)
 	public @ResponseBody List<CommentDTO> movieDetailInfo(int movie_num) {
 		// List<CommentDTO> aList = movieservice.commentListProcess(movie_num);
-
 		return movieservice.commentListProcess(movie_num);
 	}
 
@@ -82,18 +127,15 @@ public class HelloController {
 		movieservice.insertCommentProcess(dto);
 		return movieservice.commentListProcess(dto.getMovie_num());
 	}
-	
-	@RequestMapping(value="deletecomment",method=RequestMethod.GET)
-	public @ResponseBody List<CommentDTO> deleteComment(int comment_num, int movie_num){
+
+	@RequestMapping(value = "deletecomment", method = RequestMethod.GET)
+	public @ResponseBody List<CommentDTO> deleteComment(int comment_num, int movie_num) {
 		movieservice.deleteCommentProcess(comment_num);
 		return movieservice.commentListProcess(movie_num);
 	}
-	
-	@RequestMapping(value="morecomment", method=RequestMethod.GET)
-	public @ResponseBody List<CommentDTO> morecomment(MoreCommentDTO dto){
-		
+
+	@RequestMapping(value = "morecomment", method = RequestMethod.GET)
+	public @ResponseBody List<CommentDTO> morecomment(MoreCommentDTO dto) {
 		return movieservice.moreCommentProcess(dto);
 	}
-	
 }
-

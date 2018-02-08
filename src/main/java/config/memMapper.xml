@@ -54,4 +54,7 @@
 	<update id="profileUpdate" parameterType="dto.MemDTO">
 		update mem set upload = #{upload,jdbcType=VARCHAR} where mem_id = #{mem_id}
 	</update>
+	<select id="mList" parameterType="Integer" resultMap="memInfo">
+		select m.mem_num, m.mem_id, m.mem_name, g.mem_grade from mem m,grade g where m.mem_num=g.mem_num and m.mem_num=#{mem_num}
+	</select>
 </mapper>

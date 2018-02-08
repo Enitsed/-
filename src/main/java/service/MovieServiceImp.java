@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import dao.MovieDAO;
+import dao.MovieDaoImp;
 import dto.CommentDTO;
 import dto.LikeDTO;
 import dto.MoreCommentDTO;
@@ -20,8 +21,8 @@ public class MovieServiceImp implements MovieService {
 	}
 
 	@Override
-	public List<MovieDTO> movieInfoProcess(int page) {
-		return dao.movieInfoProcess(page);
+	public List<MovieDTO> movieInfoProcess(int page, int category) {
+		return dao.movieInfoProcess(page, category);
 	}
 
 	@Override
@@ -84,15 +85,43 @@ public class MovieServiceImp implements MovieService {
 	}
 
 	@Override
+	public MovieDTO BoxOfficeInsert(String name) {
+		return dao.BoxOfficeInsert(name);
+	}
+
+	@Override
+	public MovieDTO boxOffice(String name) {
+		return dao.boxOffice(name);
+	}
+
+	@Override
+	public void BoxOfficeDirectorInsert(MovieDTO dto) {
+		dao.BoxOfficeDirectorInsert(dto);
+	}
+
+	@Override
+	public void BoxOfficeCategoryInsert(MovieDTO dto) {
+		dao.BoxOfficeCategoryInsert(dto);
+	}
+
+	@Override
+	public void BoxOfficeActorInsert(MovieDTO dto) {
+		dao.BoxOfficeActorInsert(dto);
+	}
+
+	@Override
 	public List<CommentDTO> moreCommentProcess(MoreCommentDTO dto) {
 		return dao.morecommentListProcess(dto);
 	}
 
 	@Override
 	public int mem_numProcees(LikeDTO dto) {
-		
 		return dao.mem_numProccess(dto);
 	}
 
 	
+	public List<MovieDTO> maxCommentMovie() {
+		// TODO Auto-generated method stub
+		return dao.maxCommentMovie();
+	}
 }

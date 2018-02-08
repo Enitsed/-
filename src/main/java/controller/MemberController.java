@@ -1,9 +1,13 @@
 package controller;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+=======
+import java.util.ArrayList;
+>>>>>>> c27e7cd7a2b465b4a7e9083b6934687351474974
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import api.BoxOffice;
 import api.MovieApi;
+import api.MovieNewsApi;
 import dto.MemDTO;
+import dto.MovieDTO;
 import service.MemService;
 import service.MovieService;
 
@@ -26,6 +33,7 @@ import service.MovieService;
 public class MemberController {
 	MemService service;
 	MovieService movieservice;
+	String loginId;
 
 	public MemberController() {
 
@@ -78,15 +86,15 @@ public class MemberController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(MemDTO userDTO, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		MovieApi api = new MovieApi();
+		MovieNewsApi api = new MovieNewsApi();
 		if (service.idCheckProcess(userDTO)) {
 			try {
 				MemDTO foundUserDTO = service.loginProcess(userDTO);
 				if (foundUserDTO != null) {
+					loginId = foundUserDTO.getMem_id();
 					mav.addObject("loginStatus", "로그인에 성공하였습니다.");
 
 					session.setAttribute("userDTO", foundUserDTO);
-
 				} else {
 					mav.addObject("loginStatus", "비밀번호가 일치하지 않습니다.");
 				}
@@ -98,8 +106,45 @@ public class MemberController {
 			mav.addObject("loginStatus", "회원이 존재하지 않습니다.");
 		}
 
-		api.MovieNewsApi(mav);
+		api.MovieNewsAPI(mav);
 		mav.addObject("movie", movieservice.movieInfoProcess(1));
+		
+		api.MovieNewsAPI(mav);
+		BoxOffice api2 = new BoxOffice();
+		List<String> list = api2.boxOffice();
+		List<MovieDTO> movieList = new ArrayList<MovieDTO>();
+		List<MovieDTO> boxOfficeMovieList = new ArrayList<MovieDTO>();
+
+		for (String i : list) {
+			System.out.println(i);
+			MovieDTO dto = movieservice.BoxOfficeInsert(i);
+			if (dto != null)
+				movieList.add(dto);
+			else
+				System.out.println("영화 없음");
+		}
+
+		for (MovieDTO i : movieList) {
+			if (i != null) {
+				movieservice.BoxOfficeActorInsert(i);
+				movieservice.BoxOfficeDirectorInsert(i);
+				movieservice.BoxOfficeCategoryInsert(i);
+			}
+		}
+
+		for (String i : list) {
+			try {
+				MovieDTO dto = movieservice.boxOffice(i);
+				if (dto.getMovie_kor_title() != null)
+					boxOfficeMovieList.add(dto);
+			} catch (NullPointerException e) {
+				
+			}
+		}
+
+		
+		mav.addObject("movie",boxOfficeMovieList);
+		mav.addObject("commentMovie", movieservice.maxCommentMovie());
 		mav.setViewName("index");
 		return mav;
 	}
@@ -107,6 +152,7 @@ public class MemberController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
+		loginId = "";
 		return "redirect:/main";
 	}
 
@@ -188,9 +234,17 @@ public class MemberController {
 	@RequestMapping("/memInfo")
 	public ModelAndView memInfo(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
-		List<MemDTO> aList = service.memInfo(userDTO);
-		mav.addObject("memList", aList);
-		mav.setViewName("memInfoList");
+		try {
+			if (loginId.equals("admin")) {
+				List<MemDTO> aList = service.memInfo(userDTO);
+				mav.addObject("memList", aList);
+				mav.setViewName("memInfoList");
+				return mav;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mav.setViewName("index");
 		return mav;
 	}
 
@@ -203,14 +257,24 @@ public class MemberController {
 		return mav;
 	}
 
+	@RequestMapping(value = "/memUpdateInfo", method = RequestMethod.GET)
+	public ModelAndView memL(MemDTO userDTO, HttpServletRequest request, int mem_num) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		List<MemDTO> aList = service.memInfo(userDTO);
+		MemDTO user = service.mList(mem_num);
+		session.setAttribute("memInfo", user);
+		mav.addObject("memList", aList);
+		mav.setViewName("memUpdate");
+		return mav;
+	}
+
 	@RequestMapping(value = "/memUpdateInfo", method = RequestMethod.POST)
 	public ModelAndView memUpdate(MemDTO memList, HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
 
 		HttpSession session = request.getSession();
-		List<MemDTO> aList = service.memInfo(memList);
-		mav.addObject("memList", aList);
 		service.memUpdate(memList);
 		if (memList != null) {
 			mav.addObject("memUpdateStatus", "등급정보를 수정하였습니다.");
@@ -218,6 +282,7 @@ public class MemberController {
 		} else {
 			mav.addObject("memUpdateStatus", "등급정보 수정에 실패하였습니다.");
 		}
+
 		mav.setViewName("memUpdate");
 
 		return mav;
@@ -256,5 +321,4 @@ public class MemberController {
 		service.profileUpdate(dto);
 		session.setAttribute("userDTO", dto);
 	}
-
 }

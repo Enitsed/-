@@ -10,15 +10,34 @@ create table mem(
 	mem_address varchar2(300),	   --회원주소
 	upload varchar2(200)      --회원프로핅
 );
+<<<<<<< HEAD
 insert into mem values(mem_seq.nextval,'aaaaaa','aaaaaa','남','aa','aa@aa','aa',null);
 select * from mem
+=======
+INSERT INTO movie_actor(
+(select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,  
+(select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,   
+(select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,   
+(select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,    
+(select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa'))
+>>>>>>> c27e7cd7a2b465b4a7e9083b6934687351474974
 --회원 테이블 시퀀스
 create sequence mem_seq
 start with 1
 increment by 1
 nocache
 nocycle;
+ (select a.*, rownum r from (select * from movie order by movie_num ) a) where r > #{start} and #{end} >= r 
 
+select * from  (select a.*, rownum r from (select a.* from movie a, movie_category b, category c where
+b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name = '공포' order by a.movie_num) a)  where r > 1 and 2 >= r 
+where #{end} >= rownum AND rownum > #{start}
+		select a.* from movie a, movie_category b, category c where 8 >= rownum AND rownum >= 1 AND
+		  b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name ='SF' order by a.movie_num
+		  select * from  (select a.* from movie a, movie_category b, category c where
+		  b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name ='SF' order by a.movie_num) where 8 >= rownum AND rownum >= 1
+		  select a.* from movie a
+				where 8 >= rownum AND rownum >= 1 order by a.movie_num desc
 --select * from mem
 --drop table mem
 --drop sequence mem_seq
@@ -34,13 +53,16 @@ create table grade(
 	--grade테이블의 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
 
-insert into grade (select mem_num, '기본' from mem where mem_id = 'asdasd')
-select m.mem_id from mem m,grade g where m.mem_num=g.mem_num
+INSERT INTO actor(actor_num, actor_name)
+SELECT actor_seq.nextval, 'as' FROM DUAL  
+WHERE NOT EXISTS (SELECT * FROM actor WHERE actor_name='as')  
 --select * from grade
 --drop table grade
-update grade set mem_grade='브론즈' where mem_num='1'
+INSERT INTO actor (select actor_seq.nextval, '몰라' 
+where 0 >= (select count(*) from actor where actor_name = '몰라'))
 
-update grade set mem_grade='기본' where mem_id=select m.mem_id from mem m,grade g where m.mem_num=g.mem_num
+ INSERT INTO actor WHEN (select count(*) from actor where actor_name = '몰라') <= 0 THEN
+        VALUES (actor_seq.nextval, '몰라')
 --------------------------------------------------------
 ---영화 테이블----------------------------------------------
 create table movie(
@@ -54,6 +76,35 @@ create table movie(
 	movie_url varchar2(500),			--url
 	nation varchar2(100)				--영화국가
 );
+select * from actor where actor_name = '김태리'
+select * from movie where movie_kor_title = '코코'
+delete from movie where movie_num > 311 and movie_num < 317
+delete from movie_actor where movie_num > 306 and movie_num < 312
+delete from movie_director where movie_num > 306 and movie_num < 312
+delete from movie_category where movie_num > 306 and movie_num < 312
+delete from movie_comment where movie_num > 301 and movie_num < 307
+delete from rating where movie_num > 296 and movie_num < 302
+
+drop table actor
+delete from movie where movie_num = 107;
+delete from movie_actor where movie_num= 107;
+delete from actor;
+delete from movie_director where movie_num= 107;
+delete from director;
+delete from movie_category where movie_num= 107;
+delete from rating;
+select * from movie_category
+select * from movie_director
+select * from movie_actor
+rating
+			INSERT INTO actor (select actor_seq.nextval,'as'
+			from dual where 0 >= (select count(*) from actor where actor_name = 'as'))
+
+ALTER system SET processes=100 scope=spfile
+
+select * from movie_director
+INSERT INTO actor VALUES()
+select count(*) from actor where actor_name = '" + name + "'";
 insert into movie values(1,'19','첫번째영화','first','2014-01-01','요약입니다','이미지없움','url','nation')
 --영화테이블 시퀀스
 create sequence movie_seq
@@ -61,7 +112,7 @@ start with 1
 increment by 1
 nocache
 nocycle;
-select * from movie
+
 select movie_kor_title from movie where movie_kor_title like '%백설%'
 --select * from movie where movie_num='50'
 --drop table movie
@@ -158,7 +209,8 @@ create table movie_category(
 
 --select * from movie_category
 --drop table movie_category
-
+		select * from movie where movie_kor_title in ('코코','마터스')
+	
 delete from movie_actor;
 delete from movie_director;
 delete from actor;
@@ -171,6 +223,8 @@ create table actor(
 	actor_num number primary key,	--배우번호
 	actor_name varchar2(100)		--배우이름
 );
+	INSERT INTO actor (select actor_seq.nextval, '이병헌'
+	from actor where (select count(*) from actor where actor_name = '이병헌') <= 0)
 
 --배우테이블 시퀀스
 create sequence actor_seq
@@ -238,24 +292,17 @@ create table board(
 	board_num number primary key,	--게시글번호
 	mem_num number,					--회원번호
 	board_writer varchar2(10),		--작성자
-	board_name varchar2(100),		--제목
-	board_content varchar2(3000),	--내용
+	board_name varchar2(10),		--제목
+	board_content varchar2(500),	--내용
 	board_hits number(10),			--조회수
 	board_relnum number(10),		--관련글번호
 	board_reply_level number,		--답글레벨
 	board_reply_step number,		--답글단계
 	board_date date,				--작성일
 	board_reply_amount number,		--댓글개수
-	board_category number,			--게시글 카테고리
 	constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 	--board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
-
-alter table board add board_category number
---게시판 글 제목 길이 수정
-alter table board modify(board_name varchar2(100));
--- 게시판 글 내용 길이 수정
-alter table board modify(board_content varchar2(3000));
 
 --게시판테이블 시퀀스
 create sequence board_seq
@@ -305,6 +352,10 @@ create table movie_comment(
 
 select * from movie_comment
 
+select count(*) from movie_comment group by movie_num
+
+select a.* from movie a, (select movie_num from movie_comment where regdate > sysdate - 7 and regdate <= sysdate group by movie_num order by count(*)) b where a.movie_num  = b.movie_num and rownum <8
+
 create sequence comment_num_seq
 start with 1
 increment by 1
@@ -314,21 +365,13 @@ nocycle;
 drop table movie_comment
 drop sequence comment_num_seq
 
-
+insert into movie_comment values(comment_num_seq.nextval,1,'테스트',4,'aaaaaa','2018-01-25',0)
+insert into movie_comment values(comment_num_seq.nextval,1,'테스트2',4,'aaaaaa','2018-02-02',0)
 delete from movie_comment where comment_num = 11
 select * from movie_comment
 
 
 select * from movie_comment
-
-select e.*
-from(select * from movie_comment where movie_num=1 order by comment_num desc)e
-where 6>rownum and rownum>0
-
-select e.*
-		from(select * from movie_comment where movie_num=1 order by comment_num desc)e
-		where 6>rownum and rownum > 0
-
 
 drop table movie_comment
 drop sequence comment_num_seq
@@ -354,6 +397,7 @@ nocycle;
 
 drop table commentlike 
 drop sequence like_num_seq
+insert into COMMENTLIKE values(like_num_seq.nextval,'bbbbbb',1)
 
 select * from commentlike
 delete  from commentlike

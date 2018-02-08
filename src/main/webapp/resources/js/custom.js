@@ -86,7 +86,7 @@ $(document).ready(function () {
 	
 	// 메인 페이지 동영상
 	$('#banner').on('click', function(){
-		$('body').dimmer('show');
+		$('body .dimmer').dimmer('show');
 		$("#banner").data("vide").getVideoObject().pause();
 		$('.ui.video').video();
 	});
@@ -97,7 +97,7 @@ $(document).ready(function () {
 	});
 	
 	function main_video_dimmer() {
-		$('body').dimmer('hide');
+		$('body .dimmer').dimmer('hide');
 		$("#banner").data("vide").getVideoObject().play();
 	};
 	
@@ -285,10 +285,11 @@ $(document).ready(function () {
 	
 	// 별점
 	$('.ui.rating').on("click",function(){
+	    event.stopPropagation();
 		var rating = $(this).rating("get rating", this);
 		var num =  $('#member_num').val();
 		var movie_num = $(this).attr("id");
-		alert(rating + " " + num + " " + movie_num);
+		/*alert(rating + " " + num + " " + movie_num);*/
 		if(num < 1){
 			alert("로그인부터 해라");
 			return;
@@ -507,6 +508,7 @@ $(document).ready(function () {
 				alert('로그아웃 되었습니다');
 			}, 1000); // 로그아웃 처리되는 타임을 임시적으로 1000설정
 		});
+		location.href = "logout";
 	};
 	// ]]>
 
@@ -617,9 +619,7 @@ $(document).ready(function () {
 	            	plus+= '<input type="hidden" value="'+mnum+'" id="hidden"/>'+
 						 '<a class="more" id="10">댓글 더보기</a>'
 					$(plus).appendTo('.seemore');
-					
-					
-	       
+
 	            $(modal).modal('show');
 	           
 	         }//success
@@ -689,7 +689,6 @@ $(document).ready(function () {
 					$(plus2).appendTo('.seemore');
 	            reset.val('');
 	            
-	            
 	         }//success끝
 	      });//ajax끝
 	   }
@@ -701,6 +700,7 @@ $(document).ready(function () {
 	      var now = $(this);
 	      var likey = parseInt($(this).text());
 	      $(this).removeClass('.like');
+	      $(this).hide();
 	      if(session_id){
 	         
 	      }else{
@@ -716,7 +716,6 @@ $(document).ready(function () {
 
 	         data: 'mem_id=' + session_id + '&comment_num=' + num,
 	         success: function (data) {
-	            
 	            if (data.like != null) {
 	            	setTimeout(function(){
 	            		 likey+=1;
@@ -733,8 +732,7 @@ $(document).ready(function () {
 	           	},2000);
 	               
 	            }
-	  	      
-
+	    	   $(this).show();
 	         }//success끝
 	      });//ajax끝
 	      $(this).addClass('.like');
@@ -793,8 +791,13 @@ $(document).ready(function () {
 	              
 	             
 	              var plus2="";
+<<<<<<< HEAD
 	              if(data.length > more)
 	            	  plus2 += '<input type="hidden" value="'+movie_number+'" id="hidden"/>'+
+=======
+	              if(data.length>more)
+	              	plus2+= '<input type="hidden" value="'+movie_number+'" id="hidden"/>'+
+>>>>>>> c27e7cd7a2b465b4a7e9083b6934687351474974
 	  					 '<a class="more" id="10">댓글 더보기</a>'
 	              
 	  				$(plus2).appendTo('.seemore');

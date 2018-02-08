@@ -1,4 +1,4 @@
-package dto;
+package api.src.dto;
 
 public class DirectorDTO {
 	private String director_name;

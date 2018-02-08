@@ -75,9 +75,4 @@ public class BoardDaoImp implements BoardDAO {
 		return sqlSession.selectOne("board.searchCount", keyword);
 	}
 
-	
-
-
-	
-
 }

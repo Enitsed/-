@@ -18,7 +18,7 @@ import service.BoardService;
 @Controller
 public class BoardController {
 	BoardService service;
-	
+
 	private int currentPage;
 	private PageDTO pdto;
 
@@ -49,10 +49,11 @@ public class BoardController {
 			param.put("startRow", pdto.getStartRow());
 			param.put("endRow", pdto.getEndRow());
 			param.put("board_category", board_category);
-			mav.addObject("pv", pdto);
 			mav.addObject("aList", service.listProcess(param));
-			mav.addObject("board_category", board_category);
 		}
+
+		mav.addObject("pv", pdto);
+		mav.addObject("board_category", board_category);
 		mav.setViewName("freeboard");
 		return mav;
 	} // end listMethod()
