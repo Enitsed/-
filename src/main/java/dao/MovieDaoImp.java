@@ -34,7 +34,6 @@ public class MovieDaoImp implements MovieDAO {
 		map.put("start", start);
 		map.put("end", end);
 		List<MovieDTO> list = null;
-		System.out.println("asd" + category);
 
 		if(category == 0) {
 			map.put("category", "전체");

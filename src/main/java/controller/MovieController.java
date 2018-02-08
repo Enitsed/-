@@ -35,6 +35,7 @@ public class MovieController {
 
 	@RequestMapping("/movieInfoList")
 	public ModelAndView movieInfoList(int category) {
+		System.out.println(category);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("movie", movieservice.movieInfoProcess(1, category));
 		mav.addObject("category",category);
