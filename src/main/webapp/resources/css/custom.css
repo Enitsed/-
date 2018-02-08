@@ -242,7 +242,7 @@ iframe {
 	color: #4e5800;
 }
 
-.description .board_content {
+.description.board_content {
 	height: 40px;
 	overflow-y: hidden;
 }
