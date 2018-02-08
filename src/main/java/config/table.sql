@@ -10,17 +10,14 @@ create table mem(
 	mem_address varchar2(300),	   --회원주소
 	upload varchar2(200)      --회원프로핅
 );
-<<<<<<< HEAD
 insert into mem values(mem_seq.nextval,'aaaaaa','aaaaaa','남','aa','aa@aa','aa',null);
 select * from mem
-=======
 INSERT INTO movie_actor(
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,  
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,   
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,   
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,    
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa'))
->>>>>>> c27e7cd7a2b465b4a7e9083b6934687351474974
 --회원 테이블 시퀀스
 create sequence mem_seq
 start with 1

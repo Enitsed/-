@@ -109,7 +109,6 @@ b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name 
 		update rating set star_point = #{rating}, write_date = SYSDATE where #{member_num} = mem_num and #{movie_num} = movie_num
 	</update>
 	
-
 	<select id="searchMovie" parameterType="String" resultType="int">
 		select count(*) from movie where #{name} = movie_kor_title
 	</select>

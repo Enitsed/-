@@ -791,13 +791,8 @@ $(document).ready(function () {
 	              
 	             
 	              var plus2="";
-<<<<<<< HEAD
-	              if(data.length > more)
-	            	  plus2 += '<input type="hidden" value="'+movie_number+'" id="hidden"/>'+
-=======
 	              if(data.length>more)
 	              	plus2+= '<input type="hidden" value="'+movie_number+'" id="hidden"/>'+
->>>>>>> c27e7cd7a2b465b4a7e9083b6934687351474974
 	  					 '<a class="more" id="10">댓글 더보기</a>'
 	              
 	  				$(plus2).appendTo('.seemore');

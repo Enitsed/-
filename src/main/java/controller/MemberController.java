@@ -19,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import api.BoxOffice;
-import api.MovieApi;
 import api.MovieNewsApi;
 import dto.MemDTO;
 import dto.MovieDTO;
@@ -132,7 +131,7 @@ public class MemberController {
 				if (dto.getMovie_kor_title() != null)
 					boxOfficeMovieList.add(dto);
 			} catch (NullPointerException e) {
-				
+
 			}
 		}
 
@@ -285,7 +284,7 @@ public class MemberController {
 	@RequestMapping(value = "updateprofile", method = RequestMethod.POST)
 	public @ResponseBody void updateProfile(MemDTO dto, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		
+
 		MultipartFile file = dto.getMem_profile();
 		System.out.println("name:" + file.getOriginalFilename());
 		System.out.println("유저아이디:" + dto.getMem_id());
@@ -310,7 +309,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		dto.setUpload(fileName);
-		
+
 		service.profileUpdate(dto);
 		session.setAttribute("userDTO", dto);
 	}
