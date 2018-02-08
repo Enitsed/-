@@ -7,8 +7,11 @@ create table mem(
 	mem_sex varchar2(10),		   --회원성별
 	mem_name varchar2(100),		   --회원이름
 	mem_email varchar2(20),		   --회원이메일
-	mem_address varchar2(300)	   --회원주소
+	mem_address varchar2(300),	   --회원주소
+	upload varchar2(200)      --회원프로핅
 );
+insert into mem values(mem_seq.nextval,'aaaaaa','aaaaaa','남','aa','aa@aa','aa',null);
+select * from mem
 INSERT INTO movie_actor(
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,  
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,   
@@ -21,7 +24,17 @@ start with 1
 increment by 1
 nocache
 nocycle;
+ (select a.*, rownum r from (select * from movie order by movie_num ) a) where r > #{start} and #{end} >= r 
 
+select * from  (select a.*, rownum r from (select a.* from movie a, movie_category b, category c where
+b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name = '공포' order by a.movie_num) a)  where r > 1 and 2 >= r 
+where #{end} >= rownum AND rownum > #{start}
+		select a.* from movie a, movie_category b, category c where 8 >= rownum AND rownum >= 1 AND
+		  b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name ='SF' order by a.movie_num
+		  select * from  (select a.* from movie a, movie_category b, category c where
+		  b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name ='SF' order by a.movie_num) where 8 >= rownum AND rownum >= 1
+		  select a.* from movie a
+				where 8 >= rownum AND rownum >= 1 order by a.movie_num desc
 --select * from mem
 --drop table mem
 --drop sequence mem_seq
@@ -322,13 +335,16 @@ create table reply(
 
 
 create table movie_comment(
-   comment_num number,
+   comment_num number primary key,
+   profile varchar2(200),
    movie_num number,
    replytext varchar2(500),
    mem_num number,
    mem_id varchar2(20),
    regdate Date,
-   likecount number
+   likecount number,
+   constraint movie_comment_comment_num_fk foreign key(comment_num) references movie(movie_num) on delete cascade,
+   constraint movie_comment_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 );
 
 select * from movie_comment
@@ -342,6 +358,7 @@ start with 1
 increment by 1
 nocache
 nocycle;
+
 drop table movie_comment
 drop sequence comment_num_seq
 
@@ -349,7 +366,7 @@ insert into movie_comment values(comment_num_seq.nextval,1,'테스트',4,'aaaaaa
 insert into movie_comment values(comment_num_seq.nextval,1,'테스트2',4,'aaaaaa','2018-02-02',0)
 delete from movie_comment where comment_num = 11
 select * from movie_comment
-delete from movie_comment
+
 
 select * from movie_comment
 
@@ -363,7 +380,10 @@ update movie_comment set likecount=likecount-1 where comment_num=1
 create table commentlike(
    like_num number,
    mem_id varchar2(20),
-   comment_num number
+   mem_num number,
+   comment_num number,
+   constraint commentlike_comment_num_fk foreign key(comment_num) references movie_comment(comment_num) on delete cascade,
+   constraint commentlike_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 );
 
 create sequence like_num_seq
@@ -371,6 +391,7 @@ start with 1
 increment by 1
 nocache
 nocycle;
+
 drop table commentlike 
 drop sequence like_num_seq
 insert into COMMENTLIKE values(like_num_seq.nextval,'bbbbbb',1)
@@ -378,6 +399,5 @@ insert into COMMENTLIKE values(like_num_seq.nextval,'bbbbbb',1)
 select * from commentlike
 delete  from commentlike
 
-drop table commentlike
-drop sequence like_num_seq
+
 

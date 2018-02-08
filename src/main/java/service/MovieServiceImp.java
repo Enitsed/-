@@ -21,8 +21,8 @@ public class MovieServiceImp implements MovieService {
 	}
 
 	@Override
-	public List<MovieDTO> movieInfoProcess(int page) {
-		return dao.movieInfoProcess(page);
+	public List<MovieDTO> movieInfoProcess(int page, int category) {
+		return dao.movieInfoProcess(page, category);
 	}
 
 	@Override
@@ -115,9 +115,12 @@ public class MovieServiceImp implements MovieService {
 	}
 
 	@Override
+	public int mem_numProcees(LikeDTO dto) {
+		return dao.mem_numProccess(dto);
+	}
+
 	public List<MovieDTO> maxCommentMovie() {
 		// TODO Auto-generated method stub
 		return dao.maxCommentMovie();
 	}
-
 }

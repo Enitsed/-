@@ -5,10 +5,11 @@
 <!-- 메뉴 -->
 <div class="ui attached stackable menu">
 	<div class="ui container">
+
 		<a class="item" href="main">
 			<i class="home icon"></i> Home
 		</a> 
-		<a class="item" href="movieInfoList">
+		<a class="item" href="movieInfoList?category=0">
 			<i class="grid video icon"></i> 영화정보
 		</a> 
 		<div class="ui simple dropdown item" onclick="location.href='free'">
@@ -127,4 +128,5 @@
 	var memUpdateStatus = "${memUpdateStatus}";
 	var session_id = '${userDTO.mem_id}';
 	var session_num = '${userDTO.mem_num}';
+	var profile = '${userDTO.upload}';
 </script>

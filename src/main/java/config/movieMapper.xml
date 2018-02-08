@@ -6,7 +6,16 @@
 <mapper namespace="movie">
 
 	<select id="list" resultType="dto.MovieDTO" parameterType="java.util.Map">
-		select * from movie where #{end} >= movie_num AND movie_num > #{start}
+		select * from
+		<if test='category.equals("전체")'>
+			 (select a.*, rownum r from (select * from movie order by movie_num ) a) where r > #{start} and #{end} >= r 
+		</if>
+		
+		<if test='!category.equals("전체")'>
+			 (select a.*, rownum r from (select a.* from movie a, movie_category b, category c where
+b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name = #{category} order by a.movie_num) a)  where r > #{start} and #{end} >= r 
+		</if>
+	
 	</select>
   
   	<select id="boxoffice" resultType="dto.MovieDTO" parameterType="String">
@@ -33,13 +42,6 @@
 		from movie_comment where movie_num=#{movie_num} order by comment_num desc
 	</select>
 	
-	 <!--  
-	<select id="comment" parameterType="int" resultType="dto.CommentDTO">
-		select e.*
-		from(select * from movie_comment where movie_num=#{movie_num} order by comment_num desc)e
-		where 6>rownum and rownum > 0
-	</select>
-	-->
 	<select id="morecomment" parameterType="dto.MoreCommentDTO" resultType="dto.CommentDTO">
 		select e.*
 		from(select * from movie_comment where movie_num=#{movie_num} order by comment_num desc)e
@@ -70,11 +72,15 @@
 	</delete>
 	
 	<insert id="likeinsert" parameterType="dto.LikeDTO">
-		insert into commentlike values(like_num_seq.nextval,#{mem_id},#{comment_num})
+		insert into commentlike values(like_num_seq.nextval,#{mem_id},#{mem_num},#{comment_num})
 	</insert>
 	
+	<select id="mem_num" parameterType="dto.LikeDTO" resultType="int">
+		select mem_num from movie_comment where comment_num=#{comment_num} and mem_id=#{mem_id}
+	</select>
+	
 	<insert id="replyinsert" parameterType="dto.CommentDTO">
-		insert into movie_comment values(comment_num_seq.nextval,#{movie_num},#{replytext},#{mem_num},#{mem_id},sysdate,0)
+		insert into movie_comment values(comment_num_seq.nextval,#{profile},#{movie_num},#{replytext},#{mem_num},#{mem_id},sysdate,0)
 	</insert>
 	<select id="searchList" parameterType="String" resultType="dto.MovieDTO">
 		select * from

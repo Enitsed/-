@@ -22,7 +22,7 @@ import dto.MovieDTO;
 import service.BoardService;
 import service.MovieService;
 
-// http://localhost:8090/finalproject/main
+//http://localhost:8090/finalproject/main
 @Controller
 public class HelloController {
 	MovieService movieservice;
@@ -74,13 +74,14 @@ public class HelloController {
 
 			}
 		}
-
+		
 		HashMap<String, Integer> param = new HashMap<String, Integer>();
 		param.put("startRow", 1);
 		param.put("endRow", 5);
 		mav.addObject("boardList", boardservice.listProcess(param));
 		mav.addObject("movie", boxOfficeMovieList);
 		mav.addObject("commentMovie", movieservice.maxCommentMovie());
+		mav.addObject("category", 0);
 		api.MovieNewsAPI(mav);
 		mav.setViewName("index");
 		return mav;
@@ -103,6 +104,7 @@ public class HelloController {
 		System.out.println("아이디:" + dto.getMem_id());
 		System.out.println("댓글번호:" + dto.getComment_num());
 		System.out.println("로그인한아이디:" + dto2.getMem_id());
+		dto.setMem_num(movieservice.mem_numProcees(dto));
 		System.out.println(movieservice.likeProcess(dto));
 		if (movieservice.likeProcess(dto) != null) {// 좋아요를 전에 눌럿엇다면
 			// 코멘트테이블에서 -1해준다. map에 널값 보낸다.

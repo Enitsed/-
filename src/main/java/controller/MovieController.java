@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,16 +34,18 @@ public class MovieController {
 	}
 
 	@RequestMapping("/movieInfoList")
-	public ModelAndView movieInfoList() {
+	public ModelAndView movieInfoList(int category) {
+		System.out.println(category);
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("movie", movieservice.movieInfoProcess(1));
+		mav.addObject("movie", movieservice.movieInfoProcess(1, category));
+		mav.addObject("category",category);
 		mav.setViewName("movieInfoList");
 		return mav;
 	}
 	
 	@RequestMapping("/addMovie.do")
-	public @ResponseBody List<MovieDTO> addMovie(int page) {
-		List<MovieDTO> list = movieservice.movieInfoProcess(page);
+	public @ResponseBody List<MovieDTO> addMovie(int page, int category) {
+		List<MovieDTO> list = movieservice.movieInfoProcess(page, category);
 		return list;
 	}
 	

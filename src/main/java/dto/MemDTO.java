@@ -1,5 +1,9 @@
 package dto;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemDTO {
 	private int mem_num;
 	private String mem_id;
@@ -9,6 +13,29 @@ public class MemDTO {
 	private String mem_email;
 	private String mem_address;
 	private String mem_grade;
+	private MultipartFile mem_profile;
+	private String upload;
+
+	
+
+
+
+
+	public String getUpload() {
+		return upload;
+	}
+
+	public void setUpload(String upload) {
+		this.upload = upload;
+	}
+
+	public MultipartFile getMem_profile() {
+		return mem_profile;
+	}
+
+	public void setMem_profile(MultipartFile mem_profile) {
+		this.mem_profile = mem_profile;
+	}
 
 	public String getMem_grade() {
 		return mem_grade;

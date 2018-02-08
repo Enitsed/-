@@ -60,6 +60,9 @@ public class MemDaoImp implements MemDAO {
 	}
 
 	@Override
+	public void profileUpdate(MemDTO userDTO) {
+		sqlSession.update("mem.profileUpdate",userDTO);
+	}
 	public MemDTO mList(int mem_num) {
 		return sqlSession.selectOne("mem.mList",mem_num);
 	}

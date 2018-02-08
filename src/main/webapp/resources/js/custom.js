@@ -2,6 +2,85 @@
 /*global $, document*/
 
 $(document).ready(function () {
+	
+	$('#input_img').on('change',imgup);
+		
+	function imgup(e){
+		$('.img_wrap').empty();
+		$('.profile_wrap').css('background-image', 'url("")');
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		
+		filesArr.forEach(function(f){
+			if(!f.type.match('image.*')){
+				alert('이미지만 가능');
+				return false;
+			}
+			sel_file =f;
+			
+			var reader = new FileReader();
+			reader.onload = function(e){
+				var img = new Image();
+			    img.src = e.target.result;
+			    img.width = 200;
+			    img.height = 200;
+				$('.img_wrap').append(img);
+
+				var filename;
+				if(window.FileReader){  // modern browser
+					filename=$('#input_img').prop('files')[0];
+					//filename = $('.img_wrap').get(0).files[0];
+				} 
+				else {  // old IE
+					//var filename = $('#input_img').val().split('/').pop().split('\\').pop();  // 파일명만 추출
+				}
+				
+				
+				var fileList = [];
+				fileList.push(img);
+				var form_data = new FormData();
+				form_data.append('mem_profile',filename);
+				form_data.append('mem_id',session_id);
+				
+				$.ajax({
+					type:'POST',
+					url:'updateprofile',
+					data : form_data,
+					datatype:'json',
+					contentType : false, 
+					enctype 	: 'multipart/form-data',
+					processData : false,
+					
+				});
+
+			}
+			reader.readAsDataURL(f);
+		});
+	}//
+	
+	function imgupload(){
+		var filename = $('#input_img').get(0).files[0];
+		var fileList = [];
+		fileList.push(filename);
+		
+		var form_data = new FormData();
+		form_data.append('mem_profile',fileList[0]);
+		
+		$.ajax({
+			type:'POST',
+			url:'updateInfo',
+			data : form_data,
+			datatype:'json',
+			contentType : false, 
+			enctype 	: 'multipart/form-data',
+			processData : false,
+			success: function() {
+				
+			}
+		});
+
+	}
+	
 	"use strict";
 	
 	
@@ -206,6 +285,7 @@ $(document).ready(function () {
 	
 	// 별점
 	$('.ui.rating').on("click",function(){
+	    event.stopPropagation();
 		var rating = $(this).rating("get rating", this);
 		var num =  $('#member_num').val();
 		var movie_num = $(this).attr("id");
@@ -390,7 +470,7 @@ $(document).ready(function () {
         }
 	  }
 	});
-});
+});//document 끝
 
 
 
@@ -488,6 +568,7 @@ $(document).ready(function () {
 	   
 	   // 영화 상세보기
 	   $('.main_movie').on('click', function () {
+		  
 	      var mnum = $(this).find('input[type="hidden"]').val();
 	      var modal = '#modal' + mnum;
 	      var hi = $(this).parent().find('.hiddennum').attr('name');//10으로 초기화
@@ -510,7 +591,7 @@ $(document).ready(function () {
 					comment +=
 						'<div class="event">' +
 						'<div class="label">' +
-						'<img src="resources/images/user.png">' +
+						'<img src="resources/images/profile/'+value.profile+'">' +
 						'</div>' +
 						'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 						'<div class="content">' +
@@ -560,7 +641,7 @@ $(document).ready(function () {
 	     
 	      $.ajax({
 	         
-	         url : 'insertcomment?mem_id='+session_id+'&replytext='+comments+'&movie_num='+number+'&mem_num='+session_num,
+	         url : 'insertcomment?mem_id='+session_id+'&replytext='+comments+'&movie_num='+number+'&mem_num='+session_num+'&profile='+profile,
 	         type:'GET',
 	         async: false,
 
@@ -579,7 +660,7 @@ $(document).ready(function () {
 	               insert +=
 	                  '<div class="event">' +
 	                  '<div class="label">' +
-	                  '<img src="resources/images/user.png">' +
+	                  '<img src="resources/images/profile/'+value.profile+'">' +
 	                  '</div>' +
 	                  '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 	                  '<div class="content">' +
@@ -618,8 +699,8 @@ $(document).ready(function () {
 	      var num = parseInt($(this).attr('value')); //코멘트 번호
 	      var now = $(this);
 	      var likey = parseInt($(this).text());
+	      $(this).removeClass('.like');
 	      $(this).hide();
-
 	      if(session_id){
 	         
 	      }else{
@@ -654,14 +735,17 @@ $(document).ready(function () {
 	    	   $(this).show();
 	         }//success끝
 	      });//ajax끝
-	      
+	      $(this).addClass('.like');
+
 	   }//like function()끝
 	   
-
+	   
 	   $(document).on('click','.del',del);
+	   
 	   function del(){
 	      var comment_number = parseInt($(this).attr('value'));
 	      var movie_number = parseInt($(this).attr('id'));
+	      
 	      
 	      $.ajax({
 	    	  url : 'deletecomment',
@@ -681,7 +765,7 @@ $(document).ready(function () {
 	                 insert +=
 	                    '<div class="event">' +
 	                    '<div class="label">' +
-	                    '<img src="resources/images/user.png">' +
+	                    '<img src="resources/images/profile/'+value.profile+'">' +
 	                    '</div>' +
 	                    '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 	                    '<div class="content">' +
@@ -704,15 +788,18 @@ $(document).ready(function () {
 	              
 	              $('#hidden').remove();
 	              $('.more').remove();
+	              
+	             
 	              var plus2="";
 	              if(data.length>more)
 	              	plus2+= '<input type="hidden" value="'+movie_number+'" id="hidden"/>'+
 	  					 '<a class="more" id="10">댓글 더보기</a>'
+	              
 	  				$(plus2).appendTo('.seemore');
 	           
 	    	  }//success
 	      });//ajax
-	   }
+	   }//함수끝
 	   
 	   $(document).on('click','.more',morecomment);
 	   
@@ -722,7 +809,6 @@ $(document).ready(function () {
 		   var hiddennum2 = parseInt(hiddennum.attr('name'));
 		   
 			var page = parseInt($(this).attr('id'));
-			//var mov_num = $(this).parent().find('input[type="hidden"]').val();
 			var mov_num = $(this).prev().val();
 			
 			$.ajax({
@@ -782,4 +868,5 @@ $(document).ready(function () {
 			
 		};//함수끝
 	
-	
+		
+		

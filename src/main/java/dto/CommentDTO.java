@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class CommentDTO {
 	private int comment_num;
+	private String profile;
 	private int movie_num;
 	private int mem_num;
 	private String mem_id;
@@ -14,6 +15,17 @@ public class CommentDTO {
 	public CommentDTO() {
 
 	}
+
+	
+	public String getProfile() {
+		return profile;
+	}
+
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
 
 	public int getMem_num() {
 		return mem_num;

@@ -8,7 +8,7 @@ import dto.MoreCommentDTO;
 import dto.MovieDTO;
 
 public interface MovieService {
-	public List<MovieDTO> movieInfoProcess(int page);
+	public List<MovieDTO> movieInfoProcess(int page, int category);
 	public List<CommentDTO> commentListProcess(int movie_num);
 	public List<MovieDTO> moviedetailProcess(int movie_num);
 	public String likeProcess(LikeDTO dto);
@@ -18,6 +18,8 @@ public interface MovieService {
 	
 	public void likeinsertProcess(LikeDTO dto);
 	public void likedeleteProcess(LikeDTO dto);
+	
+	public int mem_numProcees(LikeDTO dto);
 	
 	public void insertCommentProcess(CommentDTO dto);
 	public void deleteCommentProcess(int comment_num);
