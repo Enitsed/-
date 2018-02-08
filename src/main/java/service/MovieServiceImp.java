@@ -21,8 +21,8 @@ public class MovieServiceImp implements MovieService {
 	}
 
 	@Override
-	public List<MovieDTO> movieInfoProcess(int page) {
-		return dao.movieInfoProcess(page);
+	public List<MovieDTO> movieInfoProcess(int page, int category) {
+		return dao.movieInfoProcess(page, category);
 	}
 
 	@Override

@@ -206,6 +206,7 @@ $(document).ready(function () {
 	
 	// 별점
 	$('.ui.rating').on("click",function(){
+	    event.stopPropagation();
 		var rating = $(this).rating("get rating", this);
 		var num =  $('#member_num').val();
 		var movie_num = $(this).attr("id");

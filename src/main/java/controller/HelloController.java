@@ -73,7 +73,7 @@ public class HelloController {
 
 		mav.addObject("movie", boxOfficeMovieList);
 		mav.addObject("commentMovie", movieservice.maxCommentMovie());
-
+		mav.addObject("category", 0);
 		api.MovieNewsAPI(mav);
 		mav.setViewName("index");
 		return mav;

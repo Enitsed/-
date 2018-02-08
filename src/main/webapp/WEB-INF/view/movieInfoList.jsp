@@ -6,8 +6,9 @@
 <script>
 	function moreList() {
 		var page = (parseInt($("#currentPage").val()) + 1);
+		var category = parseInt($("#category").val());
 		$.ajax({
-			url : 'addMovie.do?page=' + page,
+			url : 'addMovie.do?page=' + page + '&category=' + category,
 			type : 'GET',
 			dataType : 'json',
 			success : function(data) {
@@ -151,12 +152,8 @@
 					      });//ajax끝
 					      
 					   });//movie modal 클릭 끝
-					
-					
-													
-
 				})
-						
+				
 				if(data.length < 8){
 					$("#currentPage").val(page - 1);
 				}else{	
@@ -172,6 +169,22 @@
 	};
 </script>
 
+  <div id="navi">
+      <div id="menu1">
+        <h2><a href="#menu1">카테고리</a></h2>
+        <p><a href="movieInfoList?category=0">전체</a></p>
+        <p><a href="movieInfoList?category=1">액션</a></p>
+        <p><a href="movieInfoList?category=2">드라마</a></p>
+        <p><a href="movieInfoList?category=3">공포</a></p>
+        <p><a href="movieInfoList?category=4">스릴러</a></p>
+        <p><a href="movieInfoList?category=5">코메디</a></p>
+        <p><a href="movieInfoList?category=6">미스터리</a></p>
+        <p><a href="movieInfoList?category=7">범죄</a></p>
+        <p><a href="movieInfoList?category=8">스포츠</a></p>
+        <p><a href="movieInfoList?category=9">어드벤처</a></p>
+        <p><a href="movieInfoList?category=10">전쟁</a></p>
+      </div>
+    </div>
 
 <div class="ui container contents">
 	<div class="ui segment">
@@ -254,6 +267,7 @@
 			<a class="ui teal button" href="javascript:moreList();"> <i
 				class="far fa-hand-point-down"></i> &nbsp; 더 보기
 				<input type="hidden" value = "1" id ="currentPage"/>
+				<input type="hidden" value = "${category}" id ="category"/>
 			</a>
 		</div>
 

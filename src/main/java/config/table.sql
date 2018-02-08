@@ -21,7 +21,17 @@ start with 1
 increment by 1
 nocache
 nocycle;
+ (select a.*, rownum r from (select * from movie order by movie_num ) a) where r > #{start} and #{end} >= r 
 
+select * from  (select a.*, rownum r from (select a.* from movie a, movie_category b, category c where
+b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name = '공포' order by a.movie_num) a)  where r > 1 and 2 >= r 
+where #{end} >= rownum AND rownum > #{start}
+		select a.* from movie a, movie_category b, category c where 8 >= rownum AND rownum >= 1 AND
+		  b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name ='SF' order by a.movie_num
+		  select * from  (select a.* from movie a, movie_category b, category c where
+		  b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name ='SF' order by a.movie_num) where 8 >= rownum AND rownum >= 1
+		  select a.* from movie a
+				where 8 >= rownum AND rownum >= 1 order by a.movie_num desc
 --select * from mem
 --drop table mem
 --drop sequence mem_seq
