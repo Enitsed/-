@@ -116,7 +116,7 @@
 					<div class="header">영화</div>
 					<div class="image content">
 						<div class="ui medium image">
-							<img src="${i.movie_image}">
+							<img class="aa" src="${i.movie_image}">
 						</div>
 						<div class="description">
 							<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
@@ -126,6 +126,25 @@
 									value="${i.movie_opening_date}" /></p>
 						</div>
 					</div>
+					
+					<div class="ui large feed">
+               </div>
+                
+               <div class="seemore">
+                 <input type="hidden" class="hiddennum" id="10" name="10"/>
+               </div>
+               
+                <c:if test="${not empty userDTO.mem_id}">
+                  <div class="ui left labeled input text_comment">
+  					<input type="text" class="comment_m" placeholder="내용을 입력하세요...">
+  					<div class="ui basic label" id="${i.movie_num}">
+    					<i class="comment outline icon"></i>
+  				  	</div>
+				  </div>
+               <div class="clearing item"></div>
+               </c:if>
+               
+               
 					<div class="actions">
 						<div class="ui black deny button">닫기</div>
 						<div class="ui positive right labeled icon button">

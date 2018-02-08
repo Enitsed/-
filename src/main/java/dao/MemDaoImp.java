@@ -63,4 +63,9 @@ public class MemDaoImp implements MemDAO {
 		
 	}
 
+	@Override
+	public void profileUpdate(MemDTO userDTO) {
+		sqlSession.update("mem.profileUpdate",userDTO);
+	}
+
 }

@@ -20,6 +20,8 @@ public interface MovieDAO {
 	public void likeinsertProcess(LikeDTO dto);
 	public void likedeleteProcess(LikeDTO dto);
 	
+	public int mem_numProccess(LikeDTO dto);
+	
 	public void insertCommentProcees(CommentDTO dto);
 	public void deleteCommentProcess(int comment_num);
 	

@@ -7,9 +7,11 @@ create table mem(
 	mem_sex varchar2(10),		   --회원성별
 	mem_name varchar2(100),		   --회원이름
 	mem_email varchar2(20),		   --회원이메일
-	mem_address varchar2(300)	   --회원주소
+	mem_address varchar2(300),	   --회원주소
+	upload varchar2(200)      --회원프로핅
 );
-
+insert into mem values(mem_seq.nextval,'aaaaaa','aaaaaa','남','aa','aa@aa','aa',null);
+select * from mem
 --회원 테이블 시퀀스
 create sequence mem_seq
 start with 1
@@ -289,13 +291,16 @@ create table reply(
 
 
 create table movie_comment(
-   comment_num number,
+   comment_num number primary key,
+   profile varchar2(200),
    movie_num number,
    replytext varchar2(500),
    mem_num number,
    mem_id varchar2(20),
    regdate Date,
-   likecount number
+   likecount number,
+   constraint movie_comment_comment_num_fk foreign key(comment_num) references movie(movie_num) on delete cascade,
+   constraint movie_comment_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 );
 
 select * from movie_comment
@@ -305,13 +310,14 @@ start with 1
 increment by 1
 nocache
 nocycle;
+
 drop table movie_comment
 drop sequence comment_num_seq
 
 
 delete from movie_comment where comment_num = 11
 select * from movie_comment
-delete from movie_comment
+
 
 select * from movie_comment
 
@@ -334,7 +340,10 @@ update movie_comment set likecount=likecount-1 where comment_num=1
 create table commentlike(
    like_num number,
    mem_id varchar2(20),
-   comment_num number
+   mem_num number,
+   comment_num number,
+   constraint commentlike_comment_num_fk foreign key(comment_num) references movie_comment(comment_num) on delete cascade,
+   constraint commentlike_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 );
 
 create sequence like_num_seq
@@ -342,16 +351,12 @@ start with 1
 increment by 1
 nocache
 nocycle;
-<<<<<<< HEAD
-=======
+
 drop table commentlike 
 drop sequence like_num_seq
-insert into COMMENTLIKE values(like_num_seq.nextval,'bbbbbb',1)
->>>>>>> 8c9a8eb84c7d8168a18bfb927077505b55cd7e82
 
 select * from commentlike
 delete  from commentlike
 
-drop table commentlike
-drop sequence like_num_seq
+
 

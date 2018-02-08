@@ -64,4 +64,9 @@ public class MemServiceImp implements MemService {
 		
 	}
 
+	@Override
+	public void profileUpdate(MemDTO userDTO) {
+		dao.profileUpdate(userDTO);
+	}
+
 }

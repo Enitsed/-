@@ -21,4 +21,6 @@ public interface MemDAO {
 	public List<MemDTO> memInfo(MemDTO userDTO);
 	
 	public void memUpdate(MemDTO userDTO);
+	
+	public void profileUpdate(MemDTO userDTO);
 }

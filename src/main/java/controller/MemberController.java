@@ -1,15 +1,20 @@
 package controller;
 
-import java.util.HashMap;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import api.MovieApi;
@@ -79,6 +84,7 @@ public class MemberController {
 				MemDTO foundUserDTO = service.loginProcess(userDTO);
 				if (foundUserDTO != null) {
 					mav.addObject("loginStatus", "로그인에 성공하였습니다.");
+
 					session.setAttribute("userDTO", foundUserDTO);
 
 				} else {
@@ -91,6 +97,7 @@ public class MemberController {
 		} else {
 			mav.addObject("loginStatus", "회원이 존재하지 않습니다.");
 		}
+
 		api.MovieNewsApi(mav);
 		mav.addObject("movie", movieservice.movieInfoProcess(1));
 		mav.setViewName("index");
@@ -164,6 +171,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
 	public ModelAndView update(MemDTO userDTO, HttpServletRequest request) {
+
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		service.updateProcess(userDTO);
@@ -185,7 +193,7 @@ public class MemberController {
 		mav.setViewName("memInfoList");
 		return mav;
 	}
-	
+
 	@RequestMapping("/memUpdate")
 	public ModelAndView memUpdate(MemDTO userDTO) {
 		ModelAndView mav = new ModelAndView();
@@ -194,10 +202,12 @@ public class MemberController {
 		mav.setViewName("memUpdate");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/memUpdateInfo", method = RequestMethod.POST)
 	public ModelAndView memUpdate(MemDTO memList, HttpServletRequest request) {
+
 		ModelAndView mav = new ModelAndView();
+
 		HttpSession session = request.getSession();
 		List<MemDTO> aList = service.memInfo(memList);
 		mav.addObject("memList", aList);
@@ -209,6 +219,42 @@ public class MemberController {
 			mav.addObject("memUpdateStatus", "등급정보 수정에 실패하였습니다.");
 		}
 		mav.setViewName("memUpdate");
+
 		return mav;
+
 	}
+
+	@RequestMapping(value = "updateprofile", method = RequestMethod.POST)
+	public @ResponseBody void updateProfile(MemDTO dto, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		
+		MultipartFile file = dto.getMem_profile();
+		System.out.println("name:" + file.getOriginalFilename());
+		System.out.println("유저아이디:" + dto.getMem_id());
+
+		String path = "C:\\Users\\rkdgu\\Documents\\GitHub\\finalProject\\src\\main\\webapp\\resources\\images\\profile";
+		String fileName = file.getOriginalFilename();
+
+		String saveDirectory = path;
+		System.out.println("세이브디렉토리:" + saveDirectory);
+
+		File fe = new File(saveDirectory);
+		if (!fe.exists())
+			fe.mkdir();
+
+		File ff = new File(saveDirectory, fileName);
+
+		try {
+			FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dto.setUpload(fileName);
+		
+		service.profileUpdate(dto);
+		session.setAttribute("userDTO", dto);
+	}
+
 }

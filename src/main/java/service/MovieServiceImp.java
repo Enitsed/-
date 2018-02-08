@@ -88,5 +88,11 @@ public class MovieServiceImp implements MovieService {
 		return dao.morecommentListProcess(dto);
 	}
 
+	@Override
+	public int mem_numProcees(LikeDTO dto) {
+		
+		return dao.mem_numProccess(dto);
+	}
+
 	
 }

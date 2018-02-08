@@ -124,5 +124,10 @@ public class MovieDaoImp implements MovieDAO {
 		return sqlSession.selectList("movie.morecomment",dto);
 	}
 
+	@Override
+	public int mem_numProccess(LikeDTO dto) {
+		return sqlSession.selectOne("movie.mem_num",dto);
+	}
+
 	
 }
