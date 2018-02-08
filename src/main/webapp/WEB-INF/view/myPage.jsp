@@ -17,7 +17,7 @@
 		<div class="img_wrap">
 			<c:if test="${not empty userDTO.upload}">
 			<!--  <img src ="resources/images/profile/${userDTO.upload}">-->
-			<img src="resources/images/profile/${userDTO.upload}">
+			<img src="./profile/${userDTO.upload}">
 			</c:if>			
 		</div>
 	
@@ -54,8 +54,7 @@
 			<input class="ui input" type="text" name="mem_address" value="${userDTO.mem_address}">
 		</div>
 		<div class="field">
-			<!--  <input class="ui button" type="submit" id="updateBtn" value="수정">-->
-			<input type="button" id="btn_profile" value="수정" class="ui button" onclick="imgupload();">
+			<input class="ui button" type="submit" id="updateBtn" value="수정">
 			<a class="ui button" href="http://localhost:8090/finalproject/main">취소</a>
 		</div>
 	</form>

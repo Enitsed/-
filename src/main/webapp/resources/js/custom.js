@@ -591,7 +591,7 @@ $(document).ready(function () {
 					comment +=
 						'<div class="event">' +
 						'<div class="label">' +
-						'<img src="resources/images/profile/'+value.profile+'">' +
+						'<img src="./profile/'+value.profile+'">' +
 						'</div>' +
 						'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 						'<div class="content">' +
@@ -613,11 +613,11 @@ $(document).ready(function () {
 				});//each
 
 	            $('#hidden').remove();
-	            $('.more').remove();
+	            $('.horizontal.divider .more').remove();
 	            var plus="";
 	            if(data.length>more)
 	            	plus+= '<input type="hidden" value="'+mnum+'" id="hidden"/>'+
-						 '<a class="more" id="10">댓글 더보기</a>'
+	            	'<div class="ui horizontal divider"><a class="more" id="10">댓글 더보기</a></div>'
 					$(plus).appendTo('.seemore');
 
 	            $(modal).modal('show');
@@ -660,7 +660,7 @@ $(document).ready(function () {
 	               insert +=
 	                  '<div class="event">' +
 	                  '<div class="label">' +
-	                  '<img src="resources/images/profile/'+value.profile+'">' +
+	                  '<img src="./profile/'+value.profile+'">' +
 	                  '</div>' +
 	                  '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 	                  '<div class="content">' +
@@ -681,11 +681,11 @@ $(document).ready(function () {
 	                  
 	            });
 	            $('#hidden').remove();
-	            $('.more').remove();
+	            $('.horizontal.divider .more').remove();
 	            var plus2="";
 	            if(data.length>more)
 	            	plus2+= '<input type="hidden" value="'+number+'" id="hidden"/>'+
-						 '<a class="more" id="10">댓글 더보기</a>'
+	            	'<div class="ui horizontal divider"><a class="more" id="10">댓글 더보기</a></div>'
 					$(plus2).appendTo('.seemore');
 	            reset.val('');
 	            
@@ -765,7 +765,7 @@ $(document).ready(function () {
 	                 insert +=
 	                    '<div class="event">' +
 	                    '<div class="label">' +
-	                    '<img src="resources/images/profile/'+value.profile+'">' +
+	                    '<img src="./profile/'+value.profile+'">' +
 	                    '</div>' +
 	                    '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 	                    '<div class="content">' +
@@ -787,13 +787,13 @@ $(document).ready(function () {
 	              });
 	              
 	              $('#hidden').remove();
-	              $('.more').remove();
+	              $('.horizontal.divider .more').remove();
 	              
 	             
 	              var plus2="";
 	              if(data.length>more)
 	              	plus2+= '<input type="hidden" value="'+movie_number+'" id="hidden"/>'+
-	  					 '<a class="more" id="10">댓글 더보기</a>'
+	              	'<div class="ui horizontal divider"><a class="more" id="10">댓글 더보기</a></div>'
 	              
 	  				$(plus2).appendTo('.seemore');
 	           
@@ -801,15 +801,15 @@ $(document).ready(function () {
 	      });//ajax
 	   }//함수끝
 	   
-	   $(document).on('click','.more',morecomment);
+	   $(document).on('click','.ui.horizontal.divider .more',morecomment);
 	   
 	   function morecomment(){
 		  
-		   var hiddennum = $(this).parent().find('.hiddennum');
+		   var hiddennum = $(this).parent().parent().find('.hiddennum');
 		   var hiddennum2 = parseInt(hiddennum.attr('name'));
 		   
 			var page = parseInt($(this).attr('id'));
-			var mov_num = $(this).prev().val();
+			var mov_num = $(this).parent().prev().val();
 			
 			$.ajax({
 				url :'morecomment',
@@ -830,7 +830,7 @@ $(document).ready(function () {
 								
 								'<div class="event">' +
 								'<div class="label">' +
-								'<img src="resources/images/user.png">' +
+								'<img src="./profile/'+ value.profile +'">' +
 								'</div>' +
 								'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 								'<div class="content">' +
@@ -852,12 +852,12 @@ $(document).ready(function () {
 						});//each
 						
 			            $('#hidden').remove();
-			            $('.more').remove();
+			            $('.horizontal.divider .more').remove();
 			            
 			            var plus="";
 			            if(data.length+2>hiddennum2)
 			            	plus+= '<input type="hidden" value="'+mov_num+'" id="hidden"/>'+
-								 '<a class="more" id="10">댓글 더보기</a>'
+								 '<div class="horizontal divider"><a class="more" id="10">댓글 더보기</a></div>'
 							$(plus).appendTo('.seemore');
 		               
 				}//success
