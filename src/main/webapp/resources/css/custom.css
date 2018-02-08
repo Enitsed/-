@@ -134,7 +134,7 @@ iframe {
 	margin: 0px 10px 20px 10px;
 }
 
-.description {
+.description .board_content {
 	height: 40px;
 	overflow-y: hidden;
 }

@@ -79,7 +79,6 @@ public class HelloController {
 		param.put("startRow", 1);
 		param.put("endRow", 5);
 		mav.addObject("boardList", boardservice.listProcess(param));
-
 		mav.addObject("movie", boxOfficeMovieList);
 		mav.addObject("commentMovie", movieservice.maxCommentMovie());
 		api.MovieNewsAPI(mav);
