@@ -1,4 +1,4 @@
-package api;
+package api.src.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,10 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import dto.ActorDTO;
-import dto.CategoryDTO;
-import dto.DirectorDTO;
-import dto.MovieDTO;
+import api.src.dto.CategoryDTO;
+import api.src.dto.DirectorDTO;
+import api.src.dto.ActorDTO;
+import api.src.dto.MovieDTO;
 
 public class MovieDAO {
 	Connection conn = null;
@@ -66,7 +66,10 @@ public class MovieDAO {
 				pstmt.setString(1, list.get(i).getMovie_rating());
 				pstmt.setString(2, list.get(i).getMovie_kor_title());// (?값,이름)
 				pstmt.setString(3, list.get(i).getMovie_eng_title());
-				pstmt.setDate(4, (Date) list.get(i).getMovie_opening_date());
+				Date date = new Date(list.get(i).getMovie_opening_date().getYear(),
+						list.get(i).getMovie_opening_date().getMonth(), list.get(i).getMovie_opening_date().getDate());
+
+				pstmt.setDate(4, date);
 				pstmt.setString(5, list.get(i).getMovie_summary());
 				pstmt.setString(6, list.get(i).getMovie_image());
 				pstmt.setString(7, list.get(i).getMovie_url());
@@ -133,8 +136,8 @@ public class MovieDAO {
 					if (!name.equals("")) {
 						String sql = "INSERT INTO movie_actor (select movie_num, actor_num from actor, movie where actor_name = '"
 								+ name + "' AND movie_kor_title = '" + Movielist.get(i).getMovie_kor_title() + "')"; // ?순서대로
-						// 인덱스
-						// //
+																														// 인덱스
+																														// //
 						stmt.executeUpdate(sql);
 					}
 				}
@@ -223,7 +226,6 @@ public class MovieDAO {
 				List<CategoryDTO> list = Movielist.get(i).getCategory();
 				for (int j = 0; j < list.size(); j++) {
 					String name = list.get(j).getCategory_name().replaceAll("\\p{Z}", "");
-					System.out.println(name);
 					if (!name.equals("")) {
 
 						String sql = "INSERT INTO movie_category (select category_num, movie_num from category, movie where category_name = '"

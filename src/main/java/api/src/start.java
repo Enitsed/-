@@ -1,12 +1,12 @@
-package api;
+package api.src;
 
-import api.MovieListApi;
+import api.src.api2.MovieListAPI;
 
 public class start {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MovieListApi api = new MovieListApi();
+		MovieListAPI api = new MovieListAPI();
 		api.insert();
 	}
 

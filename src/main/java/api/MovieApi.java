@@ -190,7 +190,7 @@ public class MovieApi {
 								movieDto.setNation(tagName);
 							}
 						}
-					} else if (tag.equals("repRlsDate") && search) {
+					} else if (tag.equals("repRlsDate")) {
 						tagName = parser.nextText();
 						tagName = tagName.replaceAll("\\p{Z}", "");
 
@@ -199,7 +199,7 @@ public class MovieApi {
 								Date fromDate = new Date(00000000);
 								movieDto.setMovie_opening_date(fromDate);
 							} else {
-								SimpleDateFormat toFormat = new  SimpleDateFormat("yyyyMMdd");
+								SimpleDateFormat toFormat = new SimpleDateFormat("yyyyMMdd");
 								Date fromDate = toFormat.parse(tagName);
 								movieDto.setMovie_opening_date(fromDate);
 							}

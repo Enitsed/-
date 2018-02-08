@@ -1,4 +1,4 @@
-package api;
+package api.src.api2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,21 +6,21 @@ import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import api.MovieDAO;
-import dto.ActorDTO;
-import dto.MovieDTO;
-import dto.CategoryDTO;
-import dto.DirectorDTO;
+import api.src.dto.CategoryDTO;
+import api.src.dto.DirectorDTO;
+import api.src.dao.MovieDAO;
+import api.src.dto.ActorDTO;
+import api.src.dto.MovieDTO;
 
-public class MovieListApi {
+public class MovieListAPI {
 
 	public void insert() {
 		List<MovieDTO> list = new ArrayList();
@@ -193,19 +193,14 @@ public class MovieListApi {
 						}
 					} else if (tag.equals("repRlsDate")) {
 						tagName = parser.nextText();
+						tagName = tagName.replaceAll("\\p{Z}", "");
 						if (movieDto != null) {
-							if (tagName == null) {
+							if (tagName.equals("")) {
 								Date fromDate = new Date(00000000);
 								movieDto.setMovie_opening_date(fromDate);
 							} else {
-								tagName = tagName.replaceAll("\\p{Z}", "");
-
-								SimpleDateFormat toFormat = new SimpleDateFormat("yyyy-MM-dd");
-								Date fromDate = null;
-								try {
-									fromDate = new Date(Integer.parseInt(tagName));
-								} catch (Exception e) {
-								}
+								SimpleDateFormat toFormat = new SimpleDateFormat("yyyyMMdd");
+								Date fromDate = toFormat.parse(tagName);
 								movieDto.setMovie_opening_date(fromDate);
 							}
 						}

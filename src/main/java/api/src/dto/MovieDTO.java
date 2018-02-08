@@ -1,8 +1,7 @@
-package dto;
+package api.src.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class MovieDTO {
 	private int movie_num;
@@ -12,10 +11,10 @@ public class MovieDTO {
 	private String movie_summary;
 	private String movie_image;
 	private String movie_url;
-	private List<DirectorDTO> movie_director = new ArrayList<DirectorDTO>();
-	private List<ActorDTO> movie_actor = new ArrayList<ActorDTO>();
+	private ArrayList<DirectorDTO> movie_director = new ArrayList<DirectorDTO>();
+	private ArrayList<ActorDTO> movie_actor = new ArrayList<ActorDTO>();
 	private String movie_rating;
-	private List<CategoryDTO> category = new ArrayList<CategoryDTO>();
+	private ArrayList<CategoryDTO> category = new ArrayList<CategoryDTO>();
 	private String nation;
 
 	public int getMovie_num() {
@@ -74,6 +73,22 @@ public class MovieDTO {
 		this.movie_url = movie_url;
 	}
 
+	public ArrayList<DirectorDTO> getMovie_director() {
+		return movie_director;
+	}
+
+	public void addMovie_director(DirectorDTO movie_director) {
+		this.movie_director.add(movie_director);
+	}
+
+	public ArrayList<ActorDTO> getMovie_actor() {
+		return movie_actor;
+	}
+
+	public void addMovie_actor(ActorDTO movie_actor) {
+		this.movie_actor.add(movie_actor);
+	}
+
 	public String getNation() {
 		return nation;
 	}
@@ -90,39 +105,11 @@ public class MovieDTO {
 		this.movie_rating = movie_rating;
 	}
 
-	public List<DirectorDTO> getMovie_director() {
-		return movie_director;
-	}
-
-	public void setMovie_director(List<DirectorDTO> movie_director) {
-		this.movie_director = movie_director;
-	}
-
-	public void addMovie_director(DirectorDTO dto) {
-		this.movie_director.add(dto);
-	}
-
-	public List<ActorDTO> getMovie_actor() {
-		return movie_actor;
-	}
-
-	public void setMovie_actor(List<ActorDTO> movie_actor) {
-		this.movie_actor = movie_actor;
-	}
-
-	public void addMovie_actor(ActorDTO dto) {
-		this.movie_actor.add(dto);
-	}
-
-	public List<CategoryDTO> getCategory() {
+	public ArrayList<CategoryDTO> getCategory() {
 		return category;
 	}
 
-	public void setCategory(List<CategoryDTO> category) {
-		this.category = category;
-	}
-
-	public void addCategory(CategoryDTO dto) {
-		this.category.add(dto);
+	public void addCategory(CategoryDTO category) {
+		this.category.add(category);
 	}
 }

@@ -7,13 +7,13 @@
 <!-- 동영상 -->
 <div class="ui fluid container video_clip" id="banner"
 	data-vide-bg="resources/images/travel"
-	data-vide-options="loop: false, muted: false"></div>
+	data-vide-options="posterType: jpg, loop: false, muted: false"></div>
 
 <div class="ui dimmer">
 	<div class="center">
 		<div class="content">
 			<div class="ui video" data-source="youtube" data-id="BX-OFZUU0_E"
-				data-image="resources/images/test.jpg"
+				data-image="resources/images/travel.jpg"
 				style="max-width: 90%; left: 5%; padding-bottom: 50%;"></div>
 			<div class="ui horizontal divider">
 				<button class="ui red button" id="banner_close">Click to
@@ -256,49 +256,34 @@
 		</div>
 	</div>
 
-	<div class="ui segment">
+	<div class="ui segment board_list">
 		<div class="ui top attached green label">게시판 글 리스트</div>
-		<div class="ui items">
+		<div class="ui items main_list">
+			<c:forEach var="bDto" items="${boardList }">
 			<div class="item">
-				<div class="image" style="width: 100px">
-					<img src="resources/images/test.jpg">
-				</div>
 				<div class="content">
-					<a class="header">Header</a>
+					<a class="header" href="#">제목 : ${bDto.board_name }</a>
 					<div class="meta">
-						<span>Description</span>
+						<span>${bDto.board_writer } 님이 쓴 글</span>
 					</div>
 					<div class="description">
-						<p></p>
+						<p>내용 : ${bDto.board_content }</p>
 					</div>
-					<div class="extra">Additional Details</div>
+					<div class="extra">작성일 : ${bDto.board_date }</div>
 				</div>
 			</div>
-			<div class="item">
-				<div class="image" style="width: 100px">
-					<img src="resources/images/test.jpg">
-				</div>
-				<div class="content">
-					<a class="header">Header</a>
-					<div class="meta">
-						<span>Description</span>
-					</div>
-					<div class="description">
-						<p></p>
-					</div>
-					<div class="extra">Additional Details</div>
-				</div>
-			</div>
+			<div class="ui divider"></div>
+			</c:forEach>
 		</div>
-		<div class="ui top right attached label green inverted button">
+		<div class="ui top right attached label green inverted button" onclick="location.href='free'">
 			<i class="far fa-hand-point-down"></i> &nbsp; 더 보기
 		</div>
 	</div>
 
-	<div class="ui segment">
+	<div class="ui segment news_list">
 		<div class="ui top attached green label">관련 뉴스기사</div>
-		<c:forEach items="${list}" var="list">
-			<div class="ui items">
+		<div class="ui items main_list">
+			<c:forEach items="${list}" var="list">
 				<div class="item">
 					<div class="content">
 						<a href="${list.originallink}">${list.title}</a>
@@ -307,7 +292,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
+				<div class="ui divider"></div>
+			</c:forEach>
+		</div>
 	</div>
 </div>

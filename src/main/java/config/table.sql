@@ -80,16 +80,15 @@ delete from movie_comment where movie_num > 301 and movie_num < 307
 delete from rating where movie_num > 296 and movie_num < 302
 
 drop table actor
-delete from movie
-delete from movie_actor
-delete from actor
-delete from movie_director
-delete from director
-delete from movie_category
-delete from rating
+delete from movie where movie_num = 107;
+delete from movie_actor where movie_num= 107;
+delete from actor;
+delete from movie_director where movie_num= 107;
+delete from director;
+delete from movie_category where movie_num= 107;
+delete from rating;
 select * from movie_category
 select * from movie_director
-
 select * from movie_actor
 rating
 			INSERT INTO actor (select actor_seq.nextval,'as'
