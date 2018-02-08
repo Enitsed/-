@@ -109,8 +109,7 @@ b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name 
 		update rating set star_point = #{rating}, write_date = SYSDATE where #{member_num} = mem_num and #{movie_num} = movie_num
 	</update>
 	
-<<<<<<< HEAD
-=======
+
 	<select id="searchMovie" parameterType="String" resultType="int">
 		select count(*) from movie where #{name} = movie_kor_title
 	</select>
@@ -148,6 +147,5 @@ b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name 
 	<select id="commentMaxMovie" resultType="dto.MovieDTO">
 		select a.* from movie a, (select movie_num from movie_comment where regdate > sysdate - 7 and sysdate >= regdate group by movie_num order by count(*)) b where a.movie_num  = b.movie_num and 8 > rownum 
 	</select>
->>>>>>> c27e7cd7a2b465b4a7e9083b6934687351474974
 </mapper>
     
