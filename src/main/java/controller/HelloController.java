@@ -17,15 +17,16 @@ import api.MovieNewsApi;
 import dto.CommentDTO;
 import dto.LikeDTO;
 import dto.MemDTO;
-import dto.MovieDTO;
-
 import dto.MoreCommentDTO;
+import dto.MovieDTO;
+import service.BoardService;
 import service.MovieService;
 
 // http://localhost:8090/finalproject/main
 @Controller
 public class HelloController {
 	MovieService movieservice;
+	BoardService boardservice;
 
 	public HelloController() {
 
@@ -33,6 +34,10 @@ public class HelloController {
 
 	public void setMovieservice(MovieService movieservice) {
 		this.movieservice = movieservice;
+	}
+
+	public void setBoardservice(BoardService boardservice) {
+		this.boardservice = boardservice;
 	}
 
 	@RequestMapping("/main")
@@ -43,7 +48,6 @@ public class HelloController {
 		List<String> list = api2.boxOffice();
 		List<MovieDTO> movieList = new ArrayList<MovieDTO>();
 		List<MovieDTO> boxOfficeMovieList = new ArrayList<MovieDTO>();
-
 		for (String i : list) {
 			System.out.println(i);
 			MovieDTO dto = movieservice.BoxOfficeInsert(i);
@@ -67,13 +71,18 @@ public class HelloController {
 				if (dto.getMovie_kor_title() != null)
 					boxOfficeMovieList.add(dto);
 			} catch (NullPointerException e) {
-				
+
 			}
 		}
 
+		HashMap<String, Integer> param = new HashMap<String, Integer>();
+		param.put("startRow", 1);
+		param.put("endRow", 5);
+		mav.addObject("boardList", boardservice.listProcess(param));
+
 		mav.addObject("movie", boxOfficeMovieList);
 		mav.addObject("commentMovie", movieservice.maxCommentMovie());
-
+		mav.addObject("category", 0);
 		api.MovieNewsAPI(mav);
 		mav.setViewName("index");
 		return mav;

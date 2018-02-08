@@ -27,13 +27,42 @@ public class MovieDaoImp implements MovieDAO {
 	}
 
 	@Override
-	public List<MovieDTO> movieInfoProcess(int page) {
+	public List<MovieDTO> movieInfoProcess(int page, int category) {
 		int end = page * 8;
 		int start = end - 8;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
-		List<MovieDTO> list = sqlSession.selectList("movie.list", map);
+		List<MovieDTO> list = null;
+		System.out.println("asd" + category);
+
+		if(category == 0) {
+			map.put("category", "전체");
+		}else if(category == 1) {
+			map.put("category", "액션");
+		}else if(category == 2) {
+			map.put("category", "드라마");
+		}else if(category == 3) {
+			map.put("category", "공포");
+		}else if(category == 4) {
+			map.put("category", "스릴러");
+		}else if(category == 5) {
+			map.put("category", "코메디");
+		}else if(category == 6) {
+			map.put("category", "미스터리");
+		}else if(category == 7) {
+			map.put("category", "범죄");
+		}else if(category == 8) {
+			map.put("category", "스포츠");
+		}else if(category == 9) {
+			map.put("category", "어드벤처");
+		}else if(category == 10) {
+			map.put("category", "전쟁");
+		}
+		
+		
+		list = sqlSession.selectList("movie.list", map);
+
 		for (int i = 0; i < list.size(); i++) {
 			List<DirectorDTO> directorList = sqlSession.selectList("movie.director", list.get(i).getMovie_num());
 			list.get(i).setMovie_director(directorList);
