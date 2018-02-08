@@ -14,6 +14,7 @@
 	href="resources/css/semantic.min.css">
 <link rel="stylesheet" type="text/css" href="resources/css/video.css">
 <link rel="stylesheet" type="text/css" href="resources/css/custom.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 	<tiles:insertAttribute name="header" />
