@@ -135,7 +135,7 @@ public class MemberController {
 			}
 		}
 
-		mav.addObject("movie", boxOfficeMovieList);
+		mav.addObject("movie",boxOfficeMovieList);
 		mav.addObject("commentMovie", movieservice.maxCommentMovie());
 		mav.setViewName("index");
 		return mav;
