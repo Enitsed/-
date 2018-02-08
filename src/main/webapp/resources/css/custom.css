@@ -89,26 +89,23 @@ body {
 	animation-duration: 5s;
 }
 
-@
--webkit-keyframes fade2 {
-	from {opacity: .4
+@-webkit-keyframes fade2 {
+	from {
+		opacity: .4
+	} to {
+		opacity: 1
+	}
 }
 
-to {
-	opacity: 1
+@keyframes fade2 {
+	from {
+		opacity: .4
+	}
+	to {
+		opacity: 1
+	}
 }
 
-}
-@
-keyframes fade2 {
-	from {opacity: .4
-}
-
-to {
-	opacity: 1
-}
-
-}
 @media only screen and (max-width: 300px) {
 	.slprev, .slnext, .text {
 		font-size: 11px
@@ -137,8 +134,8 @@ iframe {
 .seemore {
 	margin: 0px 10px 20px 10px;
 }
-
-.description .board_content { .profile_wrap { position:relative;
+.profile_wrap {
+	position:relative;
 	border-radius: 50%;
 	border: 1px solid black;
 	/*background-image: url("../images/test.jpg");*/
@@ -245,7 +242,7 @@ iframe {
 	color: #4e5800;
 }
 
-.description {
+.description .board_content {
 	height: 40px;
 	overflow-y: hidden;
 }
