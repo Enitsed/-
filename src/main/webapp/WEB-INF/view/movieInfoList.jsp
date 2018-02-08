@@ -3,7 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
+
 <script>
+
 	function moreList() {
 		var page = (parseInt($("#currentPage").val()) + 1);
 		$.ajax({
@@ -60,12 +63,18 @@
 								'</div>'+
 								'<div id="bb"></div>'+
 								'</div>';
+								
 					$("#movieListWindow").append(content); 
+					
+					
 					
 					$('.ui.rating').rating();////rating ui
 					$('.special.cards .image.main_movie').dimmer({
-							on: 'hover'
-					});////dimmer function
+					on: 'hover'
+					});////dimmer function //
+					
+							
+					$(".ui.rating").unbind("click"); //클릭이벤트 없앰
 					
 					$('.ui.rating').on("click",function(){
 						var rating = $(this).rating("get rating", this);
@@ -74,7 +83,7 @@
 						/* alert(rating + " " + num + " " + movie_num); */
 						if(num < 1){
 							alert("로그인부터 해라");
-							return;
+							return; 
 						}
 						$.ajax({
 							type: 'GET',
@@ -87,9 +96,12 @@
 								alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 							}
 						});
-						
 					}); /////////////////ui rating click function
 					
+
+					
+					
+
 					
 					$('.main_movie').on('click', function () {
 					      var mnum = $(this).find('input[type="hidden"]').val();
@@ -142,9 +154,7 @@
 					            	plus+= '<input type="hidden" value="'+mnum+'" id="hidden"/>'+
 										 '<a class="more" id="10">댓글 더보기</a>'
 									$(plus).appendTo('.seemore');
-									
-									
-					       
+
 					            $(modal).modal('show');
 					           
 					         }//success
@@ -152,9 +162,6 @@
 					      
 					   });//movie modal 클릭 끝
 					
-					
-													
-
 				})
 						
 				if(data.length < 8){
@@ -162,14 +169,18 @@
 				}else{	
 					$("#currentPage").val(page);
 				}
-			},
+			}, //success function 끝
 			error : function(request, status, error) {
 				alert("code:" + request.status + "\n" + "message:"
 								+ request.responseText + "\n" + "error:"
 								+ error);
 			}
+			
 		});
+
+		
 	};
+
 </script>
 
 
@@ -251,9 +262,8 @@
 			</c:forEach>
 		</div>
 		<div class="ui horizontal divider">
-			<a class="ui teal button" href="javascript:moreList();"> <i
-				class="far fa-hand-point-down"></i> &nbsp; 더 보기
-				<input type="hidden" value = "1" id ="currentPage"/>
+			<a class="ui teal button" href="javascript:moreList();" >
+			<i class="far fa-hand-point-down"></i> &nbsp; 더 보기 <input type="hidden" value = "1" id ="currentPage"/>
 			</a>
 		</div>
 
