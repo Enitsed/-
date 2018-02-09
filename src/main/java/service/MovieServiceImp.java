@@ -119,7 +119,6 @@ public class MovieServiceImp implements MovieService {
 		return dao.mem_numProccess(dto);
 	}
 
-	
 	public List<MovieDTO> maxCommentMovie() {
 		// TODO Auto-generated method stub
 		return dao.maxCommentMovie();

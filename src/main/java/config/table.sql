@@ -10,17 +10,14 @@ create table mem(
 	mem_address varchar2(300),	   --회원주소
 	upload varchar2(200)      --회원프로핅
 );
-<<<<<<< HEAD
 insert into mem values(mem_seq.nextval,'aaaaaa','aaaaaa','남','aa','aa@aa','aa',null);
 select * from mem
-=======
 INSERT INTO movie_actor(
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,  
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,   
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,   
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,    
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa'))
->>>>>>> c27e7cd7a2b465b4a7e9083b6934687351474974
 --회원 테이블 시퀀스
 create sequence mem_seq
 start with 1
@@ -300,10 +297,10 @@ create table board(
 	board_reply_step number,		--답글단계
 	board_date date,				--작성일
 	board_reply_amount number,		--댓글개수
+	board_category number(10)		--보드 카테고리
 	constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 	--board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
-
 --게시판테이블 시퀀스
 create sequence board_seq
 start with 1

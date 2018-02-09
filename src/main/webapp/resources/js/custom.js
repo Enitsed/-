@@ -591,7 +591,7 @@ $(document).ready(function () {
 					comment +=
 						'<div class="event">' +
 						'<div class="label">' +
-						'<img src="resources/images/profile/'+value.profile+'">' +
+						'<img src="./profile/'+value.profile+'">' +
 						'</div>' +
 						'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 						'<div class="content">' +
@@ -613,11 +613,11 @@ $(document).ready(function () {
 				});//each
 
 	            $('#hidden').remove();
-	            $('.more').remove();
+	            $('.horizontal.divider .more').remove();
 	            var plus="";
 	            if(data.length>more)
 	            	plus+= '<input type="hidden" value="'+mnum+'" id="hidden"/>'+
-						 '<a class="more" id="10">댓글 더보기</a>'
+	            	'<div class="ui horizontal divider"><a class="more" id="10">댓글 더보기</a></div>'
 					$(plus).appendTo('.seemore');
 
 	            $(modal).modal('show');
@@ -660,7 +660,7 @@ $(document).ready(function () {
 	               insert +=
 	                  '<div class="event">' +
 	                  '<div class="label">' +
-	                  '<img src="resources/images/profile/'+value.profile+'">' +
+	                  '<img src="./profile/'+value.profile+'">' +
 	                  '</div>' +
 	                  '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 	                  '<div class="content">' +
@@ -681,14 +681,13 @@ $(document).ready(function () {
 	                  
 	            });
 	            $('#hidden').remove();
-	            $('.more').remove();
+	            $('.horizontal.divider .more').remove();
 	            var plus2="";
 	            if(data.length>more)
 	            	plus2+= '<input type="hidden" value="'+number+'" id="hidden"/>'+
-						 '<a class="more" id="10">댓글 더보기</a>'
+	            	'<div class="ui horizontal divider"><a class="more" id="10">댓글 더보기</a></div>'
 					$(plus2).appendTo('.seemore');
 	            reset.val('');
-	            
 	         }//success끝
 	      });//ajax끝
 	   }
@@ -723,7 +722,38 @@ $(document).ready(function () {
 	            }//success끝
 	         });//ajax끝
 	      }//like function()끝
-
+	   
+	$(document).on('click','.like',like);
+	   function like(){
+		   
+	      var num = parseInt($(this).attr('value')); //코멘트 번호
+	      var now = $(this);
+	      now.attr("class", "asd");
+	      var likey = parseInt($(this).text());
+	      if(!session_id){
+	    	  alert('먼저 로그인을 해주세요.');
+		         return false;
+	      }
+	         
+	      $.ajax({
+	         type: 'GET',
+	         dataType: 'json',
+	         url: 'like',
+	         async: false,
+	         data: 'mem_id=' + session_id + '&comment_num=' + num,
+	         success: function (data) {
+	            if (data.like != null) {
+	            	likey+=1;
+	                now.text('  '+likey+' '+'Likes');	
+	        
+	            } else if(data.like==null){
+	           		 likey-=1;        
+	                 now.text('  '+likey+' '+'Likes');	
+	           	}
+	            now.attr("class", "like");
+	         }//success끝
+	      });//ajax끝
+	   }//like function()끝
 	   
 	   
 	   $(document).on('click','.del',del);
@@ -751,7 +781,7 @@ $(document).ready(function () {
 	                 insert +=
 	                    '<div class="event">' +
 	                    '<div class="label">' +
-	                    '<img src="resources/images/profile/'+value.profile+'">' +
+	                    '<img src="./profile/'+value.profile+'">' +
 	                    '</div>' +
 	                    '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 	                    '<div class="content">' +
@@ -773,13 +803,14 @@ $(document).ready(function () {
 	              });
 	              
 	              $('#hidden').remove();
-	              $('.more').remove();
+	              $('.horizontal.divider .more').remove();
 	              
 	             
 	              var plus2="";
 	              if(data.length>more)
 	              	plus2+= '<input type="hidden" value="'+movie_number+'" id="hidden"/>'+
 	  					 '<a class="more" id="10">댓글 더보기</a>'
+	              	'<div class="ui horizontal divider"><a class="more" id="10">댓글 더보기</a></div>'
 	              
 	  				$(plus2).appendTo('.seemore');
 	           
@@ -787,15 +818,15 @@ $(document).ready(function () {
 	      });//ajax
 	   }//함수끝
 	   
-	   $(document).on('click','.more',morecomment);
+	   $(document).on('click','.ui.horizontal.divider .more',morecomment);
 	   
 	   function morecomment(){
 		  
-		   var hiddennum = $(this).parent().find('.hiddennum');
+		   var hiddennum = $(this).parent().parent().find('.hiddennum');
 		   var hiddennum2 = parseInt(hiddennum.attr('name'));
 		   
 			var page = parseInt($(this).attr('id'));
-			var mov_num = $(this).prev().val();
+			var mov_num = $(this).parent().prev().val();
 			
 			$.ajax({
 				url :'morecomment',
@@ -816,7 +847,7 @@ $(document).ready(function () {
 								
 								'<div class="event">' +
 								'<div class="label">' +
-								'<img src="resources/images/profile/'+value.profiel+'">' +
+								'<img src="./profile/'+ value.profile +'">' +
 								'</div>' +
 								'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 								'<div class="content">' +
@@ -838,12 +869,12 @@ $(document).ready(function () {
 						});//each
 						
 			            $('#hidden').remove();
-			            $('.more').remove();
+			            $('.horizontal.divider .more').remove();
 			            
 			            var plus="";
 			            if(data.length+2>hiddennum2)
 			            	plus+= '<input type="hidden" value="'+mov_num+'" id="hidden"/>'+
-								 '<a class="more" id="10">댓글 더보기</a>'
+								 '<div class="horizontal divider"><a class="more" id="10">댓글 더보기</a></div>'
 							$(plus).appendTo('.seemore');
 		               
 				}//success

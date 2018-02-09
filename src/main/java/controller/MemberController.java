@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import api.BoxOffice;
-import api.MovieApi;
 import api.MovieNewsApi;
 import dto.MemDTO;
 import dto.MovieDTO;
+import service.BoardService;
 import service.MemService;
 import service.MovieService;
 
@@ -30,6 +31,8 @@ import service.MovieService;
 public class MemberController {
 	MemService service;
 	MovieService movieservice;
+	BoardService boardservice;
+	
 	String loginId;
 
 	public MemberController() {
@@ -42,6 +45,10 @@ public class MemberController {
 
 	public void setService(MemService service) {
 		this.service = service;
+	}
+	
+	public void setBoardservice(BoardService boardservice) {
+		this.boardservice = boardservice;
 	}
 
 	@RequestMapping(value = "/checkId", method = RequestMethod.POST)
@@ -92,6 +99,11 @@ public class MemberController {
 					mav.addObject("loginStatus", "로그인에 성공하였습니다.");
 
 					session.setAttribute("userDTO", foundUserDTO);
+
+					HashMap<String, Integer> param = new HashMap<String, Integer>();
+					param.put("startRow", 1);
+					param.put("endRow", 5);
+					mav.addObject("boardList", boardservice.listProcess(param));
 				} else {
 					mav.addObject("loginStatus", "비밀번호가 일치하지 않습니다.");
 				}
@@ -104,7 +116,6 @@ public class MemberController {
 		}
 
 		api.MovieNewsAPI(mav);
-		
 		BoxOffice api2 = new BoxOffice();
 		List<String> list = api2.boxOffice();
 		List<MovieDTO> movieList = new ArrayList<MovieDTO>();
@@ -133,11 +144,10 @@ public class MemberController {
 				if (dto.getMovie_kor_title() != null)
 					boxOfficeMovieList.add(dto);
 			} catch (NullPointerException e) {
-				
+
 			}
 		}
 
-		
 		mav.addObject("movie",boxOfficeMovieList);
 		mav.addObject("commentMovie", movieservice.maxCommentMovie());
 		mav.setViewName("index");
@@ -287,12 +297,8 @@ public class MemberController {
 	@RequestMapping(value = "updateprofile", method = RequestMethod.POST)
 	public @ResponseBody void updateProfile(MemDTO dto, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		
 		MultipartFile file = dto.getMem_profile();
-		System.out.println("name:" + file.getOriginalFilename());
-		System.out.println("유저아이디:" + dto.getMem_id());
-
-		String path = "C:\\Users\\rkdgu\\Documents\\GitHub\\finalProject\\src\\main\\webapp\\resources\\images\\profile";
+		String path = request.getSession().getServletContext().getRealPath("/")+"profile\\";
 		String fileName = file.getOriginalFilename();
 
 		String saveDirectory = path;
@@ -312,7 +318,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		dto.setUpload(fileName);
-		
+
 		service.profileUpdate(dto);
 		session.setAttribute("userDTO", dto);
 	}
