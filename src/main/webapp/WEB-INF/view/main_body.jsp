@@ -29,9 +29,7 @@
 		<div class="ui top attached green label">박스 오피스 영화 리스트</div>
 		<div class="ui link special cards four columns slide">
 			<c:forEach var="i" items="${movie}">
-
-				<div
-					class="card column blurring dimmable image main_movie slide_box fade2">
+				<div class="card column blurring dimmable image main_movie slide_box fade2">
 
 					<input type="hidden" value="${i.movie_num}" />
 
@@ -84,6 +82,7 @@
 						</div>
 						<div class="description">
 							<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
+							
 							<h4>줄거리 : ${i.movie_summary}</h4>
 							<p>
 								감독 :
@@ -94,7 +93,7 @@
 							<p>
 								배우 :
 								<c:forEach var="j" items="${i.movie_actor}">
-									${j.actor_name}, 
+									${j.actor_name}
 								</c:forEach>
 							</p>
 							<p>
@@ -200,7 +199,7 @@
 						</div>
 						<div class="description">
 							<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
-							<h4>줄거리 : ${i.movie_summary }</h4>
+							<h4>줄거리 : ${i.movie_summary}</h4>
 							<p>
 								감독 :
 								<c:forEach var="j" items="${i.movie_director}">
@@ -270,6 +269,7 @@
 					<div class="meta">
 						<span>${bDto.board_writer } 님이 쓴 글</span>
 					</div>
+
 					<div class="description board_content">
 					<p>내용 : <a href="${boardDetailView }">${bDto.board_content } </a></p>
 					</div>

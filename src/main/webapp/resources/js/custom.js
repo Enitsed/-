@@ -688,24 +688,51 @@ $(document).ready(function () {
 	            	'<div class="ui horizontal divider"><a class="more" id="10">댓글 더보기</a></div>'
 					$(plus2).appendTo('.seemore');
 	            reset.val('');
-	            
 	         }//success끝
 	      });//ajax끝
 	   }
+	   $(document).on('click','.like',like);
+	      function like(){
+	         
+	         var num = parseInt($(this).attr('value')); //코멘트 번호
+	         var now = $(this);
+	         now.attr("class", "asd");
+	         var likey = parseInt($(this).text());
+	         if(!session_id){
+	            alert('먼저 로그인을 해주세요.');
+	               return false;
+	         }
+	            
+	         $.ajax({
+	            type: 'GET',
+	            dataType: 'json',
+	            url: 'like',
+	            async: false,
+	            data: 'mem_id=' + session_id + '&comment_num=' + num,
+	            success: function (data) {
+	               if (data.like != null) {
+	                  likey+=1;
+	                   now.text('  '+likey+' '+'Likes');   
+	           
+	               } else if(data.like==null){
+	                     likey-=1;        
+	                    now.text('  '+likey+' '+'Likes');   
+	                 }
+	               now.attr("class", "like");
+	            }//success끝
+	         });//ajax끝
+	      }//like function()끝
 	   
 	$(document).on('click','.like',like);
-	   
 	   function like(){
+		   
 	      var num = parseInt($(this).attr('value')); //코멘트 번호
 	      var now = $(this);
+	      now.attr("class", "asd");
 	      var likey = parseInt($(this).text());
-	      $(this).removeClass('.like');
-	      $(this).hide();
-	      if(session_id){
-	         
-	      }else{
-	         alert('먼저 로그인을 해주세요.');
-	         return false;
+	      if(!session_id){
+	    	  alert('먼저 로그인을 해주세요.');
+		         return false;
 	      }
 	         
 	      $.ajax({
@@ -713,30 +740,19 @@ $(document).ready(function () {
 	         dataType: 'json',
 	         url: 'like',
 	         async: false,
-
 	         data: 'mem_id=' + session_id + '&comment_num=' + num,
 	         success: function (data) {
 	            if (data.like != null) {
-	            	setTimeout(function(){
-	            		 likey+=1;
-	                     
-	                     now.text('  '+likey+' '+'Likes');	
-	            	},2000);
-	              
-	            
+	            	likey+=1;
+	                now.text('  '+likey+' '+'Likes');	
+	        
 	            } else if(data.like==null){
-	            	setTimeout(function(){
-	           		 likey-=1;
-	                    
+	           		 likey-=1;        
 	                 now.text('  '+likey+' '+'Likes');	
-	           	},2000);
-	               
-	            }
-	    	   $(this).show();
+	           	}
+	            now.attr("class", "like");
 	         }//success끝
 	      });//ajax끝
-	      $(this).addClass('.like');
-
 	   }//like function()끝
 	   
 	   
@@ -793,6 +809,7 @@ $(document).ready(function () {
 	              var plus2="";
 	              if(data.length>more)
 	              	plus2+= '<input type="hidden" value="'+movie_number+'" id="hidden"/>'+
+	  					 '<a class="more" id="10">댓글 더보기</a>'
 	              	'<div class="ui horizontal divider"><a class="more" id="10">댓글 더보기</a></div>'
 	              
 	  				$(plus2).appendTo('.seemore');
