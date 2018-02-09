@@ -106,13 +106,14 @@ public class HelloController {
 		System.out.println("댓글번호:" + dto.getComment_num());
 		System.out.println("로그인한아이디:" + dto2.getMem_id());
 		dto.setMem_num(movieservice.mem_numProcees(dto));
-		System.out.println(movieservice.likeProcess(dto));
+		System.out.println("회원번호:"+dto.getMem_num());
+		//System.out.println(movieservice.likeProcess(dto));
 		if (movieservice.likeProcess(dto) != null) {// 좋아요를 전에 눌럿엇다면
 			// 코멘트테이블에서 -1해준다. map에 널값 보낸다.
 			movieservice.likeminusProcess(dto);
 			movieservice.likedeleteProcess(dto);
 
-		} else {// 좋아요를 누른적이 없다면
+		} else if(movieservice.likeProcess(dto)==null){// 좋아요를 누른적이 없다면
 				// 코멘트테이블에서 +1해준다. map에 값을 보낸다.
 			movieservice.likeplusProcess(dto);
 			movieservice.likeinsertProcess(dto);

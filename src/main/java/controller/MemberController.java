@@ -1,13 +1,10 @@
 package controller;
 
-<<<<<<< HEAD
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-=======
 import java.util.ArrayList;
->>>>>>> c27e7cd7a2b465b4a7e9083b6934687351474974
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -107,9 +104,7 @@ public class MemberController {
 		}
 
 		api.MovieNewsAPI(mav);
-		mav.addObject("movie", movieservice.movieInfoProcess(1));
 		
-		api.MovieNewsAPI(mav);
 		BoxOffice api2 = new BoxOffice();
 		List<String> list = api2.boxOffice();
 		List<MovieDTO> movieList = new ArrayList<MovieDTO>();

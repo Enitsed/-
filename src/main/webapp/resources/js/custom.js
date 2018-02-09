@@ -692,52 +692,38 @@ $(document).ready(function () {
 	         }//success끝
 	      });//ajax끝
 	   }
-	   
-	$(document).on('click','.like',like);
-	   
-	   function like(){
-	      var num = parseInt($(this).attr('value')); //코멘트 번호
-	      var now = $(this);
-	      var likey = parseInt($(this).text());
-	      $(this).removeClass('.like');
-	      $(this).hide();
-	      if(session_id){
+	   $(document).on('click','.like',like);
+	      function like(){
 	         
-	      }else{
-	         alert('먼저 로그인을 해주세요.');
-	         return false;
-	      }
-	         
-	      $.ajax({
-	         type: 'GET',
-	         dataType: 'json',
-	         url: 'like',
-	         async: false,
-
-	         data: 'mem_id=' + session_id + '&comment_num=' + num,
-	         success: function (data) {
-	            if (data.like != null) {
-	            	setTimeout(function(){
-	            		 likey+=1;
-	                     
-	                     now.text('  '+likey+' '+'Likes');	
-	            	},2000);
-	              
+	         var num = parseInt($(this).attr('value')); //코멘트 번호
+	         var now = $(this);
+	         now.attr("class", "asd");
+	         var likey = parseInt($(this).text());
+	         if(!session_id){
+	            alert('먼저 로그인을 해주세요.');
+	               return false;
+	         }
 	            
-	            } else if(data.like==null){
-	            	setTimeout(function(){
-	           		 likey-=1;
-	                    
-	                 now.text('  '+likey+' '+'Likes');	
-	           	},2000);
-	               
-	            }
-	    	   $(this).show();
-	         }//success끝
-	      });//ajax끝
-	      $(this).addClass('.like');
+	         $.ajax({
+	            type: 'GET',
+	            dataType: 'json',
+	            url: 'like',
+	            async: false,
+	            data: 'mem_id=' + session_id + '&comment_num=' + num,
+	            success: function (data) {
+	               if (data.like != null) {
+	                  likey+=1;
+	                   now.text('  '+likey+' '+'Likes');   
+	           
+	               } else if(data.like==null){
+	                     likey-=1;        
+	                    now.text('  '+likey+' '+'Likes');   
+	                 }
+	               now.attr("class", "like");
+	            }//success끝
+	         });//ajax끝
+	      }//like function()끝
 
-	   }//like function()끝
 	   
 	   
 	   $(document).on('click','.del',del);
@@ -791,13 +777,8 @@ $(document).ready(function () {
 	              
 	             
 	              var plus2="";
-<<<<<<< HEAD
-	              if(data.length > more)
-	            	  plus2 += '<input type="hidden" value="'+movie_number+'" id="hidden"/>'+
-=======
 	              if(data.length>more)
 	              	plus2+= '<input type="hidden" value="'+movie_number+'" id="hidden"/>'+
->>>>>>> c27e7cd7a2b465b4a7e9083b6934687351474974
 	  					 '<a class="more" id="10">댓글 더보기</a>'
 	              
 	  				$(plus2).appendTo('.seemore');
@@ -835,7 +816,7 @@ $(document).ready(function () {
 								
 								'<div class="event">' +
 								'<div class="label">' +
-								'<img src="resources/images/user.png">' +
+								'<img src="resources/images/profile/'+value.profiel+'">' +
 								'</div>' +
 								'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 								'<div class="content">' +

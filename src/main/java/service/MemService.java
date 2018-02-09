@@ -27,9 +27,6 @@ public interface MemService {
 	
 	public void memUpdate(MemDTO userDTO);
 	
-<<<<<<< HEAD
 	public void profileUpdate(MemDTO userDTO);
-=======
 	public MemDTO mList(int mem_num);
->>>>>>> c27e7cd7a2b465b4a7e9083b6934687351474974
 }
