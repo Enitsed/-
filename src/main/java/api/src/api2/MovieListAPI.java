@@ -234,7 +234,6 @@ public class MovieListAPI {
 		dao.countDirector(list);
 		dao.insertMovieDirectorMethod(list);
 		dao.insertMovieCategoryMethod(list);
-		// }
 
 	}
 }

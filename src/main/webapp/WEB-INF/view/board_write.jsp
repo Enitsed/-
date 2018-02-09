@@ -49,15 +49,6 @@
 				<textarea name="board_content" id="board_content"></textarea>
 			</div>
 			
-			<div class="four fields">
-				<div class="field">
-					<label>글 비밀번호</label>
-					<div class="ui left icon input">
-						<i class="lock icon"></i>
-						<input type="password">
-					</div>
-				</div>
-			</div>
 			<button class="ui button" type="submit">글 올리기</button>
 			<div class="ui error message"></div>
 		</form>
