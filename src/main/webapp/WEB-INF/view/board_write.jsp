@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
    <div class="ui container">
    
 	<form class="ui form segment boardWrite" action="boardWrite" method="post">
@@ -12,7 +12,9 @@
 					<i class="dropdown icon"></i>
 					<input name="board_category" id="board_category" type="hidden">
 					<div class="menu">
-						<div class="item" data-value="1">공지사항</div>
+						<c:if test="${userDTO.mem_id eq 'admin' }">
+							<div class="item" data-value="1">공지사항</div>
+						</c:if>
 						<div class="item" data-value="2">건의게시판</div>
 						<div class="item" data-value="3">질문과답변</div>
 						<div class="item" data-value="4">자유게시판</div>

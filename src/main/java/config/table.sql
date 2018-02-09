@@ -23,23 +23,10 @@ start with 1
 increment by 1
 nocache
 nocycle;
- (select a.*, rownum r from (select * from movie order by movie_num ) a) where r > #{start} and #{end} >= r 
 
-select * from  (select a.*, rownum r from (select a.* from movie a, movie_category b, category c where
-b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name = '공포' order by a.movie_num) a)  where r > 1 and 2 >= r 
-where #{end} >= rownum AND rownum > #{start}
-		select a.* from movie a, movie_category b, category c where 8 >= rownum AND rownum >= 1 AND
-		  b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name ='SF' order by a.movie_num
-		  select * from  (select a.* from movie a, movie_category b, category c where
-		  b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name ='SF' order by a.movie_num) where 8 >= rownum AND rownum >= 1
-		  select a.* from movie a
-				where 8 >= rownum AND rownum >= 1 order by a.movie_num desc
 --select * from mem
 --drop table mem
 --drop sequence mem_seq
-select mem_id from mem where mem_name=#{mem_name} and mem_email=#{mem_email}
-
-select mem_id from mem where mem_name='d' and mem_email='e'
 --------------------------------------------------------
 ---회원 등급 테이블-------------------------------------------
 create table grade(
@@ -72,36 +59,6 @@ create table movie(
 	movie_url varchar2(500),			--url
 	nation varchar2(100)				--영화국가
 );
-select * from actor where actor_name = '김태리'
-select * from movie where movie_kor_title = '코코'
-delete from movie where movie_num > 311 and movie_num < 317
-delete from movie_actor where movie_num > 306 and movie_num < 312
-delete from movie_director where movie_num > 306 and movie_num < 312
-delete from movie_category where movie_num > 306 and movie_num < 312
-delete from movie_comment where movie_num > 301 and movie_num < 307
-delete from rating where movie_num > 296 and movie_num < 302
-
-drop table actor
-delete from movie where movie_num = 107;
-delete from movie_actor where movie_num= 107;
-delete from actor;
-delete from movie_director where movie_num= 107;
-delete from director;
-delete from movie_category where movie_num= 107;
-delete from rating;
-select * from movie_category
-select * from movie_director
-select * from movie_actor
-rating
-			INSERT INTO actor (select actor_seq.nextval,'as'
-			from dual where 0 >= (select count(*) from actor where actor_name = 'as'))
-
-ALTER system SET processes=100 scope=spfile
-
-select * from movie_director
-INSERT INTO actor VALUES()
-select count(*) from actor where actor_name = '" + name + "'";
-insert into movie values(1,'19','첫번째영화','first','2014-01-01','요약입니다','이미지없움','url','nation')
 --영화테이블 시퀀스
 create sequence movie_seq
 start with 1
@@ -296,10 +253,10 @@ create table board(
 	board_reply_step number,		--답글단계
 	board_date date,				--작성일
 	board_reply_amount number,		--댓글개수
-	board_category number(10)		--보드 카테고리
-	constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
-	--board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
+	board_category number(10))		--보드 카테고리
 );
+alter table board add constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
+--board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 --게시판테이블 시퀀스
 create sequence board_seq
 start with 1
@@ -314,23 +271,6 @@ values(board_seq.nextval,1,'adsad','gaa','test',0,board_seq.nextval,0,0,sysdate,
 --select * from board
 --drop table board
 --drop sequence board_seq
---------------------------------------------------------
----댓글 테이블----------------------------------------------
-create table reply(
-	board_num number(10),			--게시글번호
-	mem_num number,				--회원번호
-	reply_num number(10),			--댓글번호
-	reply_content varchar2(1000),	--내용
-	reply_writer varchar2(100),		--작성자
-	constraint reply_board_num_fk foreign key(board_num) references board(board_num) on delete cascade,
-	--reply테이블 board_num 외래키, 부모(board_num)삭제시 다 삭제되는 제약조건
-	constraint reply_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
-	--reply테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
-);
-
---select * from reply
---drop table reply
-
 
 
 create table movie_comment(
