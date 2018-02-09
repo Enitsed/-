@@ -289,7 +289,7 @@ public class MemberController {
 		System.out.println("name:" + file.getOriginalFilename());
 		System.out.println("유저아이디:" + dto.getMem_id());
 
-		String path = "C:\\Users\\rkdgu\\Documents\\GitHub\\finalProject\\src\\main\\webapp\\resources\\images\\profile";
+		String path = "C:\\Users\\user2\\Documents\\GitHub\\finalProject\\src\\main\\webapp\\resources\\images\\profile";
 		String fileName = file.getOriginalFilename();
 
 		String saveDirectory = path;
