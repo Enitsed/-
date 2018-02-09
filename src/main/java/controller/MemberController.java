@@ -298,11 +298,12 @@ public class MemberController {
 	public @ResponseBody void updateProfile(MemDTO dto, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		MultipartFile file = dto.getMem_profile();
+		MemDTO Dto = new MemDTO();
+		Dto = (MemDTO) session.getAttribute("userDTO");
 		String path = request.getSession().getServletContext().getRealPath("/")+"profile\\";
 		String fileName = file.getOriginalFilename();
 
 		String saveDirectory = path;
-		System.out.println("세이브디렉토리:" + saveDirectory);
 
 		File fe = new File(saveDirectory);
 		if (!fe.exists())
@@ -317,9 +318,8 @@ public class MemberController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		dto.setUpload(fileName);
-
-		service.profileUpdate(dto);
-		session.setAttribute("userDTO", dto);
+		Dto.setUpload(fileName);
+		service.profileUpdate(Dto);
+		session.setAttribute("userDTO", Dto);
 	}
 }

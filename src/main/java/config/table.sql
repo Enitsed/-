@@ -305,9 +305,6 @@ insert into movie_comment values(comment_num_seq.nextval,1,'테스트2',4,'aaaaa
 delete from movie_comment where comment_num = 11
 select * from movie_comment
 
-
-select * from movie_comment
-
 drop table movie_comment
 drop sequence comment_num_seq
 
@@ -323,7 +320,6 @@ create table commentlike(
    constraint commentlike_comment_num_fk foreign key(comment_num) references movie_comment(comment_num) on delete cascade,
    constraint commentlike_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 );
-
 create sequence like_num_seq
 start with 1
 increment by 1
