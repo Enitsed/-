@@ -16,16 +16,13 @@ public class CommentDTO {
 
 	}
 
-	
 	public String getProfile() {
 		return profile;
 	}
 
-
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-
 
 	public int getMem_num() {
 		return mem_num;

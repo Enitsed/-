@@ -89,6 +89,7 @@ body {
 	animation-duration: 5s;
 }
 
+<<<<<<< HEAD
 @
 -webkit-keyframes fade2 {
 	from {opacity: .4
@@ -102,9 +103,25 @@ keyframes fade2 {
 	from {opacity: .4
 } to {
 	opacity: 1
+=======
+@-webkit-keyframes fade2 {
+	from {
+		opacity: .4
+	} to {
+		opacity: 1
+	}
 }
 
+@keyframes fade2 {
+	from {
+		opacity: .4
+	}
+	to {
+		opacity: 1
+	}
+>>>>>>> 28da67894b223e268a890415347118ad7a6c55c6
 }
+
 @media only screen and (max-width: 300px) {
 	.slprev, .slnext, .text {
 		font-size: 11px
@@ -133,7 +150,6 @@ iframe {
 .seemore {
 	margin: 0px 10px 20px 10px;
 }
-
  #navi{
  float: left;
         padding:0;
@@ -191,6 +207,15 @@ iframe {
   height: 30px;
   border-bottom: 1px solid #c9c9c9;
   background:#efefef;
+
+.profile_wrap {
+	position:relative;
+	border-radius: 50%;
+	border: 1px solid black;
+	/*background-image: url("../images/test.jpg");*/
+	width: 200px;
+	height: 200px;
+	margin: 0px auto;
 }
 
       /*부메뉴 링크에 대한 효과를 정의*/
@@ -244,11 +269,17 @@ iframe {
    height: 200px;
 }
 
+<<<<<<< HEAD
 .img_wrap {
    cursor: pointer;
    width: 200px;
    height: 200px;
    border-radius: 50%;
+=======
+.description.board_content {
+	height: 40px;
+	overflow-y: hidden;
+>>>>>>> 28da67894b223e268a890415347118ad7a6c55c6
 }
 
 .img_wrap img {

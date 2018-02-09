@@ -261,12 +261,17 @@
 			<c:forEach var="bDto" items="${boardList }">
 			<div class="item">
 				<div class="content">
-					<a class="header" href="#">제목 : ${bDto.board_name }</a>
+					<c:url value="boardDetail" var="boardDetailView">
+						<c:param name="num" value="${bDto.board_num }" ></c:param>
+						<c:param name="currentPage" value="1"></c:param>
+					</c:url>
+					<a class="header" href="${boardDetailView }">제목 : ${bDto.board_name }</a>
 					<div class="meta">
 						<span>${bDto.board_writer } 님이 쓴 글</span>
 					</div>
-					<div class="description">
-						<p>내용 : ${bDto.board_content }</p>
+
+					<div class="description board_content">
+					<p>내용 : <a href="${boardDetailView }">${bDto.board_content } </a></p>
 					</div>
 					<div class="extra">작성일 : ${bDto.board_date }</div>
 				</div>

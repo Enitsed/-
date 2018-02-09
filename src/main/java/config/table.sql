@@ -297,10 +297,10 @@ create table board(
 	board_reply_step number,		--답글단계
 	board_date date,				--작성일
 	board_reply_amount number,		--댓글개수
+	board_category number(10)		--보드 카테고리
 	constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 	--board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 );
-
 --게시판테이블 시퀀스
 create sequence board_seq
 start with 1
