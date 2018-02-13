@@ -10,9 +10,10 @@
 			<div class="column">
 				<div class="ui header">카테고리</div>
 				<div class="ui list">
-					<a href="free?board_category=1" class="item">공지사항</a> <a href="free?board_category=2" class="item">건의사항</a>
-					<a href="free?board_category=3" class="item">자유게시판</a> <a href="free?board_category=4" class="item">질문과
-						답변</a>
+					<a href="free?board_category=1" class="item">공지사항</a> <a
+						href="free?board_category=2" class="item">건의사항</a> <a
+						href="free?board_category=3" class="item">자유게시판</a> <a
+						href="free?board_category=4" class="item">질문과 답변</a>
 				</div>
 			</div>
 			<div class="column">
@@ -25,8 +26,7 @@
 			</div>
 			<div class="column">
 				<div class="ui header">현재 시간</div>
-				<div id="clock">
-				</div>
+				<div id="clock"></div>
 			</div>
 		</div>
 	</div>
