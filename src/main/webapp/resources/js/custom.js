@@ -41,7 +41,7 @@ $(document).ready(function () {
 				var form_data = new FormData();
 				form_data.append('mem_profile',filename);
 				form_data.append('mem_id',session_id);
-				
+
 				$.ajax({
 					type:'POST',
 					url:'updateprofile',
@@ -702,40 +702,39 @@ $(document).ready(function () {
 	         }//success끝
 	      });//ajax끝
 	   }
-	   $(document).on('click','.like',like);
-	   
-	      function like(){      
-	         var num = parseInt($(this).attr('value')); //코멘트 번호
-	         var now = $(this);
-	         var likey = parseInt($(this).text());
+
+	 
+	$(document).on('click','.like',like);
+	   function like(){
+		   
+	      var num = parseInt($(this).attr('value')); //코멘트 번호
+	      var now = $(this);
+	      now.attr("class", "asd");
+	      var likey = parseInt($(this).text());
+	      if(!session_id){
+	    	  alert('먼저 로그인을 해주세요.');
+		         return false;
+	      }
 	         
-	         now.attr("class", "asd");
-	         if(session_id==null){
-	            alert('먼저 로그인을 해주세요.');
-	               return false;
-	         }
-	            
-	         $.ajax({
-	            type: 'GET',
-	            dataType: 'json',
-	            url: 'like',
-	            async: false,
-	            data: 'mem_id=' + session_id + '&comment_num=' + num,
-	            success: function (data) {
-	               if (data.like!=null) {
-	                  likey+=1;
-	                   now.text('  '+likey+' '+'Likes');   
-	           
-	               } else if(data.like==null){
-	                     likey-=1;        
-	                    now.text('  '+likey+' '+'Likes');   
-	                 }
-	              now.attr("class", "like");
-	            }//success끝
-	         });//ajax끝
-	      }//like function()끝
-	   
-	
+	      $.ajax({
+	         type: 'GET',
+	         dataType: 'json',
+	         url: 'like',
+	         async: false,
+	         data: 'mem_id=' + session_id + '&comment_num=' + num,
+	         success: function (data) {
+	            if (data.like != null) {
+	            	likey+=1;
+	                now.text('  '+likey+' '+'Likes');	
+	        
+	            } else if(data.like==null){
+	           		 likey-=1;        
+	                 now.text('  '+likey+' '+'Likes');	
+	           	}
+	            now.attr("class", "like");
+	         }//success끝
+	      });//ajax끝
+	   }//like function()끝
 	   
 	   
 	   $(document).on('click','.del',del);

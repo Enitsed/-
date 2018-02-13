@@ -128,9 +128,6 @@
 
 					<div class="actions">
 						<div class="ui black deny button">닫기</div>
-						<div class="ui positive right labeled icon button">
-							상세페이지로 이동 <i class="checkmark icon"></i>
-						</div>
 					</div>
 
 				</div>
@@ -244,9 +241,7 @@
 
 					<div class="actions">
 						<div class="ui black deny button">닫기</div>
-						<div class="ui positive right labeled icon button">
-							상세페이지로 이동 <i class="checkmark icon"></i>
-						</div>
+
 					</div>
 
 				</div>

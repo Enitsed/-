@@ -135,13 +135,7 @@
 			</div>
 		</c:if>
 	
-		<c:forEach var="i" begin="${pv.startPage }" end="${pv.endPage }">
-			<c:url var="currPage" value="free">
-				<c:param name="currentPage" value="${i }" />
-			</c:url>
-			<a class="ui button" href="${currPage }"> <c:out value="${i }" />
-			</a>
-		</c:forEach>
+
 		
 		<c:if test="${pv.totalPage>pv.endPage }">
 			<div class="ui animated button" onclick="location.href='free?currentPage=${pv.startPage + pv.blockPage }'">

@@ -242,18 +242,18 @@ INSERT INTO movie_director (select movie_num, director_num from director, movie 
 --------------------------------------------------------
 ---게시판 테이블--------------------------------------------
 create table board(
-   board_num number primary key,   --게시글번호
-   mem_num number,               --회원번호
-   board_writer varchar2(10),      --작성자
-   board_name varchar2(10),      --제목
-   board_content varchar2(500),   --내용
-   board_hits number(10),         --조회수
-   board_relnum number(10),      --관련글번호
-   board_reply_level number,      --답글레벨
-   board_reply_step number,      --답글단계
-   board_date date,            --작성일
-   board_reply_amount number,      --댓글개수
-   board_category number(10)      --보드 카테고리
+	board_num number primary key,	--게시글번호
+	mem_num number,					--회원번호
+	board_writer varchar2(10),		--작성자
+	board_name varchar2(10),		--제목
+	board_content varchar2(500),	--내용
+	board_hits number(10),			--조회수
+	board_relnum number(10),		--관련글번호
+	board_reply_level number,		--답글레벨
+	board_reply_step number,		--답글단계
+	board_date date,				--작성일
+	board_reply_amount number,		--댓글개수
+	board_category number(10)		--보드 카테고리
 );
 alter table board add constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 --board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
@@ -305,9 +305,6 @@ insert into movie_comment values(comment_num_seq.nextval,1,'테스트2',4,'aaaaa
 delete from movie_comment where comment_num = 11
 select * from movie_comment
 
-
-select * from movie_comment
-
 drop table movie_comment
 drop sequence comment_num_seq
 
@@ -323,7 +320,6 @@ create table commentlike(
    constraint commentlike_comment_num_fk foreign key(comment_num) references movie_comment(comment_num) on delete cascade,
    constraint commentlike_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 );
-
 create sequence like_num_seq
 start with 1
 increment by 1

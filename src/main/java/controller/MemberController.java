@@ -317,8 +317,7 @@ public class MemberController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-	
+
 		MemDTO DTO = (MemDTO) session.getAttribute("userDTO");
 		System.out.println("기존 파일명:"+DTO.getUpload());
 		File delete = new File(saveDirectory,DTO.getUpload());
