@@ -253,7 +253,7 @@ create table board(
 	board_reply_step number,		--답글단계
 	board_date date,				--작성일
 	board_reply_amount number,		--댓글개수
-	board_category number(10))		--보드 카테고리
+	board_category number(10)		--보드 카테고리
 );
 alter table board add constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 --board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
