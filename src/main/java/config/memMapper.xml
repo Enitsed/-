@@ -6,7 +6,8 @@
 <mapper namespace="mem">
 
 	<insert id="insert" parameterType="dto.MemDTO">
-		insert into mem values(mem_seq.nextval,#{mem_id},#{mem_pw},#{mem_sex},#{mem_name},#{mem_email},#{mem_address},#{upload,jdbcType=VARCHAR})
+		insert into mem(mem_num,mem_id,mem_pw,mem_sex,mem_name,mem_email,mem_address)
+		values(mem_seq.nextval,#{mem_id},#{mem_pw},#{mem_sex},#{mem_name},#{mem_email},#{mem_address})
 	</insert>
 
 	<insert id="insertGrade" parameterType="dto.MemDTO">
@@ -56,4 +57,8 @@
 	<select id="mList" parameterType="Integer" resultMap="memInfo">
 		select m.mem_num, m.mem_id, m.mem_name, g.mem_grade from mem m,grade g where m.mem_num=g.mem_num and m.mem_num=#{mem_num}
 	</select>
+	
+	<update id="movie_comment_profile_update" parameterType="dto.MemDTO">
+		update movie_comment set profile = #{upload,jdbcType=VARCHAR} where mem_id=#{mem_id}
+	</update>
 </mapper>

@@ -67,4 +67,9 @@ public class MemDaoImp implements MemDAO {
 		return sqlSession.selectOne("mem.mList",mem_num);
 	}
 
+	@Override
+	public void commentProfileUpdate(MemDTO userDTO) {
+		sqlSession.update("mem.movie_comment_profile_update",userDTO);
+	}
+
 }

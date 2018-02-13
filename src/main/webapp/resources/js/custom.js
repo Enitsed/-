@@ -43,7 +43,7 @@ $(document).ready(function () {
 				var form_data = new FormData();
 				form_data.append('mem_profile',filename);
 				form_data.append('mem_id',session_id);
-				
+
 				$.ajax({
 					type:'POST',
 					url:'updateprofile',
@@ -592,9 +592,14 @@ $(document).ready(function () {
 
 					comment +=
 						'<div class="event">' +
-						'<div class="label">' +
-						'<img src="./profile/'+value.profile+'">' +
-						'</div>' +
+						'<div class="label">'
+						if(value.profile==null){
+							comment+='<img src="./profile/user.png">'
+						}
+						else if(value.profile!=null){
+						comment+='<img src="./profile/'+value.profile+'">'
+						}
+						comment+='</div>'+
 						'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 						'<div class="content">' +
 						'<div class="summary">' +
@@ -633,6 +638,7 @@ $(document).ready(function () {
 	   $(document).on('click','.ui.basic.label',commentinsert);
 	   
 	   function commentinsert(){
+		 
 	      var reset = $(this).parent().find('.comment_m');
 	      var comments = reset.val();//replytext
 	      var number = parseInt($(this).attr('id'));
@@ -642,7 +648,7 @@ $(document).ready(function () {
 	      }
 	     
 	      $.ajax({
-	         
+	       
 	         url : 'insertcomment?mem_id='+session_id+'&replytext='+comments+'&movie_num='+number+'&mem_num='+session_num+'&profile='+profile,
 	         type:'GET',
 	         async: false,
@@ -660,23 +666,28 @@ $(document).ready(function () {
 	               sm = sm + sdate.getDate();
 
 	               insert +=
-	                  '<div class="event">' +
-	                  '<div class="label">' +
-	                  '<img src="./profile/'+value.profile+'">' +
-	                  '</div>' +
-	                  '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
-	                  '<div class="content">' +
-	                  '<div class="summary">' +
-	                  '<a class="user">' + value.mem_id + '</a>' +
-	                  '<input type="hidden" class="mem_id" value="' + value.mem_id + '"/>' +
-	                  '<div class="date">' + sm + '</div></div>' +
-	                  '<div class="extra text">' + value.replytext + '</div>' +
-	                  '<div class="meta">' +
-	                  '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
-	                  if(session_id==value.mem_id){
-	                     insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
-	                  }
-	                  +'</div></div></div>'
+						'<div class="event">' +
+						'<div class="label">'
+						if(value.profile==null){
+							insert+='<img src="./profile/user.png">'
+						}
+						else if(value.profile!=null){
+						insert+='<img src="./profile/'+value.profile+'">'
+						}
+						insert+='</div>'+
+						'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
+						'<div class="content">' +
+						'<div class="summary">' +
+						'<a class="user">' + value.mem_id + '</a>' +
+						'<input type="hidden" class="movie_num" value="'+value.movie_num+'"/>'+
+						'<div class="date">' + sm + '</div></div>' +
+						'<div class="extra text">' + value.replytext + '</div>' +
+						'<div class="meta">' +
+						'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
+						if(session_id==value.mem_id){
+							insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
+						}
+						+'</div></div></div>';
 	                  $(insert).appendTo(".ui.large.feed");
 	                  if(index==more)
 	                   	  return false;
@@ -693,38 +704,8 @@ $(document).ready(function () {
 	         }//success끝
 	      });//ajax끝
 	   }
-	   $(document).on('click','.like',like);
-	      function like(){
-	         
-	         var num = parseInt($(this).attr('value')); //코멘트 번호
-	         var now = $(this);
-	         now.attr("class", "asd");
-	         var likey = parseInt($(this).text());
-	         if(!session_id){
-	            alert('먼저 로그인을 해주세요.');
-	               return false;
-	         }
-	            
-	         $.ajax({
-	            type: 'GET',
-	            dataType: 'json',
-	            url: 'like',
-	            async: false,
-	            data: 'mem_id=' + session_id + '&comment_num=' + num,
-	            success: function (data) {
-	               if (data.like != null) {
-	                  likey+=1;
-	                   now.text('  '+likey+' '+'Likes');   
-	           
-	               } else if(data.like==null){
-	                     likey-=1;        
-	                    now.text('  '+likey+' '+'Likes');   
-	                 }
-	               now.attr("class", "like");
-	            }//success끝
-	         });//ajax끝
-	      }//like function()끝
-	   
+
+	 
 	$(document).on('click','.like',like);
 	   function like(){
 		   
@@ -781,23 +762,28 @@ $(document).ready(function () {
 	                 sm = sm + sdate.getDate();
 
 	                 insert +=
-	                    '<div class="event">' +
-	                    '<div class="label">' +
-	                    '<img src="./profile/'+value.profile+'">' +
-	                    '</div>' +
-	                    '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
-	                    '<div class="content">' +
-	                    '<div class="summary">' +
-	                    '<a class="user">' + value.mem_id + '</a>' +
-	                    '<input type="hidden" class="mem_id" value="' + value.mem_id + '"/>' +
-	                    '<div class="date">' + sm + '</div></div>' +
-	                    '<div class="extra text">' + value.replytext + '</div>' +
-	                    '<div class="meta">' +
-	                    '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
-	                    if(session_id==value.mem_id){
-	                       insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
-	                    }
-	                    +'</div></div></div>'
+							'<div class="event">' +
+							'<div class="label">'
+							if(value.profile==null){
+								insert+='<img src="./profile/user.png">'
+							}
+							else if(value.profile!=null){
+							insert+='<img src="./profile/'+value.profile+'">'
+							}
+							insert+='</div>'+
+							'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
+							'<div class="content">' +
+							'<div class="summary">' +
+							'<a class="user">' + value.mem_id + '</a>' +
+							'<input type="hidden" class="movie_num" value="'+value.movie_num+'"/>'+
+							'<div class="date">' + sm + '</div></div>' +
+							'<div class="extra text">' + value.replytext + '</div>' +
+							'<div class="meta">' +
+							'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
+							if(session_id==value.mem_id){
+								insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
+							}
+							+'</div></div></div>';
 	                    $(insert).appendTo(".ui.large.feed");
 	                    if(index==more)
 	                  	  return false;

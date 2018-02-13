@@ -24,4 +24,5 @@ public interface MemDAO {
 	
 	public void profileUpdate(MemDTO userDTO);
 	public MemDTO mList(int mem_num);
+	public void commentProfileUpdate(MemDTO userDTO);
 }
