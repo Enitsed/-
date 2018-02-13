@@ -99,7 +99,7 @@ public class HelloController {
 	}
 
 	@RequestMapping(value = "like", method = RequestMethod.GET)
-	public @ResponseBody HashMap<String, String> like(LikeDTO dto, HttpSession session, MemDTO dto2) {
+	public @ResponseBody HashMap<String, String> like(LikeDTO dto, HttpSession session) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		dto.setMem_num(movieservice.mem_numProcees(dto));
 		// System.out.println(movieservice.likeProcess(dto));
@@ -113,12 +113,14 @@ public class HelloController {
 			movieservice.likeinsertProcess(dto);
 			map.put("like", movieservice.likeProcess(dto));
 		}
-
+		
 		return map;
 	}
 
 	@RequestMapping(value = "insertcomment", method = RequestMethod.GET)
 	public @ResponseBody List<CommentDTO> insertcomment(CommentDTO dto) {
+		System.out.println("번호:"+dto.getComment_num());
+		System.out.println("회원번호:"+dto.getMem_num());
 		movieservice.insertCommentProcess(dto);
 		return movieservice.commentListProcess(dto.getMovie_num());
 	}

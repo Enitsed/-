@@ -300,7 +300,7 @@ public class MemberController {
 		MultipartFile file = dto.getMem_profile();
 		String path = request.getSession().getServletContext().getRealPath("/")+"profile\\";
 		String fileName = file.getOriginalFilename();
-
+		
 		String saveDirectory = path;
 		System.out.println("세이브디렉토리:" + saveDirectory);
 
@@ -317,9 +317,22 @@ public class MemberController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+	
+		MemDTO DTO = (MemDTO) session.getAttribute("userDTO");
+		System.out.println("기존 파일명:"+DTO.getUpload());
+		File delete = new File(saveDirectory,DTO.getUpload());
+		delete.delete();
+		
+		System.out.println("저장경로:"+saveDirectory);
+		dto = (MemDTO) session.getAttribute("userDTO");
 		dto.setUpload(fileName);
-
+		
+		System.out.println("아이디:"+dto.getMem_id());
+		System.out.println("번호:"+dto.getMem_num());
+		System.out.println("프로필:"+dto.getUpload());
 		service.profileUpdate(dto);
+		service.commentProfileUpdate(dto);
 		session.setAttribute("userDTO", dto);
 	}
 }
