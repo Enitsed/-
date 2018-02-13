@@ -6,8 +6,7 @@
 <mapper namespace="mem">
 
 	<insert id="insert" parameterType="dto.MemDTO">
-		insert into mem(mem_num,mem_id,mem_pw,mem_sex,mem_name,mem_email,mem_address)
-		values(mem_seq.nextval,#{mem_id},#{mem_pw},#{mem_sex},#{mem_name},#{mem_email},#{mem_address})
+		insert into mem values(mem_seq.nextval,#{mem_id},#{mem_pw},#{mem_sex},#{mem_name},#{mem_email},#{mem_address},#{upload,jdbcType=VARCHAR})
 	</insert>
 
 	<insert id="insertGrade" parameterType="dto.MemDTO">

@@ -10,8 +10,7 @@ create table mem(
 	mem_address varchar2(300),	   --회원주소
 	upload varchar2(200)      --회원프로핅
 );
-insert into mem values(mem_seq.nextval,'aaaaaa','aaaaaa','남','aa','aa@aa','aa',null);
-select * from mem
+
 INSERT INTO movie_actor(
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,  
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,   
@@ -286,7 +285,6 @@ create table movie_comment(
    constraint movie_comment_comment_num_fk foreign key(comment_num) references movie(movie_num) on delete cascade,
    constraint movie_comment_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 );
-
 select * from movie_comment
 
 select count(*) from movie_comment group by movie_num
@@ -307,9 +305,6 @@ insert into movie_comment values(comment_num_seq.nextval,1,'테스트2',4,'aaaaa
 delete from movie_comment where comment_num = 11
 select * from movie_comment
 
-
-select * from movie_comment
-
 drop table movie_comment
 drop sequence comment_num_seq
 
@@ -325,7 +320,6 @@ create table commentlike(
    constraint commentlike_comment_num_fk foreign key(comment_num) references movie_comment(comment_num) on delete cascade,
    constraint commentlike_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 );
-
 create sequence like_num_seq
 start with 1
 increment by 1
