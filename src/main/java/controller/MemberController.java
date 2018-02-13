@@ -317,9 +317,10 @@ public class MemberController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		MemDTO asd = (MemDTO) session.getAttribute("userDTO");
+		asd.setMem_profile(dto.getMem_profile());
 		dto.setUpload(fileName);
-
 		service.profileUpdate(dto);
-		session.setAttribute("userDTO", dto);
+		session.setAttribute("userDTO", asd);
 	}
 }
