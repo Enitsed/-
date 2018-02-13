@@ -63,18 +63,15 @@
 								'</div>';
 								
 					$("#movieListWindow").append(content); 
-					
-					
-					
-					$('.ui.rating').rating();////rating ui
 					$('.special.cards .image.main_movie').dimmer({
 					on: 'hover'
-					});////dimmer function //
+					});
 					
 							
 					$(".ui.rating").unbind("click"); //클릭이벤트 없앰
-					
+					$('.ui.rating').rating();
 					$('.ui.rating').on("click",function(){
+						event.stopPropagation();
 						var rating = $(this).rating("get rating", this);
 						var num =  $('#member_num').val();
 						var movie_num = $(this).attr("id");
@@ -95,10 +92,6 @@
 							}
 						});
 					}); /////////////////ui rating click function
-					
-
-					
-					
 
 					
 					$('.main_movie').on('click', function () {
