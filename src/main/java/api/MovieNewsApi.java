@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.servlet.ModelAndView;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -16,6 +17,8 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import dto.MovieNewsDTO;
 
 public class MovieNewsApi {
+
+	@Async
 	public void MovieNewsAPI(ModelAndView mav) {
 		String clientId = "Tg0i0_m2zuXFQkFIV1_v";// �븷�뵆由ъ��씠�뀡 �겢�씪�씠�뼵�듃 �븘�씠�뵒媛�";
 		String clientSecret = "9MrgSD3oMF";// �븷�뵆由ъ��씠�뀡 �겢�씪�씠�뼵�듃 �떆�겕由욧컪";
