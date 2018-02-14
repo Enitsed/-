@@ -77,7 +77,7 @@
 						var movie_num = $(this).attr("id");
 						/* alert(rating + " " + num + " " + movie_num); */
 						if(num < 1){
-							alert("로그인부터 해라");
+							alert("먼저 로그인 하세요.");
 							return; 
 						}
 						$.ajax({
@@ -228,7 +228,7 @@
 					<i class="close icon"></i>
 					<div class="header">영화</div>
 					<div class="image content">
-						<div class="ui medium image">
+						<div class="ui medium card">
 							<img class="aa" src="${i.movie_image}">
 						</div>
 						<div class="description">

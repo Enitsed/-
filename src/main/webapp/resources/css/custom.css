@@ -40,14 +40,14 @@ td .tdcontent {
 	padding : 10px;
 }
 
-.ui.modal>.image.content>.image {
-	width : 300px;
-	height : 260px;
+.ui.modal>.image.content>.card {
+	margin-right : 10px;
 }
 
-.ui.modal>.image.content>.image>img{
-	width : 300px;
-	height : 260px;
+.ui.modal>.content>.description {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 1 auto;
 }
 
 * {

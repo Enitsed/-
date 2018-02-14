@@ -67,15 +67,15 @@
 					<i class="close icon"></i>
 					<div class="header">영화</div>
 					<div class="image content">
-						<div class="ui medium image">
+						<div class="ui medium card">
 							<c:choose>
 								<c:when test="${i.movie_image eq '이미지 없음'}">
-									<img class="slideImg" src="resources/images/no_image.png">
+									<img src="resources/images/no_image.png">
 								</c:when>
 								<c:otherwise>
 									<c:forTokens var="item" items="${i.movie_image}" delims="|"
 										end="0">
-										<img class="slideImg" src="${item}">
+										<img src="${item}">
 									</c:forTokens>
 								</c:otherwise>
 							</c:choose>
@@ -183,12 +183,12 @@
 						<div class="ui medium image">
 							<c:choose>
 								<c:when test="${i.movie_image eq '이미지 없음'}">
-									<img class="slideImg" src="resources/images/no_image.png">
+									<img src="resources/images/no_image.png">
 								</c:when>
 								<c:otherwise>
 									<c:forTokens var="item" items="${i.movie_image}" delims="|"
 										end="0">
-										<img class="slideImg" src="${item}">
+										<img src="${item}">
 									</c:forTokens>
 								</c:otherwise>
 							</c:choose>

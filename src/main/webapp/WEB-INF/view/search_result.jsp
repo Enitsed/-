@@ -52,8 +52,8 @@
 								<i class="close icon"></i>
 								<div class="header">영화</div>
 								<div class="image content">
-									<div class="ui medium image">
-										<img src="resources/images/travel.jpg">
+									<div class="ui medium card">
+										<img class="aa" src="${i.movie_image}">
 									</div>
 									<div class="description">
 										<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
