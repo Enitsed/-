@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,8 @@ import api.BoxOffice;
 import api.MovieNewsApi;
 import dto.MemDTO;
 import dto.MovieDTO;
+import dto.PageDTO;
+import dto.RatingDTO;
 import service.BoardService;
 import service.MemService;
 import service.MovieService;
@@ -34,7 +37,8 @@ public class MemberController {
 	BoardService boardservice;
 	
 	String loginId;
-
+	int currentPage;
+	PageDTO pdto;
 	public MemberController() {
 
 	}
@@ -333,5 +337,49 @@ public class MemberController {
 		service.profileUpdate(dto);
 		service.commentProfileUpdate(dto);
 		session.setAttribute("userDTO", dto);
+	}
+	
+	
+	@RequestMapping("/profile")
+	public ModelAndView profile(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemDTO dto = (MemDTO) session.getAttribute("userDTO");
+		System.out.println("유저번호:"+dto.getMem_num());
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("rating",service.profile_rating(dto));
+		mav.setViewName("profile");
+		return mav;
+	}
+	
+	@RequestMapping("/mylist")
+	public ModelAndView mylist(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mylist");
+		return mav;
+	}
+	
+	@RequestMapping("/myboard")
+	public ModelAndView myboard(HttpServletRequest request, PageDTO pv) {
+		HttpSession session = request.getSession();
+		MemDTO dto = (MemDTO) session.getAttribute("userDTO");
+		
+		int totalRecord = boardservice.myboardCountProcess(dto);
+		if(totalRecord >= 1) {
+			if(pv.getCurrentPage()==0) {
+				currentPage=1;
+			}else {
+				currentPage = pv.getCurrentPage();
+			}
+		}
+		pdto = new PageDTO(currentPage,totalRecord);
+		HashMap<String,Integer> param = new HashMap<String, Integer>();
+		param.put("mem_num", dto.getMem_num());
+		param.put("startRow", pdto.getStartRow());
+		param.put("endRow",pdto.getEndRow());
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("aList",boardservice.myboardProcess(param));
+		mav.addObject("pv",pdto);
+		mav.setViewName("myboard_list");
+		return mav;
 	}
 }

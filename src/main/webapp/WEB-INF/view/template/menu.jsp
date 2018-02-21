@@ -34,7 +34,8 @@
 			<div class="ui simple dropdown item">
 				더 보기 <i class="dropdown icon"></i>
 				<div class="menu">
-					<a class="item" href="myPage"><i class="edit icon"></i>정보 수정</a> 
+					<a class="item" href="myPage"><i class="edit icon"></i>정보 수정</a>
+					<a class="item" href="profile"><i class="address card icon"></i>프로필</a> 
 					<c:if test="${userDTO.mem_id eq 'admin'}">
 						<a class="item" href="memInfo">
 							<i class="setting icon"></i>회원 정보

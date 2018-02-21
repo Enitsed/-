@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import dao.BoardDAO;
 import dto.BoardDTO;
+import dto.MemDTO;
 import dto.PageDTO;
 
 public class BoardServiceImp implements BoardService {
@@ -72,6 +73,16 @@ public class BoardServiceImp implements BoardService {
 	@Override
 	public int searchCountProcess(String keyword) {
 		return dao.searchCount(keyword);
+	}
+
+	@Override
+	public List<BoardDTO> myboardProcess(HashMap<String, Integer> map) {
+		return dao.myboard(map);
+	}
+
+	@Override
+	public int myboardCountProcess(MemDTO userDTO) {
+		return dao.myboardCount(userDTO);
 	}
 
 }

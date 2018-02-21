@@ -61,4 +61,10 @@
 	<update id="movie_comment_profile_update" parameterType="dto.MemDTO">
 		update movie_comment set profile = #{upload,jdbcType=VARCHAR} where mem_id=#{mem_id}
 	</update>
+	
+	<select id="profile_rating" parameterType="dto.MemDTO" resultType="dto.RatingDTO">
+		<!--  select * from rating where mem_num = #{mem_num}-->
+		select * from rating r,movie m
+		where r.movie_num=m.movie_num and mem_num=#{mem_num}
+	</select>
 </mapper>

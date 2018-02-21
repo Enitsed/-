@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.MemDAO;
 import dto.MemDTO;
+import dto.RatingDTO;
 
 public class MemServiceImp implements MemService {
 	MemDAO dao;
@@ -74,6 +75,11 @@ public class MemServiceImp implements MemService {
 	@Override
 	public void commentProfileUpdate(MemDTO userDTO) {
 		dao.commentProfileUpdate(userDTO);
+	}
+
+	@Override
+	public List<RatingDTO> profile_rating(MemDTO userDTO) {
+		return dao.profile_rating(userDTO);
 	}
 
 }

@@ -34,4 +34,19 @@
 		<put-attribute name="body" value="/WEB-INF/view/memUpdate.jsp"/>
 	</definition>
 	
+	<definition name="profile" extends="index">
+		<put-attribute name="title" value="프로필"/>
+		<put-attribute name="body" value="/WEB-INF/view/profile.jsp"/>
+	</definition>
+	
+	<definition name="mylist" extends="index">
+		<put-attribute name="title" value="영화리스트"/>
+		<put-attribute name="body" value="/WEB-INF/view/mylist.jsp"/>
+	</definition>
+	
+	<definition name="myboard_list" extends="index">
+		<put-attribute name="title" value="내가쓴 게시글"/>
+		<put-attribute name="body" value="/WEB-INF/view/myboard_list.jsp"/>
+	</definition>
+	
 </tiles-definitions>
