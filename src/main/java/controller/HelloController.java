@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +24,7 @@ import service.BoardService;
 import service.MovieService;
 
 //http://localhost:8090/finalproject/main
+@EnableAsync
 @Controller
 public class HelloController {
 	MovieService movieservice;
@@ -44,6 +46,7 @@ public class HelloController {
 	public ModelAndView mainPage() {
 		ModelAndView mav = new ModelAndView();
 		MovieNewsApi api = new MovieNewsApi();
+		api.MovieNewsAPI(mav);
 		BoxOffice api2 = new BoxOffice();
 		List<String> list = api2.boxOffice();
 		List<MovieDTO> movieList = new ArrayList<MovieDTO>();
@@ -82,7 +85,6 @@ public class HelloController {
 		mav.addObject("movie", boxOfficeMovieList);
 		mav.addObject("commentMovie", movieservice.maxCommentMovie());
 		mav.addObject("category", 0);
-		api.MovieNewsAPI(mav);
 		mav.setViewName("index");
 		return mav;
 	}
@@ -100,6 +102,7 @@ public class HelloController {
 
 	@RequestMapping(value = "like", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, String> like(LikeDTO dto, HttpSession session) {
+
 		System.out.println("asd" + dto.getComment_num());
 		HashMap<String, String> map = new HashMap<String, String>();
 		dto.setMem_num(movieservice.mem_numProcees(dto));
@@ -114,11 +117,14 @@ public class HelloController {
 			movieservice.likeinsertProcess(dto);
 			map.put("like", movieservice.likeProcess(dto));
 		}
+
 		return map;
 	}
 
 	@RequestMapping(value = "insertcomment", method = RequestMethod.GET)
 	public @ResponseBody List<CommentDTO> insertcomment(CommentDTO dto) {
+		System.out.println("번호:"+dto.getComment_num());
+		System.out.println("회원번호:"+dto.getMem_num());
 		movieservice.insertCommentProcess(dto);
 		return movieservice.commentListProcess(dto.getMovie_num());
 	}

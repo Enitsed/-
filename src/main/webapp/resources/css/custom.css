@@ -3,6 +3,10 @@
 	margin: 10px;
 }
 
+.video_dimmer {
+	margin-top: 20px;
+}
+
 .divider {
 	clear: both;
 }
@@ -17,13 +21,37 @@ td .tdcontent {
 }
 
 .ui.large.feed {
-	margin-left: 40px;
+	margin-left: 10px;
 	height: 400px;
 	overflow-y: scroll;
 }
 
+.ui.large.feed>.event>.label {
+	margin : 10px;
+	width : 3.5em;
+}
+
+.ui.large.feed>.event>.label img {
+	border: 1px solid steelblue;
+	height: 100%;
+}
+
+.ui.large.feed>.event>.content {
+	padding : 10px;
+}
+
+.ui.modal>.image.content>.card {
+	margin-right : 10px;
+}
+
+.ui.modal>.content>.description {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 1 auto;
+}
+
 * {
-	box-sizing: border-box
+	box-sizing: border-box;
 }
 
 .ui.table thead th {
@@ -32,7 +60,7 @@ td .tdcontent {
 
 body {
 	font-family: Verdana, sans-serif;
-	margin: 0
+	margin: 0;
 }
 
 /* Slideshow container */
@@ -54,29 +82,35 @@ body {
 
 .prev, .next {
 	cursor: pointer;
-	position: absolute;
-	text-align: center;
-	top: 0;
-	top: 50%;
-	width: 3%;
-	padding: 16px;
-	margin-top: -22px;
-	color: white;
-	font-weight: bold;
-	font-size: 18px;
-	transition: 0.6s ease;
-	border-radius: 0 3px 3px 0;
-	z-index: 100;
+    position: absolute;
+    text-align: center;
+    top: 30px;
+    height: 426px;
+    width: 0px;
+    padding: 1%;
+    margin-top: 0px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    z-index: 100;
 }
 
 .prev {
-	left: -2px;
+	left: 0%;
 }
 
 .next {
-	right: 0;
 	border-radius: 3px 0 0 3px;
+	left: 98%;
 }
+
+.prev i, .next i {
+    position: absolute;
+    margin-left: -10px;
+    top: 183px;
+}
+
 
 .prev:hover, .next:hover {
 	background-color: rgba(0, 0, 0, 0.8);
@@ -91,18 +125,18 @@ body {
 
 @-webkit-keyframes fade2 {
 	from {
-		opacity: .4
+		opacity: .4;
 	} to {
-		opacity: 1
+		opacity: 1;
 	}
 }
 
 @keyframes fade2 {
 	from {
-		opacity: .4
+		opacity: .4;
 	}
 	to {
-		opacity: 1
+		opacity: 1;
 	}
 }
 
@@ -118,7 +152,7 @@ body {
 	width: 120px;
 	top: 433px;
 	right: 0;
-	padding: 3px 10px
+	padding: 3px 10px;
 }
 
 iframe {
@@ -149,45 +183,50 @@ iframe {
 
 /*메인메뉴 스타일 지정*/
 #navi h2 a{
+  border-radius: 10px;
   display: block;
   font-weight: bold;
   text-decoration: none;
   margin: 0;
   padding: 10px;
-  font-family:'돋움', sans-serif;
   font-size: 14px;
   color: #ccc;
   text-shadow: 0 1px 1px #000;
+  text-align: center;
   background:#1d4ab3;
-  background: -moz-linear-gradient(#1d4ab3 0%, #163887 100%);
-  background: -webkit-linear-gradient(#1d4ab3 0%, #163887 100%);
-  background: -o-linear-gradient(#1d4ab3 0%, #163887 100%);
-  background: linear-gradient(#1d4ab3 0%, #163887 100%);
+  background: -moz-linear-gradient(#555555 0%, #aaaaaa 100%);
+  background: -webkit-linear-gradient(#555555 0%, #aaaaaa 100%);
+  background: -o-linear-gradient(#555555 0%, #aaaaaa 100%);
+  background: linear-gradient(#555555 0%, #aaaaaa 100%);
 }
 
 /*메인 메뉴에 대한 마우스 이벤트에 대한 효과 지정*/
 #navi :target h2 a,
 #navi h2 a:focus, 
 #navi h2 a:hover, 
-#navi h2 a:active{
+#navi h2 a:active {
+  border-radius: 10px;
   background:#1a1a1a;
-  background:-moz-linear-gradient(#1a1a1a 0%, #000000 100%);
-  background:-webkit-linear-gradient(#1a1a1a 0%, #000000 100%);
-  background:-o-linear-gradient(#1a1a1a 0%, #000000 100%);
-  background:linear-gradient(#1a1a1a 0%, #000000 100%);
+  background:-moz-linear-gradient(#ffffff 0%, #000000 100%);
+  background:-webkit-linear-gradient(#ffffff 0%, #000000 100%);
+  background:-o-linear-gradient(#ffffff 0%, #000000 100%);
+  background:linear-gradient(#ffffff 0%, #000000 100%);
   color:#eee;
   text-shadow: 0 1px 1px #000000;
+  text-align: center;
 }
 /*부메뉴에 대한 기본 설정*/
 #navi p {
+  border-radius: 10px;
   padding: 0;
-  margin: 0;
+  margin: 3px;
   height:0;
   overflow:hidden;
   -moz-transition:height 0.5s ease-in;
   -o-transition:all 0.5s ease-in;
   -webkit-transition:height 0.5s ease-in;
   transition:height 0.2s ease-in;
+  text-align: center;
 }
 
 /*메인 메뉴를 클릭했을 대의 부메뉴를 정의*/
@@ -197,15 +236,29 @@ iframe {
   background:#efefef;
 }
 
+#navi :target p:hover {
+  height: 33px;
+  border-bottom: 1px solid #c9c9c9;
+  background:#cccccc;
+}
 /*부메뉴 링크에 대한 효과를 정의*/
 
-#navi :target p a{
+#navi :target p a {
   display: block;
   text-decoration:none;
   padding: 4px 10px;
   line-height: 22px;
   font-size: 13px;
   color: #4e5800;
+}
+
+#navi :target p a:hover {
+  display: block;
+  text-decoration:none;
+  padding: 4px 10px;
+  line-height: 22px;
+  font-size: 13px;
+  color: #cc00ff;
 }
 
 .ui.segment.board_list {
@@ -269,4 +322,14 @@ iframe {
    width: 200px;
    height: 200px;
    opacity: 0;
+}
+
+#clock {
+	margin: 0px auto;
+	width:200px;
+	height:120px;
+	line-height:120px;
+	color:#666;
+	font-size:30px;
+	text-align:center;
 }

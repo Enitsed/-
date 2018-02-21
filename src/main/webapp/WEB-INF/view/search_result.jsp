@@ -52,8 +52,8 @@
 								<i class="close icon"></i>
 								<div class="header">영화</div>
 								<div class="image content">
-									<div class="ui medium image">
-										<img src="resources/images/travel.jpg">
+									<div class="ui medium card">
+										<img class="aa" src="${i.movie_image}">
 									</div>
 									<div class="description">
 										<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
@@ -65,13 +65,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="actions">
-									<div class="ui black deny button">닫기</div>
-									<div class="ui positive right labeled icon button">
-										상세페이지로 이동 <i class="checkmark icon"></i>
-									</div>
-								</div>
-								<div id="bb"></div>
+
 
 							</div>
 						</c:forEach>
@@ -135,13 +129,7 @@
 			</div>
 		</c:if>
 	
-		<c:forEach var="i" begin="${pv.startPage }" end="${pv.endPage }">
-			<c:url var="currPage" value="free">
-				<c:param name="currentPage" value="${i }" />
-			</c:url>
-			<a class="ui button" href="${currPage }"> <c:out value="${i }" />
-			</a>
-		</c:forEach>
+
 		
 		<c:if test="${pv.totalPage>pv.endPage }">
 			<div class="ui animated button" onclick="location.href='free?currentPage=${pv.startPage + pv.blockPage }'">

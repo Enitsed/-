@@ -11,12 +11,15 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.springframework.scheduling.annotation.Async;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 public class BoxOffice {
+
+	@Async
 	public List<String> boxOffice() {
-		List<String> list = new ArrayList();
+		List<String> list = new ArrayList<String>();
 		try {
 			Calendar cal = new GregorianCalendar();
 			cal.add(Calendar.DATE, -1);

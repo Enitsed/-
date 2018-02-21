@@ -11,7 +11,7 @@
 
 <div class="ui dimmer">
 	<div class="center">
-		<div class="content">
+		<div class="content video_dimmer">
 			<div class="ui video" data-source="youtube" data-id="BX-OFZUU0_E"
 				data-image="resources/images/travel.jpg"
 				style="max-width: 90%; left: 5%; padding-bottom: 50%;"></div>
@@ -67,15 +67,15 @@
 					<i class="close icon"></i>
 					<div class="header">영화</div>
 					<div class="image content">
-						<div class="ui medium image">
+						<div class="ui medium card">
 							<c:choose>
 								<c:when test="${i.movie_image eq '이미지 없음'}">
-									<img class="slideImg" src="resources/images/no_image.png">
+									<img src="resources/images/no_image.png">
 								</c:when>
 								<c:otherwise>
 									<c:forTokens var="item" items="${i.movie_image}" delims="|"
 										end="0">
-										<img class="slideImg" src="${item}">
+										<img src="${item}">
 									</c:forTokens>
 								</c:otherwise>
 							</c:choose>
@@ -132,9 +132,8 @@
 
 				</div>
 			</c:forEach>
-			<a class="prev" onclick="plusSlides(-1)"><i
-				class="chevron left icon"></i></a> <a class="next"
-				onclick="plusSlides(1)"><i class="chevron right icon"></i></a>
+			<a class="prev" onclick="plusSlides(-1)"><i class="chevron left icon"></i></a> 
+			<a class="next" onclick="plusSlides(1)"><i class="chevron right icon"></i></a>
 		</div>
 	</div>
 
@@ -184,12 +183,12 @@
 						<div class="ui medium image">
 							<c:choose>
 								<c:when test="${i.movie_image eq '이미지 없음'}">
-									<img class="slideImg" src="resources/images/no_image.png">
+									<img src="resources/images/no_image.png">
 								</c:when>
 								<c:otherwise>
 									<c:forTokens var="item" items="${i.movie_image}" delims="|"
 										end="0">
-										<img class="slideImg" src="${item}">
+										<img src="${item}">
 									</c:forTokens>
 								</c:otherwise>
 							</c:choose>

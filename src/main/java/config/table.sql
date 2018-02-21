@@ -10,7 +10,7 @@ create table mem(
 	mem_address varchar2(300),	   --회원주소
 	upload varchar2(200)      --회원프로핅
 );
-
+select * from mem
 INSERT INTO movie_actor(
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,  
 (select movie_num, actor_num from actor, movie where actor_name = 'aa' AND movie_kor_title = 'aa') ,   
@@ -274,7 +274,6 @@ values(board_seq.nextval,1,'adsad','gaa','test',0,board_seq.nextval,0,0,sysdate,
 --drop table board
 --drop sequence board_seq
 
-
 create table movie_comment(
    comment_num number primary key,
    profile varchar2(200),
@@ -287,6 +286,7 @@ create table movie_comment(
    constraint movie_comment_comment_num_fk foreign key(comment_num) references movie(movie_num) on delete cascade,
    constraint movie_comment_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 );
+
 select * from movie_comment
 
 select count(*) from movie_comment group by movie_num

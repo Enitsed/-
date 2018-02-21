@@ -3,6 +3,8 @@
 
 $(document).ready(function () {
 	
+	printClock();
+	
 	$('#input_img').on('change',imgup);
 		
 	function imgup(e){
@@ -290,7 +292,7 @@ $(document).ready(function () {
 		var movie_num = $(this).attr("id");
 		/*alert(rating + " " + num + " " + movie_num);*/
 		if(num < 1){
-			alert("로그인부터 해라");
+			alert("로그인 하세요.");
 			return;
 		}
 		$.ajax({
@@ -591,9 +593,14 @@ $(document).ready(function () {
 
 					comment +=
 						'<div class="event">' +
-						'<div class="label">' +
-						'<img src="./profile/'+value.profile+'">' +
-						'</div>' +
+						'<div class="label">'
+						if(value.profile==null){
+							comment+='<img src="./profile/user.png">'
+						}
+						else if(value.profile!=null){
+						comment+='<img src="./profile/'+value.profile+'">'
+						}
+						comment+='</div>'+
 						'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
 						'<div class="content">' +
 						'<div class="summary">' +
@@ -632,6 +639,7 @@ $(document).ready(function () {
 	   $(document).on('click','.ui.basic.label',commentinsert);
 	   
 	   function commentinsert(){
+		 
 	      var reset = $(this).parent().find('.comment_m');
 	      var comments = reset.val();//replytext
 	      var number = parseInt($(this).attr('id'));
@@ -641,7 +649,7 @@ $(document).ready(function () {
 	      }
 	     
 	      $.ajax({
-	         
+	       
 	         url : 'insertcomment?mem_id='+session_id+'&replytext='+comments+'&movie_num='+number+'&mem_num='+session_num+'&profile='+profile,
 	         type:'GET',
 	         async: false,
@@ -659,23 +667,28 @@ $(document).ready(function () {
 	               sm = sm + sdate.getDate();
 
 	               insert +=
-	                  '<div class="event">' +
-	                  '<div class="label">' +
-	                  '<img src="./profile/'+value.profile+'">' +
-	                  '</div>' +
-	                  '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
-	                  '<div class="content">' +
-	                  '<div class="summary">' +
-	                  '<a class="user">' + value.mem_id + '</a>' +
-	                  '<input type="hidden" class="mem_id" value="' + value.mem_id + '"/>' +
-	                  '<div class="date">' + sm + '</div></div>' +
-	                  '<div class="extra text">' + value.replytext + '</div>' +
-	                  '<div class="meta">' +
-	                  '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
-	                  if(session_id==value.mem_id){
-	                     insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
-	                  }
-	                  +'</div></div></div>'
+						'<div class="event">' +
+						'<div class="label">'
+						if(value.profile==null){
+							insert+='<img src="./profile/user.png">'
+						}
+						else if(value.profile!=null){
+						insert+='<img src="./profile/'+value.profile+'">'
+						}
+						insert+='</div>'+
+						'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
+						'<div class="content">' +
+						'<div class="summary">' +
+						'<a class="user">' + value.mem_id + '</a>' +
+						'<input type="hidden" class="movie_num" value="'+value.movie_num+'"/>'+
+						'<div class="date">' + sm + '</div></div>' +
+						'<div class="extra text">' + value.replytext + '</div>' +
+						'<div class="meta">' +
+						'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
+						if(session_id==value.mem_id){
+							insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
+						}
+						+'</div></div></div>';
 	                  $(insert).appendTo(".ui.large.feed");
 	                  if(index==more)
 	                   	  return false;
@@ -692,7 +705,7 @@ $(document).ready(function () {
 	         }//success끝
 	      });//ajax끝
 	   }
-	   
+
 	 
 	$(document).on('click','.like',like);
 	   function like(){
@@ -750,23 +763,28 @@ $(document).ready(function () {
 	                 sm = sm + sdate.getDate();
 
 	                 insert +=
-	                    '<div class="event">' +
-	                    '<div class="label">' +
-	                    '<img src="./profile/'+value.profile+'">' +
-	                    '</div>' +
-	                    '<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
-	                    '<div class="content">' +
-	                    '<div class="summary">' +
-	                    '<a class="user">' + value.mem_id + '</a>' +
-	                    '<input type="hidden" class="mem_id" value="' + value.mem_id + '"/>' +
-	                    '<div class="date">' + sm + '</div></div>' +
-	                    '<div class="extra text">' + value.replytext + '</div>' +
-	                    '<div class="meta">' +
-	                    '<a class="like" value="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
-	                    if(session_id==value.mem_id){
-	                       insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
-	                    }
-	                    +'</div></div></div>'
+							'<div class="event">' +
+							'<div class="label">'
+							if(value.profile==null){
+								insert+='<img src="./profile/user.png">'
+							}
+							else if(value.profile!=null){
+							insert+='<img src="./profile/'+value.profile+'">'
+							}
+							insert+='</div>'+
+							'<input type="hidden" class="comment_num" value="' + value.comment_num + '"/>' +
+							'<div class="content">' +
+							'<div class="summary">' +
+							'<a class="user">' + value.mem_id + '</a>' +
+							'<input type="hidden" class="movie_num" value="'+value.movie_num+'"/>'+
+							'<div class="date">' + sm + '</div></div>' +
+							'<div class="extra text">' + value.replytext + '</div>' +
+							'<div class="meta">' +
+							'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
+							if(session_id==value.mem_id){
+								insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
+							}
+							+'</div></div></div>';
 	                    $(insert).appendTo(".ui.large.feed");
 	                    if(index==more)
 	                  	  return false;
@@ -857,4 +875,34 @@ $(document).ready(function () {
 		};//함수끝
 	
 		
+		// 푸터 시계 
+		function printClock() {
+		    var clock = document.getElementById("clock");            // 출력할 장소 선택
+		    var currentDate = new Date();                        	 // 현재시간
+		    var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
+		    var amPm = 'AM'; // 초기값 AM
+		    var currentHours = addZeros(currentDate.getHours(), 2);
+		    var currentMinute = addZeros(currentDate.getMinutes(), 2);
+		    var currentSeconds = addZeros(currentDate.getSeconds(), 2);
+		    
+		    if(currentHours >= 12){ // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
+		    	amPm = 'PM';
+		    	currentHours = addZeros(currentHours - 12,2);
+		    }
+
+		    clock.innerHTML = currentHours + ":" + currentMinute + ":" + currentSeconds + " <span style='font-size:30px;'>" + amPm + "</span>"; //날짜를 출력해 줌
+		    
+		    setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
+		}
+
+		function addZeros(num, digit) { // 자릿수 맞춰주기
+			  var zero = '';
+			  num = num.toString();
+			  if (num.length < digit) {
+			    for (i = 0; i < digit - num.length; i++) {
+			      zero += '0';
+			    }
+			  }
+			  return zero + num;
+		}
 		
