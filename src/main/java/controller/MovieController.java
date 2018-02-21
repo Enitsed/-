@@ -46,6 +46,7 @@ public class MovieController {
 	@RequestMapping("/addMovie.do")
 	public @ResponseBody List<MovieDTO> addMovie(int page, int category) {
 		List<MovieDTO> list = movieservice.movieInfoProcess(page, category);
+		
 		return list;
 	}
 	

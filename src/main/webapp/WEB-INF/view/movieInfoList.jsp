@@ -6,7 +6,6 @@
 
 
 <script>
-
 	function moreList() {
 		var page = (parseInt($("#currentPage").val()) + 1);
 		var category = parseInt($("#category").val());
@@ -37,7 +36,7 @@
 								'<br /> <br />'+
 								'<div class="ui divider"></div>'+
 								'<br /> <br /> <br />'+
-								'<div class="ui star rating" data-rating="5" data-max-rating="5" id="'+value.movie_num+'"></div>'+
+								'<div class="ui star rating point" data-rating="5" data-max-rating="5" id="'+value.movie_num+'"></div>'+
 								'</div>'+
 								'</div>'+
 								'</div>'+
@@ -50,27 +49,39 @@
 								'<img src="'+ image +'">'+
 								'</div>'+
 								'<div class="description">'+
-								'<div class="ui header">영화제목 : ' + value.movie_kor_title + '</div>'+
+								'<div class="ui header">영화제목 : ' + value.movie_kor_title + '</div>  평균 평점 : <div class="ui star rating avgRat" data-rating="' +value.avgRat+ '" data-max-rating="5" id="avgRat"></div>'+
 								'<h4>줄거리 : '+value.movie_summary+'</h4>'+
 								'<p>개봉일 : '+
 								'</p>'+
 								'</div>'+
 								'</div>'+
+								'<div class="ui large feed"></div>'+
+								'<div class="seemore"><input type="hidden" class="hiddennum" id="10" name="10" /></div>';
+								if('${userDTO.mem_id}' != ''){
+									content += '<div class="ui left labeled input text_comment">' +
+										'<input type="text" class="comment_m" placeholder="내용을 입력하세요...">' +
+										'<div class="ui basic label" id="'+ value.movie_num +'">' +
+										'<i class="comment outline icon"></i>' +
+										'</div>' +
+										'</div>' +
+										'<div class="clearing item"></div>';
+								}
+								
+								content += 	
 								'<div class="actions">'+
 								'<div class="ui black deny button">닫기</div>'+
 								'</div>'+
 								'<div id="bb"></div>'+
-								'</div>';
-								
+								'</div>';	
 					$("#movieListWindow").append(content); 
 					$('.special.cards .image.main_movie').dimmer({
 					on: 'hover'
 					});
 					
-							
-					$(".ui.rating").unbind("click"); //클릭이벤트 없앰
-					$('.ui.rating').rating();
-					$('.ui.rating').on("click",function(){
+					$(".ui.rating.avgRat").rating('disable');		
+					$(".ui.rating.point").unbind("click"); //클릭이벤트 없앰
+					$('.ui.rating.point').rating();
+					$('.ui.rating.point').on("click",function(){
 						event.stopPropagation();
 						var rating = $(this).rating("get rating", this);
 						var num =  $('#member_num').val();
