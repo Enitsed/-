@@ -225,7 +225,7 @@
 								<br /> <br />
 								<div class="ui divider"></div>
 								<br /> <br /> <br />
-								<div class="ui star rating" data-rating="5" data-max-rating="5" id="${i.movie_num}"></div>
+								<div class="ui star rating point" data-rating="5" data-max-rating="5" id="${i.movie_num}"></div>
 							</div>
 						</div>
 					</div>
@@ -239,7 +239,7 @@
 							<img class="aa" src="${i.movie_image}">
 						</div>
 						<div class="description">
-							<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
+							<div class="ui header">영화제목 : ${i.movie_kor_title}</div> 평균 평점 : <div class="ui star rating avgRat" data-rating="${i.avgRat}" data-max-rating="5" id="avgRat"></div>
 							<h4>줄거리 : ${i.movie_summary}</h4>
 							<p>
 								감독 :

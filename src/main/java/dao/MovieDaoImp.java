@@ -69,6 +69,12 @@ public class MovieDaoImp implements MovieDAO {
 			list.get(i).setMovie_actor(actorList);
 			List<CategoryDTO> categoryList = sqlSession.selectList("movie.category", list.get(i).getMovie_num());
 			list.get(i).setCategory(categoryList);
+			try {
+				int avg = sqlSession.selectOne("movie.avgRat", list.get(i).getMovie_num());
+				list.get(i).setAvgRat(avg);
+			}catch(NullPointerException e) {
+				list.get(i).setAvgRat(0);
+			}
 		}
 		return list;
 	}
@@ -229,7 +235,14 @@ public class MovieDaoImp implements MovieDAO {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
-
+		try {
+			int avg = sqlSession.selectOne("movie.avgRat", dto.getMovie_num());
+			dto.setAvgRat(avg);
+		}catch(NullPointerException e) {
+			dto.setAvgRat(0);
+		}
+		
+		
 		return dto;
 	}
 
@@ -253,6 +266,12 @@ public class MovieDaoImp implements MovieDAO {
 			list.get(i).setMovie_actor(actorList);
 			List<CategoryDTO> categoryList = sqlSession.selectList("movie.category", list.get(i).getMovie_num());
 			list.get(i).setCategory(categoryList);
+			try {
+				int avg = sqlSession.selectOne("movie.avgRat", list.get(i).getMovie_num());
+				list.get(i).setAvgRat(avg);
+			}catch(NullPointerException e) {
+				list.get(i).setAvgRat(0);
+			}
 		}
 		return list;
 	}

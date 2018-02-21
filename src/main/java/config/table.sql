@@ -24,6 +24,8 @@ increment by 1
 nocache
 nocycle;
 
+
+
 --select * from mem
 --drop table mem
 --drop sequence mem_seq
@@ -83,7 +85,7 @@ create table rating(
 	constraint rating_movie_num_fk foreign key(movie_num) references movie(movie_num)
 	--rating테이블 movie_num 외래키 제약조건
 );
-	
+	select avg(star_point) from rating where movie_num = 110
 --select * from rating
 --drop table rating
 

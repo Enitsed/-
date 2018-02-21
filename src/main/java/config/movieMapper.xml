@@ -146,5 +146,9 @@ b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name 
 	<select id="commentMaxMovie" resultType="dto.MovieDTO">
 		select a.* from movie a, (select movie_num from movie_comment where regdate > sysdate - 7 and sysdate >= regdate group by movie_num order by count(*)) b where a.movie_num  = b.movie_num and 8 > rownum 
 	</select>
+	
+	<select id="avgRat" resultType="int"  parameterType="int">
+		select avg(star_point) from rating where movie_num = #{movie_num}
+	</select>
 </mapper>
     
