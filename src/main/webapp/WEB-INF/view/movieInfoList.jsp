@@ -46,7 +46,7 @@
 								'<i class="close icon"></i>'+
 								'<div class="header">영화</div>'+
 								'<div class="image content">'+
-								'<div class="ui medium image">'+
+								'<div class="ui medium card">'+
 								'<img src="'+ image +'">'+
 								'</div>'+
 								'<div class="description">'+
@@ -229,7 +229,16 @@
 					<div class="header">영화</div>
 					<div class="image content">
 						<div class="ui medium card">
-							<img class="aa" src="${i.movie_image}">
+						<c:choose>
+							<c:when test="${i.movie_image eq '이미지 없음'}">
+								<img class="slideImg" src="resources/images/no_image.png">
+							</c:when>
+							<c:otherwise>
+								<c:forTokens var="item" items="${i.movie_image}" delims="|" end="0">
+									<img class="slideImg" src="${item}">
+								</c:forTokens>
+							</c:otherwise>
+						</c:choose>
 						</div>
 						<div class="description">
 							<div class="ui header">영화제목 : ${i.movie_kor_title}</div> 평균 평점 : <div class="ui star rating avgRat" data-rating="${i.avgRat}" data-max-rating="5" id="avgRat"></div>
