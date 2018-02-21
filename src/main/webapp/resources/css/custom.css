@@ -42,6 +42,13 @@ td .tdcontent {
 
 .ui.modal>.image.content>.card {
 	margin-right : 10px;
+	width: 200px;
+	height: 300px;
+}
+
+.ui.modal>.image.content>.card img {
+	width: inherit;
+	height: inherit;
 }
 
 .ui.modal>.content>.description {
@@ -333,3 +340,29 @@ iframe {
 	font-size:30px;
 	text-align:center;
 }
+
+
+
+#fcards{
+	margin-left:150px;
+}
+#cards{
+	width: 200px;
+	height: 370px;
+	margin-left: 30px;
+}
+#cards #no_img{
+	width: 200px;
+	height: 295px;
+}
+#cards img{
+	width: 200px;
+	height: 295px;
+}
+#title{
+	margin-bottom:5px;
+	margin-top:6px;
+	color: black;
+	text-align: center;
+}
+

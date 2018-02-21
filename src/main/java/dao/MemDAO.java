@@ -2,7 +2,9 @@ package dao;
 
 import java.util.List;
 
+
 import dto.MemDTO;
+import dto.RatingDTO;
 
 public interface MemDAO {
 
@@ -25,4 +27,6 @@ public interface MemDAO {
 	public void profileUpdate(MemDTO userDTO);
 	public MemDTO mList(int mem_num);
 	public void commentProfileUpdate(MemDTO userDTO);
+	
+	public List<RatingDTO> profile_rating(MemDTO userDTO);
 }

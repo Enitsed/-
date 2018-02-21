@@ -2,9 +2,11 @@ package dao;
 
 import java.util.List;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.MemDTO;
+import dto.RatingDTO;
 
 public class MemDaoImp implements MemDAO {
 	SqlSessionTemplate sqlSession;
@@ -71,5 +73,12 @@ public class MemDaoImp implements MemDAO {
 	public void commentProfileUpdate(MemDTO userDTO) {
 		sqlSession.update("mem.movie_comment_profile_update",userDTO);
 	}
+
+	@Override
+	public List<RatingDTO> profile_rating(MemDTO userDTO) {
+		return sqlSession.selectList("mem.profile_rating",userDTO);
+	}
+
+	
 
 }

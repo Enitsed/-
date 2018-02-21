@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dto.BoardDTO;
+import dto.MemDTO;
 
 public class BoardDaoImp implements BoardDAO {
 	SqlSessionTemplate sqlSession;
@@ -73,6 +74,16 @@ public class BoardDaoImp implements BoardDAO {
 	@Override
 	public int searchCount(String keyword) {
 		return sqlSession.selectOne("board.searchCount", keyword);
+	}
+
+	@Override
+	public List<BoardDTO> myboard(HashMap<String, Integer> map) {
+		return sqlSession.selectList("board.myboard_list",map);
+	}
+
+	@Override
+	public int myboardCount(MemDTO userdto) {
+		return sqlSession.selectOne("board.myboardcount",userdto);
 	}
 
 }

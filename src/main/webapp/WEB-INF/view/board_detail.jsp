@@ -36,16 +36,17 @@
 							<div class="hidden content">삭제</div>
 						</div>
 					</c:if>
-
+					<!--  
 					<c:url value="free" var="pageList">
 						<c:param name="currentPage" value="${currentPage }"></c:param>
 					</c:url>
+					-->
 					<div class="ui sizes animated fade inverted blue button"
-						onclick="location.href='${pageList }'">
+						>
 						<div class="visible content">
 							<i class="list icon"></i>
 						</div>
-						<div class="hidden content">목록</div>
+						<div class="hidden content"><a href="javascript:history.back()">목록</a></div>
 					</div>
 				</div>
 			</div>

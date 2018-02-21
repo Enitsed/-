@@ -85,10 +85,9 @@ create table rating(
 	constraint rating_movie_num_fk foreign key(movie_num) references movie(movie_num)
 	--rating테이블 movie_num 외래키 제약조건
 );
-	select avg(star_point) from rating where movie_num = 110
+
 --select * from rating
 --drop table rating
-
 --------------------------------------------------------
 ---카테고리 테이블----------------------------------------------
 create table category(
@@ -165,13 +164,16 @@ create table movie_category(
 --select * from movie_category
 --drop table movie_category
 		select * from movie where movie_kor_title in ('코코','마터스')
-	
 delete from movie_actor;
 delete from movie_director;
 delete from actor;
 delete from director;
-delete from movie;
 delete from movie_category;
+delete from movie;
+delete from rating;
+delete from commentlike;
+delete from movie_comment;
+
 --------------------------------------------------------
 ---배우 테이블----------------------------------------------
 create table actor(
@@ -247,7 +249,7 @@ create table board(
 	board_num number primary key,	--게시글번호
 	mem_num number,					--회원번호
 	board_writer varchar2(10),		--작성자
-	board_name varchar2(10),		--제목
+	board_name varchar2(100),		--제목
 	board_content varchar2(500),	--내용
 	board_hits number(10),			--조회수
 	board_relnum number(10),		--관련글번호
@@ -257,6 +259,7 @@ create table board(
 	board_reply_amount number,		--댓글개수
 	board_category number(10)		--보드 카테고리
 );
+alter table board modify(board_name varchar2(500))
 alter table board add constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 --board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 --게시판테이블 시퀀스
@@ -335,5 +338,13 @@ insert into COMMENTLIKE values(like_num_seq.nextval,'bbbbbb',1)
 select * from commentlike
 delete  from commentlike
 
+ select b.* from
+     (select rownum as rm, a.*   from(
+     select * from board order by board_relnum desc, board_reply_step asc)a)b
 
-
+ select b.* from (select * from board order by board_relnum desc, board_reply_step asc)b
+ 
+ 
+ select b.* from (select rownum as rm, a.*from(select * from board where mem_num = 9 order by board_num desc)a)b
+ where b.rm between 1 and 2
+ 

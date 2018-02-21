@@ -87,5 +87,12 @@
 		board where board_name like '%'||#{keyword}||'%'
 	</select>
 
-
+	<select id="myboardcount" parameterType="dto.MemDTO" resultType="int">
+		select count(*) from board where mem_num = #{mem_num}
+	</select>
+	
+	<select id="myboard_list" parameterType="java.util.HashMap" resultType="dto.BoardDTO">
+		select b.* from (select rownum as rm, a.* from(select * from board where mem_num = 9 order by board_num desc)a)b
+		where b.rm between #{startRow} and #{endRow}
+	</select>
 </mapper>

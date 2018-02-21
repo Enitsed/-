@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.BoardDTO;
+import dto.MemDTO;
 
 public interface BoardService {
 	public int countProcess(Integer board_category);
@@ -27,5 +28,9 @@ public interface BoardService {
 	public List<BoardDTO> searchListProcess(String keyword);
 	
 	public int searchCountProcess(String keyword);
+	
+	public int myboardCountProcess(MemDTO userDTO);
+	
+	public List<BoardDTO> myboardProcess(HashMap<String, Integer> map);
 	
 }

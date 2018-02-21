@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import dto.MemDTO;
+import dto.RatingDTO;
 
 public interface MemService {
 
@@ -32,4 +33,6 @@ public interface MemService {
 	public MemDTO mList(int mem_num);
 	
 	public void commentProfileUpdate(MemDTO userDTO);
+	
+	public List<RatingDTO> profile_rating(MemDTO userDTO);
 }

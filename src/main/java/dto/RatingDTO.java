@@ -8,6 +8,22 @@ public class RatingDTO {
 	private String comment;
 	private int star_point;
 	private Date write_date;
+	private String movie_kor_title;
+	private String movie_image;
+	
+	
+	public String getMovie_kor_title() {
+		return movie_kor_title;
+	}
+	public void setMovie_kor_title(String movie_kor_title) {
+		this.movie_kor_title = movie_kor_title;
+	}
+	public String getMovie_image() {
+		return movie_image;
+	}
+	public void setMovie_image(String movie_image) {
+		this.movie_image = movie_image;
+	}
 	public int getMem_num() {
 		return mem_num;
 	}
