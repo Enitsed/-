@@ -63,24 +63,21 @@
 								'</div>';
 								
 					$("#movieListWindow").append(content); 
-					
-					
-					
-					$('.ui.rating').rating();////rating ui
 					$('.special.cards .image.main_movie').dimmer({
 					on: 'hover'
-					});////dimmer function //
+					});
 					
 							
 					$(".ui.rating").unbind("click"); //클릭이벤트 없앰
-					
+					$('.ui.rating').rating();
 					$('.ui.rating').on("click",function(){
+						event.stopPropagation();
 						var rating = $(this).rating("get rating", this);
 						var num =  $('#member_num').val();
 						var movie_num = $(this).attr("id");
 						/* alert(rating + " " + num + " " + movie_num); */
 						if(num < 1){
-							alert("로그인부터 해라");
+							alert("먼저 로그인 하세요.");
 							return; 
 						}
 						$.ajax({
@@ -95,10 +92,6 @@
 							}
 						});
 					}); /////////////////ui rating click function
-					
-
-					
-					
 
 					
 					$('.main_movie').on('click', function () {
@@ -225,7 +218,7 @@
 								<br /> <br />
 								<div class="ui divider"></div>
 								<br /> <br /> <br />
-								<div class="ui star rating" data-rating="5" data-max-rating="5" id="${i.movie_num}"></div>
+								<div class="ui star rating point" data-rating="5" data-max-rating="5" id="${i.movie_num}"></div>
 							</div>
 						</div>
 					</div>
@@ -235,11 +228,11 @@
 					<i class="close icon"></i>
 					<div class="header">영화</div>
 					<div class="image content">
-						<div class="ui medium image">
+						<div class="ui medium card">
 							<img class="aa" src="${i.movie_image}">
 						</div>
 						<div class="description">
-							<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
+							<div class="ui header">영화제목 : ${i.movie_kor_title}</div> 평균 평점 : <div class="ui star rating avgRat" data-rating="${i.avgRat}" data-max-rating="5" id="avgRat"></div>
 							<h4>줄거리 : ${i.movie_summary}</h4>
 							<p>
 								감독 :

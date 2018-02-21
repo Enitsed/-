@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +24,7 @@ import service.BoardService;
 import service.MovieService;
 
 //http://localhost:8090/finalproject/main
+@EnableAsync
 @Controller
 public class HelloController {
 	MovieService movieservice;
@@ -44,6 +46,7 @@ public class HelloController {
 	public ModelAndView mainPage() {
 		ModelAndView mav = new ModelAndView();
 		MovieNewsApi api = new MovieNewsApi();
+		api.MovieNewsAPI(mav);
 		BoxOffice api2 = new BoxOffice();
 		List<String> list = api2.boxOffice();
 		List<MovieDTO> movieList = new ArrayList<MovieDTO>();
@@ -82,7 +85,6 @@ public class HelloController {
 		mav.addObject("movie", boxOfficeMovieList);
 		mav.addObject("commentMovie", movieservice.maxCommentMovie());
 		mav.addObject("category", 0);
-		api.MovieNewsAPI(mav);
 		mav.setViewName("index");
 		return mav;
 	}

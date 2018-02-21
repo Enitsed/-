@@ -283,10 +283,9 @@ $(document).ready(function () {
 		$('.ui.tiny.modal.idFail').modal('hide');
 	});
 	
-	$('.ui.rating').rating();
-	
+	$('.ui.rating.point').rating();
 	// 별점
-	$('.ui.rating').on("click",function(){
+	$('.ui.rating.point').on("click",function(){
 	    event.stopPropagation();
 		var rating = $(this).rating("get rating", this);
 		var num =  $('#member_num').val();
@@ -309,6 +308,8 @@ $(document).ready(function () {
 		});
 	});
 	
+	$('.ui.rating.avgRat').rating('disable');
+
 	// 카카오톡 로그인 버튼 이미지
 	$('#kakaoLoginImage').on('mouseenter', function () {
 		$(this).prop('src', 'resources/images/loginBtnHover.png');

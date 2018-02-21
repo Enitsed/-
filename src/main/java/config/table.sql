@@ -24,6 +24,8 @@ increment by 1
 nocache
 nocycle;
 
+
+
 --select * from mem
 --drop table mem
 --drop sequence mem_seq
@@ -83,8 +85,7 @@ create table rating(
 	constraint rating_movie_num_fk foreign key(movie_num) references movie(movie_num)
 	--rating테이블 movie_num 외래키 제약조건
 );
-select * from rating r,movie m
-where r.movie_num=m.movie_num and mem_num=9
+
 --select * from rating
 --drop table rating
 --------------------------------------------------------

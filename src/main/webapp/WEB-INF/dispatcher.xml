@@ -10,6 +10,8 @@
 
 	<mvc:annotation-driven></mvc:annotation-driven>
 
+	<!-- 데이터베이스 설정 -->
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
@@ -98,12 +100,13 @@
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="1" />
 	</bean>
-	
+
 	<!-- 첨부파일을 임시기억저장소에 저장한다.(첨부파일이 있을경우 선언해줘야하는 빈) -->
-	<bean id = "multipartResolver" class = "org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 버전이 낮을경우에 임시 기억장소를 저장하기위한 경로설정해주는 property선언을 해야한다. -->
 		<!-- <property name="uploadTempDir" ref = "uploadDirResource" /> -->
-		<property name="maxUploadSize" value = "1000000000" />
+		<property name="maxUploadSize" value="1000000000" />
 	</bean>
 
 	<!-- controller -->
@@ -160,4 +163,5 @@
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="1" />
 	</bean>
+
 </beans>

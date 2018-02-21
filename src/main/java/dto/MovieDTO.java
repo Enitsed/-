@@ -17,6 +17,15 @@ public class MovieDTO {
 	private String movie_rating;
 	private List<CategoryDTO> category = new ArrayList<CategoryDTO>();
 	private String nation;
+	private int avgRat;
+	
+	public int getAvgRat() {
+		return avgRat;
+	}
+
+	public void setAvgRat(int avgRat) {
+		this.avgRat = avgRat;
+	}
 
 	public int getMovie_num() {
 		return movie_num;

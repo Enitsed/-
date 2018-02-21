@@ -3,6 +3,10 @@
 	margin: 10px;
 }
 
+.video_dimmer {
+	margin-top: 20px;
+}
+
 .divider {
 	clear: both;
 }
@@ -17,13 +21,37 @@ td .tdcontent {
 }
 
 .ui.large.feed {
-	margin-left: 40px;
+	margin-left: 10px;
 	height: 400px;
 	overflow-y: scroll;
 }
 
+.ui.large.feed>.event>.label {
+	margin : 10px;
+	width : 3.5em;
+}
+
+.ui.large.feed>.event>.label img {
+	border: 1px solid steelblue;
+	height: 100%;
+}
+
+.ui.large.feed>.event>.content {
+	padding : 10px;
+}
+
+.ui.modal>.image.content>.card {
+	margin-right : 10px;
+}
+
+.ui.modal>.content>.description {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 1 auto;
+}
+
 * {
-	box-sizing: border-box
+	box-sizing: border-box;
 }
 
 .ui.table thead th {
@@ -32,7 +60,7 @@ td .tdcontent {
 
 body {
 	font-family: Verdana, sans-serif;
-	margin: 0
+	margin: 0;
 }
 
 /* Slideshow container */
@@ -54,29 +82,35 @@ body {
 
 .prev, .next {
 	cursor: pointer;
-	position: absolute;
-	text-align: center;
-	top: 0;
-	top: 50%;
-	width: 3%;
-	padding: 16px;
-	margin-top: -22px;
-	color: white;
-	font-weight: bold;
-	font-size: 18px;
-	transition: 0.6s ease;
-	border-radius: 0 3px 3px 0;
-	z-index: 100;
+    position: absolute;
+    text-align: center;
+    top: 30px;
+    height: 426px;
+    width: 0px;
+    padding: 1%;
+    margin-top: 0px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    z-index: 100;
 }
 
 .prev {
-	left: -2px;
+	left: 0%;
 }
 
 .next {
-	right: 0;
 	border-radius: 3px 0 0 3px;
+	left: 98%;
 }
+
+.prev i, .next i {
+    position: absolute;
+    margin-left: -10px;
+    top: 183px;
+}
+
 
 .prev:hover, .next:hover {
 	background-color: rgba(0, 0, 0, 0.8);
@@ -91,18 +125,18 @@ body {
 
 @-webkit-keyframes fade2 {
 	from {
-		opacity: .4
+		opacity: .4;
 	} to {
-		opacity: 1
+		opacity: 1;
 	}
 }
 
 @keyframes fade2 {
 	from {
-		opacity: .4
+		opacity: .4;
 	}
 	to {
-		opacity: 1
+		opacity: 1;
 	}
 }
 
@@ -118,7 +152,7 @@ body {
 	width: 120px;
 	top: 433px;
 	right: 0;
-	padding: 3px 10px
+	padding: 3px 10px;
 }
 
 iframe {

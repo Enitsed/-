@@ -11,7 +11,7 @@
 
 <div class="ui dimmer">
 	<div class="center">
-		<div class="content">
+		<div class="content video_dimmer">
 			<div class="ui video" data-source="youtube" data-id="BX-OFZUU0_E"
 				data-image="resources/images/travel.jpg"
 				style="max-width: 90%; left: 5%; padding-bottom: 50%;"></div>
@@ -55,7 +55,7 @@
 								<div class="ui divider"></div>
 								<br /> <br /> <br />
 
-								<div class="ui star rating" data-rating="5" data-max-rating="5"
+								<div class="ui star rating point" data-rating="5" data-max-rating="5"
 									id="${i.movie_num}"></div>
 
 							</div>
@@ -67,22 +67,22 @@
 					<i class="close icon"></i>
 					<div class="header">영화</div>
 					<div class="image content">
-						<div class="ui medium image">
+						<div class="ui medium card">
 							<c:choose>
 								<c:when test="${i.movie_image eq '이미지 없음'}">
-									<img class="slideImg" src="resources/images/no_image.png">
+									<img src="resources/images/no_image.png">
 								</c:when>
 								<c:otherwise>
 									<c:forTokens var="item" items="${i.movie_image}" delims="|"
 										end="0">
-										<img class="slideImg" src="${item}">
+										<img src="${item}">
 									</c:forTokens>
 								</c:otherwise>
 							</c:choose>
 						</div>
 						<div class="description">
-							<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
-							
+							<div class="ui header">영화제목 : ${i.movie_kor_title} </div> 평균 평점 : <div class="ui star rating avgRat" data-rating="${i.avgRat}" data-max-rating="5" id="avgRat"></div>
+						
 							<h4>줄거리 : ${i.movie_summary}</h4>
 							<p>
 								감독 :
@@ -132,9 +132,8 @@
 
 				</div>
 			</c:forEach>
-			<a class="prev" onclick="plusSlides(-1)"><i
-				class="chevron left icon"></i></a> <a class="next"
-				onclick="plusSlides(1)"><i class="chevron right icon"></i></a>
+			<a class="prev" onclick="plusSlides(-1)"><i class="chevron left icon"></i></a> 
+			<a class="next" onclick="plusSlides(1)"><i class="chevron right icon"></i></a>
 		</div>
 	</div>
 
@@ -169,7 +168,7 @@
 								<div class="ui divider"></div>
 								<br /> <br /> <br />
 
-								<div class="ui star rating" data-rating="5" data-max-rating="5"
+								<div class="ui star rating point" data-rating="5" data-max-rating="5"
 									id="${i.movie_num}"></div>
 
 							</div>
@@ -184,18 +183,18 @@
 						<div class="ui medium image">
 							<c:choose>
 								<c:when test="${i.movie_image eq '이미지 없음'}">
-									<img class="slideImg" src="resources/images/no_image.png">
+									<img src="resources/images/no_image.png">
 								</c:when>
 								<c:otherwise>
 									<c:forTokens var="item" items="${i.movie_image}" delims="|"
 										end="0">
-										<img class="slideImg" src="${item}">
+										<img src="${item}">
 									</c:forTokens>
 								</c:otherwise>
 							</c:choose>
 						</div>
 						<div class="description">
-							<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
+							<div class="ui header">영화제목 : ${i.movie_kor_title}</div> 평균 평점 : <div class="ui star rating avgRat" data-rating="${i.avgRat}" data-max-rating="5" id="avgRat"></div>
 							<h4>줄거리 : ${i.movie_summary}</h4>
 							<p>
 								감독 :
