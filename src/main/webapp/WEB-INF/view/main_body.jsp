@@ -98,8 +98,10 @@
 							</p>
 							<p>
 								장르 :
+								
 								<c:forEach var="j" items="${i.category}">
-									${j.category_name}
+								<!--<input type="hidden" class="ctg" id="ctg" value="${j.category_name}" />-->
+									<a class="category_name">${j.category_name}</a>
 								</c:forEach>
 							</p>
 							<p>
@@ -109,7 +111,7 @@
 							</p>
 						</div>
 					</div>
-
+					  <h3 class="ui dividing header">Comments</h3>
 					<div class="ui large feed"></div>
 
 					<div class="seemore">
@@ -127,6 +129,7 @@
 					</c:if>
 
 					<div class="actions">
+   						<a class="wish" id="${i.movie_num}"><i class="heart icon"></i>Wish</a>
 						<div class="ui black deny button">닫기</div>
 					</div>
 

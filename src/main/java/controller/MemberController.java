@@ -1,18 +1,23 @@
 package controller;
 
 import java.io.File;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.rmi.server.ServerCloneException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale.Category;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,10 +27,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import api.BoxOffice;
 import api.MovieNewsApi;
+import dto.CategoryDTO;
+import dto.CatgDTO;
 import dto.MemDTO;
 import dto.MovieDTO;
 import dto.PageDTO;
 import dto.RatingDTO;
+import dto.WishListDTO;
 import service.BoardService;
 import service.MemService;
 import service.MovieService;
@@ -351,13 +359,6 @@ public class MemberController {
 		return mav;
 	}
 	
-	@RequestMapping("/mylist")
-	public ModelAndView mylist(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mylist");
-		return mav;
-	}
-	
 	@RequestMapping("/myboard")
 	public ModelAndView myboard(HttpServletRequest request, PageDTO pv) {
 		HttpSession session = request.getSession();
@@ -378,8 +379,68 @@ public class MemberController {
 		param.put("endRow",pdto.getEndRow());
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("aList",boardservice.myboardProcess(param));
+		mav.addObject("comment",service.mycomment(dto));
 		mav.addObject("pv",pdto);
 		mav.setViewName("myboard_list");
 		return mav;
+	}
+	
+	
+	@RequestMapping("/mylist")
+	public ModelAndView mylist(HttpServletRequest request, String category) {
+		HttpSession session = request.getSession();
+		MemDTO dto = (MemDTO) session.getAttribute("userDTO");
+		System.out.println("유저이름:"+dto.getMem_name());
+		WishListDTO wish = new WishListDTO();
+		wish.setMem_num(dto.getMem_num());
+		ModelAndView mav = new ModelAndView();
+		System.out.println("카테:"+category);
+		
+		if(category==null) {
+			mav.addObject("list",service.mylist(wish));
+			mav.setViewName("mylist");
+		} else if(category!=null) {
+			wish.setCategory_name(category);
+			mav.addObject("list",service.wishlist(wish));
+			mav.setViewName("mylist");
+		} 		
+		mav.addObject("mem_name",dto.getMem_name());
+		return mav;
+	}
+	/*
+	@RequestMapping("/wishlist")
+	public ModelAndView wishlist(String category) {
+		System.out.println("카테고리는:"+category);
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}*/
+	
+	@RequestMapping("/pluswish")
+	public @ResponseBody int pluswish(int movie_num,HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		CatgDTO ca = new CatgDTO();
+		ca.setCategory_name(service.findcategory(movie_num));
+		String sum="";
+		List<CatgDTO> list = ca.getCategory_name();
+		
+		for(int i=0; i<list.size(); i++) {
+			sum+=list.get(i);
+		}
+		HttpSession session = request.getSession();
+		MemDTO dto = (MemDTO) session.getAttribute("userDTO");
+		WishListDTO wish = new WishListDTO();
+		wish.setCategory_name(sum);
+		wish.setMovie_num(movie_num);
+		wish.setMem_num(dto.getMem_num());
+		
+		int overlap = service.findoverlap(wish);
+		
+		System.out.println("overlap:"+overlap);
+		if(overlap==0) {
+		service.insertwishlist(wish);
+		} else if(overlap==1) {
+			
+		}
+		return overlap;
 	}
 }

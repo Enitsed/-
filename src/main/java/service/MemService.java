@@ -2,8 +2,12 @@ package service;
 
 import java.util.List;
 
+import dto.CategoryDTO;
+import dto.CatgDTO;
 import dto.MemDTO;
+import dto.MyCommentDTO;
 import dto.RatingDTO;
+import dto.WishListDTO;
 
 public interface MemService {
 
@@ -35,4 +39,17 @@ public interface MemService {
 	public void commentProfileUpdate(MemDTO userDTO);
 	
 	public List<RatingDTO> profile_rating(MemDTO userDTO);
+	
+	public List<MyCommentDTO> mycomment(MemDTO userDTO);
+	
+	public List<WishListDTO> mylist(WishListDTO wish);
+	
+	public List<WishListDTO> wishlist(WishListDTO wish);
+	
+	public List<CatgDTO> findcategory(int movie_num);
+	
+	public int findoverlap(WishListDTO wish);
+	
+	public void insertwishlist(WishListDTO wish);
 }
+

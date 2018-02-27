@@ -67,4 +67,26 @@
 		select * from rating r,movie m
 		where r.movie_num=m.movie_num and mem_num=#{mem_num}
 	</select>
+	
+	<select id="mylist" parameterType="dto.WishListDTO" resultType="dto.WishListDTO">
+		select * from  (select movie_image,movie_kor_title,category_name from movie m, wishlist w
+		where m.movie_num = w.movie_num and mem_num=#{mem_num})
+	</select>
+	
+	<select id="wishlist" parameterType="dto.WishListDTO" resultType="dto.WishListDTO">
+		select * from  (select movie_image,movie_kor_title,category_name from movie m, wishlist w
+		where m.movie_num = w.movie_num and category_name like '%'||#{category_name}||'%' and mem_num=#{mem_num}) 
+	</select>
+	
+	<select id="findcategory" resultType="String" parameterType="int">
+		select b.category_name from movie_category a, category b where a.movie_num = #{movie_num} and a.category_num = b.category_num				
+	</select>
+	
+	<select id="findoverlap" parameterType="dto.WishListDTO" resultType="int">
+		select count(*) from wishlist where mem_num = #{mem_num} and movie_num=#{movie_num}
+	</select>
+	
+	<insert id="insertwishlist" parameterType="dto.WishListDTO">
+		insert into wishlist values(#{movie_num},#{category_name},#{mem_num})
+	</insert>
 </mapper>

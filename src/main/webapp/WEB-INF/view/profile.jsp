@@ -9,13 +9,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-
-	<div class="ui four item menu boardCategoryMenu">
+	<div class="mymenu">
+	<div class="ui three item menu">
 			<a class="item" href="profile"> 나의 평점 </a> 
 			<a class="item" href="mylist"> 마이리스트 </a> 
 			<a class="item" href="myboard"> 내가 쓴 글 </a>
 		</div>
-
+	</div>
 
 		<div class="ui four cards" id="fcards">
 		<c:forEach items="${rating}" var="dto">
@@ -35,7 +35,7 @@
 	    </div>
 	    <div class="extra">
 	      Rating:
-	      <div class="ui star rating" data-rating="${dto.star_point}" data-max-rating="5" id="${dto.movie_num}"></div>
+	      <div class="ui star rating point" data-rating="${dto.star_point}" data-max-rating="5" id="${dto.movie_num}"></div>
 	    </div>
 	  </div>
 	  	 </c:forEach>

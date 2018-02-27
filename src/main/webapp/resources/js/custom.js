@@ -2,6 +2,34 @@
 /*global $, document*/
 
 $(document).ready(function () {
+	$('#categorymenu a').on('click',function(){
+		location.href="mylist?category="+$(this).text();
+
+	});
+	
+	$('.wish').on('click',function(){
+		var aa = parseInt($(this).attr('id'));
+		var cc = $(this).parent().find($('#ctg')).val();
+		var num =  $('#member_num').val();
+		if(num<1){
+			alert("먼저 로그인하세요");
+			return false;
+		}
+		$.ajax({
+			url : 'pluswish?movie_num='+aa,
+			type:'GET',
+			dataType:'json',
+			success:function(result){
+				if(result==0){
+				alert("추가 되었습니다.");
+				} else if(result==1){
+					alert("이미 목록에 있는 영화 입니다.")
+				}
+			}
+		});
+		
+	});
+	
 	
 	printClock();
 	
@@ -77,7 +105,7 @@ $(document).ready(function () {
 			enctype 	: 'multipart/form-data',
 			processData : false,
 			success: function() {
-				
+				alert('이미지가 변경 되었습니다.');
 			}
 		});
 
@@ -590,7 +618,6 @@ $(document).ready(function () {
 					var sm = sdate.getFullYear() + "/";
 					sm = sm + (sdate.getMonth() + 1) + "/";
 					sm = sm + sdate.getDate();
-
 					comment +=
 						'<div class="event">' +
 						'<div class="label">'
@@ -609,7 +636,7 @@ $(document).ready(function () {
 						'<div class="date">' + sm + '</div></div>' +
 						'<div class="extra text">' + value.replytext + '</div>' +
 						'<div class="meta">' +
-						'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
+						'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="thumbs up outline icon"></i>' + value.likecount + '</a>'
 						if(session_id==value.mem_id){
 							comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
 						}
@@ -684,7 +711,7 @@ $(document).ready(function () {
 						'<div class="date">' + sm + '</div></div>' +
 						'<div class="extra text">' + value.replytext + '</div>' +
 						'<div class="meta">' +
-						'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
+						'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="thumbs up outline icon"></i>' + value.likecount + '</a>'
 						if(session_id==value.mem_id){
 							insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
 						}
@@ -780,7 +807,7 @@ $(document).ready(function () {
 							'<div class="date">' + sm + '</div></div>' +
 							'<div class="extra text">' + value.replytext + '</div>' +
 							'<div class="meta">' +
-							'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>' + value.likecount + '</a>'
+							'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="thumbs up outline icon"></i>' + value.likecount + '</a>'
 							if(session_id==value.mem_id){
 								insert+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
 							}
@@ -906,3 +933,8 @@ $(document).ready(function () {
 			  return zero + num;
 		}
 		
+		
+		
+		
+
+

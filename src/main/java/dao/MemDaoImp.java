@@ -3,10 +3,15 @@ package dao;
 import java.util.List;
 
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 
+import dto.CategoryDTO;
+import dto.CatgDTO;
 import dto.MemDTO;
+import dto.MyCommentDTO;
 import dto.RatingDTO;
+import dto.WishListDTO;
 
 public class MemDaoImp implements MemDAO {
 	SqlSessionTemplate sqlSession;
@@ -77,6 +82,37 @@ public class MemDaoImp implements MemDAO {
 	@Override
 	public List<RatingDTO> profile_rating(MemDTO userDTO) {
 		return sqlSession.selectList("mem.profile_rating",userDTO);
+	}
+
+	@Override
+	public List<MyCommentDTO> mycomment(MemDTO userDTO) {
+		return sqlSession.selectList("movie.mycomment_list",userDTO);
+	}
+
+	@Override
+	public List<WishListDTO> wishlist(WishListDTO wish) {
+		return sqlSession.selectList("mem.wishlist",wish);
+	}
+
+	@Override
+	public List<WishListDTO> mylist(WishListDTO wish) {
+		return sqlSession.selectList("mem.mylist", wish);
+	}
+
+	@Override
+	public List<CatgDTO> findcategory(int movie_num) {
+		System.out.println("영화번호:"+movie_num);
+		return sqlSession.selectList("mem.findcategory",movie_num);
+	}
+
+	@Override
+	public void insertwishlist(WishListDTO wish) {
+		sqlSession.insert("mem.insertwishlist",wish);
+	}
+
+	@Override
+	public int findoverlap(WishListDTO wish) {
+		return sqlSession.selectOne("mem.findoverlap",wish);
 	}
 
 	
