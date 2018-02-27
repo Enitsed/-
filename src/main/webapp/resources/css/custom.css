@@ -356,7 +356,7 @@ iframe {
 
 
 #fcards{
-	margin-left:150px;
+	margin:auto;
 }
 #cards{
 	width: 200px;
@@ -379,10 +379,15 @@ iframe {
 }
 
 .mymenu{
+	/*
 	width: 950px;
     margin-left: 300px;
     margin-bottom: 100px;
     margin-top: 50px;
+    */
+    width: 950px;
+    margin:auto;
+    margin-bottom:70px;
 }
 
 .ui.clearing.segment{ /*내가쓴 게시글*/
@@ -420,7 +425,7 @@ iframe {
 }
 
 #board_segment{
-	margin-left:200px;
+	
 }
 
 #card{
@@ -438,5 +443,43 @@ iframe {
 	
 	width:200px;
 	height: 220px;
+}
+
+#mm{
+	display: table;
+	margin:auto;
+}
+
+.ui.header{
+	margin:auto;
+}
+
+#my{
+	display:table;
+    margin: auto;
+}
+
+#pro{
+	width:70%;
+	margin: auto;
+}
+
+#mylistcard{
+	width: 15%;
+    height: 10%;
+    border-radius: 10px;
+}
+
+#mylistimg{
+	height: 250px;
+    border-radius: 10px;
+}
+#mylistnull{
+	height: 250px;
+	border-radius: 10px;
+	
+}
+#mylistmovie{
+	margin:auto;
 }
 

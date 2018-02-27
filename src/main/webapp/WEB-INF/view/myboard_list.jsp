@@ -11,6 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+<div id="my">
 	<div class="mymenu">
 	<div class="ui three item menu">
 			<a class="item" href="profile"> 나의 평점 </a> 
@@ -131,6 +132,7 @@
 	<hr>
 	</c:forEach>			
 	</div>
+</div>
 </div>
 </body>
 </html>

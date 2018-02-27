@@ -400,10 +400,17 @@ public class MemberController {
 			mav.addObject("list",service.mylist(wish));
 			mav.setViewName("mylist");
 		} else if(category!=null) {
+			if(category.equals("전체")) {
+				mav.addObject("list",service.mylist(wish));
+				mav.setViewName("mylist");
+			}
+			else {
 			wish.setCategory_name(category);
 			mav.addObject("list",service.wishlist(wish));
 			mav.setViewName("mylist");
-		} 		
+			}
+		} 
+		
 		mav.addObject("mem_name",dto.getMem_name());
 		return mav;
 	}

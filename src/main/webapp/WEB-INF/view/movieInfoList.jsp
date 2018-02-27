@@ -55,6 +55,7 @@
 								'</p>'+
 								'</div>'+
 								'</div>'+
+								  '<h3 class="ui dividing header">Comments</h3>'+
 								'<div class="ui large feed"></div>'+
 								'<div class="seemore"><input type="hidden" class="hiddennum" id="10" name="10" /></div>';
 								if('${userDTO.mem_id}' != ''){

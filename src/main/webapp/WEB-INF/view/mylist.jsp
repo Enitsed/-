@@ -9,6 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+<div id="mm">
 	<div class="mymenu">
 	<div class="ui three item menu">
 			<a class="item" href="profile"> 나의 평점 </a> 
@@ -28,6 +29,7 @@
     Categories
     <i class="dropdown icon"></i>
     <div class="menu" id="categorymenu">
+      <a class="item" id="cate">전체</a>
       <a class="item" id="cate">스릴러</a>
       <a class="item" id="cate">액션</a>
       <a class="item" id="cate">드라마</a>
@@ -46,29 +48,37 @@
 
 </div>
 
-<div class="ui four cards" id="fcards">
-		<c:forEach items="${list}" var="dto">
-	  <div class="card" id="card">
-	  	      <a id="title">${dto.movie_kor_title}</a>
-	    <div class="image">
-	      <input type="hidden" value="${dto.mem_num}" id="member_num"/>
-	      <c:choose>
-	      	<c:when test="${dto.movie_image eq '이미지 없음' }">
-	      		<img src = "resources/images/no_image.png" id="no_img">
-	      	</c:when>
-	      	<c:otherwise>
-	      		<img src="${dto.movie_image}" id="card_imgae">	
-	      	</c:otherwise>
-	      </c:choose>
-	      
-	    </div>
-	    
-	  </div>
-	  	 </c:forEach>
-	  
-	  </div>
+<div class="ui link special cards four columns" id="movieListWindow">
+			<c:forEach var="i" items="${list}">
+				<div class="card column blurring dimmable image main_movie" id="mylistcard">
+					<!-- 영화 번호 넣을자리 -->
+					<input type="hidden" value="${i.movie_num}" />
+					<!-- 영화이미지 넣을자리 -->
+					<c:choose>
+						<c:when test="${i.movie_image eq '이미지 없음'}">
+							<img class="slideImg" src="resources/images/no_image.png" id="mylistnull">
+						</c:when>
+						<c:otherwise>
+							<c:forTokens var="item" items="${i.movie_image}" delims="|" end="0">
+								<img class="slideImg" src="${item}" id="mylistimg">
+							</c:forTokens>
+						</c:otherwise>
+					</c:choose>
+					<div class="ui dimmer">
+						<div class="ui content">
+							<div class="ui center">
+								<p>${i.movie_kor_title}</p>
+								<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+								<br /> <br />
+							</div>
+						</div>
+					</div>
+				</div>
+							</c:forEach>
+				
 
 
-
+ </div>
+ </div>
 </body>
 </html>

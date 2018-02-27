@@ -9,6 +9,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+	<div id="pro">
+
 	<div class="mymenu">
 	<div class="ui three item menu">
 			<a class="item" href="profile"> 나의 평점 </a> 
@@ -16,7 +18,7 @@
 			<a class="item" href="myboard"> 내가 쓴 글 </a>
 		</div>
 	</div>
-
+		
 		<div class="ui four cards" id="fcards">
 		<c:forEach items="${rating}" var="dto">
 	  <div class="card" id="cards">
@@ -41,5 +43,6 @@
 	  	 </c:forEach>
 	  
 	  </div>
+	</div>
 </body>
 </html>
