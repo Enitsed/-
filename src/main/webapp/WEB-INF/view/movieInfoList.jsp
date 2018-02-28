@@ -252,7 +252,10 @@
 						</c:choose>
 						</div>
 						<div class="description">
-							<div class="ui header">영화제목 : ${i.movie_kor_title}</div> 평균 평점 : <div class="ui star rating avgRat" data-rating="${i.avgRat}" data-max-rating="5" id="avgRat"></div>
+							<div class="ui header">영화제목 : ${i.movie_kor_title}</div>
+							평균 평점 :
+							<div class="ui star rating avgRat" data-rating="${i.avgRat}" data-max-rating="5" id="avgRat">
+							</div>
 							<h4>줄거리 : ${i.movie_summary}</h4>
 							<p>
 								감독 :

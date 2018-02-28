@@ -47,6 +47,7 @@
 			<tx:method name="*Process" rollback-for="java.lang.Exception" />
 		</tx:attributes>
 	</tx:advice>
+	
 
 	<!-- [6] 트랜잭션으로 처리할 메소드에 transactionManager 설정 -->
 	<aop:config>

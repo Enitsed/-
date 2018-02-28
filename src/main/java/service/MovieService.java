@@ -24,7 +24,7 @@ public interface MovieService {
 	public void insertCommentProcess(CommentDTO dto);
 	public void deleteCommentProcess(int comment_num);
 
-	public List<MovieDTO> movieListProcess(String keyword);
+	public List<MovieDTO> movieSearchListProcess(String keyword, int page);
 	public int searchCountProcess(String keyword);
 	public void addRating(int member_num, int movie_num, int rating);
 	public MovieDTO BoxOfficeInsert(String name);

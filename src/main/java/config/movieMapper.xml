@@ -82,9 +82,11 @@ b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name 
 	<insert id="replyinsert" parameterType="dto.CommentDTO">
 		insert into movie_comment values(comment_num_seq.nextval,#{profile},#{movie_num},#{replytext},#{mem_num},#{mem_id},sysdate,0)
 	</insert>
-	<select id="searchList" parameterType="String" resultType="dto.MovieDTO">
+	<select id="searchList" parameterType="java.util.Map" resultType="dto.MovieDTO">
 		select * from
-		movie where movie_kor_title like '%'||#{keyword}||'%'
+		<!-- movie where movie_kor_title like '%'||#{keyword}||'%' -->
+		(select a.*, rownum r from (select * from movie where movie_kor_title like '%'||#{keyword}||'%' order by movie_num ) a)
+		where r > #{start} and #{end} >= r
 	</select>
 
 	<select id="searchCount" parameterType="String" resultType="int">
