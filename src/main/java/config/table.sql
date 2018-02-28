@@ -338,13 +338,28 @@ insert into COMMENTLIKE values(like_num_seq.nextval,'bbbbbb',1)
 select * from commentlike
 delete  from commentlike
 
- select b.* from
-     (select rownum as rm, a.*   from(
-     select * from board order by board_relnum desc, board_reply_step asc)a)b
 
- select b.* from (select * from board order by board_relnum desc, board_reply_step asc)b
- 
- 
- select b.* from (select rownum as rm, a.*from(select * from board where mem_num = 9 order by board_num desc)a)b
- where b.rm between 1 and 2
- 
+create table wishlist(
+	movie_num number,
+	category_name varchar2(200),
+	mem_num number
+);
+
+select * from mem
+select * from wishlist
+select * from movie
+select 
+select * from  (select movie_image,movie_kor_title,category_name from movie m, wishlist w
+where m.movie_num = w.movie_num and mem_num=9)
+
+select category_name from category c, movie_category m
+where c.category_num = m.category_num and movie_num=102
+select * from movie where movie_num = 102
+insert into wishlist values(2,'스릴러',9)
+
+select * from  (select movie_image,movie_kor_title,category_name from movie m, wishlist w
+		where m.movie_num = w.movie_num and category_name like %% and mem_num=9)
+		
+select b.category_name from movie_category a, category b where a.movie_num = 111 and a.category_num = b.category_num
+
+select count(*) from wishlist where mem_num = 12 and movie_num=108

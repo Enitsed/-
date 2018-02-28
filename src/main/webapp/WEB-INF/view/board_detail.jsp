@@ -24,7 +24,7 @@
 							<div class="visible content">
 								<i class="trash icon"></i>
 							</div>
-							<div class="hidden content">삭제</div>
+							 <div class="hidden content">삭제</div>
 						</div>
 					</c:if>
 					<c:if test="${userDTO.mem_id eq 'admin'}">

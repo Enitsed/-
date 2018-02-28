@@ -134,6 +134,13 @@ public class HelloController {
 		movieservice.deleteCommentProcess(comment_num);
 		return movieservice.commentListProcess(movie_num);
 	}
+	
+	@RequestMapping("/mycommentdelete")
+	public String mycommentdelete(int comment_num) {
+		System.out.println("코멘트번호:"+comment_num);
+		movieservice.deleteCommentProcess(comment_num);
+		return "redirect:/myboard";
+	}
 
 	@RequestMapping(value = "morecomment", method = RequestMethod.GET)
 	public @ResponseBody List<CommentDTO> morecomment(MoreCommentDTO dto) {

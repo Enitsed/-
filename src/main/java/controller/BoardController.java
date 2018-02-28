@@ -93,6 +93,17 @@ public class BoardController {
 		mav.setViewName("board_detail");
 		return mav;
 	}
+	
+	@RequestMapping("/boardDetail2")
+	public ModelAndView boardDetail2(int num, int currentPage) {
+		currentPage =0;
+		System.out.println("커렌트페이지:"+currentPage);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto", service.contentProcess(num));
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("board_detail");
+		return mav;
+	}
 
 	@RequestMapping(value = "/boardUpdate", method = RequestMethod.GET)
 	public ModelAndView updateMethod(int num, int currentPage) {
@@ -114,15 +125,22 @@ public class BoardController {
 
 	@RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
 	public ModelAndView deleteMethod(int num, int currentPage, HttpServletRequest request) {
+		System.out.println("currentpage:"+currentPage);
 		ModelAndView mav = new ModelAndView();
 		service.deleteProcess(num, request);
 		Integer board_category = null;
 		if (request.getParameter("board_category") != null) {
 			board_category = Integer.parseInt(request.getParameter("board_category"));
 		}
+		
+		if(currentPage==0) {
+			mav.setViewName("redirect:/myboard");
+		}
+		else {
 		PageDTO pv = new PageDTO(currentPage, service.countProcess(board_category));
 		mav.addObject("currentPage", pv.getTotalPage());
 		mav.setViewName("redirect:/free");
+		}
 		return mav;
 	} // end deleteMethod()
 

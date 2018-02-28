@@ -152,5 +152,10 @@ b.category_num = c.category_num AND a.movie_num = b.movie_num and category_name 
 	<select id="avgRat" resultType="int"  parameterType="int">
 		select avg(star_point) from rating where movie_num = #{movie_num}
 	</select>
+	
+	<select id="mycomment_list" parameterType="dto.MemDTO" resultType="dto.MyCommentDTO">
+		select * from movie_comment c,movie m
+ 		where c.movie_num = m.movie_num and mem_num=#{mem_num}
+	</select>
 </mapper>
     

@@ -55,6 +55,7 @@
 								'</p>'+
 								'</div>'+
 								'</div>'+
+								  '<h3 class="ui dividing header">Comments</h3>'+
 								'<div class="ui large feed"></div>'+
 								'<div class="seemore"><input type="hidden" class="hiddennum" id="10" name="10" /></div>';
 								if('${userDTO.mem_id}' != ''){
@@ -281,7 +282,7 @@
 									value="${i.movie_opening_date}" /></p>
 						</div>
 					</div>
-					
+					<h3 class="ui dividing header">Comments</h3>
 					<div class="ui large feed">
                </div>
                 
@@ -301,6 +302,7 @@
                
                
 					<div class="actions">
+					<a class="wish" id="${i.movie_num}"><i class="heart icon"></i>Wish</a>
 						<div class="ui black deny button">닫기</div>
 
 					</div>

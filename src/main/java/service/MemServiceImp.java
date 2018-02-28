@@ -3,8 +3,12 @@ package service;
 import java.util.List;
 
 import dao.MemDAO;
+import dto.CategoryDTO;
+import dto.CatgDTO;
 import dto.MemDTO;
+import dto.MyCommentDTO;
 import dto.RatingDTO;
+import dto.WishListDTO;
 
 public class MemServiceImp implements MemService {
 	MemDAO dao;
@@ -80,6 +84,36 @@ public class MemServiceImp implements MemService {
 	@Override
 	public List<RatingDTO> profile_rating(MemDTO userDTO) {
 		return dao.profile_rating(userDTO);
+	}
+
+	@Override
+	public List<MyCommentDTO> mycomment(MemDTO userDTO) {
+		return dao.mycomment(userDTO);
+	}
+
+	@Override
+	public List<WishListDTO> wishlist(WishListDTO wish) {
+		return dao.wishlist(wish);
+	}
+
+	@Override
+	public List<WishListDTO> mylist(WishListDTO wish) {
+		return dao.mylist(wish);
+	}
+
+	@Override
+	public List<CatgDTO> findcategory(int movie_num) {
+		return dao.findcategory(movie_num);
+	}
+
+	@Override
+	public void insertwishlist(WishListDTO wish) {
+		dao.insertwishlist(wish);
+	}
+
+	@Override
+	public int findoverlap(WishListDTO wish) {
+		return dao.findoverlap(wish);
 	}
 
 }

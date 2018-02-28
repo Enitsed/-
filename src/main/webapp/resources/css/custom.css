@@ -32,12 +32,18 @@ td .tdcontent {
 }
 
 .ui.large.feed>.event>.label img {
+	/*
 	border: 1px solid steelblue;
 	height: 100%;
+	*/
+	width: 60px;
+    border-radius: 7.5rem;
+    height:60px;
 }
 
 .ui.large.feed>.event>.content {
 	padding : 10px;
+	margin-left:10px;
 }
 
 .ui.modal>.image.content>.card {
@@ -51,6 +57,12 @@ td .tdcontent {
 	height: inherit;
 }
 
+.ui.feed>.event>.label img { /*mycomment movie img*/
+	border-radius: 0px;
+}
+.ui.large.feed>.event>.label img{
+	border-radius:7.5rem;
+}
 .ui.modal>.content>.description {
     -webkit-box-flex: 1;
     -ms-flex: 1 0 auto;
@@ -344,7 +356,7 @@ iframe {
 
 
 #fcards{
-	margin-left:150px;
+	margin:auto;
 }
 #cards{
 	width: 200px;
@@ -364,5 +376,110 @@ iframe {
 	margin-top:6px;
 	color: black;
 	text-align: center;
+}
+
+.mymenu{
+	/*
+	width: 950px;
+    margin-left: 300px;
+    margin-bottom: 100px;
+    margin-top: 50px;
+    */
+    width: 950px;
+    margin:auto;
+    margin-bottom:70px;
+}
+
+.ui.clearing.segment{ /*내가쓴 게시글*/
+	width:1150px;
+	
+}
+
+.ui.header{ /*내가 쓴 게시물 header*/
+	margin-left:200px;
+}
+
+#myimg{/*내코멘트 영화이미지*/
+	width:100px;
+	height:130px;
+}
+
+.ui.feed>.event>.label+.content{
+	margin:0px;
+	margin-left:100px;
+}
+
+.user{
+	margin-bottom:10px;
+}
+.ui.feed>.event>.content .meta{
+	/*margin-top:30px;*/
+	font-size: 13px;
+	margin-top:5px;
+}
+#metaimage{
+	margin-top:25px;
+}
+.ui.feed>.event>.content .summary{
+	
+}
+
+#board_segment{
+	
+}
+
+#card{
+	width:200px;
+	height: 250px;
+	margin-left:30px;
+}
+
+.ui.vertical.menu{
+	margin-left: 800px;
+	margin-bottom: 50px;
+}
+
+#card_imgae{
+	
+	width:200px;
+	height: 220px;
+}
+
+#mm{
+	display: table;
+	margin:auto;
+}
+
+.ui.header{
+	margin:auto;
+}
+
+#my{
+	display:table;
+    margin: auto;
+}
+
+#pro{
+	width:70%;
+	margin: auto;
+}
+
+#mylistcard{
+	width: 15%;
+    height: 10%;
+    border-radius: 10px;
+}
+
+#mylistimg{
+	height: 250px;
+    border-radius: 10px;
+}
+#mylistnull{
+	height: 250px;
+	border-radius: 10px;
+	
+}
+#mylistmovie{
+	margin:auto;
 }
 
