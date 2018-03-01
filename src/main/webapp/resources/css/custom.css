@@ -95,6 +95,13 @@ body {
 	height: 370px;
 }
 
+.slideImg2{
+	width: 100%;
+	height: 400px;
+	position: static;
+	margin: 0px auto !important;
+}
+
 .slide_box {
 	height: 370px;
 }

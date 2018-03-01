@@ -6,8 +6,9 @@
 <script>
 function moreList() {
 	var page = (parseInt($("#currentPage").val()) + 1);
+	var inputKeyword =$("#inputKeyword").val();
 	$.ajax({
-		url : 'addMovie2.do?page=' + page,
+		url : 'addMovie2.do?page=' + page +"&keyword="+inputKeyword,
 		type : 'GET',
 		dataType : 'json',
 		success : function(data) {
@@ -123,7 +124,6 @@ function moreList() {
 								var sm = sdate.getFullYear() + "/";
 								sm = sm + (sdate.getMonth() + 1) + "/";
 								sm = sm + sdate.getDate();
-								//이부분 custom.js와 비교해서 수정해야함
 								comment +=
 									'<div class="event">' +
 									'<div class="label">'
@@ -154,7 +154,7 @@ function moreList() {
 							});//each
 
 				            $('#hidden').remove();
-				            $('.horizontal.divider .more').remove();
+				            $('.more').remove();
 				            var plus="";
 				            if(data.length>more)
 				            	plus+= '<input type="hidden" value="'+mnum+'" id="hidden"/>'+
@@ -194,6 +194,7 @@ function moreList() {
 <!--  -->
 
 <div class="ui container contents">
+<div class="ui segment">
 	<table class="ui selectable celled padded table">
 		<thead>
 			<tr align="center">
@@ -215,9 +216,8 @@ function moreList() {
 										<img src="resources/images/no_image.png">
 									</c:when>
 									<c:otherwise>
-										<c:forTokens var="item" items="${i.movie_image}" delims="|"
-											end="0">
-											<img src="${item}">
+										<c:forTokens var="item" items="${i.movie_image}" delims="|"	end="0">
+											<img class="slideImg" src="${item}">
 										</c:forTokens>
 									</c:otherwise>
 								</c:choose>
@@ -387,4 +387,5 @@ function moreList() {
 				</div>
 			</div>
 		</c:if>
+		</div>
 </div>

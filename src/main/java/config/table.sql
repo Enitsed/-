@@ -163,7 +163,7 @@ create table movie_category(
 
 --select * from movie_category
 --drop table movie_category
-		select * from movie where movie_kor_title in ('코코','마터스')
+select * from movie where movie_kor_title in ('코코','마터스')
 delete from movie_actor;
 delete from movie_director;
 delete from actor;
@@ -263,6 +263,7 @@ alter table board modify(board_name varchar2(500))
 alter table board add constraint board_mem_num_fk foreign key(mem_num) references mem(mem_num) on delete cascade
 --board테이블 mem_num 외래키, 부모(mem_num)삭제시 다 삭제되는 제약조건
 --게시판테이블 시퀀스
+
 create sequence board_seq
 start with 1
 increment by 1
@@ -363,3 +364,5 @@ select * from  (select movie_image,movie_kor_title,category_name from movie m, w
 select b.category_name from movie_category a, category b where a.movie_num = 111 and a.category_num = b.category_num
 
 select count(*) from wishlist where mem_num = 12 and movie_num=108
+
+select avg(star_point) from rating where movie_num = 1
