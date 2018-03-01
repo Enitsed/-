@@ -195,15 +195,14 @@ function moreList() {
 
 <div class="ui container contents">
 <div class="ui segment">
-	<table class="ui selectable celled padded table">
-		<thead>
-			<tr align="center">
-				<th>'${map.keyword }' 에 대한 영화 검색결과 (${map.searchcount }개)</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
+	
+		
+			<div align="center">
+				<b>'${map.keyword }' 에 대한 영화 검색결과 (${map.searchcount }개)</b>
+				<br/>
+				<br/>
+			</div>
+		
 
 					<div class="ui link special cards four columns" id="movieListWindow">
 						<c:forEach var="i" items="${map.searchmov}">
@@ -213,7 +212,7 @@ function moreList() {
 								<!-- 영화이미지 넣을자리 -->
 								<c:choose>
 									<c:when test="${i.movie_image eq '이미지 없음'}">
-										<img src="resources/images/no_image.png">
+										<img class="slideImg" src="resources/images/no_image.png">
 									</c:when>
 									<c:otherwise>
 										<c:forTokens var="item" items="${i.movie_image}" delims="|"	end="0">
@@ -319,10 +318,9 @@ function moreList() {
 							type="hidden" value="1" id="currentPage" />
 						</a>
 					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+				
+			
+		
 
 	
 			
