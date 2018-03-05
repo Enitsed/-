@@ -344,22 +344,3 @@ create table wishlist(
 	category_name varchar2(200),
 	mem_num number
 );
-
-select * from mem
-select * from wishlist
-select * from movie
-select 
-select * from  (select movie_image,movie_kor_title,category_name from movie m, wishlist w
-where m.movie_num = w.movie_num and mem_num=9)
-
-select category_name from category c, movie_category m
-where c.category_num = m.category_num and movie_num=102
-select * from movie where movie_num = 102
-insert into wishlist values(2,'스릴러',9)
-
-select * from  (select movie_image,movie_kor_title,category_name from movie m, wishlist w
-		where m.movie_num = w.movie_num and category_name like %% and mem_num=9)
-		
-select b.category_name from movie_category a, category b where a.movie_num = 111 and a.category_num = b.category_num
-
-select count(*) from wishlist where mem_num = 12 and movie_num=108

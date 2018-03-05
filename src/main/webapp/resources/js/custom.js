@@ -873,7 +873,7 @@ $(document).ready(function () {
 								'<div class="date">' + sm + '</div></div>' +
 								'<div class="extra text">' + value.replytext + '</div>' +
 								'<div class="meta">' +
-								'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="like icon"></i>'+value.likecount+'</a>'
+								'<a class="like" value="'+value.comment_num+'" name="'+value.comment_num+'"><i class="thumbs up outline icon"></i>' + value.likecount + '</a>'
 								if(session_id==value.mem_id){
 									comment+='<a class="del" value="'+value.comment_num+'" id="'+value.movie_num+'"><i class="trash icon"></i>삭제</a>'
 								}

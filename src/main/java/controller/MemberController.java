@@ -332,8 +332,10 @@ public class MemberController {
 
 		MemDTO DTO = (MemDTO) session.getAttribute("userDTO");
 		System.out.println("기존 파일명:"+DTO.getUpload());
+		if(DTO.getUpload()!=null) {
 		File delete = new File(saveDirectory,DTO.getUpload());
 		delete.delete();
+		}
 		
 		System.out.println("저장경로:"+saveDirectory);
 		dto = (MemDTO) session.getAttribute("userDTO");

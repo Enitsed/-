@@ -21,7 +21,7 @@
 	
 	<div>
 	<h2 class="ui header">
-  			<div class="content">
+  			<div class="content" id="myslitheader">
    			<a>${mem_name}</a> 님이 보고싶은 영화
    			<hr>
    <div class="ui vertical menu">
@@ -74,11 +74,8 @@
 						</div>
 					</div>
 				</div>
-							</c:forEach>
-				
-
-
- </div>
+		</c:forEach>
+   </div>
  </div>
 </body>
 </html>

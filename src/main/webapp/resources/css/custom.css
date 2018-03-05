@@ -483,3 +483,8 @@ iframe {
 	margin:auto;
 }
 
+#myslitheader{
+	display:block;
+	vertical-align: top;
+}
+
