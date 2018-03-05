@@ -17,7 +17,6 @@ import api.BoxOffice;
 import api.MovieNewsApi;
 import dto.CommentDTO;
 import dto.LikeDTO;
-import dto.MemDTO;
 import dto.MoreCommentDTO;
 import dto.MovieDTO;
 import service.BoardService;
