@@ -66,9 +66,7 @@ public class MovieServiceImp implements MovieService {
 		dao.insertCommentProcees(dto);
 	}
 
-	public List<MovieDTO> movieListProcess(String keyword) {
-		return dao.movieListProcess(keyword);
-	}
+
 
 	@Override
 	public int searchCountProcess(String keyword) {
@@ -123,4 +121,11 @@ public class MovieServiceImp implements MovieService {
 		// TODO Auto-generated method stub
 		return dao.maxCommentMovie();
 	}
+
+	@Override
+	public List<MovieDTO> movieSearchListProcess(String keyword, int page) {
+		return dao.movieSearchListProcess(keyword, page);
+	}
+
+
 }

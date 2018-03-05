@@ -50,10 +50,17 @@ public class MovieController {
 		return list;
 	}
 	
+	@RequestMapping("/addMovie2.do")
+	public @ResponseBody List<MovieDTO> addMovie2(int page, String keyword) {
+		List<MovieDTO> list = movieservice.movieSearchListProcess(keyword, page);
+		
+		return list;
+	}
+	
 	@RequestMapping(value = "/searchResult", method = RequestMethod.POST)
 	public ModelAndView movieSearchResult(@RequestParam(defaultValue = "") String keyword, PageDTO pv) {
 		ModelAndView mav = new ModelAndView();
-		List<MovieDTO> searchmov = movieservice.movieListProcess(keyword);
+		List<MovieDTO> searchmov = movieservice.movieSearchListProcess(keyword, 1);
 		List<BoardDTO> searchbod = boardservice.searchListProcess(keyword);
 		int searchcount = movieservice.searchCountProcess(keyword);
 		int totalRecord = boardservice.searchCountProcess(keyword);

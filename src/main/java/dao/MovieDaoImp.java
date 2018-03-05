@@ -121,11 +121,7 @@ public class MovieDaoImp implements MovieDAO {
 
 	}
 
-	@Override
-	public List<MovieDTO> movieListProcess(String keyword) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("movie.searchList", keyword);
-	}
+
 
 	@Override
 	public int searchCountProcess(String keyword) {
@@ -275,4 +271,28 @@ public class MovieDaoImp implements MovieDAO {
 		}
 		return list;
 	}
+
+	@Override
+	public List<MovieDTO> movieSearchListProcess(String keyword, int page) {
+		List<MovieDTO> list = null;
+		int end = page * 8;
+		int start = end - 8;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("keyword", keyword);
+		
+		list = sqlSession.selectList("movie.searchList", map);
+		for(int i=0; i<list.size(); i++ ) {
+		try {
+			int avg = sqlSession.selectOne("movie.avgRat", list.get(i).getMovie_num());
+			list.get(i).setAvgRat(avg);
+		}catch(NullPointerException e) {
+			list.get(i).setAvgRat(0);
+		}
+		}
+		return list;
+	}
+
+
 }
